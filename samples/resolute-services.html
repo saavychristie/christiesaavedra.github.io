@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resolute Services | Christie Saavedra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #FAFAF9;
+      --color-text: #1C1917;
+      --color-text-secondary: #57534E;
+      --color-accent: #059669;
+      --color-accent-light: #D1FAE5;
+      --color-border: #E7E5E4;
+      --color-card: #FFFFFF;
+      --color-success: #059669;
+      --color-success-light: #D1FAE5;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'IBM Plex Sans', -apple-system, sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-body); font-size: 16px; line-height: 1.7; color: var(--color-text); background: var(--color-bg); }
+    a { color: var(--color-accent); text-decoration: none; }
+    a:hover { opacity: 0.7; }
+    .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+    
+    .back-link { display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem; font-size: 0.9rem; }
+    
+    .hero { background: linear-gradient(135deg, #047857 0%, #059669 100%); color: white; padding: 3rem 2rem; margin: -2rem -2rem 2rem -2rem; }
+    .hero-label { display: inline-block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(255,255,255,0.2); padding: 0.4rem 0.8rem; border-radius: 2rem; margin-bottom: 1rem; }
+    .hero h1 { font-family: var(--font-display); font-size: 2.5rem; font-weight: 400; margin-bottom: 1rem; }
+    .hero-subtitle { font-size: 1.1rem; opacity: 0.9; max-width: 600px; }
+    
+    .results-bar { display: flex; gap: 2rem; flex-wrap: wrap; background: var(--color-success-light); border-left: 4px solid var(--color-success); padding: 1.5rem; margin-bottom: 2rem; border-radius: 0 8px 8px 0; }
+    .result-item { text-align: center; }
+    .result-number { font-family: var(--font-display); font-size: 2rem; color: var(--color-success); }
+    .result-label { font-size: 0.85rem; color: var(--color-text-secondary); }
+    
+    h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--color-accent); }
+    
+    .context-box { background: #F3F4F6; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; }
+    .context-box p { margin-bottom: 0.75rem; }
+    .context-box p:last-child { margin-bottom: 0; }
+    
+    .challenge-list { list-style: none; margin: 1rem 0; }
+    .challenge-list li { padding: 0.5rem 0 0.5rem 2rem; position: relative; }
+    .challenge-list li::before { content: "→"; position: absolute; left: 0; color: var(--color-accent); font-weight: bold; }
+    
+    .deliverable-card { background: var(--color-card); border: 1px solid var(--color-border); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin: 2rem 0; }
+    .deliverable-card img { width: 100%; height: auto; display: block; border-bottom: 1px solid var(--color-border); }
+    .deliverable-info { padding: 1.5rem; }
+    .deliverable-type { font-size: 0.75rem; font-weight: 600; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+    .deliverable-info h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .deliverable-info p { color: var(--color-text-secondary); font-size: 0.95rem; }
+    .deliverable-info ul { margin-top: 0.75rem; padding-left: 1.25rem; color: var(--color-text-secondary); font-size: 0.9rem; }
+    .deliverable-info li { margin-bottom: 0.25rem; }
+    
+    .process-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 1.5rem 0; }
+    .process-card { background: var(--color-card); border: 1px solid var(--color-border); border-radius: 8px; padding: 1.5rem; }
+    .process-card h4 { font-size: 1rem; margin-bottom: 0.5rem; color: var(--color-accent); }
+    .process-card p { font-size: 0.9rem; color: var(--color-text-secondary); }
+    
+    .skills-bar { display: flex; gap: 1rem; flex-wrap: wrap; background: var(--color-accent-light); border-left: 4px solid var(--color-accent); padding: 1.5rem; margin: 2rem 0; border-radius: 0 8px 8px 0; }
+    .skills-bar span { font-size: 0.9rem; color: var(--color-text); }
+    
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.75rem; }
+      .results-bar { flex-direction: column; gap: 1rem; }
+      .process-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-link">← Back to Portfolio</a>
+    
+    <div class="hero">
+      <span class="hero-label">Case Study</span>
+      <h1>Resolute Services</h1>
+      <p class="hero-subtitle">Co-founding a healthcare IT company and leading change management for a Medicaid-based mental health agency—achieving 90% process automation.</p>
+    </div>
+    
+    <div class="results-bar">
+      <div class="result-item">
+        <div class="result-number">40 hrs</div>
+        <div class="result-label">→ 15 min (Billing)</div>
+      </div>
+      <div class="result-item">
+        <div class="result-number">10 hrs</div>
+        <div class="result-label">→ 15 min (Intake)</div>
+      </div>
+      <div class="result-item">
+        <div class="result-number">4 yrs</div>
+        <div class="result-label">Full Lifecycle</div>
+      </div>
+    </div>
+    
+    <h2>The Challenge</h2>
+    <div class="context-box">
+      <p>A Medicaid-based mental health agency was drowning in manual processes. Billing, payroll, compliance tracking—all done by hand. Errors were common. Staff were frustrated. There was no internal IT expertise to fix it.</p>
+      <p>We didn't just consult. We co-founded Resolute Services and built the solution from scratch.</p>
+    </div>
+    
+    <ul class="challenge-list">
+      <li>Manual billing and payroll processes consuming staff time</li>
+      <li>Compliance tracking done on paper with high error rates</li>
+      <li>No existing software solution for their specific Medicaid requirements</li>
+      <li>Staff resistant to change after years of established workflows</li>
+    </ul>
+    
+    <h2>What We Built</h2>
+    
+    <div class="deliverable-card">
+      <img src="resolute-software.jpg" alt="Management Compliance Software interface showing admin information screen">
+      <div class="deliverable-info">
+        <div class="deliverable-type">Custom Software</div>
+        <h3>Management Compliance Software</h3>
+        <p>This is a screenshot of the actual software system I helped design. Built specifically for Medicaid mental health agency operations, it replaced manual processes across:</p>
+        <ul>
+          <li><strong>Participant management:</strong> Client intake, records, contact information</li>
+          <li><strong>Therapist tracking:</strong> Credentials, assignments, scheduling</li>
+          <li><strong>Manager administration:</strong> User roles, access controls, reporting</li>
+          <li><strong>Compliance reporting:</strong> Automated Medicaid documentation</li>
+          <li><strong>Billing automation:</strong> Claims generation and tracking</li>
+        </ul>
+        <p style="margin-top: 1rem;">Note the "© 2009 Resolute Services" footer—this was our company, our software.</p>
+      </div>
+    </div>
+    
+    <h2>Change Management Approach</h2>
+    <p>Building software was only half the battle. Getting staff to adopt it required a comprehensive change initiative:</p>
+    
+    <div class="process-grid">
+      <div class="process-card">
+        <h4>1. Awareness</h4>
+        <p>Helped staff understand why change was needed—showing the cost of errors, wasted time, and compliance risks</p>
+      </div>
+      <div class="process-card">
+        <h4>2. Buy-In</h4>
+        <p>Involved key stakeholders early, addressed concerns, and demonstrated how the system would make their jobs easier</p>
+      </div>
+      <div class="process-card">
+        <h4>3. Training</h4>
+        <p>Developed user training materials, quick-reference guides, and hands-on sessions for all staff levels</p>
+      </div>
+      <div class="process-card">
+        <h4>4. Reinforcement</h4>
+        <p>Provided ongoing support, gathered feedback, and made improvements based on real-world usage</p>
+      </div>
+    </div>
+    
+    <h2>Deliverables</h2>
+    <ul class="challenge-list">
+      <li><strong>Custom healthcare operations software</strong> for billing, payroll, and compliance</li>
+      <li><strong>Business process analysis</strong> using journey mapping and storyboarding</li>
+      <li><strong>User training materials</strong> including guides, SOPs, and quick-reference cards</li>
+      <li><strong>Multi-channel communication plan</strong> to support staff through transition</li>
+      <li><strong>Before/after documentation</strong> showing workflow improvements</li>
+      <li><strong>Ongoing support system</strong> for adoption reinforcement</li>
+    </ul>
+    
+    <h2>Results</h2>
+    <ul class="challenge-list">
+      <li><strong>Billing:</strong> Reduced from 40-80 hours/week → 15 minutes</li>
+      <li><strong>Client intake:</strong> Reduced from 10 hours → 15 minutes per client</li>
+      <li><strong>90%+ automation</strong> of critical billing and payroll processes</li>
+      <li><strong>Reduced errors</strong> through automated validation (previously prone to compliance and human errors)</li>
+      <li><strong>Enhanced compliance tracking</strong> for Medicaid requirements</li>
+      <li><strong>Sustainable system</strong> that continued operating after our engagement</li>
+    </ul>
+    
+    <h2>What Others Say</h2>
+    
+    <div class="deliverable-card" style="background: #F8FAFC;">
+      <div class="deliverable-info">
+        <div class="deliverable-type">Reference Letters</div>
+        <h3>Daniel Stephenson, CTO</h3>
+        <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: 1rem;">Lead engineer I collaborated with over four years at Resolute Services</p>
+        
+        <blockquote style="border-left: 3px solid var(--color-accent); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: var(--color-text-secondary);">
+          "She <strong>spearheaded a large software product</strong> which gave health organizations that worked with challenged children the ability to manage their entire process; from on-boarding through treatment and discharge. She oversaw the day-to-day process in a passionate, caring way. She proved to be very thoughtful and thorough as she helped <strong>design the UI/UX</strong> for the product and showed keen insight into the business process itself. She is great at <strong>motivating others</strong> around her, pulling the best of their abilities on a regular basis."
+        </blockquote>
+        
+        <blockquote style="border-left: 3px solid var(--color-accent); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: var(--color-text-secondary);">
+          "When we started, billing for the time a therapist worked with a client would take anywhere from <strong>forty to eighty hours a week</strong>. Because it was a manual process, there would often be mistakes made; both with compliance and human error. Christie and I sat down each week and worked through a process that allowed me to take the process down to approximately <strong>fifteen minutes</strong>."
+        </blockquote>
+        
+        <blockquote style="border-left: 3px solid var(--color-accent); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: var(--color-text-secondary);">
+          "At the beginning of each iteration, Christie would sit down with me and, essentially, <strong>storyboard the process</strong> for me. We would develop <strong>user stories</strong> that would then be decomposed into individual screenshots and issues. Christie was able to break down the process in a manner that made it extremely easy for me to understand and implement."
+        </blockquote>
+        
+        <blockquote style="border-left: 3px solid var(--color-accent); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: var(--color-text-secondary);">
+          "Christie and I worked together on the intake module of the software. The intake process was a manual process of taking all of the client's information and doing several tests with a lot of questions to figure out what the client needed to work on. We took this process and <strong>broke it up into use cases</strong> to get a better understanding on how the whole process could be automated. At the time, the process was taking up to about <strong>10 hours</strong>. Once the process was automated online, it took about <strong>15 minutes</strong>."
+        </blockquote>
+        
+        <blockquote style="border-left: 3px solid var(--color-accent); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: var(--color-text-secondary);">
+          "Christie spent the better part of <strong>four years</strong> going through the same process with our IT team and became very good at what she did. I would recommend her because of her experience and her ability to learn quickly, <strong>she is extremely sharp</strong>."
+        </blockquote>
+      </div>
+    </div>
+    
+    <h2>Skills Demonstrated</h2>
+    <div class="skills-bar">
+      <span>Change Management</span>
+      <span>•</span>
+      <span>Process Automation</span>
+      <span>•</span>
+      <span>Software Design</span>
+      <span>•</span>
+      <span>Training Development</span>
+      <span>•</span>
+      <span>Healthcare IT</span>
+      <span>•</span>
+      <span>Stakeholder Engagement</span>
+    </div>
+    
+    <div class="context-box" style="background: var(--color-accent-light); border-left: 4px solid var(--color-accent); margin-top: 2rem;">
+      <p><strong>The Pattern:</strong> This was my first major change management initiative—leading a multi-year transformation from manual processes to automated systems. The same approach I used here—stakeholder engagement, training development, adoption support—I've applied to every project since, from <a href="xacteched-campaign.html">XactechED</a> to <a href="arizona-esthetics.html">Arizona Esthetics</a> to <a href="palmview-lab.html">Palmview K-8</a>.</p>
+    </div>
+    
+  </div>
+</body>
+</html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XactechED Campaign | Christie Saavedra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #FAFAF9;
+      --color-text: #1C1917;
+      --color-text-secondary: #57534E;
+      --color-accent: #1E40AF;
+      --color-accent-light: #DBEAFE;
+      --color-border: #E7E5E4;
+      --color-card: #FFFFFF;
+      --color-success: #059669;
+      --color-success-light: #D1FAE5;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'IBM Plex Sans', -apple-system, sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-body); font-size: 16px; line-height: 1.7; color: var(--color-text); background: var(--color-bg); }
+    a { color: var(--color-accent); text-decoration: none; }
+    a:hover { opacity: 0.7; }
+    .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+    
+    .back-link { display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem; font-size: 0.9rem; }
+    
+    .hero { background: linear-gradient(135deg, #1E3A8A 0%, #1E40AF 100%); color: white; padding: 3rem 2rem; margin: -2rem -2rem 2rem -2rem; }
+    .hero-label { display: inline-block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(255,255,255,0.2); padding: 0.4rem 0.8rem; border-radius: 2rem; margin-bottom: 1rem; }
+    .hero h1 { font-family: var(--font-display); font-size: 2.5rem; font-weight: 400; margin-bottom: 1rem; }
+    .hero-subtitle { font-size: 1.1rem; opacity: 0.9; max-width: 600px; }
+    
+    .results-bar { display: flex; gap: 2rem; flex-wrap: wrap; background: var(--color-success-light); border-left: 4px solid var(--color-success); padding: 1.5rem; margin-bottom: 2rem; border-radius: 0 8px 8px 0; }
+    .result-item { text-align: center; }
+    .result-number { font-family: var(--font-display); font-size: 2rem; color: var(--color-success); }
+    .result-label { font-size: 0.85rem; color: var(--color-text-secondary); }
+    
+    h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 400; margin: 2.5rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--color-accent); }
+    
+    .context-box { background: #F3F4F6; border-radius: 8px; padding: 1.5rem; margin-bottom: 2rem; }
+    .context-box p { margin-bottom: 0.75rem; }
+    .context-box p:last-child { margin-bottom: 0; }
+    
+    .challenge-list { list-style: none; margin: 1rem 0; }
+    .challenge-list li { padding: 0.5rem 0 0.5rem 2rem; position: relative; }
+    .challenge-list li::before { content: "→"; position: absolute; left: 0; color: var(--color-accent); font-weight: bold; }
+    
+    .deliverable-grid { display: grid; gap: 2rem; margin: 2rem 0; }
+    
+    .deliverable-card { background: var(--color-card); border: 1px solid var(--color-border); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+    .deliverable-card img { width: 100%; height: auto; display: block; border-bottom: 1px solid var(--color-border); }
+    .deliverable-info { padding: 1.5rem; }
+    .deliverable-type { font-size: 0.75rem; font-weight: 600; color: var(--color-accent); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+    .deliverable-info h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .deliverable-info p { color: var(--color-text-secondary); font-size: 0.95rem; }
+    .deliverable-info ul { margin-top: 0.75rem; padding-left: 1.25rem; color: var(--color-text-secondary); font-size: 0.9rem; }
+    .deliverable-info li { margin-bottom: 0.25rem; }
+    
+    .timeline { margin: 1.5rem 0; }
+    .timeline-item { display: flex; gap: 1rem; padding: 1rem 0; border-left: 2px solid var(--color-border); padding-left: 1.5rem; margin-left: 0.5rem; position: relative; }
+    .timeline-item::before { content: ""; width: 12px; height: 12px; background: var(--color-accent); border-radius: 50%; position: absolute; left: -7px; top: 1.25rem; }
+    .timeline-item:last-child { border-left-color: transparent; }
+    .timeline-date { font-weight: 600; color: var(--color-accent); min-width: 120px; }
+    .timeline-content { flex: 1; }
+    
+    .quote-box { background: var(--color-accent-light); border-radius: 8px; padding: 1.5rem; margin: 2rem 0; font-style: italic; position: relative; }
+    .quote-box::before { content: """; font-family: var(--font-display); font-size: 4rem; color: var(--color-accent); opacity: 0.3; position: absolute; top: -10px; left: 10px; }
+    .quote-box p { padding-left: 2rem; }
+    .quote-source { font-style: normal; font-size: 0.85rem; color: var(--color-text-secondary); margin-top: 0.75rem; padding-left: 2rem; }
+    
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 1.75rem; }
+      .results-bar { flex-direction: column; gap: 1rem; }
+      .result-item { text-align: left; display: flex; align-items: center; gap: 1rem; }
+      .result-number { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-link">← Back to Portfolio</a>
+    
+    <div class="hero">
+      <span class="hero-label">Case Study</span>
+      <h1>XactechED Workforce Development Campaign</h1>
+      <p class="hero-subtitle">How I identified a training gap and built a statewide coding education program from scratch—securing $200,000 in state funding.</p>
+    </div>
+    
+    <div class="results-bar">
+      <div class="result-item">
+        <div class="result-number">$200K</div>
+        <div class="result-label">State Grant Secured</div>
+      </div>
+      <div class="result-item">
+        <div class="result-number">7 mo</div>
+        <div class="result-label">Concept to Launch</div>
+      </div>
+      <div class="result-item">
+        <div class="result-number">1</div>
+        <div class="result-label">New MTECH Program</div>
+      </div>
+    </div>
+    
+    <h2>The Challenge</h2>
+    <div class="context-box">
+      <p>As Training Manager at Xactware, I noticed a critical gap: there was no structured pathway for developing web development talent. The company needed skilled coders, but no local training program existed to build that pipeline.</p>
+      <p>Rather than wait for someone else to solve it, I took initiative.</p>
+    </div>
+    
+    <ul class="challenge-list">
+      <li>No existing training program for web development talent</li>
+      <li>Needed to secure state funding through competitive grant process</li>
+      <li>Required building partnerships with educational institutions</li>
+      <li>Had to create awareness and drive enrollment from scratch</li>
+    </ul>
+    
+    <h2>What I Built</h2>
+    <p>Over 7 months, I independently conceived, developed, and launched a complete workforce development initiative—including brand identity, curriculum, partnerships, and promotional materials.</p>
+    
+    <div class="deliverable-grid">
+      <div class="deliverable-card">
+        <img src="xacteched-flyer.png" alt="XactechED marketing flyer with Christie Stephenson's name as contact">
+        <div class="deliverable-info">
+          <div class="deliverable-type">Marketing Materials</div>
+          <h3>Program Flyer</h3>
+          <p>Professional marketing collateral I created for the program. Notice the contact information at the bottom: <strong>Christie Stephenson, XACTECHED.COM, 801.932.8254</strong>—I was the point of contact because I owned this program.</p>
+        </div>
+      </div>
+      
+      <div class="deliverable-card">
+        <img src="xacteched-billboard.png" alt="XactechED Billboard - Learn Code From Top Coders">
+        <div class="deliverable-info">
+          <div class="deliverable-type">Promotional Signage</div>
+          <h3>Program Billboard</h3>
+          <p>Outdoor advertising featuring MATC and Xactware partnership branding to drive program awareness and enrollment.</p>
+          <ul>
+            <li>Clear value proposition: "Learn Code From Top Coders"</li>
+            <li>Dual branding showing educational partnership</li>
+            <li>Professional design establishing program credibility</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="deliverable-card">
+        <img src="xacteched-landing-page.jpg" alt="XactechED Landing Page with enrollment form and statistics">
+        <div class="deliverable-info">
+          <div class="deliverable-type">Lead Generation</div>
+          <h3>Program Landing Page</h3>
+          <p>Data-driven landing page designed to convert visitors into program applicants through compelling statistics and clear calls to action.</p>
+          <ul>
+            <li>Stakeholder-facing messaging with labor market data</li>
+            <li>"Why Learn to Code?" infographic with compelling stats</li>
+            <li>Integrated enrollment form for lead capture</li>
+            <li>Mobile-responsive design</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <h2>Data-Driven Messaging</h2>
+    <p>I developed stakeholder-facing content using local labor market data to build urgency and demonstrate program value:</p>
+    
+    <div class="context-box">
+      <p><strong>2,000</strong> job openings next year for coders</p>
+      <p><strong>40</strong> tech businesses who will hire those coders</p>
+      <p><strong>7 of 10</strong> job openings in Utah are coding related</p>
+      <p><strong>NEEDED:</strong> People who can write code now</p>
+    </div>
+    
+    <p>This messaging was used across all campaign materials—billboard, landing page, grant presentations, and stakeholder meetings—to create a consistent, compelling case for the program.</p>
+    
+    <h2>Expanding the Ecosystem: à la code</h2>
+    <p>XactechED wasn't my only workforce development initiative. I also created <strong>à la code</strong>, a community meetup designed to educate internal prospects and recruit external talent—extending the workforce development initiative beyond the classroom.</p>
+    
+    <div class="deliverable-grid" style="grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 1.5rem 0;">
+      <div class="deliverable-card" style="text-align: center; padding: 2rem;">
+        <img src="xacteched-logo.png" alt="XactechED Logo" style="max-width: 200px; height: auto; margin-bottom: 1rem; border: none;">
+        <div class="deliverable-type">External Program</div>
+        <h3 style="font-size: 1.1rem;">XactechED</h3>
+        <p style="font-size: 0.85rem;">State-funded workforce pipeline through MTECH partnership</p>
+      </div>
+      <div class="deliverable-card" style="text-align: center; padding: 2rem;">
+        <img src="alacode-logo.png" alt="à la code Logo" style="max-width: 200px; height: auto; margin-bottom: 1rem; border: none;">
+        <div class="deliverable-type">Community Meetup</div>
+        <h3 style="font-size: 1.1rem;">à la code</h3>
+        <p style="font-size: 0.85rem;">Internal education & external recruitment outreach</p>
+      </div>
+    </div>
+    
+    <h2>A Pattern of Initiative</h2>
+    <div class="context-box" style="background: var(--color-accent-light); border-left: 4px solid var(--color-accent);">
+      <p style="font-weight: 600; margin-bottom: 1rem;">These initiatives reflect a core skill I bring to every role:</p>
+      <p>→ <strong>Identifying talent and skills gaps</strong> before they become critical problems</p>
+      <p>→ <strong>Creating programs to address them</strong> without waiting for direction</p>
+      <p>→ <strong>Building awareness through multiple channels</strong> to reach diverse audiences</p>
+      <p>→ <strong>Engaging stakeholders internally AND externally</strong> to create sustainable solutions</p>
+    </div>
+    
+    <div class="deliverable-card" style="margin: 2rem 0;">
+      <img src="office-door.png" alt="Office door showing XactechED and à la code branding with Christie Stephenson nameplate" style="width: 100%; max-width: 600px; display: block; margin: 0 auto;">
+      <div class="deliverable-info" style="text-align: center;">
+        <div class="deliverable-type">Physical Evidence</div>
+        <h3>My Office at Xactware</h3>
+        <p>Both program logos on my door, with my nameplate: <strong>"Christie Stephenson, Training Manager, XACTECH ED"</strong></p>
+        <p style="font-size: 0.85rem; color: var(--color-text-secondary); margin-top: 0.5rem;">These weren't side projects—I owned them.</p>
+      </div>
+    </div>
+    
+    <h2>Timeline</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-date">Late 2014</div>
+        <div class="timeline-content">Identified workforce training gap; began researching funding opportunities</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Early 2015</div>
+        <div class="timeline-content">Developed XactechED brand, curriculum, and partnership strategy</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Spring 2015</div>
+        <div class="timeline-content">Presented to governor's committee; secured $200,000 UCAP grant</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">June 2015</div>
+        <div class="timeline-content">Program launched through MTECH partnership</div>
+      </div>
+    </div>
+    
+    <div class="quote-box">
+      <p>It is official and I can finally announce! The program I have been building for the past 7 months has arrived!</p>
+      <div class="quote-source">— My announcement post, June 9, 2015</div>
+    </div>
+    
+    <h2>What Others Say</h2>
+    
+    <div class="deliverable-card" style="background: #F8FAFC; margin-bottom: 1.5rem;">
+      <div class="deliverable-info">
+        <div class="deliverable-type">Letter of Recommendation, August 2025</div>
+        <h3>Tim Harrison, Technical Project Manager, MNTN</h3>
+        <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: 1rem;">Former colleague at Xactware/Verisk, 2014-2015</p>
+        
+        <blockquote style="border-left: 3px solid var(--color-accent); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: var(--color-text-secondary);">
+          "In just one year, Christie advanced from Quality Assurance Analyst to Training Manager, where she <strong>designed and launched the MTECH Web Development program</strong>—a proprietary curriculum that <strong>secured a $200,000 UCAP grant</strong> through her compelling presentation to the governor's committee."
+        </blockquote>
+        
+        <blockquote style="border-left: 3px solid var(--color-accent); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: var(--color-text-secondary);">
+          "She forged partnerships with educational institutions to offer professional certifications and continuous learning opportunities, significantly raising workforce skills and positioning Xactware as an industry leader in training innovation."
+        </blockquote>
+        
+        <blockquote style="border-left: 3px solid var(--color-accent); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: var(--color-text-secondary);">
+          "Christie's impact extended well beyond the company. By opening MTECH programs to the public and organizing monthly community tech meetups, she created inclusive opportunities for career growth and <strong>fostered a collaborative learning culture across the Silicon Slopes region</strong>."
+        </blockquote>
+        
+        <blockquote style="border-left: 3px solid var(--color-accent); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: var(--color-text-secondary);">
+          "In addition to fulfilling her standard job requirements as an analyst, she <strong>tirelessly and enthusiastically developed this program from scratch</strong>."
+        </blockquote>
+        
+      </div>
+    </div>
+    
+    <div class="deliverable-card" style="background: #F8FAFC; margin-bottom: 1.5rem;">
+      <div class="deliverable-info">
+        <div class="deliverable-type">Xactware Colleagues, 2015</div>
+        <h3>Additional References</h3>
+        
+        <blockquote style="border-left: 3px solid var(--color-accent); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: var(--color-text-secondary);">
+          "There aren't many people I have encountered who have had <strong>as much impact in as short of a time</strong> as Christine had here."
+          <span style="display: block; font-style: normal; font-size: 0.85rem; margin-top: 0.5rem;">— Kevin Carpenter, QA Manager, Xactware</span>
+        </blockquote>
+        
+        <blockquote style="border-left: 3px solid var(--color-accent); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: var(--color-text-secondary);">
+          "Christine has wonderful vision and is truly concerned about how she affects people around her."
+          <span style="display: block; font-style: normal; font-size: 0.85rem; margin-top: 0.5rem;">— Lisa Birch, Director, MATC</span>
+        </blockquote>
+        
+        <blockquote style="border-left: 3px solid var(--color-accent); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: var(--color-text-secondary);">
+          "She is as good as anyone at <strong>mapping out a vision or strategy</strong> and the first to be at the front lines doing whatever work is needed."
+          <span style="display: block; font-style: normal; font-size: 0.85rem; margin-top: 0.5rem;">— David Nelson, Marketing Manager, Xactware</span>
+        </blockquote>
+        
+        <blockquote style="border-left: 3px solid var(--color-accent); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: var(--color-text-secondary);">
+          "Christie is the type of person that if you give her an impossible task, she will have it done quickly and efficiently, then ask for another."
+          <span style="display: block; font-style: normal; font-size: 0.85rem; margin-top: 0.5rem;">— Brett Barker, Training Manager, Verisk</span>
+        </blockquote>
+      </div>
+    </div>
+    
+    <h2>Results</h2>
+    <ul class="challenge-list">
+      <li><strong>$200,000 UCAP grant secured</strong> through competitive state funding process</li>
+      <li><strong>MTECH Web Development program launched</strong> creating sustainable talent pipeline</li>
+      <li><strong>Educational partnership established</strong> between Xactware and Mountainland Applied Technology College</li>
+      <li><strong>Complete program infrastructure built</strong> including brand, curriculum, marketing, and enrollment systems</li>
+    </ul>
+    
+    <h2>Skills Demonstrated</h2>
+    <div class="results-bar" style="background: var(--color-accent-light); border-left-color: var(--color-accent);">
+      <div class="result-item">
+        <div class="result-label" style="color: var(--color-text);">Stakeholder Engagement</div>
+      </div>
+      <div class="result-item">
+        <div class="result-label" style="color: var(--color-text);">Executive Presentations</div>
+      </div>
+      <div class="result-item">
+        <div class="result-label" style="color: var(--color-text);">Visual Communication</div>
+      </div>
+      <div class="result-item">
+        <div class="result-label" style="color: var(--color-text);">Curriculum Development</div>
+      </div>
+      <div class="result-item">
+        <div class="result-label" style="color: var(--color-text);">Partnership Building</div>
+      </div>
+    </div>
+    
+  </div>
+</body>
+</html>
