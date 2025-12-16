@@ -1,0 +1,1817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healthcare Block Management Dashboard</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    #loading { padding: 40px; text-align: center; font-size: 18px; color: #666; }
+  </style>
+</head>
+<body>
+  <div id="root"><div id="loading">Loading dashboard...</div></div>
+  <script type="text/babel">
+const { useState, useCallback, useMemo } = React;
+
+// ==================== MOCK DATA ====================
+const ministries = [
+  { id: 'texas', name: 'Central Region', avgUtilization: 76, hospitalCount: 4, surgeonCount: 48, atRiskSurgeons: 6 },
+  { id: 'florida', name: 'Southeast Region', avgUtilization: 82, hospitalCount: 3, surgeonCount: 36, atRiskSurgeons: 2 },
+  { id: 'michigan', name: 'Midwest Region', avgUtilization: 71, hospitalCount: 5, surgeonCount: 62, atRiskSurgeons: 9 },
+  { id: 'wisconsin', name: 'Northern Region', avgUtilization: 79, hospitalCount: 3, surgeonCount: 41, atRiskSurgeons: 4 },
+];
+
+const hospitals = {
+  texas: [
+    { id: 'st-david', name: "Memorial Medical Center", city: 'Austin', avgUtilization: 78, unitCount: 4, surgeonCount: 18 },
+    { id: 'dell-seton', name: 'University Hospital', city: 'Austin', avgUtilization: 74, unitCount: 3, surgeonCount: 14 },
+    { id: 'st-johns', name: "Community Hospital", city: 'Houston', avgUtilization: 76, unitCount: 3, surgeonCount: 16 },
+  ],
+  florida: [
+    { id: 'sacred-heart', name: 'Providence Medical Center', city: 'Pensacola', avgUtilization: 84, unitCount: 4, surgeonCount: 16 },
+    { id: 'st-vincents', name: "Mercy Medical Center", city: 'Jacksonville', avgUtilization: 80, unitCount: 3, surgeonCount: 20 },
+  ],
+  michigan: [
+    { id: 'borgess', name: 'Lakeside Medical Center', city: 'Kalamazoo', avgUtilization: 73, unitCount: 4, surgeonCount: 15 },
+    { id: 'providence', name: 'Valley Hospital', city: 'Southfield', avgUtilization: 68, unitCount: 5, surgeonCount: 18 },
+  ],
+  wisconsin: [
+    { id: 'columbia', name: "Central Medical Center", city: 'Milwaukee', avgUtilization: 79, unitCount: 4, surgeonCount: 21 },
+    { id: 'all-saints', name: 'Riverside Hospital', city: 'Racine', avgUtilization: 78, unitCount: 3, surgeonCount: 20 },
+  ],
+};
+
+const units = {
+  'st-david': [
+    { id: 'main-or', name: 'Main OR', rooms: 6, avgUtilization: 76, surgeonCount: 8 },
+    { id: 'cardiac', name: 'Cardiac Surgery', rooms: 2, avgUtilization: 88, surgeonCount: 4 },
+    { id: 'ortho', name: 'Orthopedics', rooms: 3, avgUtilization: 72, surgeonCount: 4 },
+    { id: 'neuro', name: 'Neurosurgery', rooms: 2, avgUtilization: 82, surgeonCount: 2 },
+  ],
+  'dell-seton': [
+    { id: 'ds-main', name: 'Main OR', rooms: 4, avgUtilization: 74, surgeonCount: 10 },
+    { id: 'ds-trauma', name: 'Trauma Surgery', rooms: 2, avgUtilization: 78, surgeonCount: 4 },
+  ],
+  'sacred-heart': [
+    { id: 'sh-main', name: 'Main OR', rooms: 5, avgUtilization: 85, surgeonCount: 8 },
+    { id: 'sh-cardiac', name: 'Cardiac', rooms: 2, avgUtilization: 90, surgeonCount: 4 },
+  ],
+};
+
+const roomData = {
+  'main-or': [
+    { id: 'or-1', name: 'OR 1', avgUtilization: 82 },
+    { id: 'or-2', name: 'OR 2', avgUtilization: 78 },
+    { id: 'or-3', name: 'OR 3', avgUtilization: 58 },
+    { id: 'or-4', name: 'OR 4', avgUtilization: 85 },
+    { id: 'or-5', name: 'OR 5', avgUtilization: 72 },
+    { id: 'or-6', name: 'OR 6', avgUtilization: 88 },
+  ],
+  'cardiac': [
+    { id: 'cardiac-1', name: 'Cardiac 1', avgUtilization: 92 },
+    { id: 'cardiac-2', name: 'Cardiac 2', avgUtilization: 84 },
+  ],
+  'ortho': [
+    { id: 'ortho-1', name: 'Ortho 1', avgUtilization: 75 },
+    { id: 'ortho-2', name: 'Ortho 2', avgUtilization: 68 },
+    { id: 'ortho-3', name: 'Ortho 3', avgUtilization: 72 },
+  ],
+};
+
+const surgeons = [
+  { id: 'patel', name: 'Dr. Raj Patel', specialty: 'Cardiac Surgery', ministryId: 'texas', hospitalId: 'st-david', unitId: 'cardiac', email: 'r.patel@healthsystem.org', blocksPerWeek: 4, metrics: { utilization: 92, volume: 4, turnaround: 18, lateReleases: 0, onTimeStarts: 95, cancellationRate: 2, patientSatisfaction: 4.8, volumeTrend: 'growing', ascAffiliation: false }},
+  { id: 'chen', name: 'Dr. Sarah Chen', specialty: 'Neurosurgery', ministryId: 'texas', hospitalId: 'st-david', unitId: 'neuro', email: 's.chen@healthsystem.org', blocksPerWeek: 3, metrics: { utilization: 88, volume: 3, turnaround: 22, lateReleases: 1, onTimeStarts: 90, cancellationRate: 3, patientSatisfaction: 4.7, volumeTrend: 'stable', ascAffiliation: false }},
+  { id: 'garcia', name: 'Dr. Maria Garcia', specialty: 'General Surgery', ministryId: 'texas', hospitalId: 'st-david', unitId: 'main-or', email: 'm.garcia@healthsystem.org', blocksPerWeek: 5, metrics: { utilization: 78, volume: 5, turnaround: 25, lateReleases: 2, onTimeStarts: 82, cancellationRate: 5, patientSatisfaction: 4.5, volumeTrend: 'growing', ascAffiliation: false }},
+  { id: 'torres', name: 'Dr. Michael Torres', specialty: 'General Surgery', ministryId: 'texas', hospitalId: 'st-david', unitId: 'main-or', email: 'm.torres@healthsystem.org', blocksPerWeek: 4, metrics: { utilization: 58, volume: 3, turnaround: 32, lateReleases: 4, onTimeStarts: 72, cancellationRate: 8, patientSatisfaction: 4.1, volumeTrend: 'declining', ascAffiliation: true }},
+  { id: 'rivera', name: 'Dr. Ana Rivera', specialty: 'Orthopedics', ministryId: 'texas', hospitalId: 'st-david', unitId: 'ortho', email: 'a.rivera@healthsystem.org', blocksPerWeek: 3, metrics: { utilization: 72, volume: 3, turnaround: 28, lateReleases: 2, onTimeStarts: 78, cancellationRate: 6, patientSatisfaction: 4.3, volumeTrend: 'stable', ascAffiliation: false }},
+  { id: 'adams', name: 'Dr. Patricia Adams', specialty: 'Orthopedics', ministryId: 'texas', hospitalId: 'dell-seton', unitId: 'ds-main', email: 'p.adams@healthsystem.org', blocksPerWeek: 3, metrics: { utilization: 52, volume: 3, turnaround: 35, lateReleases: 6, onTimeStarts: 68, cancellationRate: 10, patientSatisfaction: 3.9, volumeTrend: 'declining', ascAffiliation: true }},
+  { id: 'martinez', name: 'Dr. Carlos Martinez', specialty: 'General Surgery', ministryId: 'texas', hospitalId: 'dell-seton', unitId: 'ds-main', email: 'c.martinez@healthsystem.org', blocksPerWeek: 2, metrics: { utilization: 45, volume: 1, turnaround: 40, lateReleases: 4, onTimeStarts: 65, cancellationRate: 12, patientSatisfaction: 3.7, volumeTrend: 'declining', ascAffiliation: true }},
+  { id: 'watson', name: 'Dr. Emily Watson', specialty: 'Neurosurgery', ministryId: 'florida', hospitalId: 'sacred-heart', unitId: 'sh-main', email: 'e.watson@healthsystem.org', blocksPerWeek: 3, metrics: { utilization: 85, volume: 3, turnaround: 22, lateReleases: 1, onTimeStarts: 88, cancellationRate: 4, patientSatisfaction: 4.6, volumeTrend: 'growing', ascAffiliation: false }},
+  { id: 'miller', name: 'Dr. James Miller', specialty: 'Vascular', ministryId: 'wisconsin', hospitalId: 'columbia', unitId: 'main-or', email: 'j.miller@healthsystem.org', blocksPerWeek: 3, metrics: { utilization: 78, volume: 3, turnaround: 24, lateReleases: 2, onTimeStarts: 85, cancellationRate: 5, patientSatisfaction: 4.4, volumeTrend: 'stable', ascAffiliation: false }},
+];
+
+const users = [
+  { id: 'dr-martin', name: 'Dr. Martin', email: 'dr.martin@healthsystem.org', role: 'superuser', avatar: 'DM' },
+  { id: 'lisa-park', name: 'Lisa Park', email: 'l.park@healthsystem.org', role: 'admin', avatar: 'LP' },
+  { id: 'sarah-j', name: 'Sarah Johnson', email: 's.johnson@healthsystem.org', role: 'director', avatar: 'SJ' },
+  { id: 'phys-torres', name: 'Dr. Torres', email: 'm.torres@healthsystem.org', role: 'physician', avatar: 'MT', surgeonId: 'torres' },
+];
+
+const initialMetricsConfig = [
+  { id: 'utilization', name: 'Utilization Rate', category: 'Primary', weight: 25, enabled: true, unit: '%', higherIsBetter: true, icon: '📊' },
+  { id: 'volume', name: 'Case Volume', category: 'Primary', weight: 20, enabled: true, unit: 'blocks/wk', higherIsBetter: true, icon: '📈' },
+  { id: 'turnaround', name: 'Turnaround Time', category: 'Primary', weight: 15, enabled: true, unit: 'min', higherIsBetter: false, icon: '⏱️' },
+  { id: 'lateReleases', name: 'Late Release Rate', category: 'Primary', weight: 15, enabled: true, unit: '/month', higherIsBetter: false, icon: '🚨' },
+  { id: 'onTimeStarts', name: 'On-Time Starts', category: 'Quality', weight: 10, enabled: true, unit: '%', higherIsBetter: true, icon: '✅' },
+  { id: 'cancellationRate', name: 'Cancellation Rate', category: 'Quality', weight: 5, enabled: true, unit: '%', higherIsBetter: false, icon: '❌' },
+  { id: 'patientSatisfaction', name: 'Patient Satisfaction', category: 'Quality', weight: 5, enabled: true, unit: '/5', higherIsBetter: true, icon: '⭐' },
+  { id: 'volumeTrend', name: 'Volume Trend', category: 'Modifier', weight: 5, enabled: true, unit: 'trend', higherIsBetter: true, icon: '📉', isModifier: true },
+  { id: 'ascAffiliation', name: 'ASC Affiliation', category: 'Modifier', weight: 0, enabled: true, unit: 'flag', higherIsBetter: false, icon: '🏢', isFlag: true },
+];
+
+const tierThresholds = { platinum: 85, gold: 70, silver: 55, bronze: 0 };
+
+const metricRanges = {
+  utilization: { min: 40, max: 100 },
+  volume: { min: 1, max: 6 },
+  turnaround: { min: 10, max: 45 },
+  lateReleases: { min: 0, max: 10 },
+  onTimeStarts: { min: 50, max: 100 },
+  cancellationRate: { min: 0, max: 15 },
+  patientSatisfaction: { min: 3, max: 5 },
+};
+
+const initialAlerts = [
+  { id: 'ua-1', surgeonId: 'torres', date: '2024-11-18', time: '7:00 AM - 11:00 AM', room: 'OR 3', utilization: 45, reason: 'Low utilization (<60%)', status: 'pending', disputeId: null },
+  { id: 'ua-2', surgeonId: 'torres', date: '2024-11-25', time: '7:00 AM - 11:00 AM', room: 'OR 3', utilization: 0, reason: 'Same-day release', status: 'pending', disputeId: null },
+  { id: 'ua-3', surgeonId: 'adams', date: '2024-11-19', time: '11:00 AM - 3:00 PM', room: 'OR 2', utilization: 42, reason: 'Low utilization (<60%)', status: 'pending', disputeId: null },
+];
+
+const initialDisputes = [
+  { id: 'dr-1', surgeonId: 'torres', blockDate: '2024-11-20', blockTime: '7:00 AM - 11:00 AM', room: 'OR 3', originalUtil: 38, reason: 'Patient cancellation', description: 'Patient presented with elevated BP. Anesthesia cancelled for safety.', status: 'resolved', filedAt: '2024-11-21', reviewedBy: 'Lisa Park', reviewNotes: 'Valid medical cancellation.' },
+  { id: 'dr-2', surgeonId: 'rivera', blockDate: '2024-11-22', blockTime: '7:00 AM - 11:00 AM', room: 'Ortho 1', originalUtil: 55, reason: 'Staffing shortage', description: 'Only 1 scrub tech available, had to delay start by 90 minutes.', status: 'pending', filedAt: '2024-11-23', reviewedBy: null, reviewNotes: null },
+];
+
+const surgeonHistory = {
+  torres: [
+    { month: 'Jan', utilization: 72 }, { month: 'Feb', utilization: 68 }, { month: 'Mar', utilization: 65 },
+    { month: 'Apr', utilization: 61 }, { month: 'May', utilization: 58 }, { month: 'Jun', utilization: 55 },
+    { month: 'Jul', utilization: 52 }, { month: 'Aug', utilization: 54 }, { month: 'Sep', utilization: 56 },
+    { month: 'Oct', utilization: 58 }, { month: 'Nov', utilization: 57 }, { month: 'Dec', utilization: 58 }
+  ],
+  patel: [
+    { month: 'Jan', utilization: 85 }, { month: 'Feb', utilization: 87 }, { month: 'Mar', utilization: 88 },
+    { month: 'Apr', utilization: 89 }, { month: 'May', utilization: 90 }, { month: 'Jun', utilization: 91 },
+    { month: 'Jul', utilization: 90 }, { month: 'Aug', utilization: 91 }, { month: 'Sep', utilization: 92 },
+    { month: 'Oct', utilization: 91 }, { month: 'Nov', utilization: 92 }, { month: 'Dec', utilization: 92 }
+  ],
+};
+
+// Calendar View mock data - blocks by date
+const generateCalendarBlocks = (year, month) => {
+  const blocks = {};
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const surgeonList = ['patel', 'chen', 'torres', 'johnson', 'williams'];
+  
+  for (let day = 1; day <= daysInMonth; day++) {
+    const date = new Date(year, month, day);
+    if (date.getDay() === 0 || date.getDay() === 6) continue; // Skip weekends
+    
+    const dateKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    const numBlocks = Math.floor(Math.random() * 3); // 0-2 blocks per day
+    
+    if (numBlocks === 0) {
+      blocks[dateKey] = [];
+      continue;
+    }
+    
+    blocks[dateKey] = [];
+    if (numBlocks >= 1) {
+      const surgeon1 = surgeonList[day % surgeonList.length];
+      const util1 = surgeon1 === 'patel' ? 80 + Math.floor(Math.random() * 15) : 
+                    surgeon1 === 'torres' ? 45 + Math.floor(Math.random() * 25) : 
+                    60 + Math.floor(Math.random() * 30);
+      blocks[dateKey].push({
+        blockId: `b-${dateKey}-1`,
+        surgeonId: surgeon1,
+        surgeonName: surgeons.find(s => s.id === surgeon1)?.name || surgeon1,
+        start: '07:00',
+        end: '11:00',
+        utilization: util1,
+        room: `OR ${(day % 4) + 1}`,
+        cases: Math.floor(util1 / 25) + 1,
+        caseDetails: [
+          { caseId: `C${day}01`, procedure: 'Knee Arthroscopy', startTime: '07:15', endTime: '08:45', status: 'completed' },
+          { caseId: `C${day}02`, procedure: 'ACL Repair', startTime: '09:00', endTime: '10:30', status: 'completed' },
+        ]
+      });
+    }
+    if (numBlocks >= 2) {
+      const surgeon2 = surgeonList[(day + 2) % surgeonList.length];
+      const util2 = surgeon2 === 'patel' ? 82 + Math.floor(Math.random() * 12) : 
+                    surgeon2 === 'torres' ? 40 + Math.floor(Math.random() * 30) : 
+                    55 + Math.floor(Math.random() * 35);
+      blocks[dateKey].push({
+        blockId: `b-${dateKey}-2`,
+        surgeonId: surgeon2,
+        surgeonName: surgeons.find(s => s.id === surgeon2)?.name || surgeon2,
+        start: '13:00',
+        end: '17:00',
+        utilization: util2,
+        room: `OR ${((day + 1) % 4) + 1}`,
+        cases: Math.floor(util2 / 30) + 1,
+        caseDetails: [
+          { caseId: `C${day}03`, procedure: 'Rotator Cuff Repair', startTime: '13:15', endTime: '15:00', status: day > 15 ? 'scheduled' : 'completed' },
+        ]
+      });
+    }
+  }
+  return blocks;
+};
+
+// Discrepancies mock data
+const calendarDiscrepancies = [
+  { id: 'd1', type: 'empty', date: '2024-12-04', blockId: 'b-2024-12-04-2', message: 'Empty block (0% utilized)', severity: 'high' },
+  { id: 'd2', type: 'overlap', date: '2024-12-05', blockId: 'b-2024-12-05-1', message: 'Overlapping blocks in OR 2', severity: 'medium' },
+  { id: 'd3', type: 'mismatch', date: '2024-12-06', blockId: 'b-2024-12-06-1', message: 'Case provider ≠ block owner', severity: 'medium' },
+  { id: 'd4', type: 'underused', date: '2024-12-09', blockId: 'b-2024-12-09-1', message: 'Block <50% utilized', severity: 'low' },
+  { id: 'd5', type: 'empty', date: '2024-12-11', blockId: 'b-2024-12-11-1', message: 'Empty block (0% utilized)', severity: 'high' },
+];
+
+const timeSlots = [
+  { id: 'am1', label: '7:00 AM' }, { id: 'am2', label: '8:00 AM' }, { id: 'am3', label: '9:00 AM' },
+  { id: 'am4', label: '10:00 AM' }, { id: 'pm1', label: '11:00 AM' }, { id: 'pm2', label: '12:00 PM' },
+  { id: 'pm3', label: '1:00 PM' }, { id: 'pm4', label: '2:00 PM' }, { id: 'pm5', label: '3:00 PM' },
+];
+const weekDays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+const surgeonTimeSlots = [
+  { id: 'morning', label: '7:00 AM - 11:00 AM' },
+  { id: 'midday', label: '11:00 AM - 3:00 PM' },
+  { id: 'afternoon', label: '3:00 PM - 7:00 PM' },
+];
+
+// ==================== UTILITY FUNCTIONS ====================
+const getUtilizationColor = (util) => {
+  if (util >= 80) return { bg: '#dcfce7', text: '#15803d', border: '#16a34a', class: 'excellent' };
+  if (util >= 70) return { bg: '#fef9c3', text: '#a16207', border: '#ca8a04', class: 'good' };
+  if (util >= 60) return { bg: '#fed7aa', text: '#c2410c', border: '#ea580c', class: 'warning' };
+  return { bg: '#fee2e2', text: '#b91c1c', border: '#dc2626', class: 'critical' };
+};
+
+const normalizeMetric = (metricId, value, config) => {
+  if (metricId === 'volumeTrend') return value === 'growing' ? 100 : value === 'stable' ? 50 : 0;
+  if (metricId === 'ascAffiliation') return value ? 0 : 100;
+  const range = metricRanges[metricId];
+  if (!range) return 50;
+  let normalized = ((value - range.min) / (range.max - range.min)) * 100;
+  normalized = Math.max(0, Math.min(100, normalized));
+  return config.higherIsBetter ? normalized : 100 - normalized;
+};
+
+const calculateScore = (surgeon, metricsConfig) => {
+  let totalWeight = 0, weightedSum = 0;
+  metricsConfig.forEach((config) => {
+    if (!config.enabled || config.weight === 0 || config.isFlag) return;
+    const value = surgeon.metrics[config.id];
+    if (value === undefined) return;
+    const normalized = normalizeMetric(config.id, value, config);
+    totalWeight += config.weight;
+    weightedSum += (normalized * config.weight) / 100;
+  });
+  return totalWeight > 0 ? Math.round((weightedSum / totalWeight) * 100) : 0;
+};
+
+const getTier = (score) => {
+  if (score >= tierThresholds.platinum) return 'platinum';
+  if (score >= tierThresholds.gold) return 'gold';
+  if (score >= tierThresholds.silver) return 'silver';
+  return 'bronze';
+};
+
+const getScoreColor = (score) => {
+  if (score >= 85) return '#16a34a';
+  if (score >= 70) return '#f59e0b';
+  if (score >= 55) return '#3b82f6';
+  return '#dc2626';
+};
+
+const roleLabels = { superuser: 'Super User', admin: 'Administrator', director: 'Ministry Director', scheduler: 'Scheduler', physician: 'Physician' };
+
+const generateRoomSchedule = (roomId, weekOffset = 0) => {
+  const seed = roomId.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+  const pseudoRandom = (s, n) => ((s * (n + 1) * 9301 + 49297) % 233280) / 233280;
+  const surgeonNames = ['Dr. Patel', 'Dr. Chen', 'Dr. Garcia', 'Dr. Rivera', 'Dr. Torres', 'Dr. Adams'];
+  const schedule = {};
+  let slotIdx = 0;
+  weekDays.forEach((day) => {
+    schedule[day] = {};
+    timeSlots.forEach((slot, timeIdx) => {
+      slotIdx++;
+      const baseUtil = pseudoRandom(seed, slotIdx + weekOffset * 100);
+      let util = timeIdx < 4 ? Math.round(65 + baseUtil * 35) : timeIdx < 7 ? Math.round(50 + baseUtil * 40) : Math.round(30 + baseUtil * 50);
+      const isAvailable = pseudoRandom(seed, slotIdx * 3 + weekOffset) > 0.85;
+      const isReleased = !isAvailable && pseudoRandom(seed, slotIdx * 7 + weekOffset) > 0.92;
+      schedule[day][slot.id] = {
+        utilization: isAvailable ? null : (isReleased ? 0 : util),
+        status: isAvailable ? 'available' : (isReleased ? 'released' : 'scheduled'),
+        surgeon: isAvailable ? null : surgeonNames[(slotIdx + weekOffset) % surgeonNames.length],
+        cases: isAvailable ? 0 : Math.floor(pseudoRandom(seed, slotIdx * 11) * 3) + 1,
+      };
+    });
+  });
+  return schedule;
+};
+
+// ==================== HIERARCHICAL TIME DATA GENERATORS ====================
+const generateAnnualData = (surgeonId) => {
+  const base = surgeonId === 'patel' ? 88 : surgeonId === 'torres' ? 58 : 75;
+  return [
+    { label: '2022', utilization: base - 5, blocks: 180, cases: 520 },
+    { label: '2023', utilization: base - 2, blocks: 192, cases: 545 },
+    { label: '2024', utilization: base, blocks: 188, cases: 560 },
+  ];
+};
+
+const generateQuarterlyData = (surgeonId) => {
+  const base = surgeonId === 'patel' ? 88 : surgeonId === 'torres' ? 58 : 75;
+  return [
+    { label: 'Q1', utilization: base - 4, blocks: 48, cases: 138 },
+    { label: 'Q2', utilization: base - 1, blocks: 50, cases: 142 },
+    { label: 'Q3', utilization: base + 2, blocks: 47, cases: 140 },
+    { label: 'Q4', utilization: base, blocks: 49, cases: 140 },
+  ];
+};
+
+const generateMonthlyData = (quarter) => {
+  const months = { Q1: ['Jan', 'Feb', 'Mar'], Q2: ['Apr', 'May', 'Jun'], Q3: ['Jul', 'Aug', 'Sep'], Q4: ['Oct', 'Nov', 'Dec'] };
+  const monthList = months[quarter] || months.Q4;
+  return monthList.map((m, i) => ({
+    label: m, utilization: 68 + ((i * 7) % 20), blocks: 15 + (i % 3), cases: 42 + (i * 3)
+  }));
+};
+
+const generateWeeklyData = () => [1, 2, 3, 4].map(w => ({
+  label: `Week ${w}`, utilization: 65 + (w * 5), blocks: 4, cases: 10 + w
+}));
+
+const generateDailyData = () => ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'].map((d, i) => ({
+  label: d, 
+  utilization: i === 2 ? null : 70 + (i * 5),
+  blocks: 1, 
+  cases: 2 + i,
+  time: i % 2 === 0 ? '7:00 AM - 11:00 AM' : '11:00 AM - 3:00 PM',
+  room: `OR ${i + 1}`
+}));
+
+// ==================== MAIN COMPONENT ====================
+function HealthcareBlockDashboard() {
+  // State
+  const [currentRole, setCurrentRole] = useState('superuser');
+  const [currentUser, setCurrentUser] = useState(users[0]);
+  const [navigation, setNavigation] = useState({ level: 'ministries', ministryId: null, hospitalId: null, unitId: null, roomId: null, surgeonId: null });
+  const [surgeonTab, setSurgeonTab] = useState('calendar');
+  const [modal, setModal] = useState({ type: null, data: null });
+  const [heatMap, setHeatMap] = useState({ level: 'ministries', ministryId: null, hospitalId: null, unitId: null, roomId: null, weekOffset: 0 });
+  const [weekOffset, setWeekOffset] = useState(0);
+  const [alerts, setAlerts] = useState(initialAlerts);
+  const [disputes, setDisputes] = useState(initialDisputes);
+  const [timeLevel, setTimeLevel] = useState('annual');
+  const [selectedPeriod, setSelectedPeriod] = useState({ year: 2024, quarter: null, month: null, week: null });
+  const [surgeonWeekOffset, setSurgeonWeekOffset] = useState(0);
+  const [surgeonCalendarMode, setSurgeonCalendarMode] = useState('weekly'); // 'weekly' | 'monthly'
+  const [surgeonCalendarMonth, setSurgeonCalendarMonth] = useState(new Date(2024, 11, 1)); // December 2024
+  
+  // Calendar View state
+  const [viewMode, setViewMode] = useState('explorer'); // 'explorer' | 'calendar'
+  const [calendarMonth, setCalendarMonth] = useState(new Date(2024, 11, 1)); // December 2024
+  const [selectedUnit, setSelectedUnit] = useState('main-or');
+  const [selectedSurgeonFilter, setSelectedSurgeonFilter] = useState('all');
+  const [providerOverlay, setProviderOverlay] = useState(false);
+  const [selectedCalendarDay, setSelectedCalendarDay] = useState(null);
+
+  // Computed
+  const surgeonsWithScores = useMemo(() => {
+    return surgeons.map(s => ({ ...s, score: calculateScore(s, initialMetricsConfig), tier: getTier(calculateScore(s, initialMetricsConfig)) })).sort((a, b) => b.score - a.score);
+  }, []);
+
+  const pendingDisputesCount = disputes.filter(d => d.status === 'pending').length;
+  const canReviewDisputes = currentRole === 'superuser' || currentRole === 'admin';
+  const isPhysician = currentRole === 'physician';
+
+  // Calendar view computed values
+  const calendarBlocks = useMemo(() => {
+    return generateCalendarBlocks(calendarMonth.getFullYear(), calendarMonth.getMonth());
+  }, [calendarMonth]);
+
+  const getCalendarDays = useMemo(() => {
+    const year = calendarMonth.getFullYear();
+    const month = calendarMonth.getMonth();
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const days = [];
+    
+    // Find first Monday
+    let current = new Date(firstDay);
+    while (current.getDay() !== 1) {
+      current.setDate(current.getDate() - 1);
+    }
+    
+    // Generate 5 weeks of weekdays
+    for (let week = 0; week < 5; week++) {
+      const weekDays = [];
+      for (let d = 0; d < 5; d++) {
+        const dateKey = `${current.getFullYear()}-${String(current.getMonth() + 1).padStart(2, '0')}-${String(current.getDate()).padStart(2, '0')}`;
+        const dayBlocks = calendarBlocks[dateKey] || [];
+        const filteredBlocks = selectedSurgeonFilter === 'all' 
+          ? dayBlocks 
+          : dayBlocks.filter(b => b.surgeonId === selectedSurgeonFilter);
+        
+        const avgUtil = filteredBlocks.length > 0 
+          ? Math.round(filteredBlocks.reduce((sum, b) => sum + b.utilization, 0) / filteredBlocks.length)
+          : null;
+        
+        weekDays.push({
+          date: new Date(current),
+          dateKey,
+          dayOfMonth: current.getDate(),
+          isCurrentMonth: current.getMonth() === month,
+          blocks: filteredBlocks.slice(0, 2), // Max 2 blocks shown
+          totalBlocks: filteredBlocks.length,
+          aggregateUtilization: avgUtil,
+          hasDiscrepancy: calendarDiscrepancies.some(d => d.date === dateKey),
+        });
+        current.setDate(current.getDate() + 1);
+      }
+      // Skip weekend
+      current.setDate(current.getDate() + 2);
+      days.push(weekDays);
+    }
+    return days;
+  }, [calendarMonth, calendarBlocks, selectedSurgeonFilter]);
+
+  const selectedDayDetails = useMemo(() => {
+    if (!selectedCalendarDay) return null;
+    const dayBlocks = calendarBlocks[selectedCalendarDay] || [];
+    const filteredBlocks = selectedSurgeonFilter === 'all' 
+      ? dayBlocks 
+      : dayBlocks.filter(b => b.surgeonId === selectedSurgeonFilter);
+    const discrepancies = calendarDiscrepancies.filter(d => d.date === selectedCalendarDay);
+    return { blocks: filteredBlocks, discrepancies };
+  }, [selectedCalendarDay, calendarBlocks, selectedSurgeonFilter]);
+
+  // Navigation
+  const navigateTo = useCallback((level, id = null) => {
+    setSurgeonTab('calendar');
+    if (level === 'ministries') setNavigation({ level: 'ministries', ministryId: null, hospitalId: null, unitId: null, roomId: null, surgeonId: null });
+    else if (level === 'hospitals') setNavigation(prev => ({ ...prev, level: 'hospitals', ministryId: id, hospitalId: null, unitId: null, roomId: null, surgeonId: null }));
+    else if (level === 'units') setNavigation(prev => ({ ...prev, level: 'units', hospitalId: id, unitId: null, roomId: null, surgeonId: null }));
+    else if (level === 'rooms') setNavigation(prev => ({ ...prev, level: 'rooms', unitId: id, roomId: null, surgeonId: null }));
+    else if (level === 'calendar') { setNavigation(prev => ({ ...prev, level: 'calendar', roomId: id, surgeonId: null })); setWeekOffset(0); }
+    else if (level === 'surgeon') setNavigation(prev => ({ ...prev, level: 'surgeon', surgeonId: id }));
+  }, []);
+
+  const switchRole = useCallback((role) => {
+    setCurrentRole(role);
+    const roleUsers = { superuser: users[0], admin: users[1], director: users[2], scheduler: users[1], physician: users[3] };
+    const newUser = roleUsers[role];
+    setCurrentUser(newUser);
+    if (role === 'physician' && newUser.surgeonId) navigateTo('surgeon', newUser.surgeonId);
+  }, [navigateTo]);
+
+  // Reset time drill-down when surgeon changes
+  React.useEffect(() => {
+    setTimeLevel('annual');
+    setSelectedPeriod({ year: 2024, quarter: null, month: null, week: null });
+    setSurgeonWeekOffset(0);
+    setSurgeonCalendarMode('weekly');
+    setSurgeonCalendarMonth(new Date(2024, 11, 1));
+  }, [navigation.surgeonId]);
+
+  const handleTimeDrillDown = (label) => {
+    if (timeLevel === 'annual') {
+      setSelectedPeriod({ year: parseInt(label), quarter: null, month: null, week: null });
+      setTimeLevel('quarterly');
+    } else if (timeLevel === 'quarterly') {
+      setSelectedPeriod(p => ({ ...p, quarter: label, month: null, week: null }));
+      setTimeLevel('monthly');
+    } else if (timeLevel === 'monthly') {
+      setSelectedPeriod(p => ({ ...p, month: label, week: null }));
+      setTimeLevel('weekly');
+    }
+    // Weekly is the final level - daily view is handled by Calendar tab
+  };
+
+  const getCurrentTimeData = (surgeonId) => {
+    if (timeLevel === 'annual') return generateAnnualData(surgeonId);
+    if (timeLevel === 'quarterly') return generateQuarterlyData(surgeonId);
+    if (timeLevel === 'monthly') return generateMonthlyData(selectedPeriod.quarter);
+    if (timeLevel === 'weekly') return generateWeeklyData();
+    return [];
+  };
+
+  // Surgeon calendar helper functions
+  const getSurgeonWeekDates = () => {
+    const today = new Date();
+    const currentDay = today.getDay();
+    const monday = new Date(today);
+    monday.setDate(today.getDate() - (currentDay === 0 ? 6 : currentDay - 1) + (surgeonWeekOffset * 7));
+    return weekDays.map((_, i) => { const d = new Date(monday); d.setDate(monday.getDate() + i); return d; });
+  };
+
+  const getSurgeonBlockForSlot = (surgeonId, day, slotId, weekOffset) => {
+    const schedules = {
+      patel: { Monday: 'morning', Wednesday: 'morning', Thursday: 'midday', Friday: 'morning' },
+      chen: { Tuesday: 'morning', Thursday: 'morning', Friday: 'midday' },
+      torres: { Monday: 'morning', Wednesday: 'midday' },
+      johnson: { Monday: 'midday', Tuesday: 'morning', Thursday: 'morning' },
+      williams: { Wednesday: 'morning', Thursday: 'morning', Friday: 'morning' },
+      garcia: { Monday: 'morning', Tuesday: 'midday', Wednesday: 'morning', Friday: 'midday' },
+      martinez: { Tuesday: 'morning', Wednesday: 'midday', Thursday: 'morning' },
+      anderson: { Monday: 'morning', Wednesday: 'morning', Thursday: 'midday', Friday: 'morning' },
+      taylor: { Monday: 'midday', Tuesday: 'morning', Thursday: 'morning', Friday: 'midday' },
+      thomas: { Monday: 'morning', Wednesday: 'morning', Friday: 'morning' },
+    };
+    const surgeonSchedule = schedules[surgeonId] || schedules.patel;
+    
+    if (surgeonSchedule[day] !== slotId) {
+      return { scheduled: false };
+    }
+    
+    const baseUtil = surgeonId === 'patel' ? 88 : surgeonId === 'torres' ? 58 : surgeonId === 'chen' ? 82 : 75;
+    const variance = ((day.charCodeAt(0) + weekOffset) % 20) - 10;
+    const utilization = Math.max(30, Math.min(100, baseUtil + variance));
+    
+    return {
+      scheduled: true,
+      utilization,
+      room: `OR ${(day.charCodeAt(0) % 4) + 1}`,
+      cases: 2 + (day.charCodeAt(0) % 3),
+    };
+  };
+
+  // Generate surgeon's monthly calendar data
+  const getSurgeonMonthlyCalendar = (surgeonId, year, month) => {
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    const weeks = [];
+    
+    // Find first Monday
+    let current = new Date(firstDay);
+    while (current.getDay() !== 1) {
+      current.setDate(current.getDate() - 1);
+    }
+    
+    // Generate 5 weeks
+    for (let week = 0; week < 5; week++) {
+      const weekData = [];
+      for (let d = 0; d < 5; d++) {
+        const dayName = weekDays[d];
+        const dateStr = current.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        const isCurrentMonth = current.getMonth() === month;
+        
+        // Get blocks for this day
+        const blocks = [];
+        surgeonTimeSlots.forEach(slot => {
+          const blockData = getSurgeonBlockForSlot(surgeonId, dayName, slot.id, week);
+          if (blockData.scheduled) {
+            blocks.push({
+              ...blockData,
+              slotId: slot.id,
+              slotLabel: slot.label,
+            });
+          }
+        });
+        
+        const avgUtil = blocks.length > 0 
+          ? Math.round(blocks.reduce((sum, b) => sum + b.utilization, 0) / blocks.length)
+          : null;
+        
+        weekData.push({
+          date: new Date(current),
+          dateStr,
+          dayOfMonth: current.getDate(),
+          dayName,
+          isCurrentMonth,
+          blocks,
+          aggregateUtilization: avgUtil,
+        });
+        
+        current.setDate(current.getDate() + 1);
+      }
+      // Skip weekend
+      current.setDate(current.getDate() + 2);
+      weeks.push(weekData);
+    }
+    
+    return weeks;
+  };
+
+  // Get current data
+  const ministry = ministries.find(m => m.id === navigation.ministryId);
+  const hospitalList = navigation.ministryId ? hospitals[navigation.ministryId] : [];
+  const hospital = hospitalList?.find(h => h.id === navigation.hospitalId);
+  const unitList = navigation.hospitalId ? units[navigation.hospitalId] : [];
+  const unit = unitList?.find(u => u.id === navigation.unitId);
+  const rooms = navigation.unitId ? roomData[navigation.unitId] : [];
+  const room = rooms?.find(r => r.id === navigation.roomId);
+  const surgeon = surgeons.find(s => s.id === navigation.surgeonId);
+  const surgeonScore = surgeon ? surgeonsWithScores.find(s => s.id === surgeon.id) : null;
+
+  // Styles
+  const styles = {
+    app: { fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif", background: '#f1f5f9', minHeight: '100vh', color: '#1e293b' },
+    header: { background: currentRole === 'superuser' ? 'linear-gradient(135deg, #7c3aed, #a855f7)' : 'linear-gradient(135deg, #1e3a5f, #2d5a87)', padding: '14px 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' },
+    headerTitle: { color: 'white', fontSize: '18px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '10px' },
+    headerActions: { display: 'flex', gap: '10px', alignItems: 'center', flexWrap: 'wrap' },
+    btn: { padding: '8px 14px', borderRadius: '6px', fontSize: '12px', fontWeight: 500, cursor: 'pointer', border: 'none', display: 'inline-flex', alignItems: 'center', gap: '5px', transition: 'all 0.2s' },
+    btnHeader: { background: 'rgba(255,255,255,0.15)', color: 'white', border: '1px solid rgba(255,255,255,0.3)' },
+    btnPrimary: { background: '#3b82f6', color: 'white' },
+    btnSecondary: { background: 'white', color: '#475569', border: '1px solid #e2e8f0' },
+    btnSuccess: { background: '#16a34a', color: 'white' },
+    btnDanger: { background: '#dc2626', color: 'white' },
+    roleSwitcher: { background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.3)', borderRadius: '8px', padding: '6px 10px', display: 'flex', alignItems: 'center', gap: '6px' },
+    userInfo: { display: 'flex', alignItems: 'center', gap: '8px', padding: '6px 12px', background: 'rgba(255,255,255,0.1)', borderRadius: '8px' },
+    avatar: { width: '30px', height: '30px', background: 'white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 600, color: '#3b82f6', fontSize: '12px' },
+    breadcrumb: { background: 'white', padding: '12px 24px', borderBottom: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '13px' },
+    breadcrumbItem: { background: 'none', border: 'none', cursor: 'pointer', padding: '4px 10px', borderRadius: '4px', color: '#3b82f6', fontWeight: 500 },
+    breadcrumbCurrent: { color: '#1e293b', fontWeight: 600, background: '#f1f5f9', cursor: 'default' },
+    content: { padding: '24px', maxWidth: '1400px', margin: '0 auto' },
+    pageTitle: { fontSize: '24px', fontWeight: 700, color: '#1e293b', marginBottom: '4px' },
+    pageSubtitle: { color: '#64748b', marginBottom: '24px' },
+    cardsGrid: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '16px' },
+    card: { background: 'white', borderRadius: '12px', padding: '20px', boxShadow: '0 1px 3px rgba(0,0,0,0.08)', border: '1px solid #e2e8f0', cursor: 'pointer', transition: 'all 0.2s' },
+    statsRow: { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', fontSize: '12px', marginTop: '12px' },
+    badge: { padding: '4px 10px', borderRadius: '12px', fontSize: '11px', fontWeight: 600, display: 'inline-block' },
+    table: { width: '100%', borderCollapse: 'collapse', background: 'white', borderRadius: '12px', overflow: 'hidden', border: '1px solid #e2e8f0' },
+    th: { padding: '12px 16px', textAlign: 'left', fontSize: '11px', fontWeight: 600, color: '#64748b', textTransform: 'uppercase', background: '#f8fafc' },
+    td: { padding: '12px 16px', borderTop: '1px solid #f1f5f9', fontSize: '13px' },
+    modal: { position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, padding: '20px' },
+    modalContent: { background: 'white', borderRadius: '16px', maxWidth: '900px', width: '100%', maxHeight: '90vh', overflow: 'auto', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.25)' },
+    modalHeader: { padding: '20px 24px', borderBottom: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' },
+    modalBody: { padding: '24px' },
+    tabs: { display: 'flex', borderBottom: '1px solid #e2e8f0', background: 'white', marginBottom: '20px', borderRadius: '12px 12px 0 0', overflowX: 'auto' },
+    tab: { padding: '14px 20px', border: 'none', background: 'none', cursor: 'pointer', fontSize: '13px', fontWeight: 500, color: '#64748b', borderBottom: '2px solid transparent', whiteSpace: 'nowrap' },
+    tabActive: { color: '#3b82f6', borderBottomColor: '#3b82f6' },
+    scoreCircle: { width: '50px', height: '50px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, color: 'white', fontSize: '16px' },
+    infoBox: { padding: '14px', borderRadius: '8px', marginBottom: '16px' },
+  };
+
+  const getTierStyle = (tier) => {
+    const tierStyles = {
+      platinum: { background: 'linear-gradient(135deg, #e5e7eb, #9ca3af)', color: '#1f2937', border: '1px solid #9ca3af' },
+      gold: { background: 'linear-gradient(135deg, #fef3c7, #f59e0b)', color: '#92400e', border: '1px solid #f59e0b' },
+      silver: { background: 'linear-gradient(135deg, #f1f5f9, #94a3b8)', color: '#475569', border: '1px solid #94a3b8' },
+      bronze: { background: 'linear-gradient(135deg, #fed7aa, #ea580c)', color: '#7c2d12', border: '1px solid #ea580c' },
+    };
+    return tierStyles[tier] || tierStyles.bronze;
+  };
+
+  // ==================== RENDER FUNCTIONS ====================
+
+  const renderHeader = () => (
+    <header style={styles.header}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+        <h1 style={styles.headerTitle}>🏥 Ascension Block Management</h1>
+        <div style={{ display: 'flex', background: 'rgba(255,255,255,0.15)', borderRadius: 6, overflow: 'hidden' }}>
+          <button 
+            onClick={() => setViewMode('explorer')} 
+            style={{ 
+              padding: '6px 14px', 
+              border: 'none', 
+              background: viewMode === 'explorer' ? 'white' : 'transparent', 
+              color: viewMode === 'explorer' ? '#1e3a5f' : 'white',
+              fontSize: 12, 
+              fontWeight: 600, 
+              cursor: 'pointer',
+              transition: 'all 0.2s'
+            }}
+          >
+            📊 Explorer
+          </button>
+          <button 
+            onClick={() => setViewMode('calendar')} 
+            style={{ 
+              padding: '6px 14px', 
+              border: 'none', 
+              background: viewMode === 'calendar' ? 'white' : 'transparent', 
+              color: viewMode === 'calendar' ? '#1e3a5f' : 'white',
+              fontSize: 12, 
+              fontWeight: 600, 
+              cursor: 'pointer',
+              transition: 'all 0.2s'
+            }}
+          >
+            📅 Calendar
+          </button>
+        </div>
+      </div>
+      <div style={styles.headerActions}>
+        <button style={{ ...styles.btn, ...styles.btnHeader }} onClick={() => setModal({ type: 'heatMap' })}>🗺️ Utilization Heat Map</button>
+        {canReviewDisputes && (
+          <div style={{ position: 'relative' }}>
+            <button style={{ ...styles.btn, ...styles.btnHeader }} onClick={() => setModal({ type: 'disputes' })}>📋 Dispute Queue</button>
+            {pendingDisputesCount > 0 && <span style={{ position: 'absolute', top: -6, right: -6, background: '#dc2626', color: 'white', fontSize: '10px', fontWeight: 700, minWidth: '18px', height: '18px', borderRadius: '9px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{pendingDisputesCount}</span>}
+          </div>
+        )}
+        <div style={styles.roleSwitcher}>
+          <label style={{ color: 'rgba(255,255,255,0.8)', fontSize: '11px' }}>View as:</label>
+          <select value={currentRole} onChange={(e) => switchRole(e.target.value)} style={{ background: 'white', border: 'none', borderRadius: '4px', padding: '4px 8px', fontSize: '12px', fontWeight: 500 }}>
+            <option value="superuser">Super User</option>
+            <option value="admin">Administrator</option>
+            <option value="director">Ministry Director</option>
+            <option value="scheduler">Scheduler</option>
+            <option value="physician">Physician</option>
+          </select>
+        </div>
+        <button style={{ ...styles.btn, ...styles.btnHeader }} onClick={() => setModal({ type: 'settings' })}>⚙️ Settings</button>
+        <div style={styles.userInfo}>
+          <div style={styles.avatar}>{currentUser.avatar}</div>
+          <div style={{ color: 'white' }}>
+            <div style={{ fontSize: '13px', fontWeight: 500 }}>{currentUser.name}</div>
+            <div style={{ fontSize: '10px', opacity: 0.8 }}>{roleLabels[currentRole]}</div>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+
+  const renderBreadcrumb = () => (
+    <nav style={styles.breadcrumb}>
+      <button style={{ ...styles.breadcrumbItem, ...(navigation.level === 'ministries' ? styles.breadcrumbCurrent : {}) }} onClick={() => navigateTo('ministries')}>All Ministries</button>
+      {navigation.ministryId && (<><span style={{ color: '#94a3b8' }}>›</span><button style={{ ...styles.breadcrumbItem, ...(navigation.level === 'hospitals' ? styles.breadcrumbCurrent : {}) }} onClick={() => navigateTo('hospitals', navigation.ministryId)}>{ministry?.name}</button></>)}
+      {navigation.hospitalId && hospital && (<><span style={{ color: '#94a3b8' }}>›</span><button style={{ ...styles.breadcrumbItem, ...(navigation.level === 'units' ? styles.breadcrumbCurrent : {}) }} onClick={() => navigateTo('units', navigation.hospitalId)}>{hospital.name}</button></>)}
+      {navigation.unitId && unit && (<><span style={{ color: '#94a3b8' }}>›</span><button style={{ ...styles.breadcrumbItem, ...(navigation.level === 'rooms' ? styles.breadcrumbCurrent : {}) }} onClick={() => navigateTo('rooms', navigation.unitId)}>{unit.name}</button></>)}
+      {navigation.roomId && room && (<><span style={{ color: '#94a3b8' }}>›</span><button style={{ ...styles.breadcrumbItem, ...styles.breadcrumbCurrent }}>{room.name} Schedule</button></>)}
+      {navigation.surgeonId && surgeon && (<><span style={{ color: '#94a3b8' }}>›</span><button style={{ ...styles.breadcrumbItem, ...styles.breadcrumbCurrent }}>{surgeon.name}</button></>)}
+    </nav>
+  );
+
+  const renderMinistriesView = () => (
+    <>
+      <h1 style={styles.pageTitle}>All Ministries</h1>
+      <p style={styles.pageSubtitle}>Select a ministry to view hospitals and surgeon performance</p>
+      <div style={styles.cardsGrid}>
+        {ministries.map((m) => {
+          const color = getUtilizationColor(m.avgUtilization);
+          return (
+            <div key={m.id} style={styles.card} onClick={() => navigateTo('hospitals', m.id)}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: 12 }}>
+                <h3 style={{ fontSize: 16, fontWeight: 600 }}>{m.name}</h3>
+                <span style={{ ...styles.badge, background: color.bg, color: color.text }}>{m.avgUtilization}%</span>
+              </div>
+              <div style={styles.statsRow}>
+                <div style={{ textAlign: 'center' }}><div style={{ color: '#64748b' }}>Hospitals</div><div style={{ fontWeight: 600 }}>{m.hospitalCount}</div></div>
+                <div style={{ textAlign: 'center' }}><div style={{ color: '#64748b' }}>Surgeons</div><div style={{ fontWeight: 600 }}>{m.surgeonCount}</div></div>
+                <div style={{ textAlign: 'center' }}><div style={{ color: '#64748b' }}>At Risk</div><div style={{ fontWeight: 600, color: '#dc2626' }}>{m.atRiskSurgeons}</div></div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+
+  const renderHospitalsView = () => (
+    <>
+      <h1 style={styles.pageTitle}>{ministry?.name}</h1>
+      <p style={styles.pageSubtitle}>Select a hospital to view units and surgeon rankings</p>
+      <div style={styles.cardsGrid}>
+        {hospitalList.map((h) => {
+          const color = getUtilizationColor(h.avgUtilization);
+          return (
+            <div key={h.id} style={styles.card} onClick={() => navigateTo('units', h.id)}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: 12 }}>
+                <div><h3 style={{ fontSize: 16, fontWeight: 600 }}>{h.name}</h3><p style={{ fontSize: 12, color: '#64748b' }}>{h.city}</p></div>
+                <span style={{ ...styles.badge, background: color.bg, color: color.text }}>{h.avgUtilization}%</span>
+              </div>
+              <div style={styles.statsRow}>
+                <div style={{ textAlign: 'center' }}><div style={{ color: '#64748b' }}>Units</div><div style={{ fontWeight: 600 }}>{h.unitCount}</div></div>
+                <div style={{ textAlign: 'center' }}><div style={{ color: '#64748b' }}>Surgeons</div><div style={{ fontWeight: 600 }}>{h.surgeonCount}</div></div>
+                <div style={{ textAlign: 'center' }}><div style={{ color: '#64748b' }}>Utilization</div><div style={{ fontWeight: 600 }}>{h.avgUtilization}%</div></div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+
+  const renderUnitsView = () => {
+    const hospitalSurgeons = surgeonsWithScores.filter(s => s.hospitalId === navigation.hospitalId);
+    return (
+      <>
+        <h1 style={styles.pageTitle}>{hospital?.name}</h1>
+        <p style={styles.pageSubtitle}>Click a unit to view room schedules, or click a surgeon for their profile</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '16px', marginBottom: '24px' }}>
+          {unitList.map((u) => {
+            const color = getUtilizationColor(u.avgUtilization);
+            return (
+              <div key={u.id} style={{ ...styles.card, textAlign: 'center' }} onClick={() => navigateTo('rooms', u.id)}>
+                <h4 style={{ fontSize: 14, fontWeight: 600, marginBottom: 8 }}>{u.name}</h4>
+                <div style={{ fontSize: 28, fontWeight: 700, color: color.text }}>{u.avgUtilization}%</div>
+                <div style={{ fontSize: 11, color: '#64748b' }}>{u.rooms} rooms • {u.surgeonCount} surgeons</div>
+              </div>
+            );
+          })}
+        </div>
+        <h2 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '16px' }}>🏆 Surgeon Rankings</h2>
+        <div style={{ background: 'white', borderRadius: '12px', border: '1px solid #e2e8f0', overflow: 'hidden' }}>
+          <table style={styles.table}>
+            <thead><tr>
+              <th style={styles.th}>Rank</th><th style={styles.th}>Surgeon</th><th style={styles.th}>Specialty</th><th style={styles.th}>Score</th><th style={styles.th}>Tier</th><th style={styles.th}>Utilization</th>
+            </tr></thead>
+            <tbody>
+              {hospitalSurgeons.map((s, i) => (
+                <tr key={s.id} style={{ cursor: 'pointer' }} onClick={() => navigateTo('surgeon', s.id)}>
+                  <td style={styles.td}>#{i + 1}</td>
+                  <td style={styles.td}><strong>{s.name}</strong></td>
+                  <td style={styles.td}>{s.specialty}</td>
+                  <td style={styles.td}><div style={{ ...styles.scoreCircle, width: 36, height: 36, fontSize: 13, background: getScoreColor(s.score) }}>{s.score}</div></td>
+                  <td style={styles.td}><span style={{ ...styles.badge, ...getTierStyle(s.tier) }}>{s.tier.charAt(0).toUpperCase() + s.tier.slice(1)}</span></td>
+                  <td style={styles.td}>{s.metrics.utilization}%</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </>
+    );
+  };
+
+  const renderRoomsView = () => (
+    <>
+      <h1 style={styles.pageTitle}>{unit?.name} - Room Schedules</h1>
+      <p style={styles.pageSubtitle}>Click a room to view its weekly schedule</p>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '16px' }}>
+        {rooms.map((r) => {
+          const color = getUtilizationColor(r.avgUtilization);
+          return (
+            <div key={r.id} style={{ ...styles.card, textAlign: 'center', border: `2px solid ${color.border}` }} onClick={() => navigateTo('calendar', r.id)}>
+              <h4 style={{ fontSize: 14, fontWeight: 600, marginBottom: 8 }}>{r.name}</h4>
+              <div style={{ width: 60, height: 60, borderRadius: '50%', background: color.bg, color: color.text, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto', fontSize: 18, fontWeight: 700 }}>{r.avgUtilization}%</div>
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+
+  const renderCalendarView = () => {
+    const schedule = generateRoomSchedule(navigation.roomId, weekOffset);
+    const getWeekDates = () => {
+      const today = new Date();
+      const currentDay = today.getDay();
+      const monday = new Date(today);
+      monday.setDate(today.getDate() - (currentDay === 0 ? 6 : currentDay - 1) + (weekOffset * 7));
+      return weekDays.map((_, i) => { const d = new Date(monday); d.setDate(monday.getDate() + i); return d; });
+    };
+    const dates = getWeekDates();
+    return (
+      <>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+          <div><h1 style={styles.pageTitle}>{room?.name} - Weekly Schedule</h1><p style={{ color: '#64748b' }}>Week of {dates[0].toLocaleDateString()}</p></div>
+          <div style={{ display: 'flex', gap: 8 }}>
+            <button style={{ ...styles.btn, ...styles.btnSecondary }} onClick={() => setWeekOffset(w => w - 1)}>← Previous</button>
+            <button style={{ ...styles.btn, ...styles.btnPrimary }} onClick={() => setWeekOffset(0)}>Today</button>
+            <button style={{ ...styles.btn, ...styles.btnSecondary }} onClick={() => setWeekOffset(w => w + 1)}>Next →</button>
+          </div>
+        </div>
+        <div style={{ background: 'white', borderRadius: '12px', border: '1px solid #e2e8f0', overflow: 'auto' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <thead><tr>
+              <th style={{ ...styles.th, width: 80 }}>Time</th>
+              {weekDays.map((day, i) => <th key={day} style={styles.th}>{day}<br/><span style={{ fontWeight: 400, fontSize: 10 }}>{dates[i].toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span></th>)}
+            </tr></thead>
+            <tbody>
+              {timeSlots.map((slot) => (
+                <tr key={slot.id}>
+                  <td style={{ ...styles.td, fontWeight: 500, fontSize: 11 }}>{slot.label}</td>
+                  {weekDays.map((day) => {
+                    const cell = schedule[day][slot.id];
+                    if (cell.status === 'available') return <td key={day} style={{ ...styles.td, background: '#f1f5f9', textAlign: 'center' }}><span style={{ color: '#94a3b8', fontSize: 11 }}>Available</span></td>;
+                    if (cell.status === 'released') return <td key={day} style={{ ...styles.td, background: '#fef2f2', textAlign: 'center' }}><span style={{ color: '#dc2626', fontSize: 11 }}>Released</span></td>;
+                    const color = getUtilizationColor(cell.utilization);
+                    return (
+                      <td key={day} style={{ ...styles.td, background: color.bg, padding: '8px' }}>
+                        <div style={{ fontSize: 16, fontWeight: 700, color: color.text }}>{cell.utilization}%</div>
+                        <div style={{ fontSize: 10, color: color.text }}>{cell.surgeon}</div>
+                        <div style={{ fontSize: 9, color: color.text, opacity: 0.8 }}>{cell.cases} cases</div>
+                      </td>
+                    );
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div style={{ display: 'flex', gap: 16, padding: '16px 20px', background: '#f8fafc', borderRadius: '0 0 12px 12px', justifyContent: 'center', marginTop: -1 }}>
+          {[{ label: '≥80% Excellent', color: '#dcfce7' }, { label: '70-79% Good', color: '#fef9c3' }, { label: '60-69% Warning', color: '#fed7aa' }, { label: '<60% Critical', color: '#fee2e2' }].map(l => (
+            <div key={l.label} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12 }}><div style={{ width: 16, height: 16, borderRadius: 4, background: l.color }}></div>{l.label}</div>
+          ))}
+        </div>
+      </>
+    );
+  };
+
+  const renderSurgeonView = () => {
+    if (!surgeon || !surgeonScore) return null;
+    const history = surgeonHistory[surgeon.id] || surgeonHistory.patel;
+    const surgeonAlerts = alerts.filter(a => a.surgeonId === surgeon.id);
+    const surgeonDisputes = disputes.filter(d => d.surgeonId === surgeon.id);
+    
+    return (
+      <>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', marginBottom: 24 }}>
+          <div>
+            <h1 style={styles.pageTitle}>{surgeon.name}</h1>
+            <p style={{ color: '#64748b' }}>{surgeon.specialty} • {surgeon.email}</p>
+          </div>
+          <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ ...styles.scoreCircle, width: 80, height: 80, fontSize: 24, background: getScoreColor(surgeonScore.score) }}>{surgeonScore.score}</div>
+              <div style={{ fontSize: 12, color: '#64748b', marginTop: 4 }}>Score</div>
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <span style={{ ...styles.badge, ...getTierStyle(surgeonScore.tier), fontSize: 14, padding: '8px 16px' }}>{surgeonScore.tier.charAt(0).toUpperCase() + surgeonScore.tier.slice(1)}</span>
+              <div style={{ fontSize: 12, color: '#64748b', marginTop: 8 }}>Tier</div>
+            </div>
+          </div>
+        </div>
+
+        <div style={styles.tabs}>
+          {[{ id: 'calendar', label: '📅 Calendar' }, { id: 'timeline', label: '📊 Timeline' }, { id: 'bar', label: '📈 Bar Chart' }, { id: 'alerts', label: '🚩 Alerts' }, { id: 'disputes', label: '⚖️ Disputes' }].map(t => (
+            <button key={t.id} style={{ ...styles.tab, ...(surgeonTab === t.id ? styles.tabActive : {}) }} onClick={() => setSurgeonTab(t.id)}>{t.label}</button>
+          ))}
+        </div>
+
+        {surgeonTab === 'calendar' && (
+          <div style={{ background: 'white', borderRadius: '12px', padding: 20, border: '1px solid #e2e8f0' }}>
+            {/* Header with Toggle and Navigation */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16, flexWrap: 'wrap', gap: 12 }}>
+              <div>
+                <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 4 }}>Block Schedule</h3>
+                <p style={{ fontSize: 12, color: '#64748b', margin: 0 }}>
+                  {surgeonCalendarMode === 'weekly' 
+                    ? `Week of ${getSurgeonWeekDates()[0].toLocaleDateString()}`
+                    : `${['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'][surgeonCalendarMonth.getMonth()]} ${surgeonCalendarMonth.getFullYear()}`
+                  }
+                </p>
+              </div>
+              <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+                {/* Weekly/Monthly Toggle */}
+                <div style={{ display: 'flex', background: '#f1f5f9', borderRadius: 6, overflow: 'hidden' }}>
+                  <button 
+                    onClick={() => setSurgeonCalendarMode('weekly')}
+                    style={{ 
+                      padding: '6px 12px', 
+                      border: 'none', 
+                      background: surgeonCalendarMode === 'weekly' ? '#3b82f6' : 'transparent', 
+                      color: surgeonCalendarMode === 'weekly' ? 'white' : '#64748b',
+                      fontSize: 11, 
+                      fontWeight: 600, 
+                      cursor: 'pointer',
+                    }}
+                  >Weekly</button>
+                  <button 
+                    onClick={() => setSurgeonCalendarMode('monthly')}
+                    style={{ 
+                      padding: '6px 12px', 
+                      border: 'none', 
+                      background: surgeonCalendarMode === 'monthly' ? '#3b82f6' : 'transparent', 
+                      color: surgeonCalendarMode === 'monthly' ? 'white' : '#64748b',
+                      fontSize: 11, 
+                      fontWeight: 600, 
+                      cursor: 'pointer',
+                    }}
+                  >Monthly</button>
+                </div>
+                
+                {/* Navigation */}
+                <div style={{ display: 'flex', gap: 6 }}>
+                  <button 
+                    style={{ ...styles.btn, ...styles.btnSecondary, padding: '6px 10px' }} 
+                    onClick={() => {
+                      if (surgeonCalendarMode === 'weekly') {
+                        setSurgeonWeekOffset(w => w - 1);
+                      } else {
+                        setSurgeonCalendarMonth(new Date(surgeonCalendarMonth.getFullYear(), surgeonCalendarMonth.getMonth() - 1, 1));
+                      }
+                    }}
+                  >◀</button>
+                  <button 
+                    style={{ ...styles.btn, ...styles.btnPrimary, padding: '6px 12px' }} 
+                    onClick={() => {
+                      if (surgeonCalendarMode === 'weekly') {
+                        setSurgeonWeekOffset(0);
+                      } else {
+                        setSurgeonCalendarMonth(new Date(2024, 11, 1));
+                      }
+                    }}
+                  >Today</button>
+                  <button 
+                    style={{ ...styles.btn, ...styles.btnSecondary, padding: '6px 10px' }} 
+                    onClick={() => {
+                      if (surgeonCalendarMode === 'weekly') {
+                        setSurgeonWeekOffset(w => w + 1);
+                      } else {
+                        setSurgeonCalendarMonth(new Date(surgeonCalendarMonth.getFullYear(), surgeonCalendarMonth.getMonth() + 1, 1));
+                      }
+                    }}
+                  >▶</button>
+                </div>
+              </div>
+            </div>
+            
+            {/* Weekly View */}
+            {surgeonCalendarMode === 'weekly' && (
+              <div style={{ overflowX: 'auto' }}>
+                <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #e2e8f0', borderRadius: 8 }}>
+                  <thead>
+                    <tr>
+                      <th style={{ ...styles.th, width: 140, textAlign: 'center' }}>Time</th>
+                      {weekDays.map((day, i) => (
+                        <th key={day} style={{ ...styles.th, textAlign: 'center' }}>{day}<br/><span style={{ fontWeight: 400, fontSize: 10 }}>{getSurgeonWeekDates()[i].toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span></th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {surgeonTimeSlots.map((slot) => (
+                      <tr key={slot.id}>
+                        <td style={{ ...styles.td, fontWeight: 500, fontSize: 11, background: '#f8fafc', textAlign: 'center' }}>{slot.label}</td>
+                        {weekDays.map((day) => {
+                          const block = getSurgeonBlockForSlot(surgeon?.id, day, slot.id, surgeonWeekOffset);
+                          if (!block.scheduled) {
+                            return <td key={day} style={{ ...styles.td, background: '#f8fafc', textAlign: 'center' }}><span style={{ color: '#cbd5e1', fontSize: 11 }}>—</span></td>;
+                          }
+                          const color = getUtilizationColor(block.utilization);
+                          return (
+                            <td key={day} style={{ ...styles.td, background: color.bg, padding: 10, textAlign: 'center' }}>
+                              <div style={{ fontSize: 18, fontWeight: 700, color: color.text }}>{block.utilization}%</div>
+                              <div style={{ fontSize: 10, color: color.text }}>{block.room}</div>
+                              <div style={{ fontSize: 9, color: color.text, opacity: 0.8 }}>{block.cases} cases</div>
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+            
+            {/* Monthly View */}
+            {surgeonCalendarMode === 'monthly' && (
+              <div>
+                {/* Day Headers */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 8, marginBottom: 8 }}>
+                  {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'].map(day => (
+                    <div key={day} style={{ textAlign: 'center', fontSize: 11, fontWeight: 600, color: '#64748b', padding: 6 }}>{day}</div>
+                  ))}
+                </div>
+                
+                {/* Week Rows */}
+                {getSurgeonMonthlyCalendar(surgeon?.id, surgeonCalendarMonth.getFullYear(), surgeonCalendarMonth.getMonth()).map((week, weekIdx) => (
+                  <div key={weekIdx} style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 8, marginBottom: 8 }}>
+                    {week.map((day) => {
+                      const utilColor = day.aggregateUtilization !== null 
+                        ? getUtilizationColor(day.aggregateUtilization) 
+                        : { bg: '#f8fafc', border: '#e2e8f0', text: '#94a3b8' };
+                      const opacity = !day.isCurrentMonth ? 0.4 : 1;
+                      
+                      return (
+                        <div 
+                          key={day.dateStr}
+                          style={{ 
+                            background: utilColor.bg, 
+                            border: `2px solid ${utilColor.border}`,
+                            borderRadius: 8, 
+                            padding: 8,
+                            minHeight: 100,
+                            opacity,
+                          }}
+                        >
+                          {/* Day Header */}
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 6 }}>
+                            <span style={{ fontSize: 13, fontWeight: 600, color: '#1e293b' }}>{day.dayOfMonth}</span>
+                          </div>
+                          
+                          {/* Aggregate Utilization */}
+                          <div style={{ fontSize: 11, fontWeight: 600, color: utilColor.text, marginBottom: 6 }}>
+                            {day.aggregateUtilization !== null ? `${day.aggregateUtilization}%` : '—'}
+                          </div>
+                          
+                          {/* Block Cards */}
+                          {day.blocks.slice(0, 2).map((block, blockIdx) => (
+                            <div 
+                              key={blockIdx} 
+                              style={{ 
+                                background: 'white', 
+                                border: '1px solid #e2e8f0', 
+                                borderRadius: 4, 
+                                padding: 4, 
+                                marginBottom: 3,
+                                fontSize: 9,
+                              }}
+                            >
+                              <div style={{ fontWeight: 600, color: '#475569' }}>{block.slotId === 'morning' ? '7-11' : block.slotId === 'midday' ? '11-3' : '3-7'}</div>
+                              <div style={{ color: getUtilizationColor(block.utilization).text, fontWeight: 600 }}>{block.utilization}%</div>
+                            </div>
+                          ))}
+                          
+                          {/* More blocks indicator */}
+                          {day.blocks.length > 2 && (
+                            <div style={{ fontSize: 8, color: '#64748b', textAlign: 'center' }}>+{day.blocks.length - 2} more</div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                ))}
+              </div>
+            )}
+            
+            {/* Legend */}
+            <div style={{ display: 'flex', gap: 16, marginTop: 16, justifyContent: 'center', paddingTop: 12, borderTop: '1px solid #f1f5f9' }}>
+              {[
+                { label: '≥80% Excellent', color: '#dcfce7' }, 
+                { label: '70-79% Good', color: '#fef9c3' }, 
+                { label: '60-69% Warning', color: '#fed7aa' }, 
+                { label: '<60% Critical', color: '#fee2e2' },
+                { label: 'No blocks', color: '#f8fafc' }
+              ].map(l => (
+                <div key={l.label} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 10 }}>
+                  <div style={{ width: 12, height: 12, borderRadius: 3, background: l.color, border: '1px solid #e2e8f0' }}></div>
+                  {l.label}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {surgeonTab === 'timeline' && (
+          <div style={{ background: 'white', borderRadius: '12px', padding: 20, border: '1px solid #e2e8f0' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
+              <div>
+                <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 4 }}>Utilization Trend</h3>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13 }}>
+                  <button onClick={() => { setTimeLevel('annual'); setSelectedPeriod({ year: 2024, quarter: null, month: null, week: null }); }} 
+                    style={{ ...styles.breadcrumbItem, ...(timeLevel === 'annual' ? styles.breadcrumbCurrent : {}), padding: '2px 8px' }}>Annual</button>
+                  {selectedPeriod.year && timeLevel !== 'annual' && (<><span style={{ color: '#94a3b8' }}>›</span>
+                    <button onClick={() => { setTimeLevel('quarterly'); setSelectedPeriod(p => ({ ...p, quarter: null, month: null, week: null })); }}
+                      style={{ ...styles.breadcrumbItem, ...(timeLevel === 'quarterly' ? styles.breadcrumbCurrent : {}), padding: '2px 8px' }}>{selectedPeriod.year}</button></>)}
+                  {selectedPeriod.quarter && (<><span style={{ color: '#94a3b8' }}>›</span>
+                    <button onClick={() => { setTimeLevel('monthly'); setSelectedPeriod(p => ({ ...p, month: null, week: null })); }}
+                      style={{ ...styles.breadcrumbItem, ...(timeLevel === 'monthly' ? styles.breadcrumbCurrent : {}), padding: '2px 8px' }}>{selectedPeriod.quarter}</button></>)}
+                  {selectedPeriod.month && (<><span style={{ color: '#94a3b8' }}>›</span>
+                    <span style={{ ...styles.breadcrumbItem, ...styles.breadcrumbCurrent, padding: '2px 8px' }}>{selectedPeriod.month}</span></>)}
+                </div>
+              </div>
+              {timeLevel !== 'weekly' && <span style={{ fontSize: 11, color: '#64748b', background: '#f1f5f9', padding: '4px 8px', borderRadius: 4 }}>Click a bar to drill down</span>}
+            </div>
+            
+            <div style={{ height: 220, display: 'flex', alignItems: 'flex-end', gap: 12, paddingBottom: 40, position: 'relative' }}>
+              {[85, 70, 55].map(threshold => (
+                <div key={threshold} style={{ position: 'absolute', left: 40, right: 0, bottom: `${(threshold / 100) * 180 + 40}px`, borderTop: '1px dashed #e2e8f0', zIndex: 0 }}>
+                  <span style={{ position: 'absolute', left: -40, top: -8, fontSize: 10, color: '#94a3b8' }}>{threshold}%</span>
+                </div>
+              ))}
+              {getCurrentTimeData(surgeon?.id).map((item) => {
+                const hasData = item.utilization !== null;
+                const color = hasData ? getUtilizationColor(item.utilization) : { bg: '#f1f5f9', border: '#e2e8f0', text: '#94a3b8' };
+                const isClickable = timeLevel !== 'weekly' && hasData;
+                return (
+                  <div key={item.label} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: isClickable ? 'pointer' : 'default', zIndex: 1 }}
+                    onClick={() => isClickable && handleTimeDrillDown(item.label)}
+                    onMouseOver={(e) => { if (isClickable) e.currentTarget.style.opacity = '0.8'; }}
+                    onMouseOut={(e) => { e.currentTarget.style.opacity = '1'; }}>
+                    <div style={{ fontSize: 11, fontWeight: 600, marginBottom: 4, color: hasData ? color.text : '#94a3b8' }}>{hasData ? `${item.utilization}%` : '—'}</div>
+                    <div style={{ width: '100%', maxWidth: 60, height: `${((item.utilization || 0) / 100) * 180}px`, minHeight: hasData ? 4 : 0, background: color.bg, border: `2px solid ${color.border}`, borderRadius: '6px 6px 0 0', transition: 'all 0.2s' }}></div>
+                    <div style={{ fontSize: 11, color: '#1e293b', marginTop: 8, fontWeight: 500 }}>{item.label}</div>
+                    <div style={{ fontSize: 10, color: '#64748b' }}>{item.blocks} {item.blocks === 1 ? 'block' : 'blocks'}</div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {surgeonTab === 'bar' && (
+          <div style={{ background: 'white', borderRadius: '12px', padding: 20, border: '1px solid #e2e8f0' }}>
+            <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 16 }}>Metrics Breakdown</h3>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: 16 }}>
+              {initialMetricsConfig.filter(m => m.enabled && !m.isFlag).map(m => {
+                const value = surgeon.metrics[m.id];
+                const normalized = Math.round(normalizeMetric(m.id, value, m));
+                return (
+                  <div key={m.id} style={{ padding: 12, background: '#f8fafc', borderRadius: 8 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                      <span style={{ fontSize: 12, fontWeight: 500 }}>{m.icon} {m.name}</span>
+                      <span style={{ fontSize: 12, fontWeight: 600 }}>{typeof value === 'boolean' ? (value ? 'Yes' : 'No') : value}{m.unit !== 'trend' && m.unit !== 'flag' ? m.unit : ''}</span>
+                    </div>
+                    <div style={{ height: 8, background: '#e2e8f0', borderRadius: 4, overflow: 'hidden' }}>
+                      <div style={{ height: '100%', width: `${normalized}%`, background: normalized >= 70 ? '#16a34a' : normalized >= 50 ? '#f59e0b' : '#dc2626', borderRadius: 4 }}></div>
+                    </div>
+                    <div style={{ fontSize: 10, color: '#64748b', marginTop: 4 }}>Normalized: {normalized}/100 (Weight: {m.weight}%)</div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
+        {surgeonTab === 'alerts' && (
+          <div style={{ background: 'white', borderRadius: '12px', padding: 20, border: '1px solid #e2e8f0' }}>
+            <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 16 }}>Utilization Alerts</h3>
+            {surgeonAlerts.length === 0 ? <p style={{ color: '#64748b' }}>No alerts for this surgeon.</p> : (
+              surgeonAlerts.map(a => (
+                <div key={a.id} style={{ padding: 16, border: '1px solid #e2e8f0', borderRadius: 8, marginBottom: 12, borderLeft: `4px solid ${a.status === 'pending' ? '#f59e0b' : '#16a34a'}` }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
+                    <div>
+                      <strong>{a.date}</strong> • {a.time}<br/>
+                      <span style={{ fontSize: 12, color: '#64748b' }}>{a.room} • {a.utilization}% utilization</span><br/>
+                      <span style={{ fontSize: 12, color: '#dc2626' }}>{a.reason}</span>
+                    </div>
+                    <span style={{ ...styles.badge, background: a.status === 'pending' ? '#fef9c3' : '#dcfce7', color: a.status === 'pending' ? '#a16207' : '#15803d' }}>{a.status}</span>
+                  </div>
+                  {a.status === 'pending' && !a.disputeId && isPhysician && (
+                    <button style={{ ...styles.btn, ...styles.btnPrimary, marginTop: 12 }} onClick={() => setModal({ type: 'disputeForm', data: a })}>⚖️ File Dispute</button>
+                  )}
+                </div>
+              ))
+            )}
+          </div>
+        )}
+
+        {surgeonTab === 'disputes' && (
+          <div style={{ background: 'white', borderRadius: '12px', padding: 20, border: '1px solid #e2e8f0' }}>
+            <h3 style={{ fontSize: 16, fontWeight: 600, marginBottom: 16 }}>Dispute History</h3>
+            {surgeonDisputes.length === 0 ? <p style={{ color: '#64748b' }}>No disputes filed.</p> : (
+              surgeonDisputes.map(d => (
+                <div key={d.id} style={{ padding: 16, border: '1px solid #e2e8f0', borderRadius: 8, marginBottom: 12, borderLeft: `4px solid ${d.status === 'pending' ? '#f59e0b' : d.status === 'resolved' ? '#16a34a' : '#dc2626'}` }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start' }}>
+                    <div>
+                      <strong>{d.blockDate}</strong> • {d.blockTime}<br/>
+                      <span style={{ fontSize: 12, color: '#64748b' }}>{d.room} • Original: {d.originalUtil}%</span><br/>
+                      <span style={{ fontSize: 12 }}><strong>Reason:</strong> {d.reason}</span><br/>
+                      <span style={{ fontSize: 12, color: '#64748b' }}>{d.description}</span>
+                    </div>
+                    <span style={{ ...styles.badge, background: d.status === 'pending' ? '#fef9c3' : d.status === 'resolved' ? '#dcfce7' : '#fee2e2', color: d.status === 'pending' ? '#a16207' : d.status === 'resolved' ? '#15803d' : '#b91c1c' }}>{d.status}</span>
+                  </div>
+                  {d.reviewedBy && <div style={{ marginTop: 12, padding: 12, background: '#f8fafc', borderRadius: 8, fontSize: 12 }}><strong>Reviewed by:</strong> {d.reviewedBy}<br/><strong>Notes:</strong> {d.reviewNotes}</div>}
+                </div>
+              ))
+            )}
+          </div>
+        )}
+      </>
+    );
+  };
+
+  // ==================== MODALS ====================
+
+  const renderSettingsModal = () => (
+    <div style={styles.modal} onClick={() => setModal({ type: null })}>
+      <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
+        <div style={styles.modalHeader}><h2>⚙️ Settings</h2><button onClick={() => setModal({ type: null })} style={{ background: 'none', border: 'none', fontSize: 24, cursor: 'pointer' }}>×</button></div>
+        <div style={styles.modalBody}>
+          <div style={{ padding: 14, border: '1px solid #e2e8f0', borderRadius: 8, marginBottom: 12, cursor: 'pointer', background: currentRole === 'superuser' ? 'linear-gradient(135deg, #faf5ff, #f3e8ff)' : 'white' }} onClick={() => setModal({ type: 'metricsConfig' })}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <span style={{ fontSize: 20 }}>📊</span>
+              <div><h4 style={{ fontSize: 14, fontWeight: 600 }}>Metrics Configuration {currentRole !== 'superuser' && <span style={{ ...styles.badge, background: '#f1f5f9', color: '#64748b', marginLeft: 8 }}>🔒 Super User Only</span>}</h4><p style={{ fontSize: 12, color: '#64748b' }}>Configure scoring weights and enable/disable metrics</p></div>
+            </div>
+          </div>
+          <div style={{ padding: 14, border: '1px solid #e2e8f0', borderRadius: 8, marginBottom: 12, cursor: 'pointer' }} onClick={() => setModal({ type: 'tierRankings' })}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <span style={{ fontSize: 20 }}>🏆</span>
+              <div><h4 style={{ fontSize: 14, fontWeight: 600 }}>Tier Rankings</h4><p style={{ fontSize: 12, color: '#64748b' }}>View all surgeons ranked by performance score</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderMetricsConfigModal = () => (
+    <div style={styles.modal} onClick={() => setModal({ type: null })}>
+      <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
+        <div style={styles.modalHeader}><h2>📊 Metrics Configuration</h2><button onClick={() => setModal({ type: null })} style={{ background: 'none', border: 'none', fontSize: 24, cursor: 'pointer' }}>×</button></div>
+        <div style={styles.modalBody}>
+          {currentRole !== 'superuser' && <div style={{ ...styles.infoBox, background: '#fef2f2', border: '1px solid #fecaca', marginBottom: 20 }}><strong>🔒 View Only</strong> - Super User access required to modify</div>}
+          {['Primary', 'Quality', 'Modifier'].map(category => (
+            <div key={category}>
+              <h4 style={{ fontSize: 11, fontWeight: 600, color: '#64748b', textTransform: 'uppercase', marginBottom: 10, paddingBottom: 8, borderBottom: '1px solid #e2e8f0' }}>{category} Metrics</h4>
+              {initialMetricsConfig.filter(m => m.category === category).map(m => (
+                <div key={m.id} style={{ padding: 14, border: '1px solid #e2e8f0', borderRadius: 10, marginBottom: 10, opacity: m.enabled ? 1 : 0.5 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div><span style={{ fontWeight: 600, fontSize: 14 }}>{m.icon} {m.name}</span><p style={{ fontSize: 12, color: '#64748b' }}>{m.unit}</p></div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+                      {!m.isFlag && <span style={{ fontWeight: 600, color: '#7c3aed' }}>{m.weight}%</span>}
+                      <span style={{ ...styles.badge, background: m.enabled ? '#dcfce7' : '#fee2e2', color: m.enabled ? '#15803d' : '#b91c1c' }}>{m.enabled ? 'Enabled' : 'Disabled'}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ))}
+          <div style={{ ...styles.infoBox, background: '#eff6ff', border: '1px solid #bfdbfe', marginTop: 20 }}><strong>Total Weight:</strong> {initialMetricsConfig.filter(m => m.enabled && !m.isFlag).reduce((sum, m) => sum + m.weight, 0)}% (should equal 100%)</div>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderTierRankingsModal = () => (
+    <div style={styles.modal} onClick={() => setModal({ type: null })}>
+      <div style={{ ...styles.modalContent, maxWidth: 1000 }} onClick={e => e.stopPropagation()}>
+        <div style={styles.modalHeader}><h2>🏆 Tier Rankings</h2><button onClick={() => setModal({ type: null })} style={{ background: 'none', border: 'none', fontSize: 24, cursor: 'pointer' }}>×</button></div>
+        <div style={styles.modalBody}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12, marginBottom: 24 }}>
+            {['platinum', 'gold', 'silver', 'bronze'].map(tier => {
+              const count = surgeonsWithScores.filter(s => s.tier === tier).length;
+              return (
+                <div key={tier} style={{ ...getTierStyle(tier), padding: 16, borderRadius: 10, textAlign: 'center' }}>
+                  <h3 style={{ fontSize: 14, marginBottom: 8 }}>{tier.charAt(0).toUpperCase() + tier.slice(1)}</h3>
+                  <div style={{ fontSize: 28, fontWeight: 700 }}>{count}</div>
+                  <div style={{ fontSize: 11, color: '#64748b' }}>surgeons</div>
+                </div>
+              );
+            })}
+          </div>
+          <table style={styles.table}>
+            <thead><tr><th style={styles.th}>Rank</th><th style={styles.th}>Surgeon</th><th style={styles.th}>Specialty</th><th style={styles.th}>Hospital</th><th style={styles.th}>Score</th><th style={styles.th}>Tier</th></tr></thead>
+            <tbody>
+              {surgeonsWithScores.map((s, i) => (
+                <tr key={s.id}><td style={styles.td}>#{i + 1}</td><td style={styles.td}><strong>{s.name}</strong></td><td style={styles.td}>{s.specialty}</td><td style={styles.td}>{hospitals[s.ministryId]?.find(h => h.id === s.hospitalId)?.name}</td><td style={styles.td}><div style={{ ...styles.scoreCircle, width: 36, height: 36, fontSize: 13, background: getScoreColor(s.score) }}>{s.score}</div></td><td style={styles.td}><span style={{ ...styles.badge, ...getTierStyle(s.tier) }}>{s.tier.charAt(0).toUpperCase() + s.tier.slice(1)}</span></td></tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderHeatMapModal = () => {
+    const getHeatMapData = () => {
+      if (heatMap.level === 'ministries') return ministries;
+      if (heatMap.level === 'hospitals') return hospitals[heatMap.ministryId] || [];
+      if (heatMap.level === 'units') return units[heatMap.hospitalId] || [];
+      if (heatMap.level === 'rooms') return roomData[heatMap.unitId] || [];
+      return [];
+    };
+    const data = getHeatMapData();
+    const selectedMinistry = ministries.find(m => m.id === heatMap.ministryId);
+    const selectedHospital = hospitals[heatMap.ministryId]?.find(h => h.id === heatMap.hospitalId);
+    const selectedUnit = units[heatMap.hospitalId]?.find(u => u.id === heatMap.unitId);
+    const selectedRoom = roomData[heatMap.unitId]?.find(r => r.id === heatMap.roomId);
+
+    return (
+      <div style={styles.modal} onClick={() => setModal({ type: null })}>
+        <div style={{ ...styles.modalContent, maxWidth: 1100 }} onClick={e => e.stopPropagation()}>
+          <div style={styles.modalHeader}><h2>🗺️ Utilization Heat Map</h2><button onClick={() => setModal({ type: null })} style={{ background: 'none', border: 'none', fontSize: 24, cursor: 'pointer' }}>×</button></div>
+          <div style={{ padding: '12px 24px', borderBottom: '1px solid #e2e8f0', display: 'flex', gap: 6, fontSize: 13 }}>
+            <button style={{ ...styles.breadcrumbItem, ...(heatMap.level === 'ministries' ? styles.breadcrumbCurrent : {}) }} onClick={() => setHeatMap({ level: 'ministries', ministryId: null, hospitalId: null, unitId: null, roomId: null, weekOffset: 0 })}>All Ministries</button>
+            {heatMap.ministryId && (<><span style={{ color: '#94a3b8' }}>›</span><button style={{ ...styles.breadcrumbItem, ...(heatMap.level === 'hospitals' ? styles.breadcrumbCurrent : {}) }} onClick={() => setHeatMap(prev => ({ ...prev, level: 'hospitals', hospitalId: null, unitId: null, roomId: null }))}>{selectedMinistry?.name}</button></>)}
+            {heatMap.hospitalId && (<><span style={{ color: '#94a3b8' }}>›</span><button style={{ ...styles.breadcrumbItem, ...(heatMap.level === 'units' ? styles.breadcrumbCurrent : {}) }} onClick={() => setHeatMap(prev => ({ ...prev, level: 'units', unitId: null, roomId: null }))}>{selectedHospital?.name}</button></>)}
+            {heatMap.unitId && (<><span style={{ color: '#94a3b8' }}>›</span><button style={{ ...styles.breadcrumbItem, ...(heatMap.level === 'rooms' ? styles.breadcrumbCurrent : {}) }} onClick={() => setHeatMap(prev => ({ ...prev, level: 'rooms', roomId: null }))}>{selectedUnit?.name}</button></>)}
+            {heatMap.roomId && (<><span style={{ color: '#94a3b8' }}>›</span><button style={{ ...styles.breadcrumbItem, ...styles.breadcrumbCurrent }}>{selectedRoom?.name}</button></>)}
+          </div>
+          <div style={styles.modalBody}>
+            {heatMap.level !== 'calendar' ? (
+              <div style={{ display: 'grid', gridTemplateColumns: `repeat(auto-fill, minmax(${heatMap.level === 'rooms' ? '120px' : '200px'}, 1fr))`, gap: 16 }}>
+                {data.map((item) => {
+                  const color = getUtilizationColor(item.avgUtilization);
+                  return (
+                    <div key={item.id} style={{ padding: 16, borderRadius: 10, cursor: 'pointer', textAlign: 'center', border: `2px solid ${color.border}`, background: color.bg, color: color.text }} onClick={() => {
+                      if (heatMap.level === 'ministries') setHeatMap({ level: 'hospitals', ministryId: item.id, hospitalId: null, unitId: null, roomId: null, weekOffset: 0 });
+                      else if (heatMap.level === 'hospitals') setHeatMap(prev => ({ ...prev, level: 'units', hospitalId: item.id, unitId: null, roomId: null }));
+                      else if (heatMap.level === 'units') setHeatMap(prev => ({ ...prev, level: 'rooms', unitId: item.id, roomId: null }));
+                      else if (heatMap.level === 'rooms') setHeatMap(prev => ({ ...prev, level: 'calendar', roomId: item.id, weekOffset: 0 }));
+                    }}>
+                      <div style={{ fontWeight: 600, fontSize: 14, marginBottom: 6 }}>{item.name}</div>
+                      <div style={{ fontSize: 28, fontWeight: 700 }}>{item.avgUtilization}%</div>
+                      {item.city && <div style={{ fontSize: 11, opacity: 0.8 }}>{item.city}</div>}
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              (() => {
+                const schedule = generateRoomSchedule(heatMap.roomId, heatMap.weekOffset);
+                const getWeekDates = () => {
+                  const today = new Date();
+                  const currentDay = today.getDay();
+                  const monday = new Date(today);
+                  monday.setDate(today.getDate() - (currentDay === 0 ? 6 : currentDay - 1) + (heatMap.weekOffset * 7));
+                  return weekDays.map((_, i) => { const d = new Date(monday); d.setDate(monday.getDate() + i); return d; });
+                };
+                const dates = getWeekDates();
+                return (
+                  <>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+                      <h3>{selectedRoom?.name} - Week of {dates[0].toLocaleDateString()}</h3>
+                      <div style={{ display: 'flex', gap: 8 }}>
+                        <button style={{ ...styles.btn, ...styles.btnSecondary }} onClick={() => setHeatMap(prev => ({ ...prev, weekOffset: prev.weekOffset - 1 }))}>← Previous</button>
+                        <button style={{ ...styles.btn, ...styles.btnPrimary }} onClick={() => setHeatMap(prev => ({ ...prev, weekOffset: 0 }))}>Today</button>
+                        <button style={{ ...styles.btn, ...styles.btnSecondary }} onClick={() => setHeatMap(prev => ({ ...prev, weekOffset: prev.weekOffset + 1 }))}>Next →</button>
+                      </div>
+                    </div>
+                    <div style={{ overflowX: 'auto' }}>
+                      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                        <thead><tr><th style={{ ...styles.th, width: 80 }}>Time</th>{weekDays.map((day, i) => <th key={day} style={styles.th}>{day}<br/><span style={{ fontWeight: 400, fontSize: 10 }}>{dates[i].toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span></th>)}</tr></thead>
+                        <tbody>
+                          {timeSlots.map((slot) => (
+                            <tr key={slot.id}>
+                              <td style={{ ...styles.td, fontWeight: 500, fontSize: 11 }}>{slot.label}</td>
+                              {weekDays.map((day) => {
+                                const cell = schedule[day][slot.id];
+                                if (cell.status === 'available') return <td key={day} style={{ ...styles.td, background: '#f1f5f9', textAlign: 'center' }}><span style={{ color: '#94a3b8', fontSize: 11 }}>Available</span></td>;
+                                if (cell.status === 'released') return <td key={day} style={{ ...styles.td, background: '#fef2f2', textAlign: 'center' }}><span style={{ color: '#dc2626', fontSize: 11 }}>Released</span></td>;
+                                const color = getUtilizationColor(cell.utilization);
+                                return <td key={day} style={{ ...styles.td, background: color.bg, padding: 8 }}><div style={{ fontSize: 14, fontWeight: 700, color: color.text }}>{cell.utilization}%</div><div style={{ fontSize: 9, color: color.text }}>{cell.surgeon}</div></td>;
+                              })}
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </>
+                );
+              })()
+            )}
+          </div>
+          <div style={{ display: 'flex', gap: 16, padding: '16px 24px', background: '#f8fafc', borderTop: '1px solid #e2e8f0', justifyContent: 'center' }}>
+            {[{ label: '≥80% Excellent', color: '#dcfce7' }, { label: '70-79% Good', color: '#fef9c3' }, { label: '60-69% Warning', color: '#fed7aa' }, { label: '<60% Critical', color: '#fee2e2' }].map(l => (
+              <div key={l.label} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12 }}><div style={{ width: 16, height: 16, borderRadius: 4, background: l.color }}></div>{l.label}</div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const renderDisputesModal = () => (
+    <div style={styles.modal} onClick={() => setModal({ type: null })}>
+      <div style={{ ...styles.modalContent, maxWidth: 800 }} onClick={e => e.stopPropagation()}>
+        <div style={styles.modalHeader}><h2>📋 Pending Disputes</h2><button onClick={() => setModal({ type: null })} style={{ background: 'none', border: 'none', fontSize: 24, cursor: 'pointer' }}>×</button></div>
+        <div style={styles.modalBody}>
+          {disputes.filter(d => d.status === 'pending').length === 0 ? <p style={{ textAlign: 'center', color: '#64748b', padding: 40 }}>🎉 No pending disputes to review!</p> : (
+            disputes.filter(d => d.status === 'pending').map(d => {
+              const surgeon = surgeons.find(s => s.id === d.surgeonId);
+              return (
+                <div key={d.id} style={{ padding: 16, border: '1px solid #e2e8f0', borderRadius: 8, marginBottom: 16, borderLeft: '4px solid #f59e0b' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 12 }}>
+                    <div><strong style={{ fontSize: 16 }}>{surgeon?.name}</strong><br/><span style={{ fontSize: 13 }}>{d.blockDate} • {d.blockTime}</span><br/><span style={{ fontSize: 12, color: '#64748b' }}>{d.room} • Original: {d.originalUtil}%</span></div>
+                    <span style={{ ...styles.badge, background: '#fef9c3', color: '#a16207' }}>Pending Review</span>
+                  </div>
+                  <div style={{ fontSize: 13, marginBottom: 8 }}><strong>Reason:</strong> {d.reason}</div>
+                  <div style={{ fontSize: 13, color: '#64748b', marginBottom: 12 }}>{d.description}</div>
+                  <div style={{ fontSize: 11, color: '#94a3b8', marginBottom: 12 }}>Filed: {d.filedAt}</div>
+                  <div style={{ background: '#f8fafc', padding: 16, borderRadius: 8 }}>
+                    <h4 style={{ fontSize: 13, fontWeight: 600, marginBottom: 12 }}>📋 Your Review</h4>
+                    <textarea id={`review-${d.id}`} placeholder="Provide justification for your decision..." style={{ width: '100%', padding: 10, border: '1px solid #e2e8f0', borderRadius: 8, minHeight: 60, marginBottom: 12, fontFamily: 'inherit' }}></textarea>
+                    <div style={{ display: 'flex', gap: 12 }}>
+                      <button style={{ ...styles.btn, ...styles.btnSuccess }} onClick={() => {
+                        const notes = document.getElementById(`review-${d.id}`).value;
+                        if (!notes?.trim()) { alert('Please enter review notes'); return; }
+                        setDisputes(prev => prev.map(x => x.id === d.id ? { ...x, status: 'resolved', reviewedBy: currentUser.name, reviewNotes: notes } : x));
+                      }}>✓ Resolve (Exclude from Score)</button>
+                      <button style={{ ...styles.btn, ...styles.btnDanger }} onClick={() => {
+                        const notes = document.getElementById(`review-${d.id}`).value;
+                        if (!notes?.trim()) { alert('Please enter review notes'); return; }
+                        setDisputes(prev => prev.map(x => x.id === d.id ? { ...x, status: 'denied', reviewedBy: currentUser.name, reviewNotes: notes } : x));
+                      }}>✗ Deny Dispute</button>
+                    </div>
+                  </div>
+                </div>
+              );
+            })
+          )}
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderDisputeFormModal = () => {
+    const alert = modal.data;
+    if (!alert) return null;
+    const surgeon = surgeons.find(s => s.id === alert.surgeonId);
+    return (
+      <div style={styles.modal} onClick={() => setModal({ type: null })}>
+        <div style={styles.modalContent} onClick={e => e.stopPropagation()}>
+          <div style={styles.modalHeader}><h2>⚖️ File Block Dispute</h2><button onClick={() => setModal({ type: null })} style={{ background: 'none', border: 'none', fontSize: 24, cursor: 'pointer' }}>×</button></div>
+          <div style={styles.modalBody}>
+            <div style={{ ...styles.infoBox, background: '#eff6ff', border: '1px solid #bfdbfe', marginBottom: 20 }}>
+              <h4 style={{ marginBottom: 8 }}>Block Details</h4>
+              <p><strong>Surgeon:</strong> {surgeon?.name}</p>
+              <p><strong>Date:</strong> {alert.date} • <strong>Time:</strong> {alert.time}</p>
+              <p><strong>Room:</strong> {alert.room} • <strong>Utilization:</strong> {alert.utilization}%</p>
+            </div>
+            <div style={{ ...styles.infoBox, background: '#fffbeb', border: '1px solid #fde68a', marginBottom: 20 }}>
+              <h4 style={{ marginBottom: 4 }}>What happens when a dispute is resolved?</h4>
+              <p style={{ fontSize: 12 }}>If your dispute is approved, this block will be excluded from your utilization score calculation.</p>
+            </div>
+            <div style={{ marginBottom: 16 }}>
+              <label style={{ display: 'block', fontSize: 13, fontWeight: 500, marginBottom: 6 }}>Reason for Dispute *</label>
+              <select id="disputeReason" style={{ width: '100%', padding: '10px 14px', border: '1px solid #e2e8f0', borderRadius: 8, fontSize: 14 }}>
+                <option value="">Select a reason...</option>
+                {['Equipment failure', 'Patient cancellation', 'Staffing shortage', 'Emergency case bump', 'Weather/natural disaster', 'Hospital scheduling error', 'Other'].map(r => <option key={r} value={r}>{r}</option>)}
+              </select>
+            </div>
+            <div style={{ marginBottom: 16 }}>
+              <label style={{ display: 'block', fontSize: 13, fontWeight: 500, marginBottom: 6 }}>Description *</label>
+              <textarea id="disputeDescription" placeholder="Provide detailed information about the circumstances..." style={{ width: '100%', padding: '10px 14px', border: '1px solid #e2e8f0', borderRadius: 8, minHeight: 100, fontFamily: 'inherit' }}></textarea>
+            </div>
+          </div>
+          <div style={{ padding: '16px 24px', borderTop: '1px solid #e2e8f0', display: 'flex', justifyContent: 'flex-end', gap: 12 }}>
+            <button style={{ ...styles.btn, ...styles.btnSecondary }} onClick={() => setModal({ type: null })}>Cancel</button>
+            <button style={{ ...styles.btn, ...styles.btnPrimary }} onClick={() => {
+              const reason = document.getElementById('disputeReason').value;
+              const description = document.getElementById('disputeDescription').value;
+              if (!reason || !description) { alert('Please fill in all required fields'); return; }
+              const newDispute = { id: `dr-${Date.now()}`, surgeonId: alert.surgeonId, blockDate: alert.date, blockTime: alert.time, room: alert.room, originalUtil: alert.utilization, reason, description, status: 'pending', filedAt: new Date().toISOString().split('T')[0], reviewedBy: null, reviewNotes: null };
+              setDisputes(prev => [...prev, newDispute]);
+              setAlerts(prev => prev.map(a => a.id === alert.id ? { ...a, disputeId: newDispute.id } : a));
+              setModal({ type: null });
+              alert('Dispute filed successfully!');
+            }}>Submit Dispute</button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // ==================== CALENDAR MODE VIEW ====================
+  const renderCalendarModeView = () => {
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    const unitOptions = Object.entries(units).flatMap(([hospitalId, unitList]) => 
+      unitList.map(u => ({ ...u, hospitalId, hospitalName: Object.values(hospitals).flat().find(h => h.id === hospitalId)?.name }))
+    );
+    
+    return (
+      <div style={{ display: 'flex', gap: 24 }}>
+        {/* Main Calendar Area */}
+        <div style={{ flex: 1 }}>
+          {/* Calendar Controls */}
+          <div style={{ background: 'white', borderRadius: 12, padding: 16, marginBottom: 20, border: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
+            <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+              <div>
+                <label style={{ fontSize: 11, color: '#64748b', display: 'block', marginBottom: 4 }}>Unit</label>
+                <select 
+                  value={selectedUnit} 
+                  onChange={(e) => setSelectedUnit(e.target.value)}
+                  style={{ padding: '8px 12px', border: '1px solid #e2e8f0', borderRadius: 6, fontSize: 13, minWidth: 180 }}
+                >
+                  {unitOptions.map(u => (
+                    <option key={u.id} value={u.id}>{u.name} ({u.hospitalName})</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label style={{ fontSize: 11, color: '#64748b', display: 'block', marginBottom: 4 }}>Surgeon</label>
+                <select 
+                  value={selectedSurgeonFilter} 
+                  onChange={(e) => setSelectedSurgeonFilter(e.target.value)}
+                  style={{ padding: '8px 12px', border: '1px solid #e2e8f0', borderRadius: 6, fontSize: 13, minWidth: 160 }}
+                >
+                  <option value="all">All Surgeons</option>
+                  {surgeons.map(s => (
+                    <option key={s.id} value={s.id}>{s.name}</option>
+                  ))}
+                </select>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginLeft: 8 }}>
+                <input 
+                  type="checkbox" 
+                  id="providerOverlay" 
+                  checked={providerOverlay} 
+                  onChange={(e) => setProviderOverlay(e.target.checked)}
+                  style={{ width: 16, height: 16 }}
+                />
+                <label htmlFor="providerOverlay" style={{ fontSize: 12, color: '#475569' }}>Provider Overlay</label>
+              </div>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <button 
+                onClick={() => setCalendarMonth(new Date(calendarMonth.getFullYear(), calendarMonth.getMonth() - 1, 1))}
+                style={{ ...styles.btn, ...styles.btnSecondary }}
+              >◀</button>
+              <span style={{ fontSize: 16, fontWeight: 600, minWidth: 160, textAlign: 'center' }}>
+                {monthNames[calendarMonth.getMonth()]} {calendarMonth.getFullYear()}
+              </span>
+              <button 
+                onClick={() => setCalendarMonth(new Date(calendarMonth.getFullYear(), calendarMonth.getMonth() + 1, 1))}
+                style={{ ...styles.btn, ...styles.btnSecondary }}
+              >▶</button>
+            </div>
+          </div>
+
+          {/* Calendar Grid */}
+          <div style={{ background: 'white', borderRadius: 12, padding: 20, border: '1px solid #e2e8f0' }}>
+            {/* Day Headers */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 8, marginBottom: 8 }}>
+              {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'].map(day => (
+                <div key={day} style={{ textAlign: 'center', fontSize: 12, fontWeight: 600, color: '#64748b', padding: 8 }}>{day}</div>
+              ))}
+            </div>
+            
+            {/* Week Rows */}
+            {getCalendarDays.map((week, weekIdx) => (
+              <div key={weekIdx} style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 8, marginBottom: 8 }}>
+                {week.map((day) => {
+                  const utilColor = day.aggregateUtilization !== null ? getUtilizationColor(day.aggregateUtilization) : { bg: '#f8fafc', border: '#e2e8f0', text: '#94a3b8' };
+                  const isSelected = selectedCalendarDay === day.dateKey;
+                  const opacity = !day.isCurrentMonth ? 0.5 : (providerOverlay && selectedSurgeonFilter !== 'all' && day.blocks.length === 0) ? 0.3 : 1;
+                  
+                  return (
+                    <div 
+                      key={day.dateKey}
+                      onClick={() => setSelectedCalendarDay(day.dateKey)}
+                      style={{ 
+                        background: utilColor.bg, 
+                        border: `2px solid ${isSelected ? '#3b82f6' : utilColor.border}`,
+                        borderRadius: 10, 
+                        padding: 10,
+                        minHeight: 140,
+                        cursor: 'pointer',
+                        transition: 'all 0.2s',
+                        opacity,
+                        position: 'relative',
+                      }}
+                    >
+                      {/* Day Header */}
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
+                        <span style={{ fontSize: 14, fontWeight: 600, color: '#1e293b' }}>{day.dayOfMonth}</span>
+                        {day.hasDiscrepancy && <span style={{ fontSize: 10, background: '#fef3c7', color: '#d97706', padding: '2px 6px', borderRadius: 4 }}>⚠️</span>}
+                      </div>
+                      
+                      {/* Aggregate Utilization */}
+                      <div style={{ fontSize: 12, fontWeight: 600, color: utilColor.text, marginBottom: 8 }}>
+                        {day.aggregateUtilization !== null ? `Util: ${day.aggregateUtilization}%` : 'No blocks'}
+                      </div>
+                      
+                      {/* Block Cards */}
+                      {day.blocks.map((block, blockIdx) => (
+                        <div 
+                          key={block.blockId} 
+                          style={{ 
+                            background: 'white', 
+                            border: '1px solid #e2e8f0', 
+                            borderRadius: 6, 
+                            padding: 6, 
+                            marginBottom: 4,
+                            fontSize: 10,
+                          }}
+                        >
+                          <div style={{ fontWeight: 600, color: '#1e293b' }}>{block.start} - {block.end}</div>
+                          <div style={{ color: getUtilizationColor(block.utilization).text, fontWeight: 600 }}>{block.utilization}%</div>
+                        </div>
+                      ))}
+                      
+                      {/* More blocks indicator */}
+                      {day.totalBlocks > 2 && (
+                        <div style={{ fontSize: 9, color: '#64748b', textAlign: 'center' }}>+{day.totalBlocks - 2} more</div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
+            
+            {/* Legend */}
+            <div style={{ display: 'flex', gap: 16, marginTop: 16, justifyContent: 'center', paddingTop: 16, borderTop: '1px solid #e2e8f0' }}>
+              {[
+                { label: '≥80% Excellent', color: '#dcfce7' }, 
+                { label: '70-79% Good', color: '#fef9c3' }, 
+                { label: '60-69% Warning', color: '#fed7aa' }, 
+                { label: '<60% Critical', color: '#fee2e2' },
+                { label: 'No blocks', color: '#f8fafc' }
+              ].map(l => (
+                <div key={l.label} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 11 }}>
+                  <div style={{ width: 14, height: 14, borderRadius: 3, background: l.color, border: '1px solid #e2e8f0' }}></div>
+                  {l.label}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        
+        {/* Daily Details Panel */}
+        <div style={{ width: 340, flexShrink: 0 }}>
+          <div style={{ background: 'white', borderRadius: 12, border: '1px solid #e2e8f0', position: 'sticky', top: 20 }}>
+            <div style={{ padding: 16, borderBottom: '1px solid #e2e8f0' }}>
+              <h3 style={{ fontSize: 14, fontWeight: 600, margin: 0 }}>📋 Daily Details</h3>
+            </div>
+            
+            {selectedCalendarDay && selectedDayDetails ? (
+              <div style={{ padding: 16 }}>
+                <div style={{ fontSize: 16, fontWeight: 600, marginBottom: 16 }}>
+                  {new Date(selectedCalendarDay + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
+                </div>
+                
+                {/* Timeline */}
+                <div style={{ marginBottom: 20 }}>
+                  <h4 style={{ fontSize: 12, fontWeight: 600, color: '#64748b', marginBottom: 12 }}>TIMELINE</h4>
+                  {selectedDayDetails.blocks.length > 0 ? (
+                    <div style={{ borderLeft: '2px solid #e2e8f0', paddingLeft: 16, marginLeft: 8 }}>
+                      {selectedDayDetails.blocks.map(block => (
+                        <div key={block.blockId} style={{ marginBottom: 16 }}>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
+                            <div style={{ width: 8, height: 8, borderRadius: '50%', background: getUtilizationColor(block.utilization).border, marginLeft: -20 }}></div>
+                            <span style={{ fontSize: 11, color: '#64748b' }}>{block.start}</span>
+                            <span style={{ fontSize: 12, fontWeight: 600 }}>Block Start</span>
+                          </div>
+                          
+                          {block.caseDetails?.map(c => (
+                            <div key={c.caseId} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4, marginLeft: 12 }}>
+                              <span style={{ fontSize: 11, color: '#64748b' }}>{c.startTime}</span>
+                              <span style={{ fontSize: 11 }}>{c.procedure}</span>
+                              <span style={{ fontSize: 9, padding: '2px 6px', borderRadius: 4, background: c.status === 'completed' ? '#dcfce7' : '#eff6ff', color: c.status === 'completed' ? '#16a34a' : '#3b82f6' }}>{c.status}</span>
+                            </div>
+                          ))}
+                          
+                          <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 8 }}>
+                            <div style={{ width: 8, height: 8, borderRadius: '50%', background: '#94a3b8', marginLeft: -20 }}></div>
+                            <span style={{ fontSize: 11, color: '#64748b' }}>{block.end}</span>
+                            <span style={{ fontSize: 12, fontWeight: 600 }}>Block End</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div style={{ fontSize: 12, color: '#94a3b8', textAlign: 'center', padding: 20 }}>No blocks scheduled</div>
+                  )}
+                </div>
+                
+                {/* Block Details */}
+                {selectedDayDetails.blocks.length > 0 && (
+                  <div style={{ marginBottom: 20 }}>
+                    <h4 style={{ fontSize: 12, fontWeight: 600, color: '#64748b', marginBottom: 12 }}>BLOCK DETAILS</h4>
+                    {selectedDayDetails.blocks.map(block => {
+                      const color = getUtilizationColor(block.utilization);
+                      return (
+                        <div key={block.blockId} style={{ background: '#f8fafc', borderRadius: 8, padding: 12, marginBottom: 8 }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
+                            <span style={{ fontSize: 13, fontWeight: 600 }}>{block.start} - {block.end}</span>
+                            <span style={{ fontSize: 14, fontWeight: 700, color: color.text }}>{block.utilization}%</span>
+                          </div>
+                          <div style={{ fontSize: 11, color: '#64748b' }}>
+                            <div><strong>Owner:</strong> {block.surgeonName}</div>
+                            <div><strong>Room:</strong> {block.room}</div>
+                            <div><strong>Cases:</strong> {block.cases}</div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+                
+                {/* Discrepancies */}
+                {selectedDayDetails.discrepancies.length > 0 && (
+                  <div>
+                    <h4 style={{ fontSize: 12, fontWeight: 600, color: '#64748b', marginBottom: 12 }}>⚠️ DISCREPANCIES</h4>
+                    {selectedDayDetails.discrepancies.map(d => (
+                      <div key={d.id} style={{ background: d.severity === 'high' ? '#fef2f2' : '#fffbeb', border: `1px solid ${d.severity === 'high' ? '#fecaca' : '#fde68a'}`, borderRadius: 8, padding: 10, marginBottom: 8, fontSize: 11 }}>
+                        <div style={{ fontWeight: 600, color: d.severity === 'high' ? '#dc2626' : '#d97706' }}>{d.type.toUpperCase()}</div>
+                        <div style={{ color: '#64748b' }}>{d.message}</div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div style={{ padding: 40, textAlign: 'center', color: '#94a3b8' }}>
+                <div style={{ fontSize: 32, marginBottom: 12 }}>📅</div>
+                <div style={{ fontSize: 13 }}>Click a day to view details</div>
+              </div>
+            )}
+            
+            {/* Last Refresh */}
+            <div style={{ padding: 12, borderTop: '1px solid #e2e8f0', fontSize: 10, color: '#94a3b8', textAlign: 'center' }}>
+              Last refresh: 2 minutes ago
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // ==================== MAIN RENDER ====================
+  const renderContent = () => {
+    if (navigation.level === 'ministries') return renderMinistriesView();
+    if (navigation.level === 'hospitals') return renderHospitalsView();
+    if (navigation.level === 'units') return renderUnitsView();
+    if (navigation.level === 'rooms') return renderRoomsView();
+    if (navigation.level === 'calendar') return renderCalendarView();
+    if (navigation.level === 'surgeon') return renderSurgeonView();
+    return null;
+  };
+
+  return (
+    <div style={styles.app}>
+      {renderHeader()}
+      {viewMode === 'explorer' ? (
+        <>
+          {!isPhysician && renderBreadcrumb()}
+          <main style={styles.content}>{renderContent()}</main>
+        </>
+      ) : (
+        <main style={styles.content}>{renderCalendarModeView()}</main>
+      )}
+      {modal.type === 'settings' && renderSettingsModal()}
+      {modal.type === 'metricsConfig' && renderMetricsConfigModal()}
+      {modal.type === 'tierRankings' && renderTierRankingsModal()}
+      {modal.type === 'heatMap' && renderHeatMapModal()}
+      {modal.type === 'disputes' && renderDisputesModal()}
+      {modal.type === 'disputeForm' && renderDisputeFormModal()}
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(React.createElement(HealthcareBlockDashboard));
+  </script>
+</body>
+</html>

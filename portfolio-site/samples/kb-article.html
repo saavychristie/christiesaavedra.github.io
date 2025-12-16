@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Knowledge Base Article Sample | Christie Saavedra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #FAFAF9;
+      --color-text: #1C1917;
+      --color-text-secondary: #57534E;
+      --color-accent: #1E40AF;
+      --color-accent-light: #DBEAFE;
+      --color-border: #E7E5E4;
+      --color-card: #FFFFFF;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'IBM Plex Sans', -apple-system, sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-body); font-size: 16px; line-height: 1.7; color: var(--color-text); background: var(--color-bg); }
+    a { color: var(--color-accent); text-decoration: none; }
+    .container { max-width: 800px; margin: 0 auto; padding: 2rem; }
+    .back-link { display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem; font-size: 0.9rem; }
+    .context-box { background: #F3F4F6; border-left: 4px solid var(--color-accent); padding: 1rem 1.5rem; margin-bottom: 2rem; font-size: 0.9rem; }
+    .context-box strong { color: var(--color-accent); }
+    .sample-container { background: var(--color-card); border: 1px solid var(--color-border); border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.05); overflow: hidden; }
+    .kb-meta { background: #EFF6FF; padding: 0.75rem 2rem; font-size: 0.8rem; color: var(--color-text-secondary); border-bottom: 1px solid var(--color-border); }
+    .kb-content { padding: 2rem; }
+    .kb-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem; }
+    h2 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: var(--color-text); }
+    h3 { font-size: 1rem; font-weight: 600; margin: 1rem 0 0.5rem; color: var(--color-text-secondary); }
+    p { margin-bottom: 0.75rem; }
+    ul, ol { margin-left: 1.5rem; margin-bottom: 1rem; }
+    li { margin-bottom: 0.5rem; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+    th, td { border: 1px solid var(--color-border); padding: 0.75rem; text-align: left; }
+    th { background: #F9FAFB; font-weight: 600; }
+    .related-articles { background: #F9FAFB; padding: 1.5rem 2rem; margin: 2rem -2rem -2rem; border-top: 1px solid var(--color-border); }
+    .related-articles h2 { margin-top: 0; }
+    .related-articles ul { list-style: none; margin-left: 0; }
+    .related-articles li { margin-bottom: 0.5rem; }
+    .related-articles a { color: var(--color-accent); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="../index.html" class="back-link">← Back to Portfolio</a>
+    
+    <div class="context-box">
+      <strong>Sample Context:</strong> This knowledge base article demonstrates structure optimized for findability (clear title, metadata), scannability (headers, bullets), and actionability (step-by-step instructions with troubleshooting support).
+    </div>
+
+    <div class="sample-container">
+      <div class="kb-meta">
+        <strong>KB0012345</strong> &nbsp;|&nbsp; Category: Microsoft 365 &nbsp;|&nbsp; Last Updated: December 2025
+      </div>
+      
+      <div class="kb-content">
+        <h1 class="kb-title">How to Reset Your Duo Mobile Device</h1>
+
+        <h2>Overview</h2>
+        <p>This article explains how to reset Duo Mobile if you get a new phone, lose your device, or need to re-register for two-factor authentication.</p>
+
+        <h2>Applies To</h2>
+        <ul>
+          <li>Faculty, Staff, and Students</li>
+          <li>All UCF-affiliated accounts requiring Duo authentication</li>
+        </ul>
+
+        <h2>Before You Begin</h2>
+        <p>You will need:</p>
+        <ul>
+          <li>Your UCF NID and password</li>
+          <li>Access to your new mobile device</li>
+          <li>Approximately 5-10 minutes</li>
+        </ul>
+
+        <h2>Instructions</h2>
+
+        <h3>Option 1: Self-Service Reset (Recommended)</h3>
+        <ol>
+          <li>Go to myucf.edu and click <strong>Manage Duo Device</strong></li>
+          <li>Sign in with your NID and password</li>
+          <li>Select <strong>Add another device</strong></li>
+          <li>Follow the on-screen prompts to register your new phone</li>
+          <li>Test by logging into a UCF application</li>
+        </ol>
+
+        <h3>Option 2: Contact IT Support</h3>
+        <p>If you cannot access self-service, contact the IT Support Center:</p>
+        <ul>
+          <li><strong>Phone:</strong> 407-823-5117</li>
+          <li><strong>Email:</strong> itsupport@ucf.edu</li>
+          <li><strong>Walk-in:</strong> John C. Hitt Library, Room 132</li>
+        </ul>
+
+        <h2>Troubleshooting</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Issue</th>
+              <th>Solution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Push notification not received</td>
+              <td>Check phone has internet connection; try "Call Me" option instead</td>
+            </tr>
+            <tr>
+              <td>"Device not recognized" error</td>
+              <td>Re-register device using Option 1 above</td>
+            </tr>
+            <tr>
+              <td>Locked out of account</td>
+              <td>Contact IT Support Center for manual reset</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="related-articles">
+          <h2>Related Articles</h2>
+          <ul>
+            <li><a href="#">KB0012340: Setting Up Duo Mobile for the First Time</a></li>
+            <li><a href="#">KB0012350: Using Duo with Multiple Devices</a></li>
+            <li><a href="#">KB0012360: Duo Authentication Troubleshooting</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
