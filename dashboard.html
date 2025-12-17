@@ -30,6 +30,11 @@ body {
   75% { transform: translate(20px, 30px) scale(1.02); }
 }
 
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 .portfolio-back-link {
   position: fixed;
   top: 12px;
@@ -854,7 +859,20 @@ function SurgeonProfile({ surgeon }) {
 function SettingsModal({ onClose }) {
   const [metrics, setMetrics] = useState(metricsConfig);
   const [thresholds, setThresholds] = useState({ platinum: 85, gold: 70, silver: 55 });
+  const [reportType, setReportType] = useState('utilization');
+  const [reportRange, setReportRange] = useState('month');
+  const [reportGenerating, setReportGenerating] = useState(false);
+  const [reportGenerated, setReportGenerated] = useState(false);
   const totalWeight = metrics.filter(m => m.enabled).reduce((sum, m) => sum + m.weight, 0);
+
+  const handleGenerateReport = () => {
+    setReportGenerating(true);
+    setTimeout(() => {
+      setReportGenerating(false);
+      setReportGenerated(true);
+      setTimeout(() => setReportGenerated(false), 3000);
+    }, 1500);
+  };
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -901,6 +919,92 @@ function SettingsModal({ onClose }) {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+
+          <div className="config-section">
+            <div className="config-title">📋 Create Reports</div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16 }}>
+              <div className="config-item">
+                <div className="config-item-name" style={{ marginBottom: 8 }}>Report Type</div>
+                <select 
+                  value={reportType} 
+                  onChange={e => setReportType(e.target.value)}
+                  style={{ 
+                    width: '100%', 
+                    padding: '10px 12px', 
+                    background: 'rgba(255,255,255,0.1)', 
+                    border: '1px solid rgba(255,255,255,0.2)', 
+                    borderRadius: 8, 
+                    color: '#f8fafc',
+                    fontSize: 14,
+                    cursor: 'pointer'
+                  }}
+                >
+                  <option value="utilization" style={{ background: '#1e293b' }}>Utilization Summary</option>
+                  <option value="surgeon" style={{ background: '#1e293b' }}>Surgeon Performance</option>
+                  <option value="tier" style={{ background: '#1e293b' }}>Tier Distribution</option>
+                  <option value="dispute" style={{ background: '#1e293b' }}>Dispute Summary</option>
+                  <option value="block" style={{ background: '#1e293b' }}>Block Analysis</option>
+                  <option value="trend" style={{ background: '#1e293b' }}>Trend Report</option>
+                </select>
+              </div>
+              <div className="config-item">
+                <div className="config-item-name" style={{ marginBottom: 8 }}>Time Range</div>
+                <select 
+                  value={reportRange} 
+                  onChange={e => setReportRange(e.target.value)}
+                  style={{ 
+                    width: '100%', 
+                    padding: '10px 12px', 
+                    background: 'rgba(255,255,255,0.1)', 
+                    border: '1px solid rgba(255,255,255,0.2)', 
+                    borderRadius: 8, 
+                    color: '#f8fafc',
+                    fontSize: 14,
+                    cursor: 'pointer'
+                  }}
+                >
+                  <option value="week" style={{ background: '#1e293b' }}>Last 7 Days</option>
+                  <option value="month" style={{ background: '#1e293b' }}>Last 30 Days</option>
+                  <option value="quarter" style={{ background: '#1e293b' }}>Last Quarter</option>
+                  <option value="year" style={{ background: '#1e293b' }}>Last Year</option>
+                  <option value="custom" style={{ background: '#1e293b' }}>Custom Range</option>
+                </select>
+              </div>
+            </div>
+            <div style={{ marginTop: 16, display: 'flex', gap: 12, alignItems: 'center' }}>
+              <button 
+                className="btn btn-primary" 
+                onClick={handleGenerateReport}
+                disabled={reportGenerating}
+                style={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: 8,
+                  opacity: reportGenerating ? 0.7 : 1 
+                }}
+              >
+                {reportGenerating ? (
+                  <>
+                    <span style={{ animation: 'spin 1s linear infinite', display: 'inline-block' }}>⏳</span>
+                    Generating...
+                  </>
+                ) : (
+                  <>📊 Generate Report</>
+                )}
+              </button>
+              <button className="btn btn-secondary" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                📅 Schedule Report
+              </button>
+              {reportGenerated && (
+                <span style={{ color: '#4ade80', fontSize: 14, display: 'flex', alignItems: 'center', gap: 6 }}>
+                  ✓ Report ready for download
+                </span>
+              )}
+            </div>
+            <div style={{ marginTop: 16, padding: 12, background: 'rgba(255,255,255,0.05)', borderRadius: 8, fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>
+              <strong style={{ color: 'rgba(255,255,255,0.8)' }}>Available Formats:</strong> PDF, Excel (.xlsx), CSV
             </div>
           </div>
         </div>
