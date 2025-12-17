@@ -3,528 +3,118 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Palmview K-8 Technology | Christie Stephenson Saavedra</title>
+  <title>Palmview K-8 Computer Lab | Christie Stephenson Saavedra</title>
   <meta name="description" content="Technology documentation and support case study - 500+ devices managed.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  
   <style>
-    :root {
-      --color-bg-warm: #FDFCFA;
-      --color-bg-cream: #FAF8F5;
-      --color-text: #1C1917;
-      --color-text-secondary: #57534E;
-      --font-display: 'DM Serif Display', Georgia, serif;
-      --font-body: 'IBM Plex Sans', -apple-system, sans-serif;
-      --max-width: 900px;
-      --project-gradient: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);
-    }
-
+    :root { --color-bg-warm: #FDFCFA; --color-text: #1C1917; --color-text-secondary: #57534E; --font-display: 'DM Serif Display', Georgia, serif; --font-body: 'IBM Plex Sans', -apple-system, sans-serif; --max-width: 900px; --project-gradient: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--font-body);
-      color: var(--color-text);
-      line-height: 1.7;
-      background: var(--color-bg-warm);
-    }
-
-    .page-wrapper {
-      position: relative;
-      background: linear-gradient(180deg, #FDFCFA 0%, #FDFCFA 20%, #FAF8F5 35%, #FAF8F5 65%, #FDFCFA 80%, #FDFCFA 100%);
-      min-height: 100vh;
-    }
-
-    .page-wrapper::before {
-      content: '';
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      pointer-events: none;
-      z-index: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='canvas'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.04' numOctaves='5' result='noise'/%3E%3CfeDiffuseLighting in='noise' lighting-color='%23FDFCFA' surfaceScale='1'%3E%3CfeDistantLight azimuth='45' elevation='60'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23canvas)' opacity='0.3'/%3E%3C/svg%3E");
-      opacity: 0.5;
-    }
-
-    .page-wrapper::after {
-      content: '';
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      pointer-events: none;
-      z-index: 0;
-      background: 
-        radial-gradient(ellipse at 20% 10%, rgba(8, 145, 178, 0.04) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 70%, rgba(6, 182, 212, 0.04) 0%, transparent 50%);
-    }
-
+    body { font-family: var(--font-body); color: var(--color-text); line-height: 1.7; background: var(--color-bg-warm); }
+    .page-wrapper { position: relative; background: linear-gradient(180deg, #FDFCFA 0%, #FAF8F5 50%, #FDFCFA 100%); min-height: 100vh; }
     .nav, .hero, .content, .footer { position: relative; z-index: 1; }
-
-    .nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-    }
-
-    .nav::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--project-gradient);
-      z-index: 1;
-    }
-
-    .nav-bg {
-      background: rgba(253, 252, 250, 0.92);
-      backdrop-filter: blur(12px);
-      padding: 1rem 2rem;
-    }
-
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; }
+    .nav::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--project-gradient); z-index: 1; }
+    .nav-bg { background: rgba(253, 252, 250, 0.92); backdrop-filter: blur(12px); padding: 1rem 2rem; }
     .nav.scrolled .nav-bg { box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06); }
-
-    .nav-container {
-      max-width: var(--max-width);
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .nav-back {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--color-text-secondary);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
+    .nav-container { max-width: var(--max-width); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .nav-back { display: flex; align-items: center; gap: 0.5rem; color: var(--color-text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
     .nav-back:hover { color: #0891b2; }
     .nav-back svg { width: 18px; height: 18px; }
-
-    .nav-logo {
-      font-family: var(--font-display);
-      font-size: 1.1rem;
-      color: var(--color-text);
-      text-decoration: none;
-    }
-
-    .hero {
-      padding: 8rem 2rem 4rem;
-      text-align: center;
-    }
-
-    .hero-container {
-      max-width: var(--max-width);
-      margin: 0 auto;
-    }
-
-    .hero-meta {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .hero-role {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: white;
-      background: var(--project-gradient);
-      padding: 0.5rem 1rem;
-      border-radius: 2rem;
-    }
-
-    .hero-org {
-      font-size: 0.85rem;
-      color: var(--color-text-secondary);
-    }
-
-    .hero-title {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 4.5vw, 3rem);
-      font-weight: 400;
-      line-height: 1.15;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-summary {
-      font-size: 1.15rem;
-      color: var(--color-text-secondary);
-      max-width: 700px;
-      margin: 0 auto 2rem;
-      line-height: 1.7;
-    }
-
-    .results-banner {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .result-card {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(10px);
-      border-radius: 12px;
-      padding: 1.25rem 1.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-      text-align: center;
-      min-width: 140px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .result-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--project-gradient);
-    }
-
-    .result-number {
-      font-family: var(--font-display);
-      font-size: 1.75rem;
-      background: var(--project-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1;
-      margin-bottom: 0.25rem;
-    }
-
-    .result-label {
-      font-size: 0.75rem;
-      color: var(--color-text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
+    .nav-logo { font-family: var(--font-display); font-size: 1.1rem; color: var(--color-text); text-decoration: none; }
+    .hero { padding: 8rem 2rem 4rem; text-align: center; }
+    .hero-container { max-width: var(--max-width); margin: 0 auto; }
+    .hero-meta { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .hero-role { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: white; background: var(--project-gradient); padding: 0.5rem 1rem; border-radius: 2rem; }
+    .hero-org { font-size: 0.85rem; color: var(--color-text-secondary); }
+    .hero-title { font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 400; line-height: 1.15; margin-bottom: 1.5rem; }
+    .hero-summary { font-size: 1.15rem; color: var(--color-text-secondary); max-width: 700px; margin: 0 auto 2rem; }
+    .results-banner { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+    .result-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-radius: 12px; padding: 1.25rem 1.5rem; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 4px 20px rgba(0,0,0,0.03); text-align: center; min-width: 140px; position: relative; overflow: hidden; }
+    .result-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--project-gradient); }
+    .result-number { font-family: var(--font-display); font-size: 1.75rem; background: var(--project-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .result-label { font-size: 0.75rem; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
     .content { padding: 3rem 2rem 5rem; }
     .content-container { max-width: var(--max-width); margin: 0 auto; }
     .content-section { margin-bottom: 3rem; }
-
-    .content-title {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .glass-card {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(10px);
-      border-radius: 16px;
-      padding: 2rem;
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-    }
-
-    .content-text {
-      font-size: 1rem;
-      color: var(--color-text-secondary);
-      line-height: 1.8;
-      margin-bottom: 1rem;
-    }
-
+    .content-title { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1.25rem; }
+    .glass-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-radius: 16px; padding: 2rem; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 4px 20px rgba(0,0,0,0.03); position: relative; overflow: hidden; }
+    .glass-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--project-gradient); }
+    .content-text { font-size: 1rem; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 1rem; }
     .content-text:last-child { margin-bottom: 0; }
-
     .content-list { list-style: none; margin: 1rem 0; }
-
-    .content-list li {
-      padding: 0.5rem 0 0.5rem 1.5rem;
-      position: relative;
-      color: var(--color-text-secondary);
-    }
-
-    .content-list li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0.9rem;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--project-gradient);
-    }
-
-    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
-
-    .tag {
-      font-size: 0.75rem;
-      font-weight: 500;
-      padding: 0.4rem 0.8rem;
-      border-radius: 2rem;
-      background: rgba(255, 255, 255, 0.8);
-      color: var(--color-text-secondary);
-      border: 1px solid rgba(0, 0, 0, 0.06);
-    }
-
+    .content-list li { padding: 0.5rem 0 0.5rem 1.5rem; position: relative; color: var(--color-text-secondary); }
+    .content-list li::before { content: ''; position: absolute; left: 0; top: 0.9rem; width: 8px; height: 8px; border-radius: 50%; background: var(--project-gradient); }
+    .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0; }
+    .photo-grid img { width: 100%; height: 250px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+    .deliverable-card { background: rgba(255,255,255,0.8); border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-bottom: 2rem; }
+    .deliverable-card img { width: 100%; height: auto; display: block; border-bottom: 1px solid rgba(0,0,0,0.05); }
+    .deliverable-info { padding: 1.5rem; }
+    .deliverable-type { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: var(--project-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; }
+    .deliverable-info h3 { font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.75rem; }
+    .deliverable-info p { color: var(--color-text-secondary); font-size: 0.95rem; line-height: 1.7; }
+    .deliverable-info ul { margin-top: 0.75rem; padding-left: 1.25rem; color: var(--color-text-secondary); font-size: 0.9rem; }
+    .pattern-box { background: rgba(8,145,178,0.08); border-left: 4px solid #0891b2; border-radius: 0 12px 12px 0; padding: 1.5rem; margin: 2rem 0; }
+    .pattern-box p { margin-bottom: 0.5rem; color: var(--color-text-secondary); }
+    .pattern-box a { color: #0891b2; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+    .tag { font-size: 0.75rem; font-weight: 500; padding: 0.4rem 0.8rem; border-radius: 2rem; background: rgba(255,255,255,0.8); color: var(--color-text-secondary); border: 1px solid rgba(0,0,0,0.06); }
+    .demo-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-radius: 16px; padding: 2.5rem; border: 1px solid rgba(255,255,255,0.8); display: flex; align-items: center; gap: 1.5rem; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden; }
+    .demo-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--project-gradient); }
+    .demo-card:hover { background: rgba(255,255,255,0.9); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+    .demo-icon { width: 80px; height: 80px; border-radius: 50%; background: var(--project-gradient); display: flex; align-items: center; justify-content: center; color: white; flex-shrink: 0; }
+    .demo-icon svg { margin-left: 4px; }
+    .demo-text h3 { font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 0.5rem; }
+    .demo-text p { color: var(--color-text-secondary); font-size: 0.95rem; }
+    .demo-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 10000; align-items: center; justify-content: center; padding: 2rem; }
+    .demo-modal.active { display: flex; }
+    .demo-modal-content { background: white; border-radius: 16px; width: 100%; max-width: 900px; max-height: 90vh; overflow: auto; position: relative; }
+    .demo-close { position: absolute; top: 1rem; right: 1rem; width: 40px; height: 40px; border-radius: 50%; border: none; background: rgba(0,0,0,0.1); font-size: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .demo-close:hover { background: rgba(0,0,0,0.2); }
+    .demo-placeholder { padding: 4rem 2rem; text-align: center; color: var(--color-text-secondary); }
+    .demo-placeholder svg { margin-bottom: 1.5rem; opacity: 0.5; }
+    .demo-placeholder h3 { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-text); margin-bottom: 0.5rem; }
     .cta-section { text-align: center; padding: 2rem 0; }
-
-    .btn-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      background: var(--project-gradient);
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .btn-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    .footer {
-      background: linear-gradient(180deg, transparent 0%, rgba(28, 25, 23, 0.1) 30%, rgba(28, 25, 23, 0.6) 60%, #1C1917 85%, #1C1917 100%);
-      color: white;
-      padding: 8rem 2rem 2rem;
-      text-align: center;
-      margin-top: -2rem;
-      position: relative;
-    }
-
-    .footer::before {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 200px;
-      background: 
-        radial-gradient(ellipse at 20% 100%, rgba(8, 145, 178, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 100%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
-      pointer-events: none;
-    }
-
-    .footer::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--project-gradient);
-    }
-
+    .btn-cta { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--project-gradient); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; transition: all 0.2s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+    .footer { background: linear-gradient(180deg, transparent 0%, rgba(28,25,23,0.1) 30%, rgba(28,25,23,0.6) 60%, #1C1917 85%, #1C1917 100%); color: white; padding: 8rem 2rem 2rem; text-align: center; margin-top: -2rem; position: relative; }
+    .footer::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 200px; background: radial-gradient(ellipse at 20% 100%, rgba(8,145,178,0.15) 0%, transparent 50%), radial-gradient(ellipse at 80% 100%, rgba(6,182,212,0.15) 0%, transparent 50%); pointer-events: none; }
+    .footer::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--project-gradient); }
     .footer-content { position: relative; z-index: 1; max-width: var(--max-width); margin: 0 auto; }
-
-    .footer-nav {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-nav a {
-      color: rgba(255, 255, 255, 0.7);
-      text-decoration: none;
-      font-size: 0.9rem;
-    }
-
+    .footer-nav { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .footer-nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; }
     .footer-nav a:hover { color: white; }
-    .footer-copyright { color: rgba(255, 255, 255, 0.5); font-size: 0.85rem; }
-
-    .back-to-top {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--project-gradient);
-      color: white;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      transition: all 0.3s ease;
-      z-index: 999;
-      opacity: 0;
-      transform: translateY(20px);
-    }
-
+    .footer-copyright { color: rgba(255,255,255,0.5); font-size: 0.85rem; }
+    .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 48px; height: 48px; border-radius: 50%; background: var(--project-gradient); color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; z-index: 999; opacity: 0; transform: translateY(20px); }
     .back-to-top.visible { opacity: 1; transform: translateY(0); }
     .back-to-top:hover { transform: translateY(-3px); }
-
-    @media (max-width: 768px) {
-      .hero { padding: 7rem 1.5rem 3rem; }
-      .hero-title { font-size: 1.75rem; }
-      .content { padding: 2rem 1.5rem 4rem; }
-      .glass-card { padding: 1.5rem; }
-    }
-
-    @media (max-width: 500px) {
-      .hero-meta { flex-direction: column; gap: 0.5rem; }
-      .results-banner { display: grid; grid-template-columns: repeat(2, 1fr); }
-      .footer-nav { flex-direction: column; gap: 1rem; }
-    }
+    @media (max-width: 768px) { .hero { padding: 7rem 1.5rem 3rem; } .hero-title { font-size: 1.75rem; } .content { padding: 2rem 1.5rem 4rem; } .glass-card { padding: 1.5rem; } .photo-grid { grid-template-columns: 1fr; } .photo-grid img { height: 200px; } .demo-card { flex-direction: column; text-align: center; } }
+    @media (max-width: 500px) { .hero-meta { flex-direction: column; gap: 0.5rem; } .results-banner { display: grid; grid-template-columns: repeat(2, 1fr); } .footer-nav { flex-direction: column; gap: 1rem; } }
   </style>
 </head>
 <body>
-
   <div class="page-wrapper">
-
-    <nav class="nav" id="nav">
-      <div class="nav-bg">
-        <div class="nav-container">
-          <a href="../index.html" class="nav-back">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-            Back to Portfolio
-          </a>
-          <a href="../index.html" class="nav-logo">Christie Stephenson Saavedra</a>
-        </div>
+    <nav class="nav" id="nav"><div class="nav-bg"><div class="nav-container"><a href="../index.html" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>Back to Portfolio</a><a href="../index.html" class="nav-logo">Christie Stephenson Saavedra</a></div></div></nav>
+    <section class="hero"><div class="hero-container"><div class="hero-meta"><span class="hero-role">Computer Lab Manager</span><span class="hero-org">Palmview K-8</span></div><h1 class="hero-title">Palmview K-8 Computer Lab</h1><p class="hero-summary">Managing technology operations and building documentation systems for a K-8 school with hundreds of devices across multiple platforms.</p><div class="results-banner"><div class="result-card"><div class="result-number">500+</div><div class="result-label">Devices Managed</div></div><div class="result-card"><div class="result-number">3</div><div class="result-label">Device Platforms</div></div><div class="result-card"><div class="result-number">↓</div><div class="result-label">Repeat Requests Reduced</div></div></div></div></section>
+    <section class="content"><div class="content-container">
+      <div class="content-section"><h2 class="content-title">The Challenge</h2><div class="glass-card"><p class="content-text">When I arrived at Palmview K-8, there was no centralized documentation system. Technical staff had to figure things out from scratch each time. Teachers struggled with interactive displays. Devices were managed without consistent processes.</p><p class="content-text">I saw an opportunity to build systems that would outlast my time there.</p><ul class="content-list"><li>Hundreds of devices across Windows laptops, Chromebooks, iPads, and tablets</li><li>No searchable documentation for common technical issues</li><li>Newly onboarded technical staff needed training resources</li><li>Teachers needed support on interactive display technology</li></ul></div></div>
+      <div class="content-section"><h2 class="content-title">The Scale</h2><p class="content-text">This wasn't a small operation. Here's what end-of-year inventory looked like:</p><div class="photo-grid"><img src="palmview-chromebooks.jpg" alt="Cabinet full of organized Chromebook laptops"><img src="palmview-ipad-cart.jpg" alt="iPad cart with numbered devices in protective cases"><img src="palmview-inventory.jpg" alt="End of year technology inventory with cables and devices"><img src="palmview-workstation.jpg" alt="Workstation with laptops and handwritten quick reference guides"></div></div>
+      <div class="content-section"><h2 class="content-title">What I Built</h2>
+        <div class="deliverable-card"><img src="palmview-workstation.jpg" alt="Workstation showing quick reference guides taped to wall"><div class="deliverable-info"><div class="deliverable-type">Documentation System</div><h3>Quick Reference Guides & Knowledge Base</h3><p>I created a documentation system using Stack Overflow methodologies—searchable, categorized, and built to reduce repeat questions. Notice the handwritten quick-reference guides taped to the wall:</p><ul><li><strong>TABLETS checklist:</strong> Step-by-step reset procedures</li><li><strong>Powerwash instructions:</strong> Ctrl+Alt+Shift+R sequence for Chromebooks</li><li><strong>Device labeling system:</strong> Organized by type and assignment</li><li><strong>Charger organization:</strong> iPad, Samsung Student, Samsung Teacher categories</li></ul><p style="margin-top:1rem">These weren't fancy—they were <strong>functional</strong>. The goal was enabling self-service and reducing repeat support requests.</p></div></div>
       </div>
-    </nav>
-
-    <section class="hero">
-      <div class="hero-container">
-        <div class="hero-meta">
-          <span class="hero-role">Computer Lab Manager</span>
-          <span class="hero-org">Palmview K-8</span>
-        </div>
-        <h1 class="hero-title">Technology Documentation & Support</h1>
-        <p class="hero-summary">
-          Managed technology operations for a K-8 school with 500+ devices. Built a comprehensive knowledge base using Stack Overflow methodologies and created quick-reference guides that reduced support requests.
-        </p>
-
-        <div class="results-banner">
-          <div class="result-card">
-            <div class="result-number">500+</div>
-            <div class="result-label">Devices</div>
-          </div>
-          <div class="result-card">
-            <div class="result-number">Full</div>
-            <div class="result-label">Knowledge Base</div>
-          </div>
-          <div class="result-card">
-            <div class="result-number">Self-Service</div>
-            <div class="result-label">Documentation</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="content">
-      <div class="content-container">
-
-        <div class="content-section">
-          <h2 class="content-title">The Challenge</h2>
-          <div class="glass-card">
-            <p class="content-text">
-              Palmview K-8 had over 500 devices across computer labs, classrooms, and administrative offices. Teachers and staff frequently encountered technical issues that disrupted instruction, and the lack of documentation meant every problem required direct IT support.
-            </p>
-            <p class="content-text">
-              The school needed a sustainable approach to technology support that would empower users to solve common problems independently.
-            </p>
-          </div>
-        </div>
-
-        <div class="content-section">
-          <h2 class="content-title">Building the Knowledge Base</h2>
-          <div class="glass-card">
-            <p class="content-text">
-              I applied Stack Overflow's proven question-and-answer methodology to create a searchable knowledge base:
-            </p>
-            <ul class="content-list">
-              <li>Documented common issues with step-by-step solutions</li>
-              <li>Created visual guides with screenshots for complex procedures</li>
-              <li>Organized content by device type, software, and problem category</li>
-              <li>Built quick-reference cards for the most frequent issues</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="content-section">
-          <h2 class="content-title">Training & Adoption</h2>
-          <div class="glass-card">
-            <p class="content-text">
-              Documentation is only useful if people can find and use it. I focused on making the knowledge base accessible:
-            </p>
-            <ul class="content-list">
-              <li>Trained teachers during professional development days</li>
-              <li>Created laminated quick-reference cards for each computer lab</li>
-              <li>Established a simple process for reporting new issues</li>
-              <li>Updated documentation based on feedback and new problems</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="content-section">
-          <h2 class="content-title">Results & Impact</h2>
-          <div class="glass-card">
-            <p class="content-text">
-              The knowledge base transformed how the school handled technology support:
-            </p>
-            <ul class="content-list">
-              <li>Teachers could resolve common issues without waiting for IT support</li>
-              <li>Reduced interruptions to instruction time</li>
-              <li>New staff could onboard faster with comprehensive documentation</li>
-              <li>Created a sustainable system that outlasted any individual</li>
-            </ul>
-            
-            <div class="tags">
-              <span class="tag">Technical Writing</span>
-              <span class="tag">Knowledge Management</span>
-              <span class="tag">User Training</span>
-              <span class="tag">IT Support</span>
-              <span class="tag">Documentation</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="cta-section">
-          <a href="../index.html#work" class="btn-cta">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-            View More Case Studies
-          </a>
-        </div>
-
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="footer-content">
-        <nav class="footer-nav">
-          <a href="../index.html#work">Work</a>
-          <a href="../index.html#testimonials">Testimonials</a>
-          <a href="../index.html#skills">Skills</a>
-          <a href="../index.html#contact">Contact</a>
-        </nav>
-        <p class="footer-copyright">© 2025 Christie Stephenson Saavedra. All rights reserved.</p>
-      </div>
-    </footer>
-
+      <div class="content-section"><h2 class="content-title">Deliverables</h2><div class="glass-card"><ul class="content-list"><li><strong>Knowledge base</strong> using Stack Overflow methodologies for searchable documentation</li><li><strong>Quick-reference guides</strong> for common procedures (device resets, Powerwash, troubleshooting)</li><li><strong>FAQs</strong> addressing frequently asked technical questions</li><li><strong>Troubleshooting articles</strong> enabling self-service resolution</li><li><strong>Inventory systems</strong> tracking devices across multiple platforms</li><li><strong>Onboarding documentation</strong> for newly hired technical staff</li></ul></div></div>
+      <div class="content-section"><h2 class="content-title">Results</h2><div class="glass-card"><ul class="content-list"><li><strong>Reduced repeat support requests</strong> through self-service documentation</li><li><strong>Improved onboarding</strong> for new technical staff with ready-made resources</li><li><strong>Teacher enablement</strong> on interactive display technology</li><li><strong>Systematic inventory management</strong> across Windows, Chromebook, and iOS platforms</li><li><strong>Documentation that outlasted my role</strong>—built to be maintainable</li></ul><div class="tags"><span class="tag">Knowledge Base Design</span><span class="tag">Technical Documentation</span><span class="tag">Quick Reference Guides</span><span class="tag">User Enablement</span><span class="tag">Inventory Management</span><span class="tag">Multi-Platform Support</span></div></div></div>
+      <div class="pattern-box"><p><strong>The Pattern:</strong> Just like with <a href="xacteched-campaign.html">XactechED</a> and <a href="arizona-esthetics.html">Arizona Esthetics Institute</a>, I identified a gap, built systems to address it, and created resources that enabled others to succeed. The scale and context change—the approach doesn't.</p></div>
+      <div class="content-section"><h2 class="content-title">Interactive Demo</h2><div class="demo-card" onclick="openDemo()"><div class="demo-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="demo-text"><h3>Launch Interactive Demo</h3><p>Explore the Palmview K-8 knowledge base and documentation system</p></div></div></div>
+      <div class="cta-section"><a href="../index.html#work" class="btn-cta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>View More Case Studies</a></div>
+    </div></section>
+    <div class="demo-modal" id="demoModal" onclick="closeDemo(event)"><div class="demo-modal-content" onclick="event.stopPropagation()"><button class="demo-close" onclick="closeDemo()">&times;</button><div class="demo-placeholder"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><h3>Demo Coming Soon</h3><p>The interactive demo for this project is currently being developed.</p></div></div></div>
+    <footer class="footer"><div class="footer-content"><nav class="footer-nav"><a href="../index.html#work">Work</a><a href="../index.html#testimonials">Testimonials</a><a href="../index.html#skills">Skills</a><a href="../index.html#contact">Contact</a></nav><p class="footer-copyright">© 2025 Christie Stephenson Saavedra. All rights reserved.</p></div></footer>
   </div>
-
-  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
-  </button>
-
-  <script>
-    const nav = document.getElementById('nav');
-    const backToTop = document.getElementById('backToTop');
-    
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) nav.classList.add('scrolled');
-      else nav.classList.remove('scrolled');
-      
-      if (window.scrollY > 300) backToTop.classList.add('visible');
-      else backToTop.classList.remove('visible');
-    });
-  </script>
-
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
+  <script>const nav=document.getElementById('nav'),backToTop=document.getElementById('backToTop'),demoModal=document.getElementById('demoModal');window.addEventListener('scroll',()=>{window.scrollY>50?nav.classList.add('scrolled'):nav.classList.remove('scrolled');window.scrollY>300?backToTop.classList.add('visible'):backToTop.classList.remove('visible')});function openDemo(){demoModal.classList.add('active');document.body.style.overflow='hidden'}function closeDemo(e){if(!e||e.target===demoModal){demoModal.classList.remove('active');document.body.style.overflow=''}}document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDemo()})</script>
 </body>
 </html>
