@@ -353,12 +353,15 @@ body {
   .modal { max-width: 100%; margin: 16px; }
   .card-stats-5 { grid-template-columns: repeat(2, 1fr); gap: 8px; }
   .portfolio-back-link { 
-    position: relative; 
-    top: 0; 
-    left: 0; 
-    display: block;
-    margin: 12px;
+    position: fixed;
+    top: 72px;
+    left: 12px;
+    right: 12px;
+    z-index: 100;
     text-align: center;
+    margin: 0;
+    padding: 8px 16px;
+    font-size: 13px;
   }
   .logo { display: none; }
   .header-tabs { 
@@ -370,7 +373,7 @@ body {
     font-size: 11px;
   }
   .main-content { 
-    padding: 80px 12px 24px 12px; 
+    padding: 120px 12px 24px 12px; 
     margin-left: 0;
   }
   .sidebar { 
