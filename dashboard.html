@@ -11,43 +11,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
   <style>
-/* Block Dashboard V3.9 - Glassmorphism Theme */
+/* Block Dashboard V3.9 - Deep Ocean Theme */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #172554 100%);
+  background: linear-gradient(180deg, #0a192f 0%, #112240 50%, #0a192f 100%);
   min-height: 100vh;
   color: #f8fafc;
   position: relative;
   overflow-x: hidden;
-}
-
-body::before, body::after {
-  content: '';
-  position: fixed;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.4;
-  z-index: -1;
-  animation: float 20s ease-in-out infinite;
-}
-
-body::before {
-  width: 600px;
-  height: 600px;
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
-  top: -200px;
-  right: -200px;
-}
-
-body::after {
-  width: 500px;
-  height: 500px;
-  background: linear-gradient(135deg, #0ea5e9, #06b6d4);
-  bottom: -150px;
-  left: -150px;
-  animation-delay: -10s;
 }
 
 @keyframes float {
@@ -223,23 +196,23 @@ body::after {
 .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
 
 .card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
+  background: rgba(17, 34, 64, 0.95);
+  backdrop-filter: blur(10px);
   border-radius: 16px;
   padding: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .card:hover {
   transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  background: rgba(22, 44, 80, 0.98);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
-.card.no-hover:hover { transform: none; box-shadow: none; cursor: default; background: rgba(255, 255, 255, 0.1); }
+.card.no-hover:hover { transform: none; box-shadow: none; cursor: default; background: rgba(17, 34, 64, 0.95); }
 
 .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; }
 .card-title { font-weight: 600; color: #f8fafc; font-size: 16px; }
