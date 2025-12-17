@@ -375,10 +375,63 @@ body::after {
 
 @media (max-width: 768px) {
   .card-grid { grid-template-columns: 1fr; }
-  .header { padding-left: 80px; }
+  .header { padding-left: 12px; padding-right: 12px; justify-content: center; }
   .header-actions { gap: 4px; }
   .modal { max-width: 100%; margin: 16px; }
-  .card-stats-5 { grid-template-columns: repeat(3, 1fr); }
+  .card-stats-5 { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .portfolio-back-link { 
+    position: relative; 
+    top: 0; 
+    left: 0; 
+    display: block;
+    margin: 12px;
+    text-align: center;
+  }
+  .logo { display: none; }
+  .header-tabs { 
+    gap: 4px; 
+    font-size: 12px;
+  }
+  .header-tabs button { 
+    padding: 6px 10px; 
+    font-size: 11px;
+  }
+  .main-content { 
+    padding: 80px 12px 24px 12px; 
+    margin-left: 0;
+  }
+  .sidebar { 
+    display: none; 
+  }
+  .ministry-card, .hospital-card, .unit-card, .room-card {
+    padding: 16px;
+  }
+  .ministry-card h3 { font-size: 1.1rem; }
+  .ministry-stats { 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 8px;
+  }
+  .ministry-stats > div {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+  .ministry-stats .stat-value {
+    font-size: 1.25rem;
+  }
+  .breadcrumb { 
+    flex-wrap: wrap; 
+    gap: 4px;
+    font-size: 12px;
+  }
+  .page-header h1 { font-size: 1.5rem; }
+  .card { padding: 16px; }
+  .card-header { flex-direction: column; gap: 8px; align-items: flex-start; }
+}
+
+@media (max-width: 480px) {
+  .header-tabs { display: none; }
+  .ministry-stats { grid-template-columns: 1fr 1fr; }
+  .card-stats-5 { grid-template-columns: 1fr; }
 }
 
 #loading { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; color: rgba(255,255,255,0.6); font-size: 16px; }
