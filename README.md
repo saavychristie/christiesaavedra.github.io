@@ -1,58 +1,55 @@
-# Christie Saavedra Portfolio Website
+# Christie Stephenson Saavedra Portfolio
 
-Professional portfolio website for [christiesaavedra.com](https://christiesaavedra.com)
+Professional portfolio website showcasing OCM & Instructional Design expertise.
 
-## What's Included
+## Live Site
+https://christiesaavedra.com
+
+## Deployment to GitHub Pages
+
+1. Create a new repository on GitHub (e.g., `portfolio` or `christiesaavedra.com`)
+2. Upload all files from this folder to the repository
+3. Go to Settings → Pages
+4. Set Source to "Deploy from a branch" and select `main` branch
+5. If using custom domain, the CNAME file will handle the configuration
+
+## File Structure
 
 ```
-├── index.html                    # Main portfolio (enhanced design)
-├── dashboard.html                # Interactive healthcare dashboard (mobile-optimized)
-├── CNAME                         # Custom domain configuration
-├── assets/
+├── index.html              # Main portfolio page
+├── dashboard.html          # Healthcare dashboard demo
+├── CNAME                   # Custom domain configuration
+├── README.md               # This file
+├── assets/                 # Resume and portfolio PDFs
 │   ├── Resume_Christie_Saavedra.pdf
 │   └── Portfolio_Christie_Saavedra.pdf
-└── samples/
-    ├── xacteched-campaign.html   # With press coverage section
+└── samples/                # Case study pages
+    ├── xacteched-campaign.html
     ├── resolute-services.html
     ├── arizona-esthetics.html
-    ├── palmview-lab.html
-    └── [images]
+    └── palmview-lab.html
 ```
 
-## Recent Updates
+## Features
 
-- Fixed email link (was broken by Cloudflare protection)
-- Fixed LinkedIn link
-- Fixed resume download link
-- Improved mobile responsiveness for dashboard
-- Added textured background to landing page
-- Updated color scheme (teal accents instead of yellow)
-- Enhanced card hover effects
-- Added press coverage section to XactechED case study
+- Responsive design (desktop, tablet, mobile)
+- Glass morphism UI with gradient accents
+- Project-specific color themes for case studies
+- Interactive healthcare dashboard demo
+- Smooth scroll navigation
+- Back-to-top button
 
-## Deployment Options
+## Adding Resume/Portfolio PDFs
 
-### Option 1: Porkbun Static Hosting (Easiest)
-1. Log into Porkbun → Domain Management → christiesaavedra.com
-2. Click "Static Hosting" (free with domain)
-3. Upload all files from this folder
-4. Enable HTTPS
+Place your PDF files in the `assets/` folder:
+- `assets/Resume_Christie_Saavedra.pdf`
+- `assets/Portfolio_Christie_Saavedra.pdf`
 
-### Option 2: GitHub Pages
-1. Create repo or use existing one
-2. Upload all files to the root
-3. Settings → Pages → Enable from main branch
-4. Add custom domain: christiesaavedra.com
+## Custom Domain Setup
 
-### Option 3: Netlify
-1. Drag and drop this folder at netlify.com
-2. Add custom domain in settings
-
-## Links
-
-- **Portfolio:** https://christiesaavedra.com
-- **Dashboard Demo:** https://christiesaavedra.com/dashboard.html
-- **XactechED Case Study:** https://christiesaavedra.com/samples/xacteched-campaign.html
+The CNAME file is configured for `christiesaavedra.com`. To use a different domain:
+1. Edit the CNAME file with your domain
+2. Configure DNS with your domain registrar to point to GitHub Pages
 
 ---
 
