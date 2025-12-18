@@ -1264,7 +1264,7 @@
             <a href="samples/xacteched-campaign.html" class="case-study-link">View Campaign <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
 
-          <div class="case-study-card" data-project="resolute" onclick="window.location='samples/resolute-services.html'">
+          <div class="case-study-card" data-project="resolute" onclick="window.location='resolute/index.html'">
             <div class="case-study-meta">
               <span class="case-study-role">IT Consultant / Co-founder</span>
               <span class="case-study-org">· Resolute Services</span>
@@ -1274,8 +1274,9 @@
             <div class="case-study-results">
               <span class="result-tag">90% Automation</span>
               <span class="result-tag">50% Time Saved</span>
+              <span class="result-tag">6 User Roles</span>
             </div>
-            <a href="samples/resolute-services.html" class="case-study-link">View Case Study <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            <a href="resolute/index.html" class="case-study-link">View Demo <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
 
           <div class="case-study-card" data-project="arizona" onclick="window.location='samples/arizona-esthetics.html'">
@@ -1559,4 +1560,18 @@
     }
 
     function closeContactModal(event) {
-      if (!event || event.target === co
+      if (!event || event.target === contactModal) {
+        contactModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && contactModal.classList.contains('active')) {
+        closeContactModal();
+      }
+    });
+  </script>
+</body>
+</html>

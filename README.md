@@ -7,6 +7,12 @@ https://christiesaavedra.com
 
 ## Recent Updates (December 2024)
 
+### Resolute Services Demo Added
+- **Full Interactive Demo**: Complete React application with 6 user roles
+- **Back-to-Portfolio Button**: Fixed navigation button on all pages
+- **13 Page Views**: Dashboard, Billing, Schedule, Session Notes, and more
+- **Role-Based Access**: Admin, Supervisor, Therapist, Parent, Auditor, Viewer
+
 ### XactechED Case Study Enhancements
 - **Updated funding total**: $200K → **$521,694+** (includes DevPath and Mobile Dev follow-up grants)
 - **Added 3 new press coverage articles**:
@@ -40,8 +46,12 @@ https://christiesaavedra.com
 ├── assets/                 # Resume and portfolio PDFs
 │   ├── Resume_Christie_Saavedra.pdf
 │   └── Portfolio_Christie_Saavedra.pdf
-├── codelab/                # CodeLab demo (ADD YOUR FILES HERE)
+├── codelab/                # CodeLab learning platform demo
 │   └── index.html          
+├── resolute/               # Resolute Services demo (NEW)
+│   ├── index.html          # Main app with back-to-portfolio button
+│   ├── favicon.svg
+│   └── assets/             # Compiled React app
 └── samples/                # Case study pages
     ├── xacteched-campaign.html  (UPDATED)
     ├── resolute-services.html
@@ -56,8 +66,10 @@ https://christiesaavedra.com
 - Project-specific color themes for case studies
 - Interactive healthcare dashboard demo
 - Interactive CodeLab learning platform demo
+- **Interactive Resolute Services demo** (6 user roles, 13 views)
 - Smooth scroll navigation
 - Back-to-top button
+- Back-to-portfolio buttons on all demos
 
 ## XactechED Press Coverage Sources
 

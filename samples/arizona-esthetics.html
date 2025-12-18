@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arizona Esthetics Institute | Christie Stephenson Saavedra</title>
+  <meta name="description" content="Vocational training program case study - State-approved esthetics curriculum.">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --color-bg-warm: #FDFCFA; --color-text: #1C1917; --color-text-secondary: #57534E; --font-display: 'DM Serif Display', Georgia, serif; --font-body: 'IBM Plex Sans', -apple-system, sans-serif; --max-width: 900px; --project-gradient: linear-gradient(135deg, #dc2626 0%, #f97316 100%); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--color-text); line-height: 1.7; background: var(--color-bg-warm); }
+    .page-wrapper { position: relative; background: linear-gradient(180deg, #FDFCFA 0%, #FAF8F5 50%, #FDFCFA 100%); min-height: 100vh; }
+    .nav, .hero, .content, .footer { position: relative; z-index: 1; }
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; }
+    .nav::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--project-gradient); z-index: 1; }
+    .nav-bg { background: rgba(253, 252, 250, 0.92); backdrop-filter: blur(12px); padding: 1rem 2rem; }
+    .nav.scrolled .nav-bg { box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06); }
+    .nav-container { max-width: var(--max-width); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .nav-back { display: flex; align-items: center; gap: 0.5rem; color: var(--color-text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+    .nav-back:hover { color: #dc2626; }
+    .nav-back svg { width: 18px; height: 18px; }
+    .nav-logo { font-family: var(--font-display); font-size: 1.1rem; color: var(--color-text); text-decoration: none; }
+    .hero { padding: 8rem 2rem 4rem; text-align: center; }
+    .hero-container { max-width: var(--max-width); margin: 0 auto; }
+    .hero-meta { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .hero-role { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: white; background: var(--project-gradient); padding: 0.5rem 1rem; border-radius: 2rem; }
+    .hero-org { font-size: 0.85rem; color: var(--color-text-secondary); }
+    .hero-title { font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 400; line-height: 1.15; margin-bottom: 1.5rem; }
+    .hero-summary { font-size: 1.15rem; color: var(--color-text-secondary); max-width: 700px; margin: 0 auto 2rem; }
+    .results-banner { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+    .result-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-radius: 12px; padding: 1.25rem 1.5rem; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 4px 20px rgba(0,0,0,0.03); text-align: center; min-width: 140px; position: relative; overflow: hidden; }
+    .result-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--project-gradient); }
+    .result-number { font-family: var(--font-display); font-size: 1.75rem; background: var(--project-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .result-label { font-size: 0.75rem; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+    .content { padding: 3rem 2rem 5rem; }
+    .content-container { max-width: var(--max-width); margin: 0 auto; }
+    .content-section { margin-bottom: 3rem; }
+    .content-title { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1.25rem; }
+    .glass-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-radius: 16px; padding: 2rem; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 4px 20px rgba(0,0,0,0.03); position: relative; overflow: hidden; }
+    .glass-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--project-gradient); }
+    .content-text { font-size: 1rem; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 1rem; }
+    .content-text:last-child { margin-bottom: 0; }
+    .content-list { list-style: none; margin: 1rem 0; }
+    .content-list li { padding: 0.5rem 0 0.5rem 1.5rem; position: relative; color: var(--color-text-secondary); }
+    .content-list li::before { content: ''; position: absolute; left: 0; top: 0.9rem; width: 8px; height: 8px; border-radius: 50%; background: var(--project-gradient); }
+    .deliverable-card { background: rgba(255,255,255,0.8); border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-bottom: 2rem; }
+    .deliverable-card img { width: 100%; height: auto; display: block; border-bottom: 1px solid rgba(0,0,0,0.05); }
+    .deliverable-info { padding: 1.5rem; }
+    .deliverable-type { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: var(--project-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; }
+    .deliverable-info h3 { font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.75rem; }
+    .deliverable-info p { color: var(--color-text-secondary); font-size: 0.95rem; line-height: 1.7; }
+    .skill-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0; }
+    .skill-card { background: rgba(255,255,255,0.8); border-radius: 12px; padding: 1.25rem; text-align: center; border: 1px solid rgba(255,255,255,0.8); }
+    .skill-card h4 { font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .skill-card p { font-size: 0.85rem; color: var(--color-text-secondary); }
+    .pattern-box { background: rgba(220,38,38,0.08); border-left: 4px solid #dc2626; border-radius: 0 12px 12px 0; padding: 1.5rem; margin: 2rem 0; }
+    .pattern-box p { margin-bottom: 0.5rem; color: var(--color-text-secondary); }
+    .pattern-box strong { color: var(--color-text); }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+    .tag { font-size: 0.75rem; font-weight: 500; padding: 0.4rem 0.8rem; border-radius: 2rem; background: rgba(255,255,255,0.8); color: var(--color-text-secondary); border: 1px solid rgba(0,0,0,0.06); }
+    .demo-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-radius: 16px; padding: 2.5rem; border: 1px solid rgba(255,255,255,0.8); display: flex; align-items: center; gap: 1.5rem; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden; }
+    .demo-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--project-gradient); }
+    .demo-card:hover { background: rgba(255,255,255,0.9); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+    .demo-icon { width: 80px; height: 80px; border-radius: 50%; background: var(--project-gradient); display: flex; align-items: center; justify-content: center; color: white; flex-shrink: 0; }
+    .demo-icon svg { margin-left: 4px; }
+    .demo-text h3 { font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 0.5rem; }
+    .demo-text p { color: var(--color-text-secondary); font-size: 0.95rem; }
+    .demo-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 10000; align-items: center; justify-content: center; padding: 2rem; }
+    .demo-modal.active { display: flex; }
+    .demo-modal-content { background: white; border-radius: 16px; width: 100%; max-width: 900px; max-height: 90vh; overflow: auto; position: relative; }
+    .demo-close { position: absolute; top: 1rem; right: 1rem; width: 40px; height: 40px; border-radius: 50%; border: none; background: rgba(0,0,0,0.1); font-size: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .demo-close:hover { background: rgba(0,0,0,0.2); }
+    .demo-placeholder { padding: 4rem 2rem; text-align: center; color: var(--color-text-secondary); }
+    .demo-placeholder svg { margin-bottom: 1.5rem; opacity: 0.5; }
+    .demo-placeholder h3 { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-text); margin-bottom: 0.5rem; }
+    .cta-section { text-align: center; padding: 2rem 0; }
+    .btn-cta { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--project-gradient); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; transition: all 0.2s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+    .footer { background: linear-gradient(180deg, transparent 0%, rgba(28,25,23,0.1) 30%, rgba(28,25,23,0.6) 60%, #1C1917 85%, #1C1917 100%); color: white; padding: 8rem 2rem 2rem; text-align: center; margin-top: -2rem; position: relative; }
+    .footer::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 200px; background: radial-gradient(ellipse at 20% 100%, rgba(220,38,38,0.15) 0%, transparent 50%), radial-gradient(ellipse at 80% 100%, rgba(249,115,22,0.15) 0%, transparent 50%); pointer-events: none; }
+    .footer::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--project-gradient); }
+    .footer-content { position: relative; z-index: 1; max-width: var(--max-width); margin: 0 auto; }
+    .footer-nav { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .footer-nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; }
+    .footer-nav a:hover { color: white; }
+    .footer-copyright { color: rgba(255,255,255,0.5); font-size: 0.85rem; }
+    .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 48px; height: 48px; border-radius: 50%; background: var(--project-gradient); color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; z-index: 999; opacity: 0; transform: translateY(20px); }
+    .back-to-top.visible { opacity: 1; transform: translateY(0); }
+    .back-to-top:hover { transform: translateY(-3px); }
+    @media (max-width: 768px) { .hero { padding: 7rem 1.5rem 3rem; } .hero-title { font-size: 1.75rem; } .content { padding: 2rem 1.5rem 4rem; } .glass-card { padding: 1.5rem; } .skill-grid { grid-template-columns: 1fr; } .demo-card { flex-direction: column; text-align: center; } }
+    @media (max-width: 500px) { .hero-meta { flex-direction: column; gap: 0.5rem; } .results-banner { display: grid; grid-template-columns: repeat(2, 1fr); } .footer-nav { flex-direction: column; gap: 1rem; } }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <nav class="nav" id="nav"><div class="nav-bg"><div class="nav-container"><a href="../index.html" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>Back to Portfolio</a><a href="../index.html" class="nav-logo">Christie Stephenson Saavedra</a></div></div></nav>
+    <section class="hero"><div class="hero-container"><div class="hero-meta"><span class="hero-role">Instructional Designer / Co-founder</span><span class="hero-org">Arizona Esthetics Institute</span></div><h1 class="hero-title">Arizona Esthetics Institute</h1><p class="hero-summary">Co-founding and launching a state-approved vocational training school for esthetics—from curriculum design to facility build-out.</p><div class="results-banner"><div class="result-card"><div class="result-number">State</div><div class="result-label">Approved Curriculum</div></div><div class="result-card"><div class="result-number">Accredited</div><div class="result-label">Trade School</div></div><div class="result-card"><div class="result-number">At-Risk</div><div class="result-label">Youth Pathways</div></div></div></div></section>
+    <section class="content"><div class="content-container">
+      <div class="content-section"><h2 class="content-title">The Challenge</h2><div class="glass-card"><p class="content-text">Arizona lacked accessible vocational training options for esthetics. At-risk youth in particular had few pathways to licensed, employable careers in the beauty industry.</p><p class="content-text">I saw an opportunity to create something from nothing.</p><ul class="content-list"><li>No existing program to model—had to build from scratch</li><li>Required navigating Arizona State Board regulatory requirements</li><li>Needed to develop state-approved curriculum meeting licensing exam standards</li><li>Had to build facility, recruit students, and establish partnerships simultaneously</li></ul></div></div>
+      <div class="content-section"><h2 class="content-title">What I Built</h2>
+        <div class="deliverable-card"><img src="arizona-esthetics-buildout.jpg" alt="Christie Stephenson standing in front of Arizona Esthetics Institute sign during facility build-out"><div class="deliverable-info"><div class="deliverable-type">Physical Evidence</div><h3>Facility Build-Out in Progress</h3><p>That's me, standing in front of the Arizona Esthetics Institute sign during construction. Sawhorses, HVAC materials, and all. This wasn't a consulting gig—<strong>I co-founded this school and built it from the ground up.</strong></p></div></div>
+      </div>
+      <div class="content-section"><h2 class="content-title">Deliverables Created</h2><div class="skill-grid"><div class="skill-card"><h4>📚 State-Approved Curriculum</h4><p>Complete esthetics program with lesson plans, competency frameworks, and assessments aligned to Arizona licensing requirements</p></div><div class="skill-card"><h4>📋 Instructional Materials</h4><p>Student handbooks, course materials, and practical training guides</p></div><div class="skill-card"><h4>✅ Assessment Frameworks</h4><p>Competency-based evaluations mapped to state licensing exam objectives</p></div><div class="skill-card"><h4>🤝 Partnership Agreements</h4><p>School district MOUs creating vocational pathways for at-risk youth</p></div><div class="skill-card"><h4>🏢 Facility Operations</h4><p>Complete facility build-out, equipment procurement, and compliance documentation</p></div><div class="skill-card"><h4>📣 Recruitment Materials</h4><p>Enrollment marketing, community outreach, and student recruitment systems</p></div></div></div>
+      <div class="content-section"><h2 class="content-title">The Pattern Continues</h2><div class="pattern-box"><p>Arizona Esthetics Institute (2003-2004) was the first time I built a complete educational program from scratch. A decade later, I would do it again with <a href="xacteched-campaign.html" style="color:#dc2626">XactechED at Xactware</a>.</p><p style="margin-top:1rem"><strong>Same pattern:</strong></p><p>→ Identify a skills gap</p><p>→ Create a program to address it</p><p>→ Navigate regulatory/funding requirements</p><p>→ Build awareness and drive enrollment</p><p>→ Deliver measurable results</p></div></div>
+      <div class="content-section"><h2 class="content-title">Results</h2><div class="glass-card"><ul class="content-list"><li><strong>State-approved curriculum</strong> meeting Arizona Board of Cosmetology requirements</li><li><strong>Accredited trade school</strong> launched and operational</li><li><strong>School district partnerships</strong> creating pathways for at-risk youth</li><li><strong>Students enrolled</strong> and progressing toward licensing exams</li><li><strong>Complete program infrastructure</strong>—curriculum, facility, operations, recruitment</li></ul><div class="tags"><span class="tag">Curriculum Development</span><span class="tag">Regulatory Navigation</span><span class="tag">Instructional Design</span><span class="tag">Partnership Building</span><span class="tag">Program Launch</span></div></div></div>
+      <div class="content-section"><h2 class="content-title">Interactive Demo</h2><div class="demo-card" onclick="openDemo()"><div class="demo-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="demo-text"><h3>Launch Interactive Demo</h3><p>Explore the Arizona Esthetics Institute curriculum and training materials</p></div></div></div>
+      <div class="cta-section"><a href="../index.html#work" class="btn-cta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>View More Case Studies</a></div>
+    </div></section>
+    <div class="demo-modal" id="demoModal" onclick="closeDemo(event)"><div class="demo-modal-content" onclick="event.stopPropagation()"><button class="demo-close" onclick="closeDemo()">&times;</button><div class="demo-placeholder"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><h3>Demo Coming Soon</h3><p>The interactive demo for this project is currently being developed.</p></div></div></div>
+    <footer class="footer"><div class="footer-content"><nav class="footer-nav"><a href="../index.html#work">Work</a><a href="../index.html#testimonials">Testimonials</a><a href="../index.html#skills">Skills</a><a href="../index.html#contact">Contact</a></nav><p class="footer-copyright">© 2025 Christie Stephenson Saavedra. All rights reserved.</p></div></footer>
+  </div>
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
+  <script>const nav=document.getElementById('nav'),backToTop=document.getElementById('backToTop'),demoModal=document.getElementById('demoModal');window.addEventListener('scroll',()=>{window.scrollY>50?nav.classList.add('scrolled'):nav.classList.remove('scrolled');window.scrollY>300?backToTop.classList.add('visible'):backToTop.classList.remove('visible')});function openDemo(){demoModal.classList.add('active');document.body.style.overflow='hidden'}function closeDemo(e){if(!e||e.target===demoModal){demoModal.classList.remove('active');document.body.style.overflow=''}}document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDemo()})</script>
+</body>
+</html>

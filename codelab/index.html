@@ -19,10 +19,50 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <title>CodeLab - HTML & CSS Foundations</title>
-    <script type="module" crossorigin src="/codelab/assets/index-bf88y9ii.js"></script>
-    <link rel="stylesheet" crossorigin href="/codelab/assets/index-CrP7bvgq.css">
+    <script type="module" crossorigin src="./assets/index-bf88y9ii.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CrP7bvgq.css">
   </head>
   <body>
+    <!-- Back to Portfolio Button -->
+    <a href="../index.html#work" class="portfolio-back-link" title="Back to Portfolio">←</a>
+    
+    <style>
+      .portfolio-back-link {
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        z-index: 99999;
+        background: rgba(34, 197, 94, 0.95);
+        backdrop-filter: blur(10px);
+        color: white;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 500;
+        box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+        transition: all 0.2s;
+        border: 1px solid rgba(255,255,255,0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .portfolio-back-link:hover {
+        background: rgba(34, 197, 94, 1);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(34, 197, 94, 0.5);
+      }
+      @media (max-width: 768px) {
+        .portfolio-back-link {
+          top: auto;
+          bottom: 70px;
+          left: 12px;
+        }
+      }
+    </style>
+    
     <div id="root"></div>
   </body>
 </html>
