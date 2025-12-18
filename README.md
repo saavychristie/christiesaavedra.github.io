@@ -76,4 +76,25 @@ The CNAME file is configured for `christiesaavedra.com`. To use a different doma
 
 ---
 
+## Copyright & Legal
+
 © 2025 Christie Stephenson Saavedra. All rights reserved.
+
+### Protected Content
+- **Original Code**: All source code for web apps, demos, and interactive features
+- **Visual Assets**: Logos, graphics, icons, and user interface designs
+- **Content**: All text, case study narratives, documentation, and instructional materials
+- **Design Systems**: Color schemes, typography choices, and layout patterns
+
+### Third-Party Assets
+This portfolio uses properly licensed third-party resources:
+- Fonts: Google Fonts (Open Font License)
+- Icons: Lucide React (ISC License)
+- Framework: React (MIT License), Tailwind CSS (MIT License)
+
+### Usage Restrictions
+This portfolio and all its contents are provided for viewing and evaluation purposes only. 
+Unauthorized reproduction, modification, distribution, or use of any content is prohibited 
+without express written permission from Christie Stephenson Saavedra.
+
+For licensing inquiries, please contact: christie@christiesaavedra.com
