@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MF6DGZ8N');</script>
+  <!-- End Google Tag Manager -->
+<title>Healthcare Dashboard Case Study | Christie Saavedra</title>
+    <style>
+        @page {
+            size: letter;
+            margin: 0.5in;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            font-size: 10pt;
+            line-height: 1.5;
+            color: #1a1a1a;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.5in;
+            background: white;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 3px solid #1E40AF;
+            padding-bottom: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .header-left h1 {
+            font-size: 18pt;
+            color: #1E40AF;
+            margin-bottom: 0.25rem;
+        }
+
+        .header-left .subtitle {
+            font-size: 10pt;
+            color: #666;
+        }
+
+        .header-right {
+            text-align: right;
+            font-size: 9pt;
+            color: #666;
+        }
+
+        .header-right strong {
+            color: #1a1a1a;
+        }
+
+        /* Two Column Layout */
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 11pt;
+            font-weight: 700;
+            color: #1E40AF;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.25rem;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .section p, .section li {
+            font-size: 9.5pt;
+            margin-bottom: 0.4rem;
+        }
+
+        .section ul {
+            padding-left: 1rem;
+        }
+
+        /* Metrics Grid */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .metric {
+            background: #f0f7ff;
+            border-radius: 6px;
+            padding: 0.6rem;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 16pt;
+            font-weight: 700;
+            color: #1E40AF;
+        }
+
+        .metric-label {
+            font-size: 8pt;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        /* Skills Tags */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .skill-tag {
+            background: #e8f4f8;
+            color: #0d7377;
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-size: 8pt;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 1rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid #e5e5e5;
+            display: flex;
+            justify-content: space-between;
+            font-size: 8.5pt;
+            color: #666;
+        }
+
+        .footer a {
+            color: #1E40AF;
+            text-decoration: none;
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MF6DGZ8N"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+    <header class="header">
+        <div class="header-left">
+            <h1>Healthcare Operations Dashboard</h1>
+            <div class="subtitle">Real-time visibility replacing quarterly reporting for multi-hospital health system</div>
+        </div>
+        <div class="header-right">
+            <strong>Christie Saavedra</strong><br>
+            UX Designer & Developer<br>
+            christiesaavedra.com
+        </div>
+    </header>
+
+    <div class="metrics full-width">
+        <div class="metric">
+            <div class="metric-value">5</div>
+            <div class="metric-label">User Roles</div>
+        </div>
+        <div class="metric">
+            <div class="metric-value">4</div>
+            <div class="metric-label">Drill-down Levels</div>
+        </div>
+        <div class="metric">
+            <div class="metric-value">Real-time</div>
+            <div class="metric-label">Data Visibility</div>
+        </div>
+        <div class="metric">
+            <div class="metric-value">React/TS</div>
+            <div class="metric-label">Tech Stack</div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="section">
+            <h2 class="section-title">The Challenge</h2>
+            <p>
+                A multi-hospital health system relied on quarterly PDF reports to track surgery room utilization. 
+                This created three critical problems:
+            </p>
+            <ul>
+                <li><strong>No real-time visibility</strong> — decisions made on stale data</li>
+                <li><strong>No drill-down capability</strong> — couldn't identify specific underperformers</li>
+                <li><strong>Physician resistance</strong> — fear of unfair evaluation metrics</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">The Solution</h2>
+            <p>
+                Interactive React dashboard with hierarchical navigation and role-based access:
+            </p>
+            <ul>
+                <li><strong>Region → Hospital → Unit → Room → Surgeon</strong> drill-down</li>
+                <li><strong>5 user roles</strong> with appropriate data visibility</li>
+                <li><strong>Configurable metrics</strong> with weighted scoring</li>
+                <li><strong>Dispute resolution workflow</strong> for contested evaluations</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">My Role</h2>
+            <ul>
+                <li>Led end-to-end UX design from requirements to implementation</li>
+                <li>Developed interactive prototype in React with TypeScript</li>
+                <li>Designed role-based permission system balancing transparency with privacy</li>
+                <li>Created change management approach for sensitive performance data rollout</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Key Design Decisions</h2>
+            <ul>
+                <li><strong>Tier system over rankings</strong> — less threatening to physician relationships</li>
+                <li><strong>Calendar view integration</strong> — context for utilization patterns</li>
+                <li><strong>Dispute workflow</strong> — built-in path for contesting metrics</li>
+                <li><strong>Configurable weights</strong> — adaptable to different specialties</li>
+            </ul>
+        </div>
+
+        <div class="section full-width">
+            <h2 class="section-title">Technical Implementation</h2>
+            <div class="skills">
+                <span class="skill-tag">React</span>
+                <span class="skill-tag">TypeScript</span>
+                <span class="skill-tag">Recharts</span>
+                <span class="skill-tag">Role-Based Access Control</span>
+                <span class="skill-tag">Responsive Design</span>
+                <span class="skill-tag">Data Visualization</span>
+                <span class="skill-tag">Hierarchical Navigation</span>
+                <span class="skill-tag">State Management</span>
+            </div>
+        </div>
+
+        <div class="section full-width">
+            <h2 class="section-title">Results & Impact</h2>
+            <p>
+                The dashboard prototype demonstrates how real-time visibility can replace static quarterly reporting 
+                while addressing the human factors that often derail data-driven initiatives in healthcare settings. 
+                The dispute resolution workflow and tier-based evaluation system show how to balance accountability 
+                with physician relationship management — a critical success factor for healthcare technology adoption.
+            </p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div>
+            <a href="https://christiesaavedra.com/dashboard.html">🔗 View Interactive Demo</a>
+        </div>
+        <div>
+            christie.saavedra@gmail.com | 813.373.4805 | linkedin.com/in/christiesaavedra
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Link Generator | Christie Saavedra</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #e4e4e7;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            color: #60a5fa;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #a1a1aa;
+            font-size: 0.95rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .card h2 {
+            font-size: 1.1rem;
+            color: #60a5fa;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        label {
+            font-size: 0.85rem;
+            color: #a1a1aa;
+            font-weight: 500;
+        }
+
+        input, select {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            color: #e4e4e7;
+            font-size: 0.95rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #60a5fa;
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+        }
+
+        input::placeholder {
+            color: #71717a;
+        }
+
+        select option {
+            background: #1a1a2e;
+            color: #e4e4e7;
+        }
+
+        .output-section {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .output-label {
+            font-size: 0.8rem;
+            color: #60a5fa;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .output-url {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(96, 165, 250, 0.3);
+            border-radius: 6px;
+            padding: 1rem;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.85rem;
+            word-break: break-all;
+            color: #34d399;
+            min-height: 60px;
+        }
+
+        .button-row {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        button {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+
+        button.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        button.secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: none;
+        }
+
+        .copy-feedback {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #10b981;
+            color: white;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-weight: 500;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .copy-feedback.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* History Table */
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .history-table th {
+            text-align: left;
+            padding: 0.75rem;
+            background: rgba(0, 0, 0, 0.3);
+            color: #a1a1aa;
+            font-weight: 500;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .history-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .history-table tr:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .tag.linkedin { background: rgba(0, 119, 181, 0.3); color: #60a5fa; }
+        .tag.indeed { background: rgba(59, 130, 246, 0.3); color: #93c5fd; }
+        .tag.email { background: rgba(139, 92, 246, 0.3); color: #c4b5fd; }
+        .tag.referral { background: rgba(16, 185, 129, 0.3); color: #6ee7b7; }
+        .tag.other { background: rgba(161, 161, 170, 0.3); color: #d4d4d8; }
+
+        .action-btn {
+            background: none;
+            border: none;
+            color: #60a5fa;
+            cursor: pointer;
+            padding: 0.25rem;
+            font-size: 0.8rem;
+        }
+
+        .action-btn:hover {
+            color: #93c5fd;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 2rem;
+            color: #71717a;
+        }
+
+        .quick-links {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .quick-link {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.8rem;
+            color: #a1a1aa;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quick-link:hover {
+            background: rgba(96, 165, 250, 0.2);
+            border-color: rgba(96, 165, 250, 0.3);
+            color: #60a5fa;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-card {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #60a5fa;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #71717a;
+            margin-top: 0.25rem;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .button-row {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔗 Portfolio Link Generator</h1>
+            <p class="subtitle">Create trackable URLs for job applications</p>
+        </header>
+
+        <!-- Quick Stats -->
+        <div class="card">
+            <h2>📊 Quick Stats</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalLinks">0</div>
+                    <div class="stat-label">Links Created</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="linkedinCount">0</div>
+                    <div class="stat-label">LinkedIn</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="indeedCount">0</div>
+                    <div class="stat-label">Indeed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="otherCount">0</div>
+                    <div class="stat-label">Other</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Link Generator -->
+        <div class="card">
+            <h2>✨ Generate New Link</h2>
+            
+            <div class="quick-links">
+                <span style="color: #71717a; font-size: 0.8rem; margin-right: 0.5rem;">Quick fill:</span>
+                <button class="quick-link" onclick="quickFill('linkedin')">LinkedIn Job</button>
+                <button class="quick-link" onclick="quickFill('indeed')">Indeed Job</button>
+                <button class="quick-link" onclick="quickFill('email')">Email/Recruiter</button>
+                <button class="quick-link" onclick="quickFill('referral')">Referral</button>
+            </div>
+
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="companyName">Company Name *</label>
+                    <input type="text" id="companyName" placeholder="e.g., Acme Corp" oninput="generateLink()">
+                </div>
+
+                <div class="form-group">
+                    <label for="jobTitle">Position/Role</label>
+                    <input type="text" id="jobTitle" placeholder="e.g., UX Designer" oninput="generateLink()">
+                </div>
+
+                <div class="form-group">
+                    <label for="source">Application Source *</label>
+                    <select id="source" onchange="generateLink()">
+                        <option value="">Select source...</option>
+                        <option value="linkedin">LinkedIn</option>
+                        <option value="indeed">Indeed</option>
+                        <option value="glassdoor">Glassdoor</option>
+                        <option value="company-site">Company Website</option>
+                        <option value="email">Direct Email</option>
+                        <option value="referral">Referral</option>
+                        <option value="networking">Networking Event</option>
+                        <option value="recruiter">Recruiter Outreach</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="targetPage">Link To</label>
+                    <select id="targetPage" onchange="generateLink()">
+                        <option value="">Portfolio Home</option>
+                        <option value="dashboard.html">Healthcare Dashboard</option>
+                        <option value="xacteched-campaign.html">XactechED Campaign</option>
+                        <option value="arizona-esthetics.html">Arizona Esthetics</option>
+                        <option value="palmview-lab.html">Palmview Lab</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="output-section">
+                <div class="output-label">Generated URL</div>
+                <div class="output-url" id="generatedUrl">Fill in the fields above to generate your trackable link...</div>
+                <div class="button-row">
+                    <button onclick="copyLink()" id="copyBtn" disabled>
+                        <span>📋</span> Copy Link
+                    </button>
+                    <button onclick="saveLink()" id="saveBtn" class="secondary" disabled>
+                        <span>💾</span> Save to History
+                    </button>
+                    <button onclick="clearForm()" class="secondary">
+                        <span>🔄</span> Clear
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Link History -->
+        <div class="card">
+            <h2>📋 Link History</h2>
+            <div id="historyContainer">
+                <div class="empty-state">
+                    No links saved yet. Generate and save your first trackable link above!
+                </div>
+            </div>
+            <div class="button-row" id="historyActions" style="display: none;">
+                <button onclick="exportHistory()" class="secondary">
+                    <span>📥</span> Export CSV
+                </button>
+                <button onclick="clearHistory()" class="secondary">
+                    <span>🗑️</span> Clear All
+                </button>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="card">
+            <h2>💡 How to Use</h2>
+            <ol style="padding-left: 1.25rem; color: #a1a1aa; line-height: 1.8;">
+                <li><strong>Generate a link</strong> for each job application with the company name and source</li>
+                <li><strong>Copy the link</strong> and paste it in your application, resume, or email</li>
+                <li><strong>Save to history</strong> to keep track of all your applications</li>
+                <li><strong>Check Google Analytics</strong> to see which companies are viewing your portfolio</li>
+            </ol>
+            <p style="margin-top: 1rem; padding: 0.75rem; background: rgba(96, 165, 250, 0.1); border-radius: 6px; font-size: 0.85rem;">
+                <strong>Pro tip:</strong> Use specific links for different pages! If applying for a healthcare role, 
+                link directly to your Healthcare Dashboard case study.
+            </p>
+        </div>
+    </div>
+
+    <div class="copy-feedback" id="copyFeedback">✓ Link copied to clipboard!</div>
+
+    <script>
+        const BASE_URL = 'https://christiesaavedra.com';
+        let linkHistory = JSON.parse(localStorage.getItem('utmLinkHistory') || '[]');
+
+        function generateLink() {
+            const company = document.getElementById('companyName').value.trim();
+            const jobTitle = document.getElementById('jobTitle').value.trim();
+            const source = document.getElementById('source').value;
+            const targetPage = document.getElementById('targetPage').value;
+
+            const urlDisplay = document.getElementById('generatedUrl');
+            const copyBtn = document.getElementById('copyBtn');
+            const saveBtn = document.getElementById('saveBtn');
+
+            if (!company || !source) {
+                urlDisplay.textContent = 'Fill in company name and source to generate your link...';
+                urlDisplay.style.color = '#71717a';
+                copyBtn.disabled = true;
+                saveBtn.disabled = true;
+                return;
+            }
+
+            // Build campaign name
+            const campaignParts = [
+                slugify(company),
+                jobTitle ? slugify(jobTitle) : null,
+                getMonthYear()
+            ].filter(Boolean);
+            const campaign = campaignParts.join('-');
+
+            // Build URL
+            let url = BASE_URL;
+            if (targetPage) {
+                url += '/' + targetPage;
+            }
+
+            const params = new URLSearchParams({
+                utm_source: source,
+                utm_medium: 'job-application',
+                utm_campaign: campaign
+            });
+
+            const fullUrl = `${url}?${params.toString()}`;
+
+            urlDisplay.textContent = fullUrl;
+            urlDisplay.style.color = '#34d399';
+            copyBtn.disabled = false;
+            saveBtn.disabled = false;
+        }
+
+        function slugify(text) {
+            return text.toLowerCase()
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/^-+|-+$/g, '');
+        }
+
+        function getMonthYear() {
+            const now = new Date();
+            const months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 
+                           'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+            return `${months[now.getMonth()]}${now.getFullYear()}`;
+        }
+
+        function copyLink() {
+            const url = document.getElementById('generatedUrl').textContent;
+            if (url && !url.includes('Fill in')) {
+                navigator.clipboard.writeText(url).then(() => {
+                    showFeedback();
+                });
+            }
+        }
+
+        function showFeedback() {
+            const feedback = document.getElementById('copyFeedback');
+            feedback.classList.add('show');
+            setTimeout(() => feedback.classList.remove('show'), 2000);
+        }
+
+        function saveLink() {
+            const company = document.getElementById('companyName').value.trim();
+            const jobTitle = document.getElementById('jobTitle').value.trim();
+            const source = document.getElementById('source').value;
+            const targetPage = document.getElementById('targetPage').value;
+            const url = document.getElementById('generatedUrl').textContent;
+
+            if (!company || !source) return;
+
+            const entry = {
+                id: Date.now(),
+                company,
+                jobTitle: jobTitle || '-',
+                source,
+                targetPage: targetPage || 'Home',
+                url,
+                createdAt: new Date().toISOString()
+            };
+
+            linkHistory.unshift(entry);
+            localStorage.setItem('utmLinkHistory', JSON.stringify(linkHistory));
+            renderHistory();
+            updateStats();
+            clearForm();
+        }
+
+        function renderHistory() {
+            const container = document.getElementById('historyContainer');
+            const actionsDiv = document.getElementById('historyActions');
+
+            if (linkHistory.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        No links saved yet. Generate and save your first trackable link above!
+                    </div>
+                `;
+                actionsDiv.style.display = 'none';
+                return;
+            }
+
+            actionsDiv.style.display = 'flex';
+
+            container.innerHTML = `
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Company</th>
+                            <th>Position</th>
+                            <th>Source</th>
+                            <th>Page</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${linkHistory.map(entry => `
+                            <tr>
+                                <td><strong>${escapeHtml(entry.company)}</strong></td>
+                                <td>${escapeHtml(entry.jobTitle)}</td>
+                                <td><span class="tag ${entry.source}">${entry.source}</span></td>
+                                <td>${entry.targetPage}</td>
+                                <td>${formatDate(entry.createdAt)}</td>
+                                <td>
+                                    <button class="action-btn" onclick="copyHistoryLink('${escapeHtml(entry.url)}')" title="Copy link">📋</button>
+                                    <button class="action-btn" onclick="deleteEntry(${entry.id})" title="Delete">🗑️</button>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function formatDate(isoString) {
+            const date = new Date(isoString);
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        }
+
+        function copyHistoryLink(url) {
+            navigator.clipboard.writeText(url).then(() => showFeedback());
+        }
+
+        function deleteEntry(id) {
+            linkHistory = linkHistory.filter(entry => entry.id !== id);
+            localStorage.setItem('utmLinkHistory', JSON.stringify(linkHistory));
+            renderHistory();
+            updateStats();
+        }
+
+        function clearHistory() {
+            if (confirm('Are you sure you want to clear all saved links?')) {
+                linkHistory = [];
+                localStorage.setItem('utmLinkHistory', JSON.stringify(linkHistory));
+                renderHistory();
+                updateStats();
+            }
+        }
+
+        function exportHistory() {
+            if (linkHistory.length === 0) return;
+
+            const headers = ['Company', 'Position', 'Source', 'Target Page', 'URL', 'Created'];
+            const rows = linkHistory.map(entry => [
+                entry.company,
+                entry.jobTitle,
+                entry.source,
+                entry.targetPage,
+                entry.url,
+                entry.createdAt
+            ]);
+
+            const csv = [headers, ...rows]
+                .map(row => row.map(cell => `"${cell}"`).join(','))
+                .join('\n');
+
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `portfolio-links-${getMonthYear()}.csv`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function clearForm() {
+            document.getElementById('companyName').value = '';
+            document.getElementById('jobTitle').value = '';
+            document.getElementById('source').value = '';
+            document.getElementById('targetPage').value = '';
+            generateLink();
+        }
+
+        function quickFill(type) {
+            const sourceSelect = document.getElementById('source');
+            switch(type) {
+                case 'linkedin':
+                    sourceSelect.value = 'linkedin';
+                    break;
+                case 'indeed':
+                    sourceSelect.value = 'indeed';
+                    break;
+                case 'email':
+                    sourceSelect.value = 'email';
+                    break;
+                case 'referral':
+                    sourceSelect.value = 'referral';
+                    break;
+            }
+            document.getElementById('companyName').focus();
+            generateLink();
+        }
+
+        function updateStats() {
+            document.getElementById('totalLinks').textContent = linkHistory.length;
+            document.getElementById('linkedinCount').textContent = 
+                linkHistory.filter(e => e.source === 'linkedin').length;
+            document.getElementById('indeedCount').textContent = 
+                linkHistory.filter(e => e.source === 'indeed').length;
+            document.getElementById('otherCount').textContent = 
+                linkHistory.filter(e => !['linkedin', 'indeed'].includes(e.source)).length;
+        }
+
+        // Initialize
+        renderHistory();
+        updateStats();
+    </script>
+</body>
+</html>

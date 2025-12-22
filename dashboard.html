@@ -3,7 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Healthcare Dashboard Demo | Christie Stephenson Saavedra</title>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MF6DGZ8N');</script>
+  <!-- End Google Tag Manager -->
+<title>Healthcare Dashboard Demo | Christie Stephenson Saavedra</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -417,7 +424,11 @@ body {
   </style>
 </head>
 <body>
-  <a href="index.html#cs-dashboard" class="portfolio-back-link" title="Back to Portfolio">←</a>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MF6DGZ8N"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <a href="index.html#cs-dashboard" class="portfolio-back-link" title="Back to Portfolio">â†</a>
   <div id="root"><div id="loading">Loading dashboard...</div></div>
   
   <script type="text/babel">
@@ -521,21 +532,21 @@ const roles = [
 ];
 
 const metricsConfig = [
-  { id: 'utilization', name: 'Utilization Rate', icon: '📊', weight: 35, enabled: true, description: 'Percentage of allocated block time actually used' },
-  { id: 'case-volume', name: 'Case Volume', icon: '📈', weight: 20, enabled: true, description: 'Number of surgical cases completed per block' },
-  { id: 'block-adherence', name: 'Block Adherence', icon: '✅', weight: 15, enabled: true, description: 'Percentage of scheduled blocks actually used' },
-  { id: 'on-time-starts', name: 'On-Time Starts', icon: '⏰', weight: 15, enabled: true, description: 'Percentage of cases starting on time' },
-  { id: 'turnover-time', name: 'Turnover Time', icon: '🔄', weight: 10, enabled: true, description: 'Average time between cases' },
-  { id: 'cancellation-rate', name: 'Cancellation Rate', icon: '❌', weight: 5, enabled: true, description: 'Percentage of cancelled cases' },
+  { id: 'utilization', name: 'Utilization Rate', icon: 'ðŸ“Š', weight: 35, enabled: true, description: 'Percentage of allocated block time actually used' },
+  { id: 'case-volume', name: 'Case Volume', icon: 'ðŸ“ˆ', weight: 20, enabled: true, description: 'Number of surgical cases completed per block' },
+  { id: 'block-adherence', name: 'Block Adherence', icon: 'âœ…', weight: 15, enabled: true, description: 'Percentage of scheduled blocks actually used' },
+  { id: 'on-time-starts', name: 'On-Time Starts', icon: 'â°', weight: 15, enabled: true, description: 'Percentage of cases starting on time' },
+  { id: 'turnover-time', name: 'Turnover Time', icon: 'ðŸ”„', weight: 10, enabled: true, description: 'Average time between cases' },
+  { id: 'cancellation-rate', name: 'Cancellation Rate', icon: 'âŒ', weight: 5, enabled: true, description: 'Percentage of cancelled cases' },
 ];
 
 const currentUser = { id: 'user-001', surgeonId: 'surg-001', name: 'Dr. John Smith' };
 
 // ==================== UTILITIES ====================
 const getUtilClass = u => u >= 80 ? 'util-excellent' : u >= 70 ? 'util-good' : u >= 60 ? 'util-warning' : 'util-critical';
-const getTierIcon = t => ({ platinum: '🏆', gold: '🥇', silver: '🥈', bronze: '🥉' }[t] || '');
+const getTierIcon = t => ({ platinum: 'ðŸ†', gold: 'ðŸ¥‡', silver: 'ðŸ¥ˆ', bronze: 'ðŸ¥‰' }[t] || '');
 const getTrendClass = t => ({ growing: 'trend-up', declining: 'trend-down', stable: 'trend-stable' }[t] || 'trend-stable');
-const getTrendIcon = t => ({ growing: '📈', declining: '📉', stable: '➡️' }[t] || '➡️');
+const getTrendIcon = t => ({ growing: 'ðŸ“ˆ', declining: 'ðŸ“‰', stable: 'âž¡ï¸' }[t] || 'âž¡ï¸');
 const getProgressClass = u => u >= 80 ? 'progress-green' : u >= 70 ? 'progress-yellow' : u >= 60 ? 'progress-orange' : 'progress-red';
 const capitalize = s => s.charAt(0).toUpperCase() + s.slice(1);
 const formatTime = t => { const [h, m] = t.split(':'); const hr = parseInt(h); return `${hr % 12 || 12}:${m} ${hr >= 12 ? 'PM' : 'AM'}`; };
@@ -604,14 +615,14 @@ function Header({ viewMode, onViewModeChange, onSearchOpen, onHeatMapOpen, onSet
       </div>
       <div className="header-actions">
         <div className="view-toggle">
-          <button className={`view-toggle-btn ${viewMode === 'explorer' ? 'active' : ''}`} onClick={() => onViewModeChange('explorer')}>📊 Explorer</button>
-          <button className={`view-toggle-btn ${viewMode === 'calendar' ? 'active' : ''}`} onClick={() => onViewModeChange('calendar')}>📅 Calendar</button>
+          <button className={`view-toggle-btn ${viewMode === 'explorer' ? 'active' : ''}`} onClick={() => onViewModeChange('explorer')}>ðŸ“Š Explorer</button>
+          <button className={`view-toggle-btn ${viewMode === 'calendar' ? 'active' : ''}`} onClick={() => onViewModeChange('calendar')}>ðŸ“… Calendar</button>
         </div>
-        <button className="header-btn" onClick={onSearchOpen}>🔍 Search</button>
-        <button className="header-btn" onClick={onHeatMapOpen}>📊 Heat Map</button>
-        <button className="header-btn" onClick={onSettingsOpen}>⚙️ Settings</button>
+        <button className="header-btn" onClick={onSearchOpen}>ðŸ” Search</button>
+        <button className="header-btn" onClick={onHeatMapOpen}>ðŸ“Š Heat Map</button>
+        <button className="header-btn" onClick={onSettingsOpen}>âš™ï¸ Settings</button>
         <div style={{ position: 'relative' }}>
-          <button className="header-btn" onClick={() => setShowRoleDropdown(!showRoleDropdown)}>👤 {capitalize(currentRole.replace('-', ' '))}</button>
+          <button className="header-btn" onClick={() => setShowRoleDropdown(!showRoleDropdown)}>ðŸ‘¤ {capitalize(currentRole.replace('-', ' '))}</button>
           {showRoleDropdown && (
             <div className="dropdown">
               <div className="dropdown-header">Switch Role (Demo)</div>
@@ -632,9 +643,9 @@ function Header({ viewMode, onViewModeChange, onSearchOpen, onHeatMapOpen, onSet
 function Sidebar({ onSettingsOpen }) {
   const { nav, navigate } = useNavigation();
   const navItems = [
-    { icon: '🏛️', level: 'ministries', label: 'Ministries' },
-    { icon: '🏥', level: 'all-hospitals', label: 'All Hospitals' },
-    { icon: '👨‍⚕️', level: 'all-surgeons', label: 'All Surgeons' },
+    { icon: 'ðŸ›ï¸', level: 'ministries', label: 'Ministries' },
+    { icon: 'ðŸ¥', level: 'all-hospitals', label: 'All Hospitals' },
+    { icon: 'ðŸ‘¨"âš•ï¸', level: 'all-surgeons', label: 'All Surgeons' },
   ];
 
   return (
@@ -643,7 +654,7 @@ function Sidebar({ onSettingsOpen }) {
         <button key={item.level} className={`nav-btn ${nav.level === item.level ? 'active' : ''}`} onClick={() => navigate(item.level)} title={item.label}>{item.icon}</button>
       ))}
       <div style={{ marginTop: 'auto' }}>
-        <button className="nav-btn" onClick={onSettingsOpen} title="Settings">⚙️</button>
+        <button className="nav-btn" onClick={onSettingsOpen} title="Settings">âš™ï¸</button>
         <div style={{ fontSize: '9px', color: 'rgba(255,255,255,0.3)', textAlign: 'center', padding: '8px 4px', lineHeight: 1.3 }}>© 2025<br/>Christie S.</div>
       </div>
     </aside>
@@ -658,7 +669,7 @@ function Breadcrumb() {
     <nav className="breadcrumb">
       {crumbs.map((crumb, i) => (
         <React.Fragment key={i}>
-          {i > 0 && <span className="breadcrumb-sep">›</span>}
+          {i > 0 && <span className="breadcrumb-sep">"º</span>}
           <button className={`breadcrumb-item ${i === crumbs.length - 1 ? 'active' : ''}`} onClick={() => navigate(crumb.level, crumb.id)}>{crumb.label}</button>
         </React.Fragment>
       ))}
@@ -712,7 +723,7 @@ function SurgeonCard({ surgeon, onClick }) {
     <div className="card" onClick={onClick}>
       <div className="card-header">
         <div className="surgeon-info">
-          <div className="surgeon-avatar">👨‍⚕️</div>
+          <div className="surgeon-avatar">ðŸ‘¨"âš•ï¸</div>
           <div><div className="card-title">{surgeon.name}</div><div className="card-subtitle">{surgeon.specialty}</div></div>
         </div>
         <div style={{ textAlign: 'right' }}>
@@ -737,7 +748,7 @@ function SurgeonCard({ surgeon, onClick }) {
 
 function BlockCalendarTab({ surgeonBlocks }) {
   const recentBlocks = surgeonBlocks.slice(0, 12);
-  if (recentBlocks.length === 0) return <div className="empty-state"><div className="empty-state-icon">📅</div><div className="empty-state-title">No Blocks</div></div>;
+  if (recentBlocks.length === 0) return <div className="empty-state"><div className="empty-state-icon">ðŸ“…</div><div className="empty-state-title">No Blocks</div></div>;
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
       {recentBlocks.map(block => {
@@ -746,7 +757,7 @@ function BlockCalendarTab({ surgeonBlocks }) {
           <div key={block.id} style={{ padding: 12, borderRadius: 8, background: colors.bg, borderLeft: `4px solid ${block.utilization !== null ? colors.text : '#60a5fa'}`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
               <div style={{ fontWeight: 600, color: '#f8fafc' }}>{block.date}</div>
-              <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>{formatTime(block.startTime)} - {formatTime(block.endTime)} • {block.room}</div>
+              <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>{formatTime(block.startTime)} - {formatTime(block.endTime)} "¢ {block.room}</div>
             </div>
             <div style={{ textAlign: 'right' }}>
               {block.utilization !== null ? <div style={{ fontWeight: 700, color: colors.text }}>{block.utilization}%</div> : <span className="pill pill-blue">Scheduled</span>}
@@ -760,8 +771,8 @@ function BlockCalendarTab({ surgeonBlocks }) {
 }
 
 function AlertsTab({ surgeonAlerts }) {
-  if (surgeonAlerts.length === 0) return <div className="empty-state"><div className="empty-state-icon">✅</div><div className="empty-state-title">No Alerts</div><div className="empty-state-text">No active alerts for this surgeon</div></div>;
-  const getAlertStyle = type => ({ critical: { bg: 'rgba(239,68,68,0.2)', border: '#f87171', icon: '🔴' }, warning: { bg: 'rgba(234,179,8,0.2)', border: '#facc15', icon: '⚠️' }, success: { bg: 'rgba(34,197,94,0.2)', border: '#4ade80', icon: '✅' }, info: { bg: 'rgba(59,130,246,0.2)', border: '#60a5fa', icon: 'ℹ️' } }[type] || { bg: 'rgba(59,130,246,0.2)', border: '#60a5fa', icon: 'ℹ️' });
+  if (surgeonAlerts.length === 0) return <div className="empty-state"><div className="empty-state-icon">âœ…</div><div className="empty-state-title">No Alerts</div><div className="empty-state-text">No active alerts for this surgeon</div></div>;
+  const getAlertStyle = type => ({ critical: { bg: 'rgba(239,68,68,0.2)', border: '#f87171', icon: 'ðŸ”´' }, warning: { bg: 'rgba(234,179,8,0.2)', border: '#facc15', icon: 'âš ï¸' }, success: { bg: 'rgba(34,197,94,0.2)', border: '#4ade80', icon: 'âœ…' }, info: { bg: 'rgba(59,130,246,0.2)', border: '#60a5fa', icon: 'â„¹ï¸' } }[type] || { bg: 'rgba(59,130,246,0.2)', border: '#60a5fa', icon: 'â„¹ï¸' });
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
       {surgeonAlerts.map(alert => {
@@ -782,7 +793,7 @@ function AlertsTab({ surgeonAlerts }) {
 }
 
 function DisputesTab({ surgeonDisputes }) {
-  if (surgeonDisputes.length === 0) return <div className="empty-state"><div className="empty-state-icon">📝</div><div className="empty-state-title">No Disputes</div><div className="empty-state-text">No disputes have been filed</div></div>;
+  if (surgeonDisputes.length === 0) return <div className="empty-state"><div className="empty-state-icon">ðŸ“</div><div className="empty-state-title">No Disputes</div><div className="empty-state-text">No disputes have been filed</div></div>;
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
       {surgeonDisputes.map(dispute => (
@@ -792,7 +803,7 @@ function DisputesTab({ surgeonDisputes }) {
             <span className={`status-badge status-${dispute.status}`}>{capitalize(dispute.status)}</span>
           </div>
           <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', marginBottom: 4 }}>{dispute.reason}</div>
-          <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)' }}>{dispute.blockDate} • {dispute.room} • {dispute.creditType}</div>
+          <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)' }}>{dispute.blockDate} "¢ {dispute.room} "¢ {dispute.creditType}</div>
         </div>
       ))}
     </div>
@@ -806,24 +817,24 @@ function SurgeonProfile({ surgeon }) {
   const surgeonAlerts = alerts.filter(a => a.surgeonId === surgeon.id);
 
   const tabs = [
-    { id: 'calendar', label: '📅 Calendar' },
-    { id: 'timeline', label: '📈 Timeline' },
-    { id: 'bar-chart', label: '📊 Bar Chart' },
-    { id: 'distribution', label: '🍩 Distribution' },
-    { id: 'alerts', label: '🔔 Alerts', badge: surgeonAlerts.filter(a => !a.isRead).length },
-    { id: 'disputes', label: '⚖️ Disputes', badge: surgeonDisputes.filter(d => d.status === 'pending' || d.status === 'review').length },
+    { id: 'calendar', label: 'ðŸ“… Calendar' },
+    { id: 'timeline', label: 'ðŸ“ˆ Timeline' },
+    { id: 'bar-chart', label: 'ðŸ“Š Bar Chart' },
+    { id: 'distribution', label: 'ðŸ© Distribution' },
+    { id: 'alerts', label: 'ðŸ”” Alerts', badge: surgeonAlerts.filter(a => !a.isRead).length },
+    { id: 'disputes', label: 'âš–ï¸ Disputes', badge: surgeonDisputes.filter(d => d.status === 'pending' || d.status === 'review').length },
   ];
 
   return (
     <div>
       <div className="card no-hover" style={{ marginBottom: 24 }}>
         <div style={{ display: 'flex', gap: 24, alignItems: 'flex-start', flexWrap: 'wrap' }}>
-          <div className="surgeon-avatar" style={{ width: 80, height: 80, fontSize: 40 }}>👨‍⚕️</div>
+          <div className="surgeon-avatar" style={{ width: 80, height: 80, fontSize: 40 }}>ðŸ‘¨"âš•ï¸</div>
           <div style={{ flex: 1, minWidth: 200 }}>
             <h1 style={{ fontSize: 24, fontWeight: 700, marginBottom: 4 }}>{surgeon.name}</h1>
-            <p style={{ color: 'rgba(255,255,255,0.6)', marginBottom: 12 }}>{surgeon.specialty} • {hospitals.find(h => h.id === surgeon.hospitalId)?.name}</p>
+            <p style={{ color: 'rgba(255,255,255,0.6)', marginBottom: 12 }}>{surgeon.specialty} "¢ {hospitals.find(h => h.id === surgeon.hospitalId)?.name}</p>
             <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap' }}>
-              <span className={`tier-badge tier-${surgeon.tier}`}>{getTierIcon(surgeon.tier)} {capitalize(surgeon.tier)} • {surgeon.tierPoints} pts</span>
+              <span className={`tier-badge tier-${surgeon.tier}`}>{getTierIcon(surgeon.tier)} {capitalize(surgeon.tier)} "¢ {surgeon.tierPoints} pts</span>
               <span className={`util-badge ${getUtilClass(surgeon.utilization)}`}>{surgeon.utilization}% Utilization</span>
             </div>
           </div>
@@ -850,9 +861,9 @@ function SurgeonProfile({ surgeon }) {
         {activeTab === 'calendar' && <BlockCalendarTab surgeonBlocks={surgeonBlocks} />}
         {activeTab === 'alerts' && <AlertsTab surgeonAlerts={surgeonAlerts} />}
         {activeTab === 'disputes' && <DisputesTab surgeonDisputes={surgeonDisputes} />}
-        {activeTab === 'timeline' && <div className="empty-state"><div className="empty-state-icon">📈</div><div className="empty-state-title">Timeline Chart</div><div className="empty-state-text">Utilization trend over time</div></div>}
-        {activeTab === 'bar-chart' && <div className="empty-state"><div className="empty-state-icon">📊</div><div className="empty-state-title">Performance Metrics</div><div className="empty-state-text">Bar chart comparison</div></div>}
-        {activeTab === 'distribution' && <div className="empty-state"><div className="empty-state-icon">🍩</div><div className="empty-state-title">Block Distribution</div><div className="empty-state-text">Donut chart of block usage</div></div>}
+        {activeTab === 'timeline' && <div className="empty-state"><div className="empty-state-icon">ðŸ“ˆ</div><div className="empty-state-title">Timeline Chart</div><div className="empty-state-text">Utilization trend over time</div></div>}
+        {activeTab === 'bar-chart' && <div className="empty-state"><div className="empty-state-icon">ðŸ“Š</div><div className="empty-state-title">Performance Metrics</div><div className="empty-state-text">Bar chart comparison</div></div>}
+        {activeTab === 'distribution' && <div className="empty-state"><div className="empty-state-icon">ðŸ©</div><div className="empty-state-title">Block Distribution</div><div className="empty-state-text">Donut chart of block usage</div></div>}
       </div>
     </div>
   );
@@ -880,12 +891,12 @@ function SettingsModal({ onClose }) {
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal xlarge" onClick={e => e.stopPropagation()} style={{ maxHeight: '90vh' }}>
         <div className="modal-header">
-          <div className="modal-title">⚙️ Settings & Configuration</div>
-          <button className="modal-close" onClick={onClose}>×</button>
+          <div className="modal-title">âš™ï¸ Settings & Configuration</div>
+          <button className="modal-close" onClick={onClose}>Ã—</button>
         </div>
         <div className="modal-body">
           <div className="config-section">
-            <div className="config-title">📊 Metric Weights <span style={{ fontSize: 12, fontWeight: 400, color: totalWeight === 100 ? '#4ade80' : '#f87171' }}>Total: {totalWeight}%</span></div>
+            <div className="config-title">ðŸ“Š Metric Weights <span style={{ fontSize: 12, fontWeight: 400, color: totalWeight === 100 ? '#4ade80' : '#f87171' }}>Total: {totalWeight}%</span></div>
             <div className="config-grid">
               {metrics.map(metric => (
                 <div key={metric.id} className="config-item">
@@ -908,7 +919,7 @@ function SettingsModal({ onClose }) {
           </div>
 
           <div className="config-section">
-            <div className="config-title">🏆 Tier Thresholds</div>
+            <div className="config-title">ðŸ† Tier Thresholds</div>
             <div className="config-grid">
               {Object.entries(thresholds).map(([tier, value]) => (
                 <div key={tier} className="config-item">
@@ -925,7 +936,7 @@ function SettingsModal({ onClose }) {
           </div>
 
           <div className="config-section">
-            <div className="config-title">📋 Create Reports</div>
+            <div className="config-title">ðŸ“‹ Create Reports</div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16 }}>
               <div className="config-item">
                 <div className="config-item-name" style={{ marginBottom: 8 }}>Report Type</div>
@@ -989,19 +1000,19 @@ function SettingsModal({ onClose }) {
               >
                 {reportGenerating ? (
                   <>
-                    <span style={{ animation: 'spin 1s linear infinite', display: 'inline-block' }}>⏳</span>
+                    <span style={{ animation: 'spin 1s linear infinite', display: 'inline-block' }}>â³</span>
                     Generating...
                   </>
                 ) : (
-                  <>📊 Generate Report</>
+                  <>ðŸ“Š Generate Report</>
                 )}
               </button>
               <button className="btn btn-secondary" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                📅 Schedule Report
+                ðŸ“… Schedule Report
               </button>
               {reportGenerated && (
                 <span style={{ color: '#4ade80', fontSize: 14, display: 'flex', alignItems: 'center', gap: 6 }}>
-                  ✓ Report ready for download
+                  âœ“ Report ready for download
                 </span>
               )}
             </div>
@@ -1011,7 +1022,7 @@ function SettingsModal({ onClose }) {
           </div>
           
           <div className="config-section">
-            <div className="config-title">ℹ️ About This Demo</div>
+            <div className="config-title">â„¹ï¸ About This Demo</div>
             <div style={{ padding: 16, background: 'rgba(255,255,255,0.03)', borderRadius: 12, border: '1px solid rgba(255,255,255,0.1)' }}>
               <p style={{ margin: '0 0 12px 0', fontSize: 14, color: 'rgba(255,255,255,0.8)' }}>
                 <strong>Healthcare Dashboard Demo</strong><br/>
@@ -1061,13 +1072,13 @@ function CalendarView() {
     <div>
       <div className="page-header">
         <div>
-          <h1 className="page-title">📅 Block Calendar</h1>
+          <h1 className="page-title">ðŸ“… Block Calendar</h1>
           <p className="page-subtitle">Week of {weekStart.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
-          <button className="btn btn-secondary">← Previous</button>
+          <button className="btn btn-secondary">â† Previous</button>
           <button className="btn btn-secondary">Today</button>
-          <button className="btn btn-secondary">Next →</button>
+          <button className="btn btn-secondary">Next â†’</button>
         </div>
       </div>
       
@@ -1143,7 +1154,7 @@ function CalendarView() {
                   )}
                 </div>
                 <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>
-                  {formatTime(block.startTime)} - {formatTime(block.endTime)} • {block.room} • {block.caseCount} cases
+                  {formatTime(block.startTime)} - {formatTime(block.endTime)} "¢ {block.room} "¢ {block.caseCount} cases
                 </div>
               </div>
             );
@@ -1151,7 +1162,7 @@ function CalendarView() {
           {blocks.filter(b => b.date === today.toISOString().split('T')[0]).length === 0 && (
             <div className="card no-hover" style={{ gridColumn: '1 / -1' }}>
               <div className="empty-state" style={{ padding: 24 }}>
-                <div className="empty-state-icon">📅</div>
+                <div className="empty-state-icon">ðŸ“…</div>
                 <div className="empty-state-title">No Blocks Today</div>
                 <div className="empty-state-text">No surgical blocks are scheduled for today</div>
               </div>
@@ -1175,10 +1186,10 @@ function DashboardContent({ viewMode }) {
     const physician = surgeons.find(s => s.id === currentUser.surgeonId);
     return physician ? (
       <div>
-        <div style={{ marginBottom: 16 }}><span className="pill pill-blue">👨‍⚕️ Physician View - Your Profile</span></div>
+        <div style={{ marginBottom: 16 }}><span className="pill pill-blue">ðŸ‘¨"âš•ï¸ Physician View - Your Profile</span></div>
         <SurgeonProfile surgeon={physician} />
       </div>
-    ) : <div className="empty-state"><div className="empty-state-icon">👨‍⚕️</div><div className="empty-state-title">Profile Not Found</div></div>;
+    ) : <div className="empty-state"><div className="empty-state-icon">ðŸ‘¨"âš•ï¸</div><div className="empty-state-title">Profile Not Found</div></div>;
   }
 
   if (nav.level === 'ministries') {
@@ -1188,7 +1199,7 @@ function DashboardContent({ viewMode }) {
           <div>
             <h1 className="page-title">Ministries</h1>
             <p className="page-subtitle">Select a ministry to view hospitals</p>
-            {isDirector && <span className="pill pill-blue" style={{ marginTop: 8, display: 'inline-block' }}>📊 Read-Only View</span>}
+            {isDirector && <span className="pill pill-blue" style={{ marginTop: 8, display: 'inline-block' }}>ðŸ“Š Read-Only View</span>}
           </div>
         </div>
         <div className="card-grid">{ministries.map(m => <MinistryCard key={m.id} ministry={m} onClick={() => navigate('hospitals', m.id)} />)}</div>
@@ -1233,29 +1244,29 @@ function DashboardContent({ viewMode }) {
 
     return (
       <div>
-        <div className="page-header"><div><h1 className="page-title">{hospital.name}</h1><p className="page-subtitle">{hospital.location} • {hospSurgeons.length} Surgeons • {hospUnits.length} Units • {hospital.avgUtilization}% Avg Utilization</p></div></div>
+        <div className="page-header"><div><h1 className="page-title">{hospital.name}</h1><p className="page-subtitle">{hospital.location} "¢ {hospSurgeons.length} Surgeons "¢ {hospUnits.length} Units "¢ {hospital.avgUtilization}% Avg Utilization</p></div></div>
         <p style={{ marginBottom: 24, color: 'rgba(255,255,255,0.6)' }}>Choose how you want to navigate:</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: 24 }}>
           <div className="card" style={{ padding: 24, borderColor: '#93c5fd', background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(255,255,255,0.05) 100%)' }} onClick={() => navigate('surgeons', nav.hospitalId)}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16 }}>
-              <div style={{ width: 56, height: 56, background: 'rgba(59, 130, 246, 0.2)', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28 }}>👨‍⚕️</div>
+              <div style={{ width: 56, height: 56, background: 'rgba(59, 130, 246, 0.2)', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28 }}>ðŸ‘¨"âš•ï¸</div>
               <div><h3 style={{ fontSize: 18, fontWeight: 600, color: '#93c5fd' }}>View by Surgeon</h3><p style={{ fontSize: 13, color: '#60a5fa' }}>Surgeon-First Navigation</p></div>
             </div>
             <p style={{ color: 'rgba(255,255,255,0.6)', marginBottom: 16 }}>See all surgeons at this hospital with their blocks, tiers, and utilization metrics.</p>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 16, borderTop: '1px solid rgba(255,255,255,0.1)' }}>
               <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)' }}>{hospSurgeons.length} surgeons</span>
-              <span style={{ color: '#60a5fa', fontWeight: 500 }}>View Surgeons →</span>
+              <span style={{ color: '#60a5fa', fontWeight: 500 }}>View Surgeons â†’</span>
             </div>
           </div>
           <div className="card" style={{ padding: 24, borderColor: '#5eead4', background: 'linear-gradient(135deg, rgba(20, 184, 166, 0.1) 0%, rgba(255,255,255,0.05) 100%)' }} onClick={() => navigate('units', nav.hospitalId)}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 16 }}>
-              <div style={{ width: 56, height: 56, background: 'rgba(20, 184, 166, 0.2)', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28 }}>🏥</div>
+              <div style={{ width: 56, height: 56, background: 'rgba(20, 184, 166, 0.2)', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28 }}>ðŸ¥</div>
               <div><h3 style={{ fontSize: 18, fontWeight: 600, color: '#5eead4' }}>View by Unit</h3><p style={{ fontSize: 13, color: '#2dd4bf' }}>Unit-First Navigation</p></div>
             </div>
             <p style={{ color: 'rgba(255,255,255,0.6)', marginBottom: 16 }}>Browse surgical units and their block calendars with surgeon filtering.</p>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: 16, borderTop: '1px solid rgba(255,255,255,0.1)' }}>
               <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.5)' }}>{hospUnits.length} units</span>
-              <span style={{ color: '#2dd4bf', fontWeight: 500 }}>View Units →</span>
+              <span style={{ color: '#2dd4bf', fontWeight: 500 }}>View Units â†’</span>
             </div>
           </div>
         </div>
@@ -1275,7 +1286,7 @@ function DashboardContent({ viewMode }) {
     const surgeonList = surgeons.filter(s => s.hospitalId === nav.hospitalId);
     return (
       <div>
-        <div className="page-header"><div><h1 className="page-title">Surgeons</h1><p className="page-subtitle">{hospital?.name} • {surgeonList.length} surgeons</p></div></div>
+        <div className="page-header"><div><h1 className="page-title">Surgeons</h1><p className="page-subtitle">{hospital?.name} "¢ {surgeonList.length} surgeons</p></div></div>
         <div className="card-grid">{surgeonList.map(s => <SurgeonCard key={s.id} surgeon={s} onClick={() => navigate('surgeon-detail', s.id)} />)}</div>
       </div>
     );
@@ -1286,7 +1297,7 @@ function DashboardContent({ viewMode }) {
     const unitList = units.filter(u => u.hospitalId === nav.hospitalId);
     return (
       <div>
-        <div className="page-header"><div><h1 className="page-title">Units</h1><p className="page-subtitle">{hospital?.name} • {unitList.length} units</p></div></div>
+        <div className="page-header"><div><h1 className="page-title">Units</h1><p className="page-subtitle">{hospital?.name} "¢ {unitList.length} units</p></div></div>
         <div className="card-grid">{unitList.map(u => <UnitCard key={u.id} unit={u} onClick={() => alert(`Unit: ${u.name}\n\nThis unit has ${u.surgeonCount} surgeons and ${u.roomCount} operating rooms.\n\nIn the full application, clicking would show the unit's block schedule and surgeon assignments.`)} />)}</div>
       </div>
     );
@@ -1294,7 +1305,7 @@ function DashboardContent({ viewMode }) {
 
   if (nav.level === 'surgeon-detail') {
     const surgeon = surgeons.find(s => s.id === nav.surgeonId);
-    return surgeon ? <SurgeonProfile surgeon={surgeon} /> : <div className="empty-state"><div className="empty-state-icon">🔍</div><div className="empty-state-title">Surgeon Not Found</div></div>;
+    return surgeon ? <SurgeonProfile surgeon={surgeon} /> : <div className="empty-state"><div className="empty-state-icon">ðŸ”</div><div className="empty-state-title">Surgeon Not Found</div></div>;
   }
 
   return null;
@@ -1322,16 +1333,16 @@ function App() {
           {showSearch && (
             <div className="modal-overlay" onClick={() => setShowSearch(false)}>
               <div className="modal" onClick={e => e.stopPropagation()}>
-                <div className="modal-header"><div className="modal-title">🔍 Search</div><button className="modal-close" onClick={() => setShowSearch(false)}>×</button></div>
+                <div className="modal-header"><div className="modal-title">ðŸ” Search</div><button className="modal-close" onClick={() => setShowSearch(false)}>Ã—</button></div>
                 <div className="modal-body">
                   <input type="text" className="form-input" placeholder="Search surgeons, hospitals, blocks..." autoFocus />
                   <div style={{ marginTop: 24 }}>
                     <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', marginBottom: 12 }}>QUICK FILTERS</div>
                     <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                      <span className="pill pill-blue">🏥 Hospitals</span>
-                      <span className="pill pill-blue">👨‍⚕️ Surgeons</span>
-                      <span className="pill pill-blue">📅 Blocks</span>
-                      <span className="pill pill-blue">⚖️ Disputes</span>
+                      <span className="pill pill-blue">ðŸ¥ Hospitals</span>
+                      <span className="pill pill-blue">ðŸ‘¨"âš•ï¸ Surgeons</span>
+                      <span className="pill pill-blue">ðŸ“… Blocks</span>
+                      <span className="pill pill-blue">âš–ï¸ Disputes</span>
                     </div>
                   </div>
                 </div>
@@ -1342,23 +1353,23 @@ function App() {
           {showHeatMap && (
             <div className="modal-overlay" onClick={() => setShowHeatMap(false)}>
               <div className="modal xlarge" onClick={e => e.stopPropagation()}>
-                <div className="modal-header"><div className="modal-title">📊 Heat Map</div><button className="modal-close" onClick={() => setShowHeatMap(false)}>×</button></div>
+                <div className="modal-header"><div className="modal-title">ðŸ“Š Heat Map</div><button className="modal-close" onClick={() => setShowHeatMap(false)}>Ã—</button></div>
                 <div className="modal-body">
                   <div style={{ marginBottom: 24 }}>
                     <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', marginBottom: 12 }}>DRILL-DOWN LEVELS</div>
                     <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                      <span className="pill pill-blue">🏛️ Ministry</span>
-                      <span className="breadcrumb-sep">→</span>
-                      <span className="pill pill-blue">🏥 Hospital</span>
-                      <span className="breadcrumb-sep">→</span>
-                      <span className="pill pill-blue">🏥 Unit</span>
-                      <span className="breadcrumb-sep">→</span>
-                      <span className="pill pill-blue">🚪 Room</span>
-                      <span className="breadcrumb-sep">→</span>
-                      <span className="pill pill-blue">📅 Calendar</span>
+                      <span className="pill pill-blue">ðŸ›ï¸ Ministry</span>
+                      <span className="breadcrumb-sep">â†’</span>
+                      <span className="pill pill-blue">ðŸ¥ Hospital</span>
+                      <span className="breadcrumb-sep">â†’</span>
+                      <span className="pill pill-blue">ðŸ¥ Unit</span>
+                      <span className="breadcrumb-sep">â†’</span>
+                      <span className="pill pill-blue">ðŸšª Room</span>
+                      <span className="breadcrumb-sep">â†’</span>
+                      <span className="pill pill-blue">ðŸ“… Calendar</span>
                     </div>
                   </div>
-                  <div className="empty-state"><div className="empty-state-icon">📊</div><div className="empty-state-title">6-Level Heat Map</div><div className="empty-state-text">Interactive drill-down visualization from Ministry to Calendar</div></div>
+                  <div className="empty-state"><div className="empty-state-icon">ðŸ“Š</div><div className="empty-state-title">6-Level Heat Map</div><div className="empty-state-text">Interactive drill-down visualization from Ministry to Calendar</div></div>
                 </div>
               </div>
             </div>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MF6DGZ8N');</script>
+  <!-- End Google Tag Manager -->
+<title>In the News | Christie Saavedra</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg-warm: #FDFCFA;
+            --color-bg-cream: #FAF8F5;
+            --color-text: #1C1917;
+            --color-text-secondary: #57534E;
+            --color-accent: #1E40AF;
+            --color-accent-light: #DBEAFE;
+            --color-success: #059669;
+            --color-border: #E7E5E4;
+            --font-display: 'DM Serif Display', Georgia, serif;
+            --font-body: 'IBM Plex Sans', -apple-system, sans-serif;
+            --max-width: 1000px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: var(--font-body);
+            background: var(--color-bg-warm);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .news-section {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-success) 100%);
+            color: white;
+            padding: 0.35rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            color: var(--color-text);
+            margin-bottom: 0.75rem;
+        }
+
+        .section-subtitle {
+            color: var(--color-text-secondary);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Featured Story */
+        .featured-story {
+            background: linear-gradient(135deg, #1E40AF 0%, #0D9488 100%);
+            border-radius: 16px;
+            padding: 2.5rem;
+            color: white;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-story::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+
+        .featured-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .featured-amount {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .featured-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .featured-description {
+            font-size: 1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        .featured-source {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .source-link {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .source-link:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .news-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+
+        .news-source {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .source-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--color-accent-light);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+        }
+
+        .source-name {
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+
+        .source-date {
+            font-size: 0.75rem;
+            color: var(--color-text-secondary);
+            margin-left: auto;
+        }
+
+        .news-headline {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--color-text);
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .news-excerpt {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        .news-excerpt em {
+            background: linear-gradient(120deg, #fef3c7 0%, #fef3c7 100%);
+            padding: 0.1rem 0.2rem;
+            font-style: normal;
+        }
+
+        .news-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: var(--color-accent);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+
+        .news-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Metrics Bar */
+        .metrics-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            background: var(--color-bg-cream);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--color-accent);
+        }
+
+        .metric-label {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* Quote */
+        .quote-block {
+            background: white;
+            border-left: 4px solid var(--color-success);
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .quote-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--color-text);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .quote-attribution {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+        }
+
+        .quote-attribution strong {
+            color: var(--color-text);
+        }
+
+        /* Standalone version styles */
+        .standalone-wrapper {
+            min-height: 100vh;
+            background: var(--color-bg-warm);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--color-accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 1rem 2rem;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MF6DGZ8N"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+    <div class="standalone-wrapper">
+        <a href="index.html" class="back-link">← Back to Portfolio</a>
+        
+        <section class="news-section">
+            <div class="section-header">
+                <span class="section-label">📰 In the News</span>
+                <h2 class="section-title">Recognition & Impact</h2>
+                <p class="section-subtitle">
+                    Grant funding secured, programs launched, and partnerships that made a difference
+                </p>
+            </div>
+
+            <!-- Featured Story -->
+            <article class="featured-story">
+                <span class="featured-badge">🏆 Featured Achievement</span>
+                <div class="featured-amount">$200,000</div>
+                <h3 class="featured-title">UCAP Grant Secured for Xactware-MTECH Partnership</h3>
+                <p class="featured-description">
+                    Presented to the Governor's education committee and secured $200,000 in Utah Cluster Acceleration Partnership (UCAP) 
+                    funding to develop a Web Programming and Development program. The initiative connected industry professionals 
+                    directly with technical education, creating pathways for students to become qualified Junior Developers.
+                </p>
+                <div class="featured-source">
+                    <a href="https://mtec.edu/news/matc-and-xactware-partner/" class="source-link" target="_blank">
+                        📄 MTECH Official Announcement →
+                    </a>
+                    <a href="https://ushe.edu/nearly-1m-in-ucap-funds-awarded-to-ushe-institutions/" class="source-link" target="_blank">
+                        📄 USHE Grant Report →
+                    </a>
+                </div>
+            </article>
+
+            <!-- Metrics Bar -->
+            <div class="metrics-bar">
+                <div class="metric">
+                    <div class="metric-value">$200K+</div>
+                    <div class="metric-label">Grant Funding Secured</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">10</div>
+                    <div class="metric-label">Industry Developers Teaching</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">240</div>
+                    <div class="metric-label">Externship Hours per Student</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value">20+</div>
+                    <div class="metric-label">Years of Impact</div>
+                </div>
+            </div>
+
+            <!-- Quote Block -->
+            <blockquote class="quote-block">
+                <p class="quote-text">
+                    "Xactware is great. They provide ten developers to instruct the class and as part of the program, 
+                    students complete a 240 hour externship at Xactware during the course. As students finish the program, 
+                    they will be qualified to become a Junior Developer."
+                </p>
+                <p class="quote-attribution">
+                    — <strong>Lisa Birch</strong>, Director of Programs, MTECH
+                </p>
+            </blockquote>
+
+            <!-- News Grid -->
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-source">
+                        <span class="source-icon">🎓</span>
+                        <span class="source-name">MTECH</span>
+                        <span class="source-date">Sep 2015</span>
+                    </div>
+                    <h3 class="news-headline">MTECH and Xactware Partner for Web Programming Courses</h3>
+                    <p class="news-excerpt">
+                        "The field of developers is in such high demand that we hope they actually finish the course 
+                        before they get hired on." The new program was <em>fueled by industry need</em> for skilled developers.
+                    </p>
+                    <a href="https://mtec.edu/news/matc-and-xactware-partner/" class="news-link" target="_blank">
+                        Read Article →
+                    </a>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-source">
+                        <span class="source-icon">📊</span>
+                        <span class="source-name">Utah Business</span>
+                        <span class="source-date">Dec 2018</span>
+                    </div>
+                    <h3 class="news-headline">Industry Outlook: Education Workforce Alignment</h3>
+                    <p class="news-excerpt">
+                        "We have a partnership with Xactware; we hire their programmers to come and teach part of the program. 
+                        The curriculum is changing so quickly, <em>every two to three weeks they are tweaking it</em>."
+                    </p>
+                    <a href="https://www.utahbusiness.com/industry-outlook-education/" class="news-link" target="_blank">
+                        Read Article →
+                    </a>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-source">
+                        <span class="source-icon">🏛️</span>
+                        <span class="source-name">USHE</span>
+                        <span class="source-date">Sep 2014</span>
+                    </div>
+                    <h3 class="news-headline">Nearly $1M in UCAP Funds Awarded to Institutions</h3>
+                    <p class="news-excerpt">
+                        USHE institutions were awarded a combined <em>$992,500</em> from the Department of Workforce Services 
+                        to support new UCAP projects during the 2014-2015 fiscal year.
+                    </p>
+                    <a href="https://ushe.edu/nearly-1m-in-ucap-funds-awarded-to-ushe-institutions/" class="news-link" target="_blank">
+                        Read Article →
+                    </a>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-source">
+                        <span class="source-icon">🏛️</span>
+                        <span class="source-name">USHE</span>
+                        <span class="source-date">Apr 2015</span>
+                    </div>
+                    <h3 class="news-headline">$3.45M in 2015 UCAP Grant Funding Announced</h3>
+                    <p class="news-excerpt">
+                        Grant kickoff event at Capitol Rotunda announcing funding for public colleges and universities. 
+                        Projects limited to <em>$200,000</em> with higher caps approved for consortium partnerships.
+                    </p>
+                    <a href="https://ushe.edu/utah-cluster-acceleration-partnership-announces-3-45m-in-2015-grant-funding-available/" class="news-link" target="_blank">
+                        Read Article →
+                    </a>
+                </article>
+            </div>
+
+            <!-- Program Legacy Note -->
+            <div class="quote-block" style="border-left-color: var(--color-accent);">
+                <p class="quote-text" style="font-style: normal;">
+                    <strong>The Impact:</strong> The UCAP program I helped secure funding for evolved into Utah's 
+                    "Talent Ready Utah" initiative, which has since distributed over $2.1 million in grants and 
+                    created capacity for over 5,800 individuals to earn industry-recognized credentials.
+                </p>
+                <p class="quote-attribution">
+                    Source: <a href="https://ushe.edu/governor-herbert-announces-2-1m-in-available-talent-ready-utah-grants/" target="_blank" style="color: var(--color-accent);">Governor Herbert's 2017 Announcement</a>
+                </p>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
