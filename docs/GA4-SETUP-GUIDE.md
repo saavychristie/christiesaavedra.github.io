@@ -24,18 +24,18 @@
 
 ## Step 2: Get Your Tracking Code
 
-After creating the stream, you'll see your **Measurement ID** (looks like `G-XXXXXXXXXX`).
+After creating the stream, you'll see your **Measurement ID** (looks like `G-Q6ZP76Y74Y`).
 
-Copy this code snippet (replace `G-XXXXXXXXXX` with your actual ID):
+Copy this code snippet (replace `G-Q6ZP76Y74Y` with your actual ID):
 
 ```html
 <!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q6ZP76Y74Y"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
+  gtag('config', 'G-Q6ZP76Y74Y');
 </script>
 <!-- End Google Analytics 4 -->
 ```
@@ -65,12 +65,12 @@ Add the tracking code to the `<head>` section of each HTML file:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- ADD GOOGLE ANALYTICS HERE (right after meta tags) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q6ZP76Y74Y"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'G-XXXXXXXXXX');
+      gtag('config', 'G-Q6ZP76Y74Y');
     </script>
     <!-- END GOOGLE ANALYTICS -->
     
@@ -210,7 +210,7 @@ Visit this link, then check **Realtime** in GA4 - you should see yourself!
 
 ## Quick Reference
 
-**Your Measurement ID:** `G-XXXXXXXXXX` (replace with actual)
+**Your Measurement ID:** `G-Q6ZP76Y74Y` (replace with actual)
 
 **UTM Parameter Format:**
 ```
