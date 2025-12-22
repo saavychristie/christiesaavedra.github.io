@@ -29,15 +29,16 @@ After creating the stream, you'll see your **Measurement ID** (looks like `G-TKJ
 Copy this code snippet (replace `G-TKJH0YKZT5` with your actual ID):
 
 ```html
-<!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TKJH0YKZT5"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-TKJH0YKZT5');
-</script>
-<!-- End Google Analytics 4 -->
+  <!-- Google Tag Manager (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKJH0YKZT5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-TKJH0YKZT5');
+  </script>
+  <!-- End Google Tag Manager -->
 ```
 
 ---
@@ -65,13 +66,16 @@ Add the tracking code to the `<head>` section of each HTML file:
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- ADD GOOGLE ANALYTICS HERE (right after meta tags) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKJH0YKZT5"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-TKJH0YKZT5');
-    </script>
+  <!-- Google Tag Manager (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKJH0YKZT5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-TKJH0YKZT5');
+  </script>
+  <!-- End Google Tag Manager -->
     <!-- END GOOGLE ANALYTICS -->
     
     <title>Christie Saavedra | Portfolio</title>
