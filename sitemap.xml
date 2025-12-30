@@ -1,104 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Main Portfolio -->
-  <url>
-    <loc>https://christiesaavedra.com/</loc>
-    <lastmod>2025-12-22</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
+  <!-- Core Pages -->
+  <url><loc>https://christiesaavedra.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://christiesaavedra.com/dashboard.html</loc><priority>0.9</priority></url>
+  
+  <!-- Role Landing Pages -->
+  <url><loc>https://christiesaavedra.com/ux-designer.html</loc><priority>0.8</priority></url>
+  <url><loc>https://christiesaavedra.com/instructional-design.html</loc><priority>0.8</priority></url>
+  <url><loc>https://christiesaavedra.com/healthcare.html</loc><priority>0.8</priority></url>
+  <url><loc>https://christiesaavedra.com/change-management.html</loc><priority>0.8</priority></url>
   
   <!-- Case Study Pages -->
-  <url>
-    <loc>https://christiesaavedra.com/dashboard.html</loc>
-    <lastmod>2025-12-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://christiesaavedra.com/xacteched-campaign.html</loc>
-    <lastmod>2025-12-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://christiesaavedra.com/arizona-esthetics.html</loc>
-    <lastmod>2025-12-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://christiesaavedra.com/palmview-lab.html</loc>
-    <lastmod>2025-12-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
+  <url><loc>https://christiesaavedra.com/xacteched-campaign.html</loc><priority>0.8</priority></url>
+  <url><loc>https://christiesaavedra.com/resolute-services.html</loc><priority>0.8</priority></url>
+  <url><loc>https://christiesaavedra.com/arizona-esthetics.html</loc><priority>0.8</priority></url>
+  <url><loc>https://christiesaavedra.com/palmview-lab.html</loc><priority>0.8</priority></url>
   
-  <!-- NEW: Role-Specific Landing Pages -->
-  <url>
-    <loc>https://christiesaavedra.com/ux-designer.html</loc>
-    <lastmod>2025-12-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://christiesaavedra.com/instructional-design.html</loc>
-    <lastmod>2025-12-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://christiesaavedra.com/healthcare.html</loc>
-    <lastmod>2025-12-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://christiesaavedra.com/change-management.html</loc>
-    <lastmod>2025-12-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
+  <!-- Printable Case Studies -->
+  <url><loc>https://christiesaavedra.com/xacteched-case-study.html</loc><priority>0.7</priority></url>
+  <url><loc>https://christiesaavedra.com/healthcare-dashboard-case-study.html</loc><priority>0.7</priority></url>
+  <url><loc>https://christiesaavedra.com/resolute-case-study.html</loc><priority>0.7</priority></url>
+  <url><loc>https://christiesaavedra.com/arizona-esthetics-case-study.html</loc><priority>0.7</priority></url>
   
-  <!-- NEW: In the News -->
-  <url>
-    <loc>https://christiesaavedra.com/in-the-news.html</loc>
-    <lastmod>2025-12-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <!-- Other Pages -->
+  <url><loc>https://christiesaavedra.com/in-the-news.html</loc><priority>0.7</priority></url>
+  <url><loc>https://christiesaavedra.com/christie-saavedra-resume.html</loc><priority>0.7</priority></url>
   
-  <!-- NEW: One-Page Case Studies (for PDF/sharing) -->
-  <url>
-    <loc>https://christiesaavedra.com/healthcare-dashboard-case-study.html</loc>
-    <lastmod>2025-12-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://christiesaavedra.com/xacteched-case-study.html</loc>
-    <lastmod>2025-12-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://christiesaavedra.com/resolute-case-study.html</loc>
-    <lastmod>2025-12-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://christiesaavedra.com/arizona-esthetics-case-study.html</loc>
-    <lastmod>2025-12-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <!-- NEW: Resume -->
-  <url>
-    <loc>https://christiesaavedra.com/christie-saavedra-resume.html</loc>
-    <lastmod>2025-12-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
+  <!-- Interactive Demos -->
+  <url><loc>https://christiesaavedra.com/codelab/</loc><priority>0.8</priority></url>
 </urlset>
