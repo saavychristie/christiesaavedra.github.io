@@ -1220,6 +1220,102 @@
       overflow: hidden;
     }
 
+    /* Contact Photo */
+    .contact-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      position: relative;
+      background: var(--text-gradient);
+      padding: 4px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .contact-photo:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 40px rgba(30, 64, 175, 0.3);
+    }
+
+    .contact-photo img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 15%;
+    }
+
+    .contact-photo-hint {
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 0.25rem 0.75rem;
+      border-radius: 1rem;
+      font-size: 0.65rem;
+      color: white;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .contact-photo:hover .contact-photo-hint {
+      opacity: 1;
+    }
+
+    /* Photo Lightbox */
+    .photo-lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.92);
+      z-index: 10001;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      cursor: pointer;
+    }
+
+    .photo-lightbox.active {
+      display: flex;
+    }
+
+    .photo-lightbox img {
+      max-width: 90%;
+      max-height: 90vh;
+      border-radius: 12px;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
     /* Gradient orbs in footer area */
     .contact::before {
       content: '';
@@ -2053,6 +2149,10 @@
     <!-- Contact -->
     <section class="contact" id="contact">
       <div class="contact-content">
+        <div class="contact-photo" onclick="openPhotoLightbox()">
+          <img src="images/Graduate%20Photo.jpg" alt="Christie Saavedra - UCF Graduate">
+          <span class="contact-photo-hint">Click to expand</span>
+        </div>
         <h2 class="contact-title">Let's Connect</h2>
         <p class="contact-subtitle">I'm always interested in discussing new opportunities.</p>
         
@@ -2143,11 +2243,18 @@
     </div>
   </div>
 
+  <!-- Photo Lightbox -->
+  <div class="photo-lightbox" id="photoLightbox" onclick="closePhotoLightbox(event)">
+    <button class="lightbox-close" onclick="closePhotoLightbox()">&times;</button>
+    <img src="images/Graduate%20Photo.jpg" alt="Christie Saavedra - UCF Graduate 2025">
+  </div>
+
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     const nav = document.getElementById('nav');
     const backToTop = document.getElementById('backToTop');
     const contactModal = document.getElementById('contactModal');
     const identityModal = document.getElementById('identityModal');
+    const photoLightbox = document.getElementById('photoLightbox');
     
     window.addEventListener('scroll', () => {
       if (window.scrollY > 50) {
@@ -2171,6 +2278,18 @@
     function closeContactModal(event) {
       if (!event || event.target === contactModal) {
         contactModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function openPhotoLightbox() {
+      photoLightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePhotoLightbox(event) {
+      if (!event || event.target === photoLightbox || event.target.classList.contains('lightbox-close')) {
+        photoLightbox.classList.remove('active');
         document.body.style.overflow = '';
       }
     }
@@ -2299,6 +2418,7 @@
       if (e.key === 'Escape') {
         closeContactModal();
         closeIdentityModal();
+        closePhotoLightbox();
       }
     });
   </script>
