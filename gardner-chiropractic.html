@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gardner Chiropractic | Christie Stephenson Saavedra</title>
+  <meta name="description" content="Community outreach and marketing case study - Co-founder role securing contracts and organizing community health events.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --color-bg-warm: #FDFCFA; --color-text: #1C1917; --color-text-secondary: #57534E; --font-display: 'DM Serif Display', Georgia, serif; --font-body: 'IBM Plex Sans', -apple-system, sans-serif; --max-width: 900px; --project-gradient: linear-gradient(135deg, #059669 0%, #10b981 100%); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--color-text); line-height: 1.7; background: var(--color-bg-warm); }
+    .page-wrapper { position: relative; background: linear-gradient(180deg, #FDFCFA 0%, #FAF8F5 50%, #FDFCFA 100%); min-height: 100vh; }
+    .nav, .hero, .content, .footer { position: relative; z-index: 1; }
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; }
+    .nav::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--project-gradient); z-index: 1; }
+    .nav-bg { background: rgba(253, 252, 250, 0.92); backdrop-filter: blur(12px); padding: 1rem 2rem; }
+    .nav.scrolled .nav-bg { box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06); }
+    .nav-container { max-width: var(--max-width); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .nav-back { display: flex; align-items: center; gap: 0.5rem; color: var(--color-text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+    .nav-back:hover { color: #059669; }
+    .nav-back svg { width: 18px; height: 18px; }
+    .nav-logo { font-family: var(--font-display); font-size: 1.1rem; color: var(--color-text); text-decoration: none; }
+    .hero { padding: 8rem 2rem 4rem; text-align: center; }
+    .hero-container { max-width: var(--max-width); margin: 0 auto; }
+    .hero-meta { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .hero-role { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: white; background: var(--project-gradient); padding: 0.5rem 1rem; border-radius: 2rem; }
+    .hero-org { font-size: 0.85rem; color: var(--color-text-secondary); }
+    .hero-title { font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 400; line-height: 1.15; margin-bottom: 1.5rem; }
+    .hero-summary { font-size: 1.15rem; color: var(--color-text-secondary); max-width: 700px; margin: 0 auto 2rem; }
+    .results-banner { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+    .result-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-radius: 12px; padding: 1.25rem 1.5rem; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 4px 20px rgba(0,0,0,0.03); text-align: center; min-width: 140px; position: relative; overflow: hidden; }
+    .result-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--project-gradient); }
+    .result-number { font-family: var(--font-display); font-size: 1.75rem; background: var(--project-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .result-label { font-size: 0.75rem; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+    .content { padding: 3rem 2rem 5rem; }
+    .content-container { max-width: var(--max-width); margin: 0 auto; }
+    .content-section { margin-bottom: 3rem; }
+    .content-title { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1.25rem; }
+    .glass-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-radius: 16px; padding: 2rem; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 4px 20px rgba(0,0,0,0.03); position: relative; overflow: hidden; }
+    .glass-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--project-gradient); }
+    .content-text { font-size: 1rem; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 1rem; }
+    .content-text:last-child { margin-bottom: 0; }
+    .content-list { list-style: none; margin: 1rem 0; }
+    .content-list li { padding: 0.5rem 0 0.5rem 1.5rem; position: relative; color: var(--color-text-secondary); }
+    .content-list li::before { content: ''; position: absolute; left: 0; top: 0.9rem; width: 8px; height: 8px; border-radius: 50%; background: var(--project-gradient); }
+    .pattern-box { background: rgba(5,150,105,0.08); border-left: 4px solid #059669; border-radius: 0 12px 12px 0; padding: 1.5rem; margin: 2rem 0; }
+    .pattern-box p { margin-bottom: 0.5rem; color: var(--color-text-secondary); }
+    .pattern-box a { color: #059669; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+    .tag { font-size: 0.75rem; font-weight: 500; padding: 0.4rem 0.8rem; border-radius: 2rem; background: rgba(255,255,255,0.8); color: var(--color-text-secondary); border: 1px solid rgba(0,0,0,0.06); }
+    .cta-section { text-align: center; padding: 2rem 0; }
+    .btn-cta { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--project-gradient); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; transition: all 0.2s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+    .footer { background: linear-gradient(180deg, transparent 0%, rgba(28,25,23,0.1) 30%, rgba(28,25,23,0.6) 60%, #1C1917 85%, #1C1917 100%); color: white; padding: 8rem 2rem 2rem; text-align: center; margin-top: -2rem; position: relative; }
+    .footer::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 200px; background: radial-gradient(ellipse at 20% 100%, rgba(5,150,105,0.15) 0%, transparent 50%), radial-gradient(ellipse at 80% 100%, rgba(16,185,129,0.15) 0%, transparent 50%); pointer-events: none; }
+    .footer::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--project-gradient); }
+    .footer-content { position: relative; z-index: 1; max-width: var(--max-width); margin: 0 auto; }
+    .footer-nav { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .footer-nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; }
+    .footer-nav a:hover { color: white; }
+    .footer-copyright { color: rgba(255,255,255,0.5); font-size: 0.85rem; }
+    .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 48px; height: 48px; border-radius: 50%; background: var(--project-gradient); color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; z-index: 999; opacity: 0; transform: translateY(20px); }
+    .back-to-top.visible { opacity: 1; transform: translateY(0); }
+    .back-to-top:hover { transform: translateY(-3px); }
+    @media print { .nav, .back-to-top { display: none !important; } .hero { padding-top: 2rem; } .footer { background: #1C1917; padding-top: 2rem; } body { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+    @media (max-width: 768px) { .hero { padding: 7rem 1.5rem 3rem; } .hero-title { font-size: 1.75rem; } .content { padding: 2rem 1.5rem 4rem; } .glass-card { padding: 1.5rem; } }
+    @media (max-width: 500px) { .hero-meta { flex-direction: column; gap: 0.5rem; } .results-banner { display: grid; grid-template-columns: repeat(2, 1fr); } .footer-nav { flex-direction: column; gap: 1rem; } }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <nav class="nav" id="nav"><div class="nav-bg"><div class="nav-container"><a href="index.html" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>Back to Portfolio</a><a href="index.html" class="nav-logo">Christie Stephenson Saavedra</a></div></div></nav>
+
+    <section class="hero">
+      <div class="hero-container">
+        <div class="hero-meta">
+          <span class="hero-role">Co-founder / Marketing</span>
+          <span class="hero-org">Gardner Chiropractic</span>
+        </div>
+        <h1 class="hero-title">Community Outreach & Marketing</h1>
+        <p class="hero-summary">Built community partnerships and secured business contracts through strategic outreach, event planning, and relationship building.</p>
+        <div class="results-banner">
+          <div class="result-card"><div class="result-number">1</div><div class="result-label">Trucking Contract</div></div>
+          <div class="result-card"><div class="result-number">Pro</div><div class="result-label">Athlete Event</div></div>
+          <div class="result-card"><div class="result-number">Sideline</div><div class="result-label">Partnership</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="content-container">
+
+        <div class="content-section">
+          <h2 class="content-title">The Challenge</h2>
+          <div class="glass-card">
+            <p class="content-text">[PLACEHOLDER: Describe the challenge of establishing a new chiropractic practice and building community presence. What obstacles did you face? What was the competitive landscape like?]</p>
+            <p class="content-text">[PLACEHOLDER: Add details about the initial situation and goals for the practice.]</p>
+          </div>
+        </div>
+
+        <div class="content-section">
+          <h2 class="content-title">My Role</h2>
+          <div class="glass-card">
+            <p class="content-text">As Co-founder with responsibility for Marketing and Community Outreach, I was responsible for:</p>
+            <ul class="content-list">
+              <li>Developing and executing marketing strategies</li>
+              <li>Building relationships with local businesses and organizations</li>
+              <li>Planning and organizing community events</li>
+              <li>Securing business contracts and partnerships</li>
+              <li>Establishing the practice's presence in the local sports community</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="content-section">
+          <h2 class="content-title">Key Accomplishments</h2>
+          
+          <div class="glass-card" style="margin-bottom: 1.5rem;">
+            <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1rem;">Trucking Company Contract</h3>
+            <p class="content-text">[PLACEHOLDER: Describe how you identified the opportunity with the trucking company. What was your approach? How did you make the pitch? What were the terms of the contract?]</p>
+            <p class="content-text">[PLACEHOLDER: Add details about the impact of this contract on the practice.]</p>
+          </div>
+
+          <div class="glass-card" style="margin-bottom: 1.5rem;">
+            <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1rem;">Community Day Event</h3>
+            <p class="content-text">[PLACEHOLDER: Describe the Community Day event you organized. Include details about:</p>
+            <ul class="content-list">
+              <li>The professional baseball player who attended (what team? what was their connection to chiropractic care?)</li>
+              <li>Activities for kids and families</li>
+              <li>How you promoted the event</li>
+              <li>Attendance and community response</li>
+              <li>Long-term impact on the practice's reputation</li>
+            </ul>
+          </div>
+
+          <div class="glass-card">
+            <h3 style="font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1rem;">Football Sideline Partnership</h3>
+            <p class="content-text">[PLACEHOLDER: Describe how you established the partnership for the chiropractor to serve as the town's football sideline chiropractor. Include:</p>
+            <ul class="content-list">
+              <li>How you approached the school/athletic department</li>
+              <li>What the arrangement involved</li>
+              <li>Benefits to the athletes and the practice</li>
+              <li>How this built credibility in the community</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pattern-box">
+          <p><strong>Pattern Recognition:</strong> This project demonstrates my approach to community building: identify key stakeholders, create value-driven partnerships, and leverage events to build authentic relationships. The same methodology I apply to organizational change management.</p>
+        </div>
+
+        <div class="content-section">
+          <h2 class="content-title">Results & Impact</h2>
+          <div class="glass-card">
+            <p class="content-text">[PLACEHOLDER: Summarize the overall impact of your marketing and outreach efforts. Include metrics if available:</p>
+            <ul class="content-list">
+              <li>Growth in patient base</li>
+              <li>Revenue from trucking contract</li>
+              <li>Community awareness and reputation</li>
+              <li>Any ongoing partnerships that resulted</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="content-section">
+          <h2 class="content-title">Skills Demonstrated</h2>
+          <div class="tags">
+            <span class="tag">Business Development</span>
+            <span class="tag">Community Outreach</span>
+            <span class="tag">Event Planning</span>
+            <span class="tag">Partnership Building</span>
+            <span class="tag">Marketing Strategy</span>
+            <span class="tag">Relationship Management</span>
+            <span class="tag">Contract Negotiation</span>
+            <span class="tag">Brand Building</span>
+          </div>
+        </div>
+
+        <div class="cta-section">
+          <a href="index.html#work" class="btn-cta">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            View More Case Studies
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <nav class="footer-nav">
+          <a href="index.html">Home</a>
+          <a href="index.html#work">Case Studies</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+        <p class="footer-copyright">© 2025 Christie Stephenson Saavedra. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <script>
+    const nav = document.getElementById('nav');
+    const backToTop = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+      
+      if (window.scrollY > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+  </script>
+</body>
+</html>

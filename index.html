@@ -48,7 +48,7 @@
       font-family: var(--font-body);
       color: var(--color-text);
       line-height: 1.6;
-      background: var(transparent);
+      background: transparent;
     }
 
     /* Page Wrapper with Seamless Background */
@@ -242,6 +242,8 @@
     .hero {
       padding: 9rem 2rem 6rem;
       text-align: center;
+      border: none;
+      outline: none;
     }
 
     .hero-container {
@@ -350,6 +352,7 @@
       justify-content: center;
       gap: 1.5rem;
       flex-wrap: wrap;
+      margin-bottom: 2rem;
     }
 
     .stat-item {
@@ -425,7 +428,7 @@
        ============================================ */
     .methodology-section {
       padding: 3rem 2rem;
-      background: var(transparent);
+      background: transparent;
     }
 
     .methodology-container {
@@ -510,7 +513,10 @@
        ============================================ */
     .identity-section {
       padding: 3rem 2rem 4rem;
-      background: var(transparent);
+      background: transparent;
+      border: none;
+      outline: none;
+      margin-top: -1px;
     }
 
     .identity-container {
@@ -649,6 +655,112 @@
       font-size: 0.8rem;
       color: var(--color-text-secondary);
       line-height: 1.5;
+    }
+
+    /* Clickable identity cards */
+    .identity-card.clickable {
+      cursor: pointer;
+    }
+
+    .identity-card.clickable::after {
+      content: 'Click to learn more';
+      position: absolute;
+      bottom: 0.5rem;
+      left: 0;
+      right: 0;
+      font-size: 0.65rem;
+      color: var(--color-accent);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .identity-card.clickable:hover::after {
+      opacity: 1;
+    }
+
+    /* Identity Modal Styles */
+    .identity-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .identity-modal.active {
+      display: flex;
+    }
+
+    .identity-modal-content {
+      background: white;
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 500px;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+    }
+
+    .identity-modal-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(135deg, #1E40AF 0%, #0D9488 100%);
+      border-radius: 20px 20px 0 0;
+    }
+
+    .identity-modal-icon {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .identity-modal-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--color-text);
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .identity-modal-body {
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .identity-modal-body p {
+      margin-bottom: 1rem;
+    }
+
+    .identity-modal-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-accent);
+      text-decoration: none;
+      font-weight: 500;
+      transition: gap 0.2s ease;
+    }
+
+    .identity-modal-link:hover {
+      gap: 0.75rem;
+    }
+
+    .identity-modal-link svg {
+      width: 16px;
+      height: 16px;
     }
 
 
@@ -1440,6 +1552,7 @@
         <div class="nav-container">
           <a href="#" class="nav-logo">Christie Stephenson Saavedra</a>
           <ul class="nav-links">
+            <li><a href="#core-identity">Core</a></li>
             <li><a href="#work">Work</a></li>
             <li><a href="#testimonials">Testimonials</a></li>
             <li><a href="#skills">Skills</a></li>
@@ -1451,8 +1564,8 @@
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             </a>
             <div class="nav-resume">
-              <a href="assets/Resume_Christie_Saavedra.pdf" class="btn btn-outline" target="_blank">View Resume</a>
-              <a href="assets/Resume_Christie_Saavedra.pdf" class="btn btn-solid" download>Download Resume</a>
+              <a href="images/Resume_Christie_Saavedra.pdf" class="btn btn-outline" target="_blank">View Resume</a>
+              <a href="images/Resume_Christie_Saavedra.pdf" class="btn btn-solid" download>Download Resume</a>
             </div>
           </div>
         </div>
@@ -1513,7 +1626,6 @@
 <p class="hero-closer">
         I dig in, ramp up quickly, and keep building. A growth mindset.
       </p>
-  </section>
 
  <!-- ============================================
        DOCUMENTED RESULTS
@@ -1560,7 +1672,7 @@
   <!-- ============================================
        CORE IDENTITY CARDS
        ============================================ -->
-  <section class="identity-section">
+  <section class="identity-section" id="core-identity">
     <div class="identity-container">
       <div class="identity-header">
         <div class="identity-label">What I Bring</div>
@@ -1572,32 +1684,32 @@
       <div class="card-group philosophy">
         <h3 class="card-group-title philosophy">Philosophy & Mindset</h3>
         <div class="identity-grid">
-          <div class="identity-card">
+          <div class="identity-card clickable" onclick="openIdentityModal('repeatable-process')">
             <div class="identity-icon">🔄</div>
             <h3 class="identity-card-title">Repeatable Process</h3>
             <p class="identity-card-desc">Immerse → Identify → Ideate → Collaborate → Build. Same methodology, any domain.</p>
           </div>
-          <div class="identity-card">
+          <div class="identity-card clickable" onclick="openIdentityModal('empathy-driven')">
             <div class="identity-icon">💡</div>
             <h3 class="identity-card-title">Empathy-Driven</h3>
             <p class="identity-card-desc">People first—performance follows.</p>
           </div>
-          <div class="identity-card">
+          <div class="identity-card clickable" onclick="openIdentityModal('infinite-mindset')">
             <div class="identity-icon">♾️</div>
             <h3 class="identity-card-title">Infinite Mindset</h3>
             <p class="identity-card-desc">Document and distribute—never hoard. I build for the long game.</p>
           </div>
-          <div class="identity-card">
+          <div class="identity-card clickable" onclick="openIdentityModal('circle-of-safety')">
             <div class="identity-icon">🛡️</div>
             <h3 class="identity-card-title">Circle of Safety</h3>
             <p class="identity-card-desc">I build environments where people feel safe to take initiative. "What's next?"—not "Who failed?"</p>
           </div>
-          <div class="identity-card">
+          <div class="identity-card clickable" onclick="openIdentityModal('accountability-culture')">
             <div class="identity-icon">🤝</div>
             <h3 class="identity-card-title">Accountability Culture</h3>
             <p class="identity-card-desc">Accountable to each other, not just upward. "What did we learn?" builds trust.</p>
           </div>
-          <div class="identity-card">
+          <div class="identity-card clickable" onclick="openIdentityModal('freedom-to-create')">
             <div class="identity-icon">🚀</div>
             <h3 class="identity-card-title">Freedom to Create</h3>
             <p class="identity-card-desc">Automate monotony so teams can dream and build.</p>
@@ -1609,32 +1721,32 @@
       <div class="card-group behaviors" style="margin-top: 2rem;">
         <h3 class="card-group-title behaviors">Core Behaviors</h3>
         <div class="identity-grid">
-          <div class="identity-card">
+          <div class="identity-card clickable" onclick="openIdentityModal('pattern-recognition')">
             <div class="identity-icon">🔍</div>
             <h3 class="identity-card-title">Pattern Recognition</h3>
             <p class="identity-card-desc">I see gaps others miss and build solutions before being asked.</p>
           </div>
-          <div class="identity-card">
+          <div class="identity-card clickable" onclick="openIdentityModal('abundance-mindset')">
             <div class="identity-icon">📤</div>
             <h3 class="identity-card-title">Abundance Mindset</h3>
             <p class="identity-card-desc">I share everything I learn so others make better decisions.</p>
           </div>
-          <div class="identity-card">
+          <div class="identity-card clickable" onclick="openIdentityModal('curiosity-first')">
             <div class="identity-icon">💬</div>
             <h3 class="identity-card-title">Curiosity First</h3>
             <p class="identity-card-desc">I ask "help me understand" before I act.</p>
           </div>
-          <div class="identity-card">
+          <div class="identity-card clickable" onclick="openIdentityModal('courageous-honesty')">
             <div class="identity-icon">🎯</div>
             <h3 class="identity-card-title">Courageous Honesty</h3>
             <p class="identity-card-desc">I call out what's broken—even when it's uncomfortable.</p>
           </div>
-          <div class="identity-card">
+          <div class="identity-card clickable" onclick="openIdentityModal('systems-thinking')">
             <div class="identity-icon">⚙️</div>
             <h3 class="identity-card-title">Systems Thinking</h3>
             <p class="identity-card-desc">I build systems so problems don't happen again.</p>
           </div>
-          <div class="identity-card">
+          <div class="identity-card clickable" onclick="openIdentityModal('integrity')">
             <div class="identity-icon">⚖️</div>
             <h3 class="identity-card-title">Integrity</h3>
             <p class="identity-card-desc">I show up the same whether anyone is watching or not.</p>
@@ -1721,6 +1833,20 @@
               <span class="result-tag">Knowledge Base</span>
             </div>
             <a href="palmview-lab.html" class="case-study-link">View Case Study <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+
+          <div class="case-study-card" data-project="gardner" onclick="window.location='gardner-chiropractic.html'">
+            <div class="case-study-meta">
+              <span class="case-study-role">Co-founder / Marketing</span>
+              <span class="case-study-org">· Gardner Chiropractic</span>
+            </div>
+            <h3 class="case-study-title">Community Outreach & Marketing</h3>
+            <p class="case-study-desc">Secured a trucking company contract and organized community events featuring pro athletes. Established sideline chiropractor partnership with local football program.</p>
+            <div class="case-study-results">
+              <span class="result-tag">Trucking Contract</span>
+              <span class="result-tag">Community Events</span>
+            </div>
+            <a href="gardner-chiropractic.html" class="case-study-link">View Case Study <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
         </div>
       </div>
@@ -1892,7 +2018,7 @@
     <footer class="footer">
       <div class="footer-content">
         <div style="margin-bottom: 0.5rem;">© 2025 Christie Stephenson Saavedra. All rights reserved.</div>
-        <div style="font-size: 0.75rem; color: var(--color-text-secondary); opacity: 0.7;">Original code, design, UI/UX, and content. All demos and case studies are original portfolio work.</div>
+        <div style="font-size: 0.75rem; color: rgba(255, 255, 255, 0.6);">Original code, design, UI/UX, and content. All demos and case studies are original portfolio work.</div>
       </div>
     </footer>
 
@@ -1951,10 +2077,25 @@
     </div>
   </div>
 
+  <!-- Identity Modals -->
+  <div class="identity-modal" id="identityModal" onclick="closeIdentityModal(event)">
+    <div class="identity-modal-content" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeIdentityModal()">&times;</button>
+      <div class="identity-modal-icon" id="modalIcon"></div>
+      <h3 class="identity-modal-title" id="modalTitle"></h3>
+      <div class="identity-modal-body" id="modalBody"></div>
+      <a href="#" class="identity-modal-link" id="modalLink" target="_blank">
+        Learn more about this concept
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
+      </a>
+    </div>
+  </div>
+
   <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     const nav = document.getElementById('nav');
     const backToTop = document.getElementById('backToTop');
     const contactModal = document.getElementById('contactModal');
+    const identityModal = document.getElementById('identityModal');
     
     window.addEventListener('scroll', () => {
       if (window.scrollY > 50) {
@@ -1978,4 +2119,136 @@
     function closeContactModal(event) {
       if (!event || event.target === contactModal) {
         contactModal.classList.remove('active');
-        document.body.style.overf
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Identity Modal Data - PLACEHOLDER TEXT - Update these with your content
+    const identityData = {
+      'repeatable-process': {
+        icon: '🔄',
+        title: 'Repeatable Process',
+        body: `<p>My five-step methodology—Immerse, Identify, Ideate, Collaborate, Build—is the foundation of everything I do. It's not just a framework; it's how I approach any new challenge.</p>
+        <p><strong>Why it matters:</strong> This systematic approach means I can ramp up quickly in any domain, whether it's healthcare operations, workforce development, or educational technology.</p>
+        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
+        link: 'https://example.com/repeatable-process'
+      },
+      'empathy-driven': {
+        icon: '💡',
+        title: 'Empathy-Driven',
+        body: `<p>I believe that understanding people—their fears, motivations, and challenges—is the key to successful change management and instructional design.</p>
+        <p><strong>In practice:</strong> I start every project by listening. What are people actually struggling with? What do they need to succeed?</p>
+        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
+        link: 'https://example.com/empathy-driven'
+      },
+      'infinite-mindset': {
+        icon: '♾️',
+        title: 'Infinite Mindset',
+        body: `<p>Inspired by Simon Sinek's concept, I focus on building sustainable systems rather than short-term wins. I document everything and share knowledge freely.</p>
+        <p><strong>The philosophy:</strong> When I leave a role, the systems I built should continue to thrive. Knowledge hoarding is the enemy of organizational growth.</p>
+        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
+        link: 'https://simonsinek.com/books/the-infinite-game/'
+      },
+      'circle-of-safety': {
+        icon: '🛡️',
+        title: 'Circle of Safety',
+        body: `<p>Based on Simon Sinek's leadership principles, I create environments where people feel safe to take risks, make mistakes, and ask questions.</p>
+        <p><strong>The result:</strong> Teams that ask "What's next?" instead of "Who failed?" are teams that innovate and grow.</p>
+        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
+        link: 'https://simonsinek.com/books/leaders-eat-last/'
+      },
+      'accountability-culture': {
+        icon: '🤝',
+        title: 'Accountability Culture',
+        body: `<p>True accountability isn't about blame—it's about ownership. I foster cultures where teams hold each other accountable, not just report upward.</p>
+        <p><strong>Key question:</strong> "What did we learn?" builds trust far more effectively than "What went wrong?"</p>
+        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
+        link: 'https://example.com/accountability-culture'
+      },
+      'freedom-to-create': {
+        icon: '🚀',
+        title: 'Freedom to Create',
+        body: `<p>My mission is to automate the mundane so teams can focus on meaningful work. When people aren't drowning in repetitive tasks, they can dream and build.</p>
+        <p><strong>The goal:</strong> Build systems that handle the routine, freeing human creativity for innovation.</p>
+        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
+        link: 'https://example.com/freedom-to-create'
+      },
+      'pattern-recognition': {
+        icon: '🔍',
+        title: 'Pattern Recognition',
+        body: `<p>I have a knack for seeing gaps and inefficiencies that others miss. More importantly, I build solutions before being asked.</p>
+        <p><strong>Examples:</strong> From healthcare billing automation to workforce development programs, I identify opportunities and act on them.</p>
+        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
+        link: 'https://example.com/pattern-recognition'
+      },
+      'abundance-mindset': {
+        icon: '📤',
+        title: 'Abundance Mindset',
+        body: `<p>I share everything I learn because I believe knowledge grows when it's distributed. My success doesn't come from hoarding information.</p>
+        <p><strong>In action:</strong> Documentation, training, knowledge bases—I build resources that help others succeed.</p>
+        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
+        link: 'https://example.com/abundance-mindset'
+      },
+      'curiosity-first': {
+        icon: '💬',
+        title: 'Curiosity First',
+        body: `<p>"Help me understand" is my default response. Before making assumptions or taking action, I seek to truly understand the situation.</p>
+        <p><strong>The power:</strong> Curiosity defuses conflict, uncovers hidden problems, and builds genuine connections.</p>
+        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
+        link: 'https://example.com/curiosity-first'
+      },
+      'courageous-honesty': {
+        icon: '🎯',
+        title: 'Courageous Honesty',
+        body: `<p>I speak up when something is broken, even when it's uncomfortable. Real progress requires honest conversations about what isn't working.</p>
+        <p><strong>The balance:</strong> Honesty delivered with empathy and respect is transformative, not destructive.</p>
+        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
+        link: 'https://example.com/courageous-honesty'
+      },
+      'systems-thinking': {
+        icon: '⚙️',
+        title: 'Systems Thinking',
+        body: `<p>I don't just solve problems—I build systems so those problems don't recur. The goal is sustainable improvement, not endless firefighting.</p>
+        <p><strong>Philosophy:</strong> Every solution should include documentation, training, and processes that outlast any individual.</p>
+        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
+        link: 'https://example.com/systems-thinking'
+      },
+      'integrity': {
+        icon: '⚖️',
+        title: 'Integrity',
+        body: `<p>I show up the same whether anyone is watching or not. My character isn't a performance—it's who I am.</p>
+        <p><strong>The foundation:</strong> Trust is built through consistent behavior over time, in every interaction, with every person.</p>
+        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
+        link: 'https://example.com/integrity'
+      }
+    };
+
+    function openIdentityModal(cardId) {
+      const data = identityData[cardId];
+      if (data) {
+        document.getElementById('modalIcon').textContent = data.icon;
+        document.getElementById('modalTitle').textContent = data.title;
+        document.getElementById('modalBody').innerHTML = data.body;
+        document.getElementById('modalLink').href = data.link;
+        identityModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeIdentityModal(event) {
+      if (!event || event.target === identityModal) {
+        identityModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    }
+
+    // Close modals with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeContactModal();
+        closeIdentityModal();
+      }
+    });
+  </script>
+</body>
+</html>
