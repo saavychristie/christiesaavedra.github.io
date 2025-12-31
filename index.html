@@ -1239,12 +1239,20 @@
     }
 
     .contact-photo img {
-      width: 100%;
-      height: 100%;
+      display: none;
+    }
+
+    .contact-photo::after {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
       border-radius: 50%;
-      object-fit: cover;
-      object-position: center 18%;
-      transform: scale(1.4);
+      background-image: url('images/Graduate%20Photo.jpg');
+      background-size: 250%;
+      background-position: center 15%;
     }
 
     .contact-photo-hint {
