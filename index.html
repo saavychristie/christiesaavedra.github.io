@@ -269,8 +269,20 @@
       font-size: clamp(2.25rem, 5vw, 3.25rem);
       font-weight: 400;
       line-height: 1.15;
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.75rem;
       color: var(--color-text);
+    }
+
+    .hero-title-followup {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      font-weight: 400;
+      line-height: 1.3;
+      margin-bottom: 2rem;
+      color: var(--color-text);
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
     }
  
     /* Body paragraphs */
@@ -286,13 +298,19 @@
     }
 
     .hero-body .highlight-blue {
-      color: #1E40AF;
-      font-weight: 500;
+      background: linear-gradient(90deg, #1E40AF 0%, #3B82F6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 600;
     }
 
     .hero-body .highlight-teal {
-      color: #0D9488;
-      font-weight: 500;
+      background: linear-gradient(90deg, #0D9488 0%, #14B8A6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 600;
     }
 
     .hero-body-strong {
@@ -352,6 +370,7 @@
       justify-content: center;
       gap: 1.5rem;
       flex-wrap: wrap;
+      margin-top: 2.5rem;
       margin-bottom: 2rem;
     }
 
@@ -371,6 +390,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding: 1rem;
       margin: 0 auto 0.75rem;
       transition: all 0.3s ease;
       position: relative;
@@ -481,11 +501,11 @@
       height: 3px;
     }
 
-    .method-step:nth-child(1)::before { background: #1E40AF; }
-    .method-step:nth-child(3)::before { background: #3B82F6; }
-    .method-step:nth-child(5)::before { background: #0D9488; }
-    .method-step:nth-child(7)::before { background: #14B8A6; }
-    .method-step:nth-child(9)::before { background: #059669; }
+    .method-step:nth-child(1)::before { background: linear-gradient(90deg, #1E40AF 0%, #3B82F6 100%); }
+    .method-step:nth-child(3)::before { background: linear-gradient(90deg, #3B82F6 0%, #6366F1 100%); }
+    .method-step:nth-child(5)::before { background: linear-gradient(90deg, #6366F1 0%, #0D9488 100%); }
+    .method-step:nth-child(7)::before { background: linear-gradient(90deg, #0D9488 0%, #059669 100%); }
+    .method-step:nth-child(9)::before { background: linear-gradient(90deg, #059669 0%, #EAB308 100%); }
 
     .method-step-title {
       font-family: var(--font-display);
@@ -614,7 +634,7 @@
       left: 0;
       right: 0;
       height: 3px;
-      background: var(--text-gradient);
+      /* Color set per-card below */
     }
 
     .identity-icon {
@@ -628,21 +648,43 @@
       font-size: 1.5rem;
     }
 
-    /* Philosophy cards */
+    /* Philosophy cards - icon backgrounds AND matching top bars */
     .philosophy .identity-card:nth-child(1) .identity-icon { background: linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%); }
+    .philosophy .identity-card:nth-child(1)::before { background: linear-gradient(90deg, #1E40AF 0%, #3B82F6 100%); }
+    
     .philosophy .identity-card:nth-child(2) .identity-icon { background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%); }
+    .philosophy .identity-card:nth-child(2)::before { background: linear-gradient(90deg, #F59E0B 0%, #FBBF24 100%); }
+    
     .philosophy .identity-card:nth-child(3) .identity-icon { background: linear-gradient(135deg, #E0E7FF 0%, #C7D2FE 100%); }
+    .philosophy .identity-card:nth-child(3)::before { background: linear-gradient(90deg, #6366F1 0%, #818CF8 100%); }
+    
     .philosophy .identity-card:nth-child(4) .identity-icon { background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%); }
+    .philosophy .identity-card:nth-child(4)::before { background: linear-gradient(90deg, #059669 0%, #10B981 100%); }
+    
     .philosophy .identity-card:nth-child(5) .identity-icon { background: linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%); }
+    .philosophy .identity-card:nth-child(5)::before { background: linear-gradient(90deg, #DB2777 0%, #EC4899 100%); }
+    
     .philosophy .identity-card:nth-child(6) .identity-icon { background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%); }
+    .philosophy .identity-card:nth-child(6)::before { background: linear-gradient(90deg, #DC2626 0%, #EF4444 100%); }
 
-    /* Behavior cards */
+    /* Behavior cards - icon backgrounds AND matching top bars */
     .behaviors .identity-card:nth-child(1) .identity-icon { background: linear-gradient(135deg, #CCFBF1 0%, #99F6E4 100%); }
+    .behaviors .identity-card:nth-child(1)::before { background: linear-gradient(90deg, #0D9488 0%, #14B8A6 100%); }
+    
     .behaviors .identity-card:nth-child(2) .identity-icon { background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%); }
+    .behaviors .identity-card:nth-child(2)::before { background: linear-gradient(90deg, #059669 0%, #10B981 100%); }
+    
     .behaviors .identity-card:nth-child(3) .identity-icon { background: linear-gradient(135deg, #CFFAFE 0%, #A5F3FC 100%); }
+    .behaviors .identity-card:nth-child(3)::before { background: linear-gradient(90deg, #0891B2 0%, #06B6D4 100%); }
+    
     .behaviors .identity-card:nth-child(4) .identity-icon { background: linear-gradient(135deg, #FEF9C3 0%, #FEF08A 100%); }
+    .behaviors .identity-card:nth-child(4)::before { background: linear-gradient(90deg, #CA8A04 0%, #EAB308 100%); }
+    
     .behaviors .identity-card:nth-child(5) .identity-icon { background: linear-gradient(135deg, #E0E7FF 0%, #C7D2FE 100%); }
+    .behaviors .identity-card:nth-child(5)::before { background: linear-gradient(90deg, #4F46E5 0%, #6366F1 100%); }
+    
     .behaviors .identity-card:nth-child(6) .identity-icon { background: linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%); }
+    .behaviors .identity-card:nth-child(6)::before { background: linear-gradient(90deg, #7C3AED 0%, #8B5CF6 100%); }
 
     .identity-card-title {
       font-family: var(--font-display);
@@ -806,7 +848,7 @@
     /* ==================== CASE STUDIES ==================== */
     .case-studies-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
       gap: 1.5rem;
     }
 
@@ -875,6 +917,7 @@
     .case-study-org {
       font-size: 0.75rem;
       color: var(--color-text-secondary);
+      white-space: nowrap;
     }
 
     .case-study-title {
@@ -982,13 +1025,13 @@
     /* Rotating colors for testimonials */
     .testimonial-card:nth-child(1)::before { background: linear-gradient(180deg, #1E40AF 0%, #3b82f6 100%); }
     .testimonial-card:nth-child(2)::before { background: linear-gradient(180deg, #059669 0%, #10b981 100%); }
-    .testimonial-card:nth-child(3)::before { background: linear-gradient(180deg, #6366f1 0%, #8b5cf6 100%); }
-    .testimonial-card:nth-child(4)::before { background: linear-gradient(180deg, #0891b2 0%, #06b6d4 100%); }
-    .testimonial-card:nth-child(5)::before { background: linear-gradient(180deg, #dc2626 0%, #f97316 100%); }
-    .testimonial-card:nth-child(6)::before { background: linear-gradient(180deg, #7c3aed 0%, #a78bfa 100%); }
-    .testimonial-card:nth-child(7)::before { background: linear-gradient(180deg, #0d9488 0%, #2dd4bf 100%); }
-    .testimonial-card:nth-child(8)::before { background: linear-gradient(180deg, #1E40AF 0%, #0D9488 100%); }
-    .testimonial-card:nth-child(9)::before { background: linear-gradient(180deg, #be185d 0%, #ec4899 100%); }
+    .testimonial-card:nth-child(3)::before { background: linear-gradient(180deg, #7c3aed 0%, #a78bfa 100%); }
+    .testimonial-card:nth-child(4)::before { background: linear-gradient(180deg, #ca8a04 0%, #eab308 100%); }
+    .testimonial-card:nth-child(5)::before { background: linear-gradient(180deg, #0891b2 0%, #06b6d4 100%); }
+    .testimonial-card:nth-child(6)::before { background: linear-gradient(180deg, #dc2626 0%, #ef4444 100%); }
+    .testimonial-card:nth-child(7)::before { background: linear-gradient(180deg, #0d9488 0%, #14b8a6 100%); }
+    .testimonial-card:nth-child(8)::before { background: linear-gradient(180deg, #d97706 0%, #f59e0b 100%); }
+    .testimonial-card:nth-child(9)::before { background: linear-gradient(180deg, #db2777 0%, #ec4899 100%); }
 
     .testimonial-card:hover {
       background: rgba(255, 255, 255, 0.9);
@@ -1124,10 +1167,10 @@
       background: var(--edu-gradient);
     }
 
-    .education-card:nth-child(1) { --edu-gradient: linear-gradient(90deg, #c8a415 0%, #fbbf24 100%); } /* UCF Gold */
-    .education-card:nth-child(2) { --edu-gradient: linear-gradient(90deg, #c8a415 0%, #fbbf24 100%); } /* UCF Gold */
-    .education-card:nth-child(3) { --edu-gradient: linear-gradient(90deg, #b3a369 0%, #003057 100%); } /* GT Navy/Gold */
-    .education-card:nth-child(4) { --edu-gradient: linear-gradient(90deg, #1E40AF 0%, #0D9488 100%); } /* Default gradient */
+    .education-card:nth-child(1) { --edu-gradient: linear-gradient(90deg, #000000 0%, #FFC904 100%); } /* UCF Black to Gold */
+    .education-card:nth-child(2) { --edu-gradient: linear-gradient(90deg, #FFC904 0%, #000000 100%); } /* UCF Gold to Black */
+    .education-card:nth-child(3) { --edu-gradient: linear-gradient(90deg, #003057 0%, #B3A369 100%); } /* Georgia Tech Navy to Gold */
+    .education-card:nth-child(4) { --edu-gradient: linear-gradient(90deg, #1E40AF 0%, #0D9488 100%); } /* Brand gradient */
 
     .education-card:hover {
       background: rgba(255, 255, 255, 0.9);
@@ -1508,8 +1551,9 @@
       }
 
       .stat-card {
-        width: 120px;
-        height: 110px;
+        width: 130px;
+        height: 120px;
+        padding: 0.875rem;
       }
 
       .stat-number {
@@ -1528,8 +1572,16 @@
     @media (max-width: 500px) {
       .stats-cards {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(130px, 1fr));
         gap: 1rem;
+        padding: 0 0.5rem;
+      }
+
+      .stat-card {
+        width: 100%;
+        min-width: 120px;
+        height: 120px;
+        padding: 0.75rem;
       }
 
       .nav-resume {
@@ -1576,7 +1628,8 @@
     <section class="hero">
       <div class="hero-container">
         <span class="hero-label">Organizational Change Management & Instructional Design</span>
-        <h1 class="hero-title">I have a very particular set of skills—skills acquired and refined, interwoven with rare, integral character traits—making me exactly who you've been looking for.</h1>  
+        <h1 class="hero-title"><em>I have a very particular set of skills.</em></h1>
+        <p class="hero-title-followup">Skills acquired and refined over my 25+ year career—<br>interwoven with rare, integral character traits—<br>make me exactly who you've been looking for.</p>  
       
  <!-- ============================================
        MY PROCESS - Now with 5 steps
@@ -1615,12 +1668,12 @@
      
 
 <p class="hero-statement">
-          Skills can be taught. <span class="highlight"> Character </span> and <span class="highlight"> work ethic </span> can't.
+          Skills can be taught. <span class="highlight">Character</span> and <span class="highlight">work ethic</span> can't.
         </p>
 
 <!-- Second headline -->
     <p class="hero-body">
-        I lead through <span class="highlight-blue">influence</span>, not org charts. <span class="highlight-teal">Servant Leadership.</span> My entrepreneurial background makes me think like a <span class="highlight-blue">CEO</span>—people first, performance follows. I build environments where there is <span class="highlight"> shared understanding </span>, teams feel safe to take initiative and ask "<span class="highlight-teal">What's next?</span>" instead of "Who failed?" I build systems that free teams from monotony so they can ideate, and create.
+        I lead through <span class="highlight-blue">influence</span>, not org charts. <span class="highlight-teal">Servant Leadership.</span> My entrepreneurial background makes me think like a <span class="highlight-blue">CEO</span>—<span class="highlight-teal">people first, performance follows</span>. I build environments where there is <strong><span class="highlight">shared understanding</span></strong>, teams <span class="highlight-teal">feel safe</span> to take initiative and ask "<span class="highlight-teal">What's next?</span>" instead of "Who failed?" I build systems that free teams from monotony so they can <span class="highlight-blue">ideate, and create</span>.
       </p>
     
 <p class="hero-closer">
