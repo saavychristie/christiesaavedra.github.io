@@ -245,10 +245,115 @@
       background: #004182;
     }
 
-    .nav-resume {
-      display: flex;
-      gap: 0.5rem;
+    /* Resume Dropdown */
+    .resume-dropdown {
+      position: relative;
       flex-shrink: 0;
+    }
+
+    .resume-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+    }
+
+    .resume-btn svg {
+      transition: transform 0.2s ease;
+    }
+
+    .resume-dropdown.active .resume-btn svg {
+      transform: rotate(180deg);
+    }
+
+    .resume-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      min-width: 180px;
+      overflow: hidden;
+      z-index: 1000;
+    }
+
+    .resume-dropdown.active .resume-dropdown-menu {
+      display: block;
+      animation: dropdownFade 0.2s ease;
+    }
+
+    @keyframes dropdownFade {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .resume-dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      color: var(--color-text);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background 0.2s ease;
+    }
+
+    .resume-dropdown-item:hover {
+      background: var(--color-bg);
+    }
+
+    .resume-dropdown-item svg {
+      color: var(--color-accent);
+    }
+
+    /* Mobile Resume Links - hidden by default, shown in mobile menu */
+    .mobile-resume-links {
+      display: none;
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1001;
+    }
+
+    .hamburger-line {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--color-text);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      margin: 3px 0;
+    }
+
+    .hamburger.active .hamburger-line:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 6px);
+    }
+
+    .hamburger.active .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active .hamburger-line:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -6px);
     }
 
     .btn {
@@ -534,6 +639,21 @@
       max-width: 160px;
       position: relative;
       overflow: hidden;
+      cursor: pointer;
+      transition: box-shadow 0.3s ease;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-12px); }
+      50% { transform: translateY(-4px); }
+      70% { transform: translateY(-8px); }
+      90% { transform: translateY(-2px); }
+    }
+
+    .method-step:hover {
+      animation: bounce 0.5s ease;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
     }
 
     .method-step::before {
@@ -711,6 +831,10 @@
     .philosophy .identity-card:nth-child(6) .identity-icon { background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%); }
     .philosophy .identity-card:nth-child(6)::before { background: linear-gradient(90deg, #DC2626 0%, #EF4444 100%); }
 
+    /* Servant Leadership - warm teal */
+    .philosophy .identity-card:nth-child(7) .identity-icon { background: linear-gradient(135deg, #CCFBF1 0%, #99F6E4 100%); }
+    .philosophy .identity-card:nth-child(7)::before { background: linear-gradient(90deg, #0F766E 0%, #14B8A6 100%); }
+
     /* Behavior cards - icon backgrounds AND matching top bars */
     .behaviors .identity-card:nth-child(1) .identity-icon { background: linear-gradient(135deg, #CCFBF1 0%, #99F6E4 100%); }
     .behaviors .identity-card:nth-child(1)::before { background: linear-gradient(90deg, #0D9488 0%, #14B8A6 100%); }
@@ -729,6 +853,26 @@
     
     .behaviors .identity-card:nth-child(6) .identity-icon { background: linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%); }
     .behaviors .identity-card:nth-child(6)::before { background: linear-gradient(90deg, #7C3AED 0%, #8B5CF6 100%); }
+
+    /* Visionary - deep blue/purple */
+    .behaviors .identity-card:nth-child(7) .identity-icon { background: linear-gradient(135deg, #DDD6FE 0%, #C4B5FD 100%); }
+    .behaviors .identity-card:nth-child(7)::before { background: linear-gradient(90deg, #5B21B6 0%, #7C3AED 100%); }
+
+    /* Adaptable - ocean blue */
+    .behaviors .identity-card:nth-child(8) .identity-icon { background: linear-gradient(135deg, #BFDBFE 0%, #93C5FD 100%); }
+    .behaviors .identity-card:nth-child(8)::before { background: linear-gradient(90deg, #1D4ED8 0%, #3B82F6 100%); }
+
+    /* Resilient - warm amber */
+    .behaviors .identity-card:nth-child(9) .identity-icon { background: linear-gradient(135deg, #FED7AA 0%, #FDBA74 100%); }
+    .behaviors .identity-card:nth-child(9)::before { background: linear-gradient(90deg, #C2410C 0%, #EA580C 100%); }
+
+    /* Communicative - sky blue */
+    .behaviors .identity-card:nth-child(10) .identity-icon { background: linear-gradient(135deg, #BAE6FD 0%, #7DD3FC 100%); }
+    .behaviors .identity-card:nth-child(10)::before { background: linear-gradient(90deg, #0284C7 0%, #0EA5E9 100%); }
+
+    /* Detail-Oriented - slate/gray */
+    .behaviors .identity-card:nth-child(11) .identity-icon { background: linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 100%); }
+    .behaviors .identity-card:nth-child(11)::before { background: linear-gradient(90deg, #475569 0%, #64748B 100%); }
 
     .identity-card-title {
       font-family: var(--font-display);
@@ -1001,6 +1145,14 @@
     .case-study-org {
       font-size: 0.75rem;
       color: var(--color-text-secondary);
+      white-space: nowrap;
+    }
+
+    .case-study-date {
+      font-size: 0.7rem;
+      color: var(--color-text-secondary);
+      opacity: 0.7;
+      margin-left: auto;
       white-space: nowrap;
     }
 
@@ -1507,6 +1659,87 @@
       box-shadow: 0 8px 30px rgba(30, 64, 175, 0.4);
     }
 
+    /* Contact Form */
+    .contact-form {
+      max-width: 400px;
+      margin: 0 auto 1.5rem;
+      text-align: left;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 0.35rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      transition: all 0.2s ease;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: rgba(255, 255, 255, 0.5);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .contact-form .contact-btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .contact-alt {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .contact-alt-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      transition: all 0.2s ease;
+    }
+
+    .contact-alt-link:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+    }
+
     /* Contact Modal */
     .contact-modal {
       display: none;
@@ -1753,8 +1986,57 @@
     }
 
     @media (max-width: 950px) {
+      .hamburger {
+        display: flex;
+      }
+
       .nav-links {
         display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(253, 252, 250, 0.98);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        z-index: 1000;
+        padding: 2rem;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links li {
+        list-style: none;
+      }
+
+      .nav-links a {
+        font-size: 1.5rem;
+        font-family: var(--font-display);
+        color: var(--color-text);
+      }
+
+      .nav-links a:hover {
+        color: var(--color-accent);
+      }
+
+      .mobile-resume-links {
+        display: block;
+      }
+
+      .mobile-resume-links a {
+        font-size: 1.25rem;
+        color: var(--color-accent);
+      }
+
+      .nav-actions {
+        z-index: 1001;
       }
     }
 
@@ -1783,7 +2065,7 @@
     }
 
     @media (max-width: 600px) {
-      .nav-resume {
+      .resume-dropdown {
         display: none;
       }
     }
@@ -1818,21 +2100,56 @@
       <div class="nav-bg">
         <div class="nav-container">
           <a href="#" class="nav-logo">Christie Stephenson Saavedra</a>
-          <ul class="nav-links">
-            <li><a href="#core-identity">Core</a></li>
-            <li><a href="#work">Work</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#contact">Contact</a></li>
+          
+          <!-- Hamburger Menu Button -->
+          <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
+          
+          <ul class="nav-links" id="navLinks">
+            <li><a href="#core-identity" onclick="closeMobileMenu()">Core</a></li>
+            <li><a href="#work" onclick="closeMobileMenu()">Work</a></li>
+            <li><a href="#testimonials" onclick="closeMobileMenu()">Testimonials</a></li>
+            <li><a href="#skills" onclick="closeMobileMenu()">Skills</a></li>
+            <li><a href="#education" onclick="closeMobileMenu()">Education</a></li>
+            <li><a href="#contact" onclick="closeMobileMenu()">Contact</a></li>
+            <li class="mobile-resume-links">
+              <a href="images/Resume_Christie_Saavedra.pdf" target="_blank" onclick="closeMobileMenu()">View Resume</a>
+            </li>
+            <li class="mobile-resume-links">
+              <a href="images/Resume_Christie_Saavedra.pdf" download onclick="closeMobileMenu()">Download Resume</a>
+            </li>
           </ul>
           <div class="nav-actions">
             <a href="https://linkedin.com/in/christie-stephenson-saavedra" class="nav-linkedin" title="LinkedIn" target="_blank">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             </a>
-            <div class="nav-resume">
-              <a href="images/Resume_Christie_Saavedra.pdf" class="btn btn-outline" target="_blank">View Resume</a>
-              <a href="images/Resume_Christie_Saavedra.pdf" class="btn btn-solid" download>Download Resume</a>
+            <div class="resume-dropdown">
+              <button class="btn btn-solid resume-btn" onclick="toggleResumeDropdown(event)">
+                Resume
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </button>
+              <div class="resume-dropdown-menu" id="resumeDropdown">
+                <a href="images/Resume_Christie_Saavedra.pdf" target="_blank" class="resume-dropdown-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                  View Resume
+                </a>
+                <a href="images/Resume_Christie_Saavedra.pdf" download class="resume-dropdown-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                  </svg>
+                  Download Resume
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -1860,12 +2177,12 @@
         <span class="method-arrow">→</span>
         <div class="method-step">
           <div class="method-step-title">Identify</div>
-          <div class="method-step-desc">Find gaps others miss</div>
+          <div class="method-step-desc">Find gaps & opportunities</div>
         </div>
         <span class="method-arrow">→</span>
         <div class="method-step">
           <div class="method-step-title">Ideate</div>
-          <div class="method-step-desc">Solution creatively</div>
+          <div class="method-step-desc">Creative solutioning</div>
         </div>
         <span class="method-arrow">→</span>
         <div class="method-step">
@@ -1875,7 +2192,7 @@
         <span class="method-arrow">→</span>
         <div class="method-step">
           <div class="method-step-title">Build</div>
-          <div class="method-step-desc">Own it completely</div>
+          <div class="method-step-desc">Prototype, test, deliver</div>
         </div>
       </div>
     </div>
@@ -1908,7 +2225,7 @@
       <div class="identity-header">
         <div class="identity-label">What I Bring</div>
         <h2 class="identity-title">Core Identity</h2>
-        <p class="identity-subtitle">Values are verbs, not nouns. These are my consistent behaviors.</p>
+        <p class="identity-subtitle">Values are verbs, not nouns. It's not what we say—it's what we do consistently. Actions reveal character.</p>
       </div>
 
       <!-- Philosophy Cards -->
@@ -1944,6 +2261,11 @@
             <div class="identity-icon">🚀</div>
             <h3 class="identity-card-title">Freedom to Create</h3>
             <p class="identity-card-desc">Automate monotony so teams can dream and build.</p>
+          </div>
+          <div class="identity-card clickable" onclick="openIdentityModal('servant-leadership')">
+            <div class="identity-icon">🤲</div>
+            <h3 class="identity-card-title">Servant Leadership</h3>
+            <p class="identity-card-desc">I lead by serving—empowering others to grow, not seeking power for myself.</p>
           </div>
         </div>
       </div>
@@ -1981,6 +2303,31 @@
             <div class="identity-icon">⚖️</div>
             <h3 class="identity-card-title">Integrity</h3>
             <p class="identity-card-desc">I show up the same whether anyone is watching or not.</p>
+          </div>
+          <div class="identity-card clickable" onclick="openIdentityModal('visionary')">
+            <div class="identity-icon">🔭</div>
+            <h3 class="identity-card-title">Visionary</h3>
+            <p class="identity-card-desc">I see the big picture and plan for where we're going.</p>
+          </div>
+          <div class="identity-card clickable" onclick="openIdentityModal('adaptable')">
+            <div class="identity-icon">🌊</div>
+            <h3 class="identity-card-title">Adaptable</h3>
+            <p class="identity-card-desc">I pivot quickly when circumstances change.</p>
+          </div>
+          <div class="identity-card clickable" onclick="openIdentityModal('resilient')">
+            <div class="identity-icon">💪</div>
+            <h3 class="identity-card-title">Resilient</h3>
+            <p class="identity-card-desc">I bounce back from setbacks and keep moving forward.</p>
+          </div>
+          <div class="identity-card clickable" onclick="openIdentityModal('communicative')">
+            <div class="identity-icon">📢</div>
+            <h3 class="identity-card-title">Communicative</h3>
+            <p class="identity-card-desc">I keep everyone informed and aligned.</p>
+          </div>
+          <div class="identity-card clickable" onclick="openIdentityModal('detail-oriented')">
+            <div class="identity-icon">🔬</div>
+            <h3 class="identity-card-title">Detail-Oriented</h3>
+            <p class="identity-card-desc">I catch the small things that make a big difference.</p>
           </div>
         </div>
       </div>
@@ -2036,11 +2383,12 @@
             <div class="case-study-meta">
               <span class="case-study-role">UX Designer / Developer</span>
               <span class="case-study-org">· Healthcare Consulting</span>
+              <span class="case-study-date">2025</span>
             </div>
             <h3 class="case-study-title">Healthcare Operations Dashboard</h3>
             <p class="case-study-desc">Designed and built a real-time surgery room utilization dashboard for a multi-hospital health system. Replaced quarterly reporting with live visibility.</p>
             <div class="case-study-results">
-              <span class="result-tag">1,795 Lines of React</span>
+              <span class="result-tag">15+ Features Beyond Scope</span>
               <span class="result-tag">Real-Time Analytics</span>
             </div>
             <a href="dashboard.html" class="case-study-link">View Demo <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
@@ -2050,12 +2398,13 @@
             <div class="case-study-meta">
               <span class="case-study-role">Training Manager</span>
               <span class="case-study-org">· Xactware</span>
+              <span class="case-study-date">2014–2015</span>
             </div>
             <h3 class="case-study-title">Workforce Development Program</h3>
-            <p class="case-study-desc">Conceived and launched a statewide coding education program. Built the XactechED brand and delivered presentations to the governor's committee.</p>
+            <p class="case-study-desc">Conceived and launched a statewide coding education program. Built the XactechED brand and delivered presentations to the Governor's Committee.</p>
             <div class="case-study-results">
               <span class="result-tag">$200K Grant Secured</span>
-              <span class="result-tag">MTECH Partnership</span>
+              <span class="result-tag">Industry / Education</span>
             </div>
             <a href="xacteched-campaign.html" class="case-study-link">View Case Study <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
           </div>
@@ -2064,9 +2413,10 @@
             <div class="case-study-meta">
               <span class="case-study-role">IT Consultant / Co-founder</span>
               <span class="case-study-org">· Resolute Services</span>
+              <span class="case-study-date">2008–2012</span>
             </div>
             <h3 class="case-study-title">Healthcare Process Automation</h3>
-            <p class="case-study-desc">Co-founded a healthcare IT company. Designed custom software and trained staff—achieving 90% automation of billing and payroll.</p>
+            <p class="case-study-desc">Co-founded a healthcare IT company. Immersed in every role from billing to clinical to build targeted solutions—achieving 90% automation of billing and payroll.</p>
             <div class="case-study-results">
               <span class="result-tag">90% Automation</span>
               <span class="result-tag">50% Time Saved</span>
@@ -2078,8 +2428,9 @@
             <div class="case-study-meta">
               <span class="case-study-role">Instructional Designer / Co-founder</span>
               <span class="case-study-org">· Arizona Esthetics Institute</span>
+              <span class="case-study-date">2003–2004</span>
             </div>
-            <h3 class="case-study-title">Vocational Training Program</h3>
+            <h3 class="case-study-title">Trade School Program</h3>
             <p class="case-study-desc">Co-founded a state-approved esthetics trade school. Developed curriculum meeting Arizona licensing requirements.</p>
             <div class="case-study-results">
               <span class="result-tag">State-Approved</span>
@@ -2092,6 +2443,7 @@
             <div class="case-study-meta">
               <span class="case-study-role">Computer Lab Manager</span>
               <span class="case-study-org">· Palmview K-8</span>
+              <span class="case-study-date">2021–2022</span>
             </div>
             <h3 class="case-study-title">Technology Documentation</h3>
             <p class="case-study-desc">Managed technology operations for 500+ devices. Built a knowledge base and created quick-reference guides.</p>
@@ -2106,9 +2458,10 @@
             <div class="case-study-meta">
               <span class="case-study-role">Co-founder / Marketing</span>
               <span class="case-study-org">· Gardner Chiropractic</span>
+              <span class="case-study-date">1997–2004</span>
             </div>
-            <h3 class="case-study-title">Community Outreach & Marketing</h3>
-            <p class="case-study-desc">Secured a trucking company contract and organized community events featuring pro athletes. Established sideline chiropractor partnership with local football program.</p>
+            <h3 class="case-study-title">Marketing, Sales & Community Outreach</h3>
+            <p class="case-study-desc">Organized community events featuring pro athletes, secured a trucking company contract, and established a partnership with a local football program.</p>
             <div class="case-study-results">
               <span class="result-tag">Trucking Contract</span>
               <span class="result-tag">Community Events</span>
@@ -2209,23 +2562,22 @@
           <div class="skill-category">
             <h3 class="skill-category-title">Content Creation</h3>
             <ul class="skill-list">
+              <li>Curriculum Design</li>
+              <li>Copywriting</li>
+              <li>Technical Writing</li>
               <li>Articulate 360</li>
               <li>Figma (UX/UI)</li>
               <li>React Development</li>
-              <li>Curriculum Design</li>
-              <li>Technical Writing</li>
-              <li>Video Production</li>
             </ul>
           </div>
           <div class="skill-category">
             <h3 class="skill-category-title">Technical Skills</h3>
             <ul class="skill-list">
-              <li>Microsoft 365</li>
-              <li>ServiceNow</li>
               <li>Confluence / JIRA</li>
               <li>HTML / CSS / JavaScript</li>
               <li>Data Visualization</li>
               <li>LMS Administration</li>
+              <li>Microsoft 365</li>
             </ul>
           </div>
         </div>
@@ -2275,20 +2627,53 @@
         <h2 class="contact-title">Let's Connect</h2>
         <p class="contact-subtitle">I'm always interested in discussing new opportunities.</p>
         
-        <button class="contact-btn" onclick="openContactModal()">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-            <polyline points="22,6 12,13 2,6"/>
-          </svg>
-          Get in Touch
-        </button>
+        <!-- Contact Form -->
+        <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required placeholder="How can I help you?" rows="4"></textarea>
+          </div>
+          <button type="submit" class="contact-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 2L11 13"/>
+              <path d="M22 2L15 22L11 13L2 9L22 2Z"/>
+            </svg>
+            Send Message
+          </button>
+        </form>
+
+        <!-- Alternative Contact -->
+        <div class="contact-alt">
+          <span>Or connect directly:</span>
+          <a href="mailto:christie.saavedra@gmail.com" class="contact-alt-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            Email
+          </a>
+          <a href="https://linkedin.com/in/christiesaavedra" target="_blank" class="contact-alt-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+            LinkedIn
+          </a>
+        </div>
       </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
       <div class="footer-content">
-        <div style="margin-bottom: 0.5rem;">© 2025 Christie Stephenson Saavedra. All rights reserved.</div>
+        <div style="margin-bottom: 0.5rem;">© <span id="currentYear"></span> Christie Stephenson Saavedra. All rights reserved.</div>
         <div style="font-size: 0.75rem; color: rgba(255, 255, 255, 0.6);">Original code, design, UI/UX, and content. All demos and case studies are original portfolio work.</div>
       </div>
     </footer>
@@ -2463,6 +2848,15 @@
         <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
         link: 'https://example.com/freedom-to-create'
       },
+      'servant-leadership': {
+        icon: '🤲',
+        title: 'Servant Leadership',
+        body: `<p>I lead by serving—prioritizing the growth, well-being, and potential of my team over personal power or status. Instead of a top-down hierarchy, I flip the pyramid.</p>
+        <p><strong>Core principles:</strong> Serve first. Focus on others. Empower and share power. Lead with humility and empathy. Measure success by how well people grow.</p>
+        <p><strong>The difference:</strong> Traditional leadership is leader-focused and hierarchical. Servant leadership is people-focused—emphasizing support, trust, and development.</p>
+        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
+        link: 'https://example.com/servant-leadership'
+      },
       'pattern-recognition': {
         icon: '🔍',
         title: 'Pattern Recognition',
@@ -2510,6 +2904,46 @@
         <p><strong>The foundation:</strong> Trust is built through consistent behavior over time, in every interaction, with every person.</p>
         <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
         link: 'https://example.com/integrity'
+      },
+      'visionary': {
+        icon: '🔭',
+        title: 'Visionary',
+        body: `<p>I see the big picture and plan for where we're going. I connect today's work to tomorrow's outcomes.</p>
+        <p><strong>The perspective:</strong> Strategy isn't just planning—it's seeing possibilities others haven't imagined yet.</p>
+        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
+        link: 'https://example.com/visionary'
+      },
+      'adaptable': {
+        icon: '🌊',
+        title: 'Adaptable',
+        body: `<p>I pivot quickly when circumstances change. Flexibility isn't weakness—it's strategic responsiveness.</p>
+        <p><strong>The mindset:</strong> Plans are guides, not prisons. The ability to adjust course is what separates good from great.</p>
+        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
+        link: 'https://example.com/adaptable'
+      },
+      'resilient': {
+        icon: '💪',
+        title: 'Resilient',
+        body: `<p>I bounce back from setbacks and keep moving forward. Obstacles are temporary; giving up is permanent.</p>
+        <p><strong>The strength:</strong> Resilience isn't about avoiding failure—it's about recovering faster and learning more each time.</p>
+        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
+        link: 'https://example.com/resilient'
+      },
+      'communicative': {
+        icon: '📢',
+        title: 'Communicative',
+        body: `<p>I keep everyone informed and aligned. No one should be surprised by something they needed to know.</p>
+        <p><strong>The commitment:</strong> Clear communication prevents 90% of workplace problems before they start.</p>
+        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
+        link: 'https://example.com/communicative'
+      },
+      'detail-oriented': {
+        icon: '🔬',
+        title: 'Detail-Oriented',
+        body: `<p>I catch the small things that make a big difference. Excellence lives in the details.</p>
+        <p><strong>The discipline:</strong> The difference between good and exceptional is often invisible to most—but never to me.</p>
+        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
+        link: 'https://example.com/detail-oriented'
       }
     };
 
@@ -2587,6 +3021,54 @@
     }
     
     setInterval(updateFavicon, 333); // ~12 colors over 4 seconds
+
+    // Auto-update copyright year
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+    // Hamburger Menu Toggle
+    function toggleMobileMenu() {
+      const hamburger = document.getElementById('hamburger');
+      const navLinks = document.getElementById('navLinks');
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+      document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+    }
+
+    function closeMobileMenu() {
+      const hamburger = document.getElementById('hamburger');
+      const navLinks = document.getElementById('navLinks');
+      hamburger.classList.remove('active');
+      navLinks.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeMobileMenu();
+        closeResumeDropdown();
+      }
+    });
+
+    // Resume Dropdown Toggle
+    function toggleResumeDropdown(event) {
+      event.stopPropagation();
+      const dropdown = document.querySelector('.resume-dropdown');
+      dropdown.classList.toggle('active');
+    }
+
+    function closeResumeDropdown() {
+      const dropdown = document.querySelector('.resume-dropdown');
+      dropdown.classList.remove('active');
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      const dropdown = document.querySelector('.resume-dropdown');
+      if (!dropdown.contains(e.target)) {
+        closeResumeDropdown();
+      }
+    });
   </script>
 </body>
 </html>
