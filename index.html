@@ -117,6 +117,22 @@
       transition: all 0.3s ease;
     }
 
+    /* RGB Cycling Animation */
+    @keyframes rgbCycle {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    .rgb-gradient {
+      background: linear-gradient(
+        90deg,
+        #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80,
+        #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000
+      );
+      background-size: 200% 100%;
+      animation: rgbCycle 4s linear infinite;
+    }
+
     .nav::before {
       content: '';
       position: absolute;
@@ -124,7 +140,13 @@
       left: 0;
       right: 0;
       height: 3px;
-      background: var(--text-gradient);
+      background: linear-gradient(
+        90deg,
+        #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80,
+        #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000
+      );
+      background-size: 200% 100%;
+      animation: rgbCycle 4s linear infinite;
       z-index: 1;
     }
 
@@ -861,7 +883,7 @@
       border: 1px solid rgba(255, 255, 255, 0.8);
       transition: all 0.3s ease;
       position: relative;
-      overflow: hidden;
+      overflow: visible;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
       display: flex;
       flex-direction: column;
@@ -878,6 +900,45 @@
       background: var(--card-gradient, var(--text-gradient));
       opacity: 0;
       transition: opacity 0.3s;
+      border-radius: 16px 16px 0 0;
+    }
+
+    /* RGB bar under the card - hidden by default */
+    .case-study-card::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 10%;
+      right: 10%;
+      height: 4px;
+      border-radius: 2px;
+      background: linear-gradient(
+        90deg,
+        #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80,
+        #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000
+      );
+      background-size: 200% 100%;
+      opacity: 0;
+      transform: scaleX(0);
+      transition: all 0.3s ease;
+    }
+
+    /* Highlighted state - RGB bar appears */
+    .case-study-card.highlighted {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(30, 64, 175, 0.12);
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .case-study-card.highlighted::after {
+      opacity: 1;
+      transform: scaleX(1);
+      animation: rgbCycle 3s linear infinite;
+    }
+
+    /* Dimmed state */
+    .case-study-card.dimmed {
+      opacity: 0.4;
     }
 
     .case-study-card:hover {
@@ -896,6 +957,7 @@
     .case-study-card[data-project="resolute"] { --card-gradient: linear-gradient(135deg, #1E40AF 0%, #3b82f6 100%); }
     .case-study-card[data-project="arizona"] { --card-gradient: linear-gradient(135deg, #dc2626 0%, #f97316 100%); }
     .case-study-card[data-project="palmview"] { --card-gradient: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); }
+    .case-study-card[data-project="gardner"] { --card-gradient: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%); }
     .case-study-card[data-project="codelab"] { --card-gradient: linear-gradient(135deg, #059669 0%, #10b981 100%); } /* XactechED green to match parent project */
 
     .case-study-meta {
@@ -1227,7 +1289,13 @@
       border-radius: 50%;
       margin: 0 auto 1.5rem;
       position: relative;
-      background: var(--text-gradient);
+      background: linear-gradient(
+        90deg,
+        #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80,
+        #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000
+      );
+      background-size: 200% 100%;
+      animation: rgbCycle 4s linear infinite;
       padding: 4px;
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -1596,7 +1664,13 @@
       left: 0;
       right: 0;
       height: 3px;
-      background: var(--text-gradient);
+      background: linear-gradient(
+        90deg,
+        #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80,
+        #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000
+      );
+      background-size: 200% 100%;
+      animation: rgbCycle 4s linear infinite;
     }
 
     .footer-content {
@@ -1887,7 +1961,7 @@
 
         <!-- Documented Results -->
         <div class="stats-cards">
-          <div class="stat-item">
+          <div class="stat-item" data-highlights="xacteched">
             <div class="stat-card">
               <div class="stat-number">$200K</div>
               <div class="stat-sub">Grant</div>
@@ -1895,7 +1969,7 @@
             <div class="stat-label">Grant Secured</div>
             <div class="stat-desc">State funding</div>
           </div>
-          <div class="stat-item">
+          <div class="stat-item" data-highlights="resolute">
             <div class="stat-card">
               <div class="stat-number">90%</div>
               <div class="stat-sub">Auto</div>
@@ -1903,7 +1977,7 @@
             <div class="stat-label">Automation</div>
             <div class="stat-desc">Healthcare billing</div>
           </div>
-          <div class="stat-item">
+          <div class="stat-item" data-highlights="resolute">
             <div class="stat-card">
               <div class="stat-number">50%</div>
               <div class="stat-sub">Saved</div>
@@ -1911,7 +1985,7 @@
             <div class="stat-label">Time Saved</div>
             <div class="stat-desc">Custom solutions</div>
           </div>
-          <div class="stat-item">
+          <div class="stat-item" data-highlights="gardner,arizona,resolute">
             <div class="stat-card">
               <div class="stat-number">3</div>
               <div class="stat-sub">Ventures</div>
@@ -2429,6 +2503,34 @@
         closeIdentityModal();
         closePhotoLightbox();
       }
+    });
+
+    // Stat card → Case study highlighting
+    const statItems = document.querySelectorAll('.stat-item[data-highlights]');
+    const caseStudyCards = document.querySelectorAll('.case-study-card[data-project]');
+    
+    statItems.forEach(stat => {
+      stat.addEventListener('mouseenter', () => {
+        const highlights = stat.dataset.highlights.split(',');
+        
+        caseStudyCards.forEach(card => {
+          const project = card.dataset.project;
+          
+          if (highlights.includes(project)) {
+            card.classList.add('highlighted');
+            card.classList.remove('dimmed');
+          } else {
+            card.classList.add('dimmed');
+            card.classList.remove('highlighted');
+          }
+        });
+      });
+      
+      stat.addEventListener('mouseleave', () => {
+        caseStudyCards.forEach(card => {
+          card.classList.remove('highlighted', 'dimmed');
+        });
+      });
     });
   </script>
 </body>
