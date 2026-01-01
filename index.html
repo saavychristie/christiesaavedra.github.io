@@ -553,14 +553,41 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 3px;
+      height: 4px;
       background: var(--text-gradient);
+      border-radius: 16px 16px 0 0;
+    }
+
+    /* RGB bar under stat card - hidden by default */
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 10%;
+      right: 10%;
+      height: 4px;
+      border-radius: 2px;
+      background: linear-gradient(
+        90deg,
+        #ff0000, #ff8000, #ffff00, #80ff00, #00ff00, #00ff80,
+        #00ffff, #0080ff, #0000ff, #8000ff, #ff00ff, #ff0080, #ff0000
+      );
+      background-size: 200% 100%;
+      opacity: 0;
+      transform: scaleX(0);
+      transition: all 0.3s ease;
     }
 
     .stat-card:hover {
       background: rgba(255, 255, 255, 0.8);
       transform: translateY(-6px);
       box-shadow: 0 12px 40px rgba(30, 64, 175, 0.1);
+    }
+
+    .stat-card:hover::after {
+      opacity: 1;
+      transform: scaleX(1);
+      animation: rgbCycle 3s linear infinite;
     }
 
     .stat-number {
