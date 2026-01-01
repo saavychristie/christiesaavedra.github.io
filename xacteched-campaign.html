@@ -37,98 +37,125 @@
     .nav-bg { background: rgba(253, 252, 250, 0.92); backdrop-filter: blur(12px); padding: 1rem 2rem; }
     .nav.scrolled .nav-bg { box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06); }
     .nav-container { max-width: var(--max-width); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-    .nav-back { display: flex; align-items: center; gap: 0.5rem; color: var(--color-text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
-    .nav-back:hover { color: #059669; }
+    .nav-back { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: var(--color-text-secondary); text-decoration: none; transition: color 0.2s; }
+    .nav-back:hover { color: var(--color-text); }
     .nav-back svg { width: 18px; height: 18px; }
     .nav-logo { font-family: var(--font-display); font-size: 1.1rem; color: var(--color-text); text-decoration: none; }
-    .hero { padding: 8rem 2rem 4rem; text-align: center; }
+    .hero { padding: 8rem 2rem 4rem; }
     .hero-container { max-width: var(--max-width); margin: 0 auto; }
-    .hero-meta { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-    .hero-role { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: white; background: var(--project-gradient); padding: 0.5rem 1rem; border-radius: 2rem; }
-    .hero-org { font-size: 0.85rem; color: var(--color-text-secondary); }
-    .hero-title { font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 400; line-height: 1.15; margin-bottom: 1.5rem; }
-    .hero-summary { font-size: 1.15rem; color: var(--color-text-secondary); max-width: 700px; margin: 0 auto 2rem; }
-    .results-banner { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
-    .result-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-radius: 12px; padding: 1.25rem 1.5rem; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 4px 20px rgba(0,0,0,0.03); text-align: center; min-width: 140px; position: relative; overflow: hidden; }
-    .result-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--project-gradient); }
-    .result-number { font-family: var(--font-display); font-size: 1.75rem; background: var(--project-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .result-label { font-size: 0.75rem; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
-    .content { padding: 3rem 2rem 5rem; }
+    .hero-meta { display: flex; gap: 1.5rem; margin-bottom: 1rem; font-size: 0.85rem; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+    .hero-role { color: #059669; font-weight: 600; }
+    .hero-title { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; line-height: 1.2; margin-bottom: 1.5rem; }
+    .hero-summary { font-size: 1.15rem; color: var(--color-text-secondary); max-width: 650px; margin-bottom: 2.5rem; }
+    .results-banner { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .result-card { background: white; border-radius: 12px; padding: 1.25rem 1.75rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.04); }
+    .result-number { font-family: var(--font-display); font-size: 1.75rem; color: #059669; }
+    .result-label { font-size: 0.8rem; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.03em; margin-top: 0.25rem; }
+    .content { padding: 2rem 2rem 4rem; }
     .content-container { max-width: var(--max-width); margin: 0 auto; }
-    .content-section { margin-bottom: 3rem; }
-    .content-title { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1.25rem; }
-    .glass-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-radius: 16px; padding: 2rem; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 4px 20px rgba(0,0,0,0.03); position: relative; overflow: hidden; }
-    .glass-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--project-gradient); }
-    .content-text { font-size: 1rem; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 1rem; }
-    .content-text:last-child { margin-bottom: 0; }
-    .content-list { list-style: none; margin: 1rem 0; }
-    .content-list li { padding: 0.5rem 0 0.5rem 1.5rem; position: relative; color: var(--color-text-secondary); }
-    .content-list li::before { content: ''; position: absolute; left: 0; top: 0.9rem; width: 8px; height: 8px; border-radius: 50%; background: var(--project-gradient); }
-    .deliverable-card { background: rgba(255,255,255,0.8); border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-bottom: 2rem; }
-    .deliverable-card img { width: 100%; height: auto; display: block; border-bottom: 1px solid rgba(0,0,0,0.05); }
-    .deliverable-info { padding: 1.5rem; }
-    .deliverable-type { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: var(--project-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; }
-    .deliverable-info h3 { font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.75rem; }
-    .deliverable-info p { color: var(--color-text-secondary); font-size: 0.95rem; line-height: 1.7; }
-    .deliverable-info ul { margin-top: 0.75rem; padding-left: 1.25rem; color: var(--color-text-secondary); font-size: 0.9rem; }
-    .logo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 1.5rem 0; }
-    .logo-card { background: rgba(255,255,255,0.8); border-radius: 16px; padding: 2rem; text-align: center; border: 1px solid rgba(255,255,255,0.8); }
+    .content-section { margin-bottom: 4rem; }
+    .content-title { font-family: var(--font-display); font-size: 1.75rem; font-weight: 400; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid #e7e5e4; }
+    .content-text { color: var(--color-text-secondary); margin-bottom: 1rem; }
+    .content-list { list-style: none; margin-top: 1.5rem; }
+    .content-list li { position: relative; padding-left: 1.5rem; margin-bottom: 0.75rem; color: var(--color-text-secondary); }
+    .content-list li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 6px; height: 6px; background: #059669; border-radius: 50%; }
+    .glass-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-radius: 16px; padding: 2rem; border: 1px solid rgba(0,0,0,0.04); box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+    
+    /* Side-by-side deliverables layout */
+    .deliverables-row { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; }
+    .deliverable-card-half { flex: 1; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.04); }
+    .deliverable-card-half img { width: 100%; height: auto; display: block; }
+    .deliverable-card-half .deliverable-info { padding: 1.25rem; }
+    .deliverable-card-half .deliverable-info h3 { font-family: var(--font-display); font-size: 1.1rem; margin: 0.5rem 0; }
+    .deliverable-card-half .deliverable-info p { font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.5; }
+    
+    /* Foundation billboard */
+    .deliverable-card-foundation { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.04); }
+    .deliverable-card-foundation img { width: 100%; height: auto; display: block; }
+    .deliverable-card-foundation .deliverable-info { padding: 1.5rem 2rem; text-align: center; }
+    .deliverable-card-foundation .deliverable-info h3 { font-family: var(--font-display); font-size: 1.25rem; margin: 0.5rem 0; }
+    .deliverable-card-foundation .deliverable-info p { font-size: 0.9rem; color: var(--color-text-secondary); max-width: 600px; margin: 0 auto; }
+    .deliverable-card-foundation .deliverable-info ul { list-style: none; display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; flex-wrap: wrap; }
+    .deliverable-card-foundation .deliverable-info ul li { font-size: 0.85rem; color: var(--color-text-secondary); position: relative; padding-left: 1rem; }
+    .deliverable-card-foundation .deliverable-info ul li::before { content: '✓'; position: absolute; left: 0; color: #059669; font-weight: 600; }
+    
+    /* Standard deliverable card (for other sections) */
+    .deliverable-card { background: white; border-radius: 16px; overflow: hidden; margin-bottom: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.06); display: flex; flex-direction: column; border: 1px solid rgba(0,0,0,0.04); }
+    .deliverable-card img { width: 100%; height: auto; }
+    .deliverable-info { padding: 1.5rem 2rem; }
+    .deliverable-type { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #059669; font-weight: 600; }
+    .deliverable-info h3 { font-family: var(--font-display); font-size: 1.25rem; margin: 0.5rem 0; }
+    .deliverable-info p { color: var(--color-text-secondary); font-size: 0.95rem; }
+    .deliverable-info ul { list-style: none; margin-top: 1rem; }
+    .deliverable-info ul li { position: relative; padding-left: 1.25rem; margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--color-text-secondary); }
+    .deliverable-info ul li::before { content: '→'; position: absolute; left: 0; color: #059669; }
+    .stats-box { background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: white; padding: 2rem; border-radius: 16px; margin-top: 1.5rem; }
+    .stats-box p { margin-bottom: 0.75rem; font-size: 1.1rem; }
+    .stats-box strong { font-size: 1.5rem; }
+    .logo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 2rem 0; }
+    .logo-card { background: white; border-radius: 16px; padding: 2rem; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.04); }
     .logo-card img { max-width: 180px; height: auto; margin-bottom: 1rem; }
-    .logo-card h4 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .logo-card h4 { font-family: var(--font-display); font-size: 1.1rem; margin: 0.5rem 0; }
     .logo-card p { font-size: 0.85rem; color: var(--color-text-secondary); }
-    .stats-box { background: rgba(5,150,105,0.08); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
-    .stats-box p { font-size: 1rem; margin-bottom: 0.5rem; color: var(--color-text); }
-    .stats-box strong { background: var(--project-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .timeline { margin: 1.5rem 0; }
-    .timeline-item { display: flex; gap: 1.5rem; padding: 1.25rem 0; border-left: 2px solid rgba(5,150,105,0.3); padding-left: 1.5rem; margin-left: 0.5rem; position: relative; }
-    .timeline-item::before { content: ''; width: 12px; height: 12px; background: var(--project-gradient); border-radius: 50%; position: absolute; left: -7px; top: 1.5rem; }
-    .timeline-item:last-child { border-left-color: transparent; }
-    .timeline-date { font-weight: 600; background: var(--project-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; min-width: 100px; font-size: 0.9rem; }
-    .timeline-content { flex: 1; color: var(--color-text-secondary); }
-    .quote-box { background: rgba(5,150,105,0.08); border-radius: 12px; padding: 1.5rem 1.5rem 1.5rem 2.5rem; margin: 2rem 0; position: relative; font-style: italic; color: var(--color-text-secondary); }
-    .quote-box::before { content: '"'; font-family: var(--font-display); font-size: 4rem; background: var(--project-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; opacity: 0.5; position: absolute; top: 0; left: 0.5rem; line-height: 1; }
-    .quote-source { font-style: normal; font-size: 0.85rem; margin-top: 0.75rem; display: block; }
-    .press-card { background: rgba(240,249,255,0.8); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.8); }
-    .press-card h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.75rem; }
-    .press-card blockquote { border-left: 3px solid #059669; padding-left: 1rem; margin: 1rem 0; font-style: italic; color: var(--color-text-secondary); }
-    .press-card a { color: #059669; font-size: 0.9rem; text-decoration: none; }
+    .timeline { position: relative; padding-left: 2rem; margin: 2rem 0; }
+    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, #059669, #10b981); }
+    .timeline-item { position: relative; margin-bottom: 2rem; }
+    .timeline-item::before { content: ''; position: absolute; left: -2rem; top: 0.4rem; width: 10px; height: 10px; background: #059669; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2); }
+    .timeline-date { font-size: 0.85rem; color: #059669; font-weight: 600; margin-bottom: 0.25rem; }
+    .timeline-content { color: var(--color-text-secondary); }
+    .quote-box { background: #f5f5f4; border-left: 4px solid #059669; padding: 1.5rem 2rem; margin-top: 2rem; border-radius: 0 12px 12px 0; }
+    .quote-box p { font-style: italic; font-size: 1.1rem; color: var(--color-text); margin-bottom: 0.75rem; }
+    .quote-source { font-size: 0.85rem; color: var(--color-text-secondary); }
+    .press-card { background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.04); }
+    .press-card h3 { font-family: var(--font-display); font-size: 1.25rem; margin: 0.5rem 0 1rem; }
+    .press-card blockquote { font-style: italic; color: var(--color-text-secondary); padding-left: 1rem; border-left: 3px solid #e7e5e4; margin-bottom: 1rem; }
+    .press-card a { color: #059669; text-decoration: none; font-weight: 500; }
     .press-card a:hover { text-decoration: underline; }
-    .testimonial-card { background: rgba(248,250,252,0.9); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.8); }
-    .testimonial-card h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.25rem; }
-    .testimonial-card blockquote { border-left: 3px solid #059669; padding-left: 1rem; margin: 1rem 0; font-style: italic; color: var(--color-text-secondary); font-size: 0.95rem; }
+    .testimonial-card { background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.04); }
+    .testimonial-card h3 { font-family: var(--font-display); font-size: 1.15rem; margin: 0.5rem 0; }
+    .testimonial-card blockquote { font-style: italic; color: var(--color-text-secondary); padding-left: 1rem; border-left: 3px solid #059669; margin: 1rem 0; }
     .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
-    .tag { font-size: 0.75rem; font-weight: 500; padding: 0.4rem 0.8rem; border-radius: 2rem; background: rgba(255,255,255,0.8); color: var(--color-text-secondary); border: 1px solid rgba(0,0,0,0.06); }
-    .demo-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-radius: 16px; padding: 2.5rem; border: 1px solid rgba(255,255,255,0.8); display: flex; align-items: center; gap: 1.5rem; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden; }
-    .demo-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--project-gradient); }
-    .demo-card:hover { background: rgba(255,255,255,0.9); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
-    .demo-icon { width: 80px; height: 80px; border-radius: 50%; background: var(--project-gradient); display: flex; align-items: center; justify-content: center; color: white; flex-shrink: 0; }
-    .demo-icon svg { margin-left: 4px; }
-    .demo-text h3 { font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 0.5rem; }
-    .demo-text p { color: var(--color-text-secondary); font-size: 0.95rem; }
-    .demo-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 10000; align-items: center; justify-content: center; padding: 2rem; }
+    .tag { background: rgba(5, 150, 105, 0.1); color: #059669; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; }
+    .demo-card { background: linear-gradient(135deg, #059669 0%, #10b981 100%); border-radius: 16px; padding: 3rem; text-align: center; color: white; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; }
+    .demo-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(5, 150, 105, 0.3); }
+    .demo-icon { margin-bottom: 1rem; }
+    .demo-icon svg { opacity: 0.9; }
+    .demo-text h3 { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .demo-text p { opacity: 0.9; }
+    .cta-section { text-align: center; padding: 3rem 0; }
+    .btn-cta { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--color-text); color: white; padding: 1rem 2rem; border-radius: 30px; text-decoration: none; font-weight: 500; transition: all 0.3s; }
+    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+    .demo-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; padding: 2rem; }
     .demo-modal.active { display: flex; }
-    .demo-modal-content { background: white; border-radius: 16px; width: 100%; max-width: 900px; max-height: 90vh; overflow: auto; position: relative; }
-    .demo-close { position: absolute; top: 1rem; right: 1rem; width: 40px; height: 40px; border-radius: 50%; border: none; background: rgba(0,0,0,0.1); font-size: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-    .demo-close:hover { background: rgba(0,0,0,0.2); }
-    .demo-placeholder { padding: 4rem 2rem; text-align: center; color: var(--color-text-secondary); }
-    .demo-placeholder svg { margin-bottom: 1.5rem; opacity: 0.5; }
-    .demo-placeholder h3 { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-text); margin-bottom: 0.5rem; }
-    .cta-section { text-align: center; padding: 2rem 0; }
-    .btn-cta { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--project-gradient); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; transition: all 0.2s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
-    .footer { background: linear-gradient(180deg, transparent 0%, rgba(28,25,23,0.1) 30%, rgba(28,25,23,0.6) 60%, #1C1917 85%, #1C1917 100%); color: white; padding: 8rem 2rem 2rem; text-align: center; margin-top: -2rem; position: relative; }
-    .footer::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 200px; background: radial-gradient(ellipse at 20% 100%, rgba(5,150,105,0.15) 0%, transparent 50%), radial-gradient(ellipse at 80% 100%, rgba(16,185,129,0.15) 0%, transparent 50%); pointer-events: none; }
-    .footer::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--project-gradient); }
-    .footer-content { position: relative; z-index: 1; max-width: var(--max-width); margin: 0 auto; }
-    .footer-nav { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
-    .footer-nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; }
-    .footer-nav a:hover { color: white; }
-    .footer-copyright { color: rgba(255,255,255,0.5); font-size: 0.85rem; }
-    .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 48px; height: 48px; border-radius: 50%; background: var(--project-gradient); color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; z-index: 999; opacity: 0; transform: translateY(20px); }
-    .back-to-top.visible { opacity: 1; transform: translateY(0); }
-    .back-to-top:hover { transform: translateY(-3px); }
-    @media (max-width: 768px) { .hero { padding: 7rem 1.5rem 3rem; } .hero-title { font-size: 1.75rem; } .content { padding: 2rem 1.5rem 4rem; } .glass-card { padding: 1.5rem; } .logo-grid { grid-template-columns: 1fr; } .demo-card { flex-direction: column; text-align: center; } .timeline-item { flex-direction: column; gap: 0.5rem; } .timeline-date { min-width: auto; } }
-    @media (max-width: 500px) { .hero-meta { flex-direction: column; gap: 0.5rem; } .results-banner { display: grid; grid-template-columns: repeat(2, 1fr); } .footer-nav { flex-direction: column; gap: 1rem; } }
+    .demo-modal-content { background: white; border-radius: 16px; max-width: 900px; width: 100%; max-height: 90vh; overflow: auto; position: relative; }
+    .demo-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--color-text-secondary); z-index: 10; }
+    .demo-placeholder { padding: 4rem; text-align: center; color: var(--color-text-secondary); }
+    .demo-placeholder svg { margin-bottom: 1rem; opacity: 0.5; }
+    .demo-placeholder h3 { font-family: var(--font-display); color: var(--color-text); margin-bottom: 0.5rem; }
+    .footer { padding: 3rem 2rem; border-top: 1px solid #e7e5e4; }
+    .footer-content { max-width: var(--max-width); margin: 0 auto; text-align: center; }
+    .footer-nav { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; }
+    .footer-nav a { color: var(--color-text-secondary); text-decoration: none; font-size: 0.9rem; }
+    .footer-nav a:hover { color: var(--color-text); }
+    .footer-copyright { font-size: 0.85rem; color: var(--color-text-secondary); }
+    .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; background: white; border: 1px solid #e7e5e4; border-radius: 50%; cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.3s; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 100; }
+    .back-to-top.visible { opacity: 1; visibility: visible; }
+    .back-to-top:hover { background: var(--color-text); color: white; border-color: var(--color-text); }
+    
+    /* Responsive styles */
+    @media (max-width: 768px) { 
+      .hero { padding: 6rem 1.5rem 3rem; } 
+      .content { padding: 1.5rem; } 
+      .logo-grid { grid-template-columns: 1fr; } 
+      .deliverables-row { flex-direction: column; }
+      .deliverable-card-half { flex: none; width: 100%; }
+      .deliverable-card-foundation .deliverable-info ul { flex-direction: column; gap: 0.5rem; align-items: center; }
+    }
+    @media (max-width: 500px) { 
+      .hero-meta { flex-direction: column; gap: 0.5rem; } 
+      .results-banner { display: grid; grid-template-columns: repeat(2, 1fr); } 
+      .footer-nav { flex-direction: column; gap: 1rem; } 
+    }
   </style>
 </head>
 <body>
@@ -138,9 +165,42 @@
     <section class="content"><div class="content-container">
       <div class="content-section"><h2 class="content-title">The Challenge</h2><div class="glass-card"><p class="content-text">As Training Manager at Xactware, I noticed a critical gap: there was no structured pathway for developing web development talent. The company needed skilled coders, but no local training program existed to build that pipeline.</p><p class="content-text">Rather than wait for someone else to solve it, I took initiative.</p><ul class="content-list"><li>No existing training program for web development talent</li><li>Needed to secure state funding through competitive grant process</li><li>Required building partnerships with educational institutions</li><li>Had to create awareness and drive enrollment from scratch</li></ul></div></div>
       <div class="content-section"><h2 class="content-title">What I Built</h2><p class="content-text" style="margin-bottom:2rem">Over 7 months, I independently conceived, developed, and launched a complete workforce development initiative—including brand identity, curriculum, partnerships, and promotional materials.</p>
-        <div class="deliverable-card"><img src="images/xacteched-flyer.png" alt="XactechED marketing flyer"><div class="deliverable-info"><div class="deliverable-type">Marketing Materials</div><h3>Program Flyer</h3><p>Professional marketing collateral I created for the program. Notice the contact information at the bottom: <strong>Christie Stephenson, XACTECHED.COM, 801.932.8254</strong>—I was the point of contact because I owned this program.</p></div></div>
-        <div class="deliverable-card"><img src="images/xacteched-billboard.png" alt="XactechED Billboard"><div class="deliverable-info"><div class="deliverable-type">Promotional Signage</div><h3>Program Billboard</h3><p>Outdoor advertising featuring MATC and Xactware partnership branding to drive program awareness and enrollment.</p><ul><li>Clear value proposition: "Learn Code From Top Coders"</li><li>Dual branding showing educational partnership</li><li>Professional design establishing program credibility</li></ul></div></div>
-        <div class="deliverable-card"><img src="images/xacteched-landing-page.png" alt="XactechED Landing Page"><div class="deliverable-info"><div class="deliverable-type">Lead Generation</div><h3>Program Landing Page</h3><p>Data-driven landing page designed to convert visitors into program applicants.</p><ul><li>Stakeholder-facing messaging with labor market data</li><li>"Why Learn to Code?" infographic with compelling stats</li><li>Integrated enrollment form for lead capture</li></ul></div></div>
+        
+        <!-- Side-by-side: Flyer and Landing Page -->
+        <div class="deliverables-row">
+          <div class="deliverable-card-half">
+            <img src="images/xacteched-flyer.png" alt="XactechED marketing flyer">
+            <div class="deliverable-info">
+              <div class="deliverable-type">Marketing Materials</div>
+              <h3>Program Flyer</h3>
+              <p>Professional marketing collateral I created for the program. Notice the contact information at the bottom: <strong>Christie Stephenson, XACTECHED.COM, 801.932.8254</strong>—I was the point of contact because I owned this program.</p>
+            </div>
+          </div>
+          <div class="deliverable-card-half">
+            <img src="images/xacteched-landing-page.png" alt="XactechED Landing Page">
+            <div class="deliverable-info">
+              <div class="deliverable-type">Lead Generation</div>
+              <h3>Program Landing Page</h3>
+              <p>Data-driven landing page designed to convert visitors into program applicants with stakeholder-facing messaging, labor market data, and integrated enrollment form for lead capture.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Foundation: Billboard -->
+        <div class="deliverable-card-foundation">
+          <img src="images/xacteched-billboard.png" alt="XactechED Billboard">
+          <div class="deliverable-info">
+            <div class="deliverable-type">Promotional Signage</div>
+            <h3>Program Billboard</h3>
+            <p>Outdoor advertising featuring MATC and Xactware partnership branding to drive program awareness and enrollment.</p>
+            <ul>
+              <li>Clear value proposition: "Learn Code From Top Coders"</li>
+              <li>Dual branding showing educational partnership</li>
+              <li>Professional design establishing program credibility</li>
+            </ul>
+          </div>
+        </div>
+        
       </div>
       <div class="content-section"><h2 class="content-title">Data-Driven Messaging</h2><p class="content-text">I developed stakeholder-facing content using local labor market data to build urgency:</p><div class="stats-box"><p><strong>2,000</strong> job openings next year for coders</p><p><strong>40</strong> tech businesses who will hire those coders</p><p><strong>7 of 10</strong> job openings in Utah are coding related</p><p><strong>NEEDED:</strong> People who can write code now</p></div></div>
       <div class="content-section"><h2 class="content-title">Expanding the Ecosystem: à la code</h2><p class="content-text">XactechED wasn't my only workforce development initiative. I also created <strong>à la code</strong>, a community meetup for internal education and external recruitment.</p><div class="logo-grid"><div class="logo-card"><img src="images/xacteched-logo.png" alt="XactechED Logo"><div class="deliverable-type">External Program</div><h4>XactechED</h4><p>State-funded workforce pipeline through MTECH partnership</p></div><div class="logo-card"><img src="images/alacode-logo.png" alt="à la code Logo"><div class="deliverable-type">Community Meetup</div><h4>à la code</h4><p>Internal education & external recruitment outreach</p></div></div>
