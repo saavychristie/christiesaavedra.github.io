@@ -2786,7 +2786,7 @@
       <p class="modal-subtitle">Choose your preferred way to connect</p>
       
       <div class="contact-options">
-        <a href="/cdn-cgi/l/email-protection#8fece7fde6fcfbe6eaa1fceeeef9eaebfdeecfe8e2eee6e3a1ece0e2" class="contact-option">
+        <a href="mailto:christie@christiesaavedra.com" class="contact-option">
           <div class="contact-option-icon email">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
@@ -2795,7 +2795,7 @@
           </div>
           <div class="contact-option-text">
             <div class="contact-option-label">Email</div>
-            <div class="contact-option-value"><span class="__cf_email__" data-cfemail="690a011b001a1d000c471a08081f0c0d1b08290e04080005470a0604">[email&#160;protected]</span></div>
+            <div class="contact-option-value">christie@christiesaavedra.com</div>
           </div>
         </a>
         
@@ -2846,7 +2846,7 @@
     <img src="images/Graduate%20Photo.jpg" alt="Christie Saavedra - UCF Graduate 2025">
   </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script>
     const nav = document.getElementById('nav');
     const backToTop = document.getElementById('backToTop');
     const contactModal = document.getElementById('contactModal');
@@ -3165,4 +3165,11 @@
 
     // Close dropdown when clicking outside
     document.addEventListener('click', (e) => {
-      const dropdown = do
+      const dropdown = document.querySelector('.resume-dropdown');
+      if (!dropdown.contains(e.target)) {
+        closeResumeDropdown();
+      }
+    });
+  </script>
+</body>
+</html>
