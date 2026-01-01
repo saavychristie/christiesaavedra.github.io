@@ -797,7 +797,7 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 3px;
+      height: 4px;
       /* Color set per-card below */
     }
 
@@ -834,6 +834,63 @@
     /* Servant Leadership - warm teal */
     .philosophy .identity-card:nth-child(7) .identity-icon { background: linear-gradient(135deg, #CCFBF1 0%, #99F6E4 100%); }
     .philosophy .identity-card:nth-child(7)::before { background: linear-gradient(90deg, #0F766E 0%, #14B8A6 100%); }
+
+    /* Foundation Card - Full Width Capstone */
+    .identity-card-foundation {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 2rem 2.5rem;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(250, 248, 245, 0.95) 100%);
+      border: 1px solid rgba(15, 118, 110, 0.15);
+    }
+
+    .identity-card-foundation::before {
+      background: linear-gradient(90deg, #0F766E 0%, #14B8A6 50%, #0F766E 100%) !important;
+      height: 4px;
+    }
+
+    .identity-card-foundation .identity-icon {
+      background: linear-gradient(135deg, #CCFBF1 0%, #99F6E4 100%);
+      width: 56px;
+      height: 56px;
+      font-size: 1.75rem;
+      margin: 0 auto 0.75rem;
+    }
+
+    .foundation-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .foundation-text {
+      max-width: 800px;
+    }
+
+    .identity-card-foundation .identity-card-title {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .foundation-text .identity-card-desc {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .foundation-quote {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+      margin-bottom: 0.25rem;
+    }
+
+    .foundation-attribution {
+      font-size: 0.75rem;
+      color: var(--color-text-secondary);
+      opacity: 0.8;
+    }
 
     /* Behavior cards - icon backgrounds AND matching top bars */
     .behaviors .identity-card:nth-child(1) .identity-icon { background: linear-gradient(135deg, #CCFBF1 0%, #99F6E4 100%); }
@@ -873,6 +930,10 @@
     /* Detail-Oriented - slate/gray */
     .behaviors .identity-card:nth-child(11) .identity-icon { background: linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 100%); }
     .behaviors .identity-card:nth-child(11)::before { background: linear-gradient(90deg, #475569 0%, #64748B 100%); }
+
+    /* Lifelong Learner - warm rose/pink */
+    .behaviors .identity-card:nth-child(12) .identity-icon { background: linear-gradient(135deg, #FECDD3 0%, #FDA4AF 100%); }
+    .behaviors .identity-card:nth-child(12)::before { background: linear-gradient(90deg, #BE123C 0%, #E11D48 100%); }
 
     .identity-card-title {
       font-family: var(--font-display);
@@ -1481,21 +1542,20 @@
     }
 
     .contact-photo img {
-      display: none;
-    }
-
-    .contact-photo::after {
-      content: '';
       position: absolute;
       top: 4px;
       left: 4px;
       right: 4px;
       bottom: 4px;
+      width: calc(100% - 8px);
+      height: calc(100% - 8px);
       border-radius: 50%;
-      background-image: url('images/Graduate%20Photo.jpg');
-      background-size: 200%;
-      background-position: 53% 35%;
+      object-fit: cover;
+      object-position: 53% 35%;
+      display: block;
     }
+
+    /* Removed ::after - using actual img tag instead */
 
     .contact-photo-hint {
       position: absolute;
@@ -1595,7 +1655,7 @@
 
     .contact-subtitle {
       opacity: 0.8;
-      margin-bottom: 0;
+      margin-bottom: 1.5rem;
       max-width: 500px;
       margin-left: auto;
       margin-right: auto;
@@ -2262,17 +2322,25 @@
             <h3 class="identity-card-title">Freedom to Create</h3>
             <p class="identity-card-desc">Automate monotony so teams can dream and build.</p>
           </div>
-          <div class="identity-card clickable" onclick="openIdentityModal('servant-leadership')">
-            <div class="identity-icon">🤲</div>
-            <h3 class="identity-card-title">Servant Leadership</h3>
-            <p class="identity-card-desc">I lead by serving—empowering others to grow, not seeking power for myself.</p>
+          
+          <!-- Servant Leadership - Foundation Card -->
+          <div class="identity-card identity-card-foundation clickable" onclick="openIdentityModal('servant-leadership')">
+            <div class="foundation-content">
+              <div class="identity-icon">🤲</div>
+              <h3 class="identity-card-title">Servant Leadership</h3>
+              <div class="foundation-text">
+                <p class="identity-card-desc">I lead by serving—empowering others to grow, not seeking power for myself. The best leaders remove obstacles, build people up, and measure success by the growth of those they serve.</p>
+                <p class="foundation-quote">"The first responsibility of a leader is to define reality. The last is to say thank you. In between, the leader is a servant."</p>
+                <p class="foundation-attribution">— Max De Pree</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Behavior Cards -->
       <div class="card-group behaviors" style="margin-top: 2rem;">
-        <h3 class="card-group-title behaviors">Core Behaviors</h3>
+        <h3 class="card-group-title behaviors">Consistent Actions</h3>
         <div class="identity-grid">
           <div class="identity-card clickable" onclick="openIdentityModal('pattern-recognition')">
             <div class="identity-icon">🔍</div>
@@ -2328,6 +2396,11 @@
             <div class="identity-icon">🔬</div>
             <h3 class="identity-card-title">Detail-Oriented</h3>
             <p class="identity-card-desc">I catch the small things that make a big difference.</p>
+          </div>
+          <div class="identity-card clickable" onclick="openIdentityModal('lifelong-learner')">
+            <div class="identity-icon">📚</div>
+            <h3 class="identity-card-title">Lifelong Learner</h3>
+            <p class="identity-card-desc">I'm always acquiring new skills—25+ years and still growing.</p>
           </div>
         </div>
       </div>
@@ -2628,7 +2701,7 @@
         <p class="contact-subtitle">I'm always interested in discussing new opportunities.</p>
         
         <!-- Contact Form -->
-        <form class="contact-form" action="https://formspree.io/f/xaqnyaaw" method="POST">
+        <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
           <div class="form-group">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required placeholder="Your name">
@@ -2653,13 +2726,6 @@
         <!-- Alternative Contact -->
         <div class="contact-alt">
           <span>Or connect directly:</span>
-          <a href="mailto:christie.saavedra@gmail.com" class="contact-alt-link">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-              <polyline points="22,6 12,13 2,6"/>
-            </svg>
-            Email
-          </a>
           <a href="https://linkedin.com/in/christiesaavedra" target="_blank" class="contact-alt-link">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
               <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
@@ -2753,7 +2819,7 @@
     <img src="images/Graduate%20Photo.jpg" alt="Christie Saavedra - UCF Graduate 2025">
   </div>
 
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     const nav = document.getElementById('nav');
     const backToTop = document.getElementById('backToTop');
     const contactModal = document.getElementById('contactModal');
@@ -2944,6 +3010,14 @@
         <p><strong>The discipline:</strong> The difference between good and exceptional is often invisible to most—but never to me.</p>
         <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
         link: 'https://example.com/detail-oriented'
+      },
+      'lifelong-learner': {
+        icon: '📚',
+        title: 'Lifelong Learner',
+        body: `<p>I'm always acquiring new skills and knowledge. After 25+ years in the field, I'm still growing, still curious, still pushing myself to learn more.</p>
+        <p><strong>The commitment:</strong> From pursuing my degree at UCF to mastering new technologies, I believe the day you stop learning is the day you stop leading.</p>
+        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
+        link: 'https://example.com/lifelong-learner'
       }
     };
 
@@ -3064,11 +3138,4 @@
 
     // Close dropdown when clicking outside
     document.addEventListener('click', (e) => {
-      const dropdown = document.querySelector('.resume-dropdown');
-      if (!dropdown.contains(e.target)) {
-        closeResumeDropdown();
-      }
-    });
-  </script>
-</body>
-</html>
+      const dropdown = do
