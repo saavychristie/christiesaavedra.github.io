@@ -4264,28 +4264,21 @@ function resetAllProgress() {
 // ===== NOTES DISCOVERY FEATURES =====
 function initNotesDiscovery() {
   const hasSeenTooltip = localStorage.getItem('notesTooltipDismissed');
+  const stickyWidget = document.getElementById('stickyWidget');
   
+  // Always show pulse animation
+  if (stickyWidget) {
+    stickyWidget.classList.add('pulse');
+  }
+  
+  // Only show tooltip for first-time visitors
   if (!hasSeenTooltip) {
-    // Show pulse animation
-    const stickyWidget = document.getElementById('stickyWidget');
-    if (stickyWidget) {
-      stickyWidget.classList.add('pulse');
-    }
-    
-    // Show tooltip after 2 seconds
     setTimeout(() => {
       const tooltip = document.getElementById('notesTooltip');
       if (tooltip) {
         tooltip.classList.add('visible');
       }
     }, 2000);
-    
-    // Stop pulse after 6 seconds
-    setTimeout(() => {
-      if (stickyWidget) {
-        stickyWidget.classList.remove('pulse');
-      }
-    }, 6000);
   }
 }
 
