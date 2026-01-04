@@ -695,7 +695,15 @@ function exportNotes() {
     text += `${note.text}\n\n`;
   });
   
-  const blob = new Blob([text], { type
+  const blob = new Blob([text], { type: 'text/plain' });   // ← ADD THIS LINE
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'portfolio-notes.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+</script>
 <script>
 (function() {
   const PROJECT_ID = 'arizona';
