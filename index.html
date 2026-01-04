@@ -2196,6 +2196,218 @@
         grid-template-columns: 1fr;
       }
     }
+/* ========== PROGRESS TRACKER & CARD BADGES ========== */
+.progress-tracker {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border: 1px solid #bae6fd;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.progress-stats {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.progress-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  color: #1e3a5f;
+}
+.progress-stat .count {
+  font-weight: 700;
+  color: #1E40AF;
+}
+.progress-stat.viewed .count { color: #059669; }
+.progress-stat.bookmarked .count { color: #d97706; }
+.progress-stat.notes .count { color: #6366f1; }
+.progress-stat svg {
+  width: 16px;
+  height: 16px;
+}
+.progress-stat.viewed svg { color: #059669; }
+.progress-stat.bookmarked svg { color: #d97706; }
+.progress-stat.notes svg { color: #6366f1; }
+.progress-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+.progress-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s;
+}
+.progress-btn svg { width: 14px; height: 14px; }
+.progress-btn.secondary {
+  background: white;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+.progress-btn.secondary:hover { background: #f3f4f6; }
+.progress-btn.primary {
+  background: linear-gradient(135deg, #1E40AF 0%, #0D9488 100%);
+  color: white;
+}
+.progress-btn.primary:hover { 
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(30,64,175,0.3);
+}
+.progress-reset {
+  font-size: 0.75rem;
+  color: #6b7280;
+  cursor: pointer;
+  text-decoration: underline;
+  background: none;
+  border: none;
+}
+.progress-reset:hover { color: #374151; }
+
+/* Card Badges */
+.card-badges {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: flex;
+  gap: 0.4rem;
+  z-index: 10;
+}
+.card-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 2px solid white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.card-badge svg {
+  width: 14px;
+  height: 14px;
+}
+.card-badge.viewed {
+  background: #059669;
+  color: white;
+  cursor: default;
+}
+.card-badge.viewed.hidden {
+  display: none;
+}
+.card-badge.bookmark {
+  background: #f3f4f6;
+  color: #9ca3af;
+}
+.card-badge.bookmark:hover {
+  background: #fef3c7;
+  color: #d97706;
+}
+.card-badge.bookmark.active {
+  background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+  color: white;
+}
+.card-badge.bookmark .has-note {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 10px;
+  height: 10px;
+  background: #6366f1;
+  border-radius: 50%;
+  border: 2px solid white;
+  display: none;
+}
+.card-badge.bookmark.has-note .has-note {
+  display: block;
+}
+
+/* Card Notes Section */
+.card-notes {
+  display: none;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+.card-notes.visible {
+  display: block;
+}
+.card-notes-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.card-notes-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #d97706;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.card-notes-label svg {
+  width: 12px;
+  height: 12px;
+}
+.card-notes-status {
+  font-size: 0.7rem;
+  color: #9ca3af;
+}
+.card-notes-textarea {
+  width: 100%;
+  min-height: 60px;
+  padding: 0.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.8rem;
+  resize: vertical;
+  transition: border-color 0.2s;
+}
+.card-notes-textarea:focus {
+  outline: none;
+  border-color: #d97706;
+}
+.card-notes-textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* Ensure cards have relative positioning for badges */
+.case-study-card {
+  position: relative;
+}
+
+@media (max-width: 640px) {
+  .progress-tracker {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .progress-stats {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .progress-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
 /* ========== FLOATING STICKY NOTE WIDGET ========== */
 .sticky-widget {
   position: fixed;
@@ -2783,7 +2995,36 @@
           <div class="section-label">Featured Work</div>
           <h2 class="section-title">Case Studies</h2>
         </div>
+</div>
 
+        <!-- Progress Tracker -->
+        <div class="progress-tracker" id="progressTracker">
+          <div class="progress-stats">
+            <div class="progress-stat viewed">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><span class="count" id="viewedCount">0</span> viewed</span>
+            </div>
+            <div class="progress-stat bookmarked">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+              <span><span class="count" id="bookmarkedCount">0</span> bookmarked</span>
+            </div>
+            <div class="progress-stat notes">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              <span><span class="count" id="notesCount">0</span> with notes</span>
+            </div>
+          </div>
+          <div class="progress-actions">
+            <button class="progress-btn secondary" onclick="exportAllNotes()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Export Notes
+            </button>
+            <button class="progress-btn primary" onclick="sendAllNotes()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Send to Christie
+            </button>
+            <button class="progress-reset" onclick="resetAllProgress()">Reset</button>
+          </div>
+        </div>
         <!-- Documented Results -->
         <div class="stats-cards">
           <div class="stat-item" data-highlights="xacteched">
