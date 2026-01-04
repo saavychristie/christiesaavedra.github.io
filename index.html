@@ -3109,7 +3109,6 @@
         <div class="section-header">
           <div class="section-label">Featured Work</div>
           <h2 class="section-title">Case Studies</h2>
-<h2 class="section-title">Case Studies</h2>
         <div class="notes-hint" onclick="highlightNotesWidget()" style="cursor: pointer;">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
   <span>Bookmark and take notes on any project</span>
@@ -4289,14 +4288,8 @@ function initNotesDiscovery() {
 function highlightNotesWidget() {
   const stickyWidget = document.getElementById('stickyWidget');
   if (stickyWidget) {
-    // Add pulse effect
+    // Add pulse effect to draw attention
     stickyWidget.classList.add('pulse');
-    
-    // Scroll to bottom-left where widget is
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      behavior: 'smooth'
-    });
     
     // Remove pulse after 3 seconds
     setTimeout(() => {
