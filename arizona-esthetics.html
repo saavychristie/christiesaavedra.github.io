@@ -696,5 +696,14 @@ function exportNotes() {
   });
   
   const blob = new Blob([text], { type
+<script>
+(function() {
+  const PROJECT_ID = 'arizona';
+  const data = JSON.parse(localStorage.getItem('portfolioTracking') || '{}');
+  data[PROJECT_ID] = data[PROJECT_ID] || { viewed: false, bookmarked: false, note: '' };
+  data[PROJECT_ID].viewed = true;
+  localStorage.setItem('portfolioTracking', JSON.stringify(data));
+})();
+</script>
 </body>
 </html>
