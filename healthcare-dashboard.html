@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKJH0YKZT5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TKJH0YKZT5');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healthcare Operations Dashboard | Christie Stephenson Saavedra</title>
+  <meta name="description" content="Real-time surgery room utilization dashboard replacing quarterly PDF reports with live operational visibility for multi-hospital health systems.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --color-bg-warm: #FDFCFA; --color-text: #1C1917; --color-text-secondary: #57534E; --font-display: 'DM Serif Display', Georgia, serif; --font-body: 'IBM Plex Sans', -apple-system, sans-serif; --max-width: 900px; --project-gradient: linear-gradient(135deg, #1E40AF 0%, #0D9488 100%); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--color-text); line-height: 1.7; background: var(--color-bg-warm); }
+    .page-wrapper { position: relative; background: linear-gradient(180deg, #FDFCFA 0%, #FAF8F5 50%, #FDFCFA 100%); min-height: 100vh; }
+    .nav, .hero, .content, .footer { position: relative; z-index: 1; }
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; }
+    .nav::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--project-gradient); z-index: 1; }
+    .nav-bg { background: rgba(253, 252, 250, 0.92); backdrop-filter: blur(12px); padding: 1rem 2rem; }
+    .nav.scrolled .nav-bg { box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06); }
+    .nav-container { max-width: var(--max-width); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .nav-back { display: flex; align-items: center; gap: 0.5rem; color: var(--color-text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+    .nav-back:hover { color: #1E40AF; }
+    .nav-back svg { width: 18px; height: 18px; }
+    .nav-logo { font-family: var(--font-display); font-size: 1.1rem; color: var(--color-text); text-decoration: none; }
+    .hero { padding: 8rem 2rem 4rem; text-align: center; }
+    .hero-container { max-width: var(--max-width); margin: 0 auto; }
+    .hero-meta { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .hero-role { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: white; background: var(--project-gradient); padding: 0.5rem 1rem; border-radius: 2rem; }
+    .hero-org { font-size: 0.85rem; color: var(--color-text-secondary); }
+    .hero-title { font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 400; line-height: 1.15; margin-bottom: 1.5rem; }
+    .hero-summary { font-size: 1.15rem; color: var(--color-text-secondary); max-width: 700px; margin: 0 auto 2rem; }
+    .results-banner { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+    .result-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-radius: 12px; padding: 1.25rem 1.5rem; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 4px 20px rgba(0,0,0,0.03); text-align: center; min-width: 140px; position: relative; overflow: hidden; }
+    .result-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--project-gradient); }
+    .result-number { font-family: var(--font-display); font-size: 1.5rem; color: #1E40AF; margin-bottom: 0.25rem; }
+    .result-label { font-size: 0.75rem; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+    .content { padding: 3rem 2rem 4rem; }
+    .content-container { max-width: var(--max-width); margin: 0 auto; }
+    .content-section { margin-bottom: 3rem; }
+    .content-title { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1rem; color: var(--color-text); }
+    .content-text { color: var(--color-text-secondary); margin-bottom: 1rem; }
+    .glass-card { background: rgba(255,255,255,0.6); backdrop-filter: blur(10px); border-radius: 16px; padding: 2rem; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+    .content-list { list-style: none; margin: 1rem 0; }
+    .content-list li { padding: 0.5rem 0; padding-left: 1.5rem; position: relative; color: var(--color-text-secondary); }
+    .content-list li::before { content: '→'; position: absolute; left: 0; color: #1E40AF; font-weight: bold; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+    .tag { background: linear-gradient(135deg, rgba(30,64,175,0.1) 0%, rgba(13,148,136,0.1) 100%); color: #1E40AF; padding: 0.35rem 0.75rem; border-radius: 2rem; font-size: 0.8rem; font-weight: 500; }
+    .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+    .feature-card { background: rgba(255,255,255,0.6); backdrop-filter: blur(10px); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.8); }
+    .feature-card h4 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--color-text); }
+    .feature-card p { font-size: 0.9rem; color: var(--color-text-secondary); }
+    .comparison-section { margin: 2rem 0; }
+    .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; }
+    .comparison-card { border-radius: 12px; padding: 1.5rem; }
+    .comparison-card.before { background: rgba(220, 38, 38, 0.05); border: 1px solid rgba(220, 38, 38, 0.2); }
+    .comparison-card.after { background: rgba(5, 150, 105, 0.05); border: 1px solid rgba(5, 150, 105, 0.2); }
+    .comparison-card h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.75rem; }
+    .comparison-card.before h4 { color: #dc2626; }
+    .comparison-card.after h4 { color: #059669; }
+    .comparison-card ul { list-style: none; font-size: 0.9rem; color: var(--color-text-secondary); }
+    .comparison-card li { padding: 0.3rem 0; }
+    .navigate-section { background: linear-gradient(135deg, rgba(30,64,175,0.05) 0%, rgba(13,148,136,0.05) 100%); border-radius: 16px; padding: 2rem; margin: 2rem 0; border: 1px solid rgba(30,64,175,0.1); }
+    .navigate-section h3 { font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 1rem; color: var(--color-text); }
+    .navigate-steps { display: grid; gap: 1rem; }
+    .navigate-step { display: flex; gap: 1rem; align-items: flex-start; }
+    .step-number { width: 28px; height: 28px; background: var(--project-gradient); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 600; flex-shrink: 0; }
+    .step-content h4 { font-size: 0.95rem; margin-bottom: 0.25rem; }
+    .step-content p { font-size: 0.85rem; color: var(--color-text-secondary); }
+    .demo-card { display: flex; align-items: center; gap: 1.5rem; background: var(--project-gradient); border-radius: 16px; padding: 2rem; cursor: pointer; transition: all 0.3s ease; text-decoration: none; }
+    .demo-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(30,64,175,0.3); }
+    .demo-icon { width: 64px; height: 64px; background: rgba(255,255,255,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+    .demo-icon svg { color: white; }
+    .demo-text { color: white; }
+    .demo-text h3 { font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.25rem; }
+    .demo-text p { opacity: 0.9; font-size: 0.9rem; }
+    .cta-section { text-align: center; padding: 2rem 0; }
+    .btn-cta { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--project-gradient); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; transition: all 0.2s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
+    .footer { background: linear-gradient(180deg, transparent 0%, rgba(28,25,23,0.1) 30%, rgba(28,25,23,0.6) 60%, #1C1917 85%, #1C1917 100%); color: white; padding: 8rem 2rem 2rem; text-align: center; margin-top: -2rem; position: relative; }
+    .footer::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 200px; background: radial-gradient(ellipse at 20% 100%, rgba(30,64,175,0.15) 0%, transparent 50%), radial-gradient(ellipse at 80% 100%, rgba(13,148,136,0.15) 0%, transparent 50%); pointer-events: none; }
+    .footer::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--project-gradient); }
+    .footer-content { position: relative; z-index: 1; max-width: var(--max-width); margin: 0 auto; }
+    .footer-nav { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .footer-nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; }
+    .footer-nav a:hover { color: white; }
+    .footer-copyright { color: rgba(255,255,255,0.5); font-size: 0.85rem; }
+    .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 48px; height: 48px; border-radius: 50%; background: var(--project-gradient); color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; z-index: 999; opacity: 0; transform: translateY(20px); }
+    .back-to-top.visible { opacity: 1; transform: translateY(0); }
+    .back-to-top:hover { transform: translateY(-3px); }
+    @media (max-width: 768px) { .hero { padding: 7rem 1.5rem 3rem; } .hero-title { font-size: 1.75rem; } .content { padding: 2rem 1.5rem 4rem; } .glass-card { padding: 1.5rem; } .comparison-grid { grid-template-columns: 1fr; } .demo-card { flex-direction: column; text-align: center; } }
+    @media (max-width: 500px) { .hero-meta { flex-direction: column; gap: 0.5rem; } .results-banner { display: grid; grid-template-columns: repeat(2, 1fr); } .footer-nav { flex-direction: column; gap: 1rem; } }
+  </style>
+</head>
+<body>
+  <div class="page-wrapper">
+    <nav class="nav" id="nav"><div class="nav-bg"><div class="nav-container"><a href="index.html#work" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>Back to Portfolio</a><a href="index.html" class="nav-logo">Christie Stephenson Saavedra</a></div></div></nav>
+    
+    <section class="hero">
+      <div class="hero-container">
+        <div class="hero-meta">
+          <span class="hero-role">UX Designer / Developer</span>
+          <span class="hero-org">Healthcare Consulting · 2025</span>
+        </div>
+        <h1 class="hero-title">Healthcare Operations Dashboard</h1>
+        <p class="hero-summary">Designed and built a real-time surgery room utilization dashboard for a multi-hospital health system—replacing quarterly PDF reports with live operational visibility.</p>
+        <div class="results-banner">
+          <div class="result-card">
+            <div class="result-number">Real-Time</div>
+            <div class="result-label">Live Data</div>
+          </div>
+          <div class="result-card">
+            <div class="result-number">5</div>
+            <div class="result-label">User Roles</div>
+          </div>
+          <div class="result-card">
+            <div class="result-number">4</div>
+            <div class="result-label">Drill-Down Levels</div>
+          </div>
+          <div class="result-card">
+            <div class="result-number">15+</div>
+            <div class="result-label">Features Beyond Scope</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="content">
+      <div class="content-container">
+        
+        <div class="content-section">
+          <h2 class="content-title">The Challenge</h2>
+          <div class="glass-card">
+            <p class="content-text">A multi-hospital health system relied on <strong>quarterly PDF reports</strong> to track surgery room utilization. Leadership knew they were leaving money on the table, but couldn't pinpoint where or why.</p>
+            <ul class="content-list">
+              <li><strong>No real-time visibility</strong> — decisions made on data that was months old</li>
+              <li><strong>No drill-down capability</strong> — couldn't identify which units, rooms, or surgeons were underperforming</li>
+              <li><strong>Physician resistance</strong> — doctors feared unfair evaluation metrics and "Big Brother" surveillance</li>
+              <li><strong>Political sensitivity</strong> — performance data in healthcare is career-affecting</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="content-section">
+          <h2 class="content-title">Why This Is Cutting-Edge</h2>
+          <p class="content-text">Most healthcare dashboards on the market today are either too simple (pretty charts with no actionability) or too complex (data warehouses that require analysts to interpret). This solution bridges that gap:</p>
+          
+          <div class="comparison-section">
+            <div class="comparison-grid">
+              <div class="comparison-card before">
+                <h4>Current Market Options</h4>
+                <ul>
+                  <li>Static quarterly or monthly reports</li>
+                  <li>One-size-fits-all metrics</li>
+                  <li>No role-based access control</li>
+                  <li>Rankings that damage physician relationships</li>
+                  <li>No path to dispute unfair metrics</li>
+                </ul>
+              </div>
+              <div class="comparison-card after">
+                <h4>This Dashboard</h4>
+                <ul>
+                  <li>Real-time data visibility</li>
+                  <li>Configurable weighted metrics by specialty</li>
+                  <li>5 distinct user roles with appropriate access</li>
+                  <li>Tier system (less threatening than rankings)</li>
+                  <li>Built-in dispute resolution workflow</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-section">
+          <h2 class="content-title">Key Features</h2>
+          <div class="feature-grid">
+            <div class="feature-card">
+              <h4>Hierarchical Navigation</h4>
+              <p>Drill down from Region → Hospital → Unit → Room → Individual Surgeon. Each level reveals more granular performance data.</p>
+            </div>
+            <div class="feature-card">
+              <h4>Role-Based Access</h4>
+              <p>5 user roles (Admin, Director, Scheduler, Unit Manager, Physician) each see appropriate data for their responsibilities.</p>
+            </div>
+            <div class="feature-card">
+              <h4>Tier System</h4>
+              <p>Performance shown as tiers rather than rankings—less threatening to physician relationships while still driving accountability.</p>
+            </div>
+            <div class="feature-card">
+              <h4>Dispute Workflow</h4>
+              <p>Surgeons can contest metrics they believe are unfair. Built-in resolution process maintains trust in the system.</p>
+            </div>
+            <div class="feature-card">
+              <h4>Configurable Weights</h4>
+              <p>Different specialties have different benchmarks. Cardiology metrics differ from orthopedics. Fully customizable.</p>
+            </div>
+            <div class="feature-card">
+              <h4>Calendar Integration</h4>
+              <p>View utilization patterns over time. Identify scheduling inefficiencies and optimize room allocation.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-section">
+          <h2 class="content-title">My Role</h2>
+          <div class="glass-card">
+            <ul class="content-list">
+              <li>Led end-to-end UX design from requirements gathering to interactive prototype</li>
+              <li>Developed fully functional dashboard in React with TypeScript</li>
+              <li>Designed role-based permission system balancing transparency with privacy</li>
+              <li>Created change management approach for sensitive performance data rollout</li>
+              <li>Built 15+ features beyond original scope based on stakeholder feedback</li>
+            </ul>
+            <div class="tags">
+              <span class="tag">React</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Recharts</span>
+              <span class="tag">Role-Based Access</span>
+              <span class="tag">Data Visualization</span>
+              <span class="tag">UX Design</span>
+              <span class="tag">Change Management</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-section">
+          <div class="navigate-section">
+            <h3>🧭 How to Navigate the Demo</h3>
+            <p style="color: var(--color-text-secondary); margin-bottom: 1.5rem;">Even if you're not in healthcare, here's how to explore what this dashboard can do:</p>
+            <div class="navigate-steps">
+              <div class="navigate-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <h4>Try Different User Roles</h4>
+                  <p>Use the role switcher in the header. Notice how the data and navigation options change based on who's logged in.</p>
+                </div>
+              </div>
+              <div class="navigate-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <h4>Drill Down Through Levels</h4>
+                  <p>Click on regions, then hospitals, then units. Watch how you can go from system-wide view down to individual surgeon performance.</p>
+                </div>
+              </div>
+              <div class="navigate-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <h4>Explore the Tier System</h4>
+                  <p>Look at how surgeons are grouped into performance tiers rather than ranked 1-2-3. This is intentional—it preserves relationships.</p>
+                </div>
+              </div>
+              <div class="navigate-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                  <h4>Check the Calendar View</h4>
+                  <p>See how utilization patterns appear over time. This helps identify scheduling inefficiencies.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-section">
+          <h2 class="content-title">Interactive Demo</h2>
+          <a href="dashboard.html" class="demo-card">
+            <div class="demo-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+            </div>
+            <div class="demo-text">
+              <h3>Launch Interactive Demo</h3>
+              <p>Explore the fully functional React dashboard with role switching and drill-down navigation</p>
+            </div>
+          </a>
+        </div>
+
+        <div class="cta-section">
+          <a href="index.html#work" class="btn-cta">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            View More Case Studies
+          </a>
+        </div>
+        
+      </div>
+    </section>
+    
+    <footer class="footer">
+      <div class="footer-content">
+        <nav class="footer-nav">
+          <a href="index.html#work">Work</a>
+          <a href="index.html#testimonials">Testimonials</a>
+          <a href="index.html#skills">Skills</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+        <p class="footer-copyright">© 2025 Christie Stephenson Saavedra. All rights reserved.</p>
+        <p style="font-size:0.7rem;color:rgba(255,255,255,0.4);margin-top:0.5rem;">Original code, design, and case study content.</p>
+      </div>
+    </footer>
+  </div>
+  
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+  
+  <script>
+    const nav = document.getElementById('nav');
+    const backToTop = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+      
+      if (window.scrollY > 300) {
+        backToTop.classList.add('visible');
+      } else {
+        backToTop.classList.remove('visible');
+      }
+    });
+  </script>
+</body>
+</html>
