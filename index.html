@@ -3154,7 +3154,7 @@
         <div class="section-header">
           <div class="section-label">Featured Work</div>
           <h2 class="section-title">Case Studies</h2>
-        <div class="notes-hint" onclick="highlightNotesWidget()" style="cursor: pointer;">
+        <div class="notes-hint" onmouseenter="highlightNotesWidget()" onmouseleave="removeHighlight()" style="cursor: pointer;">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
   <span>Bookmark and take notes on any project</span>
 </div>
@@ -4333,13 +4333,14 @@ function initNotesDiscovery() {
 function highlightNotesWidget() {
   const stickyWidget = document.getElementById('stickyWidget');
   if (stickyWidget) {
-    // Add RGB ring + bounce effect
     stickyWidget.classList.add('highlight');
-    
-    // Remove after 3 seconds
-    setTimeout(() => {
-      stickyWidget.classList.remove('highlight');
-    }, 3000);
+  }
+}
+
+function removeHighlight() {
+  const stickyWidget = document.getElementById('stickyWidget');
+  if (stickyWidget) {
+    stickyWidget.classList.remove('highlight');
   }
 }
 function dismissTooltip() {
