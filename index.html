@@ -2290,7 +2290,7 @@
 @media (max-width: 768px) {
   .progress-widget {
     top: 4.5rem;
-    right: 1rem;
+    left: 1rem;
     padding: 0.6rem 0.8rem;
     min-width: 140px;
   }
@@ -4332,7 +4332,8 @@ function initNotesDiscovery() {
 }
 function highlightNotesWidget() {
   const stickyWidget = document.getElementById('stickyWidget');
-  if (stickyWidget) {
+  // Only highlight when widget is minimized (not expanded)
+  if (stickyWidget && stickyWidget.classList.contains('minimized')) {
     stickyWidget.classList.add('highlight');
   }
 }
@@ -4342,8 +4343,7 @@ function removeHighlight() {
   if (stickyWidget) {
     stickyWidget.classList.remove('highlight');
   }
-}
-function dismissTooltip() {
+}function dismissTooltip() {
   const tooltip = document.getElementById('notesTooltip');
   if (tooltip) {
     tooltip.classList.remove('visible');
