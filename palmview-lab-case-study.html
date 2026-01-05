@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKJH0YKZT5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TKJH0YKZT5');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Palmview Lab Case Study | Christie Stephenson Saavedra</title>
+  <meta name="description" content="Technology documentation case study - 500+ devices managed across 3 platforms with searchable knowledge base.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #FDFCFA;
+      --color-text: #1C1917;
+      --color-text-secondary: #57534E;
+      --color-accent: #164e63;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'IBM Plex Sans', -apple-system, sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: var(--font-body); color: var(--color-text); line-height: 1.6; background: var(--color-bg); }
+    .container { max-width: 800px; margin: 0 auto; padding: 2rem; }
+    
+    /* Print Styles */
+    @media print {
+      body { background: white; }
+      .container { padding: 0; max-width: 100%; }
+      .no-print { display: none !important; }
+      @page { margin: 0.5in; }
+    }
+    
+    /* Header */
+    .header { text-align: center; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 3px solid var(--color-accent); }
+    .header-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-accent); margin-bottom: 0.5rem; }
+    .header-title { font-family: var(--font-display); font-size: 2rem; margin-bottom: 0.5rem; }
+    .header-subtitle { color: var(--color-text-secondary); font-size: 1.1rem; }
+    
+    /* Stats Grid */
+    .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 2rem; }
+    .stat-card { background: linear-gradient(135deg, #164e63 0%, #06b6d4 100%); color: white; padding: 1rem; border-radius: 8px; text-align: center; }
+    .stat-number { font-family: var(--font-display); font-size: 1.75rem; }
+    .stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; opacity: 0.9; }
+    
+    /* Sections */
+    .section { margin-bottom: 1.5rem; }
+    .section-title { font-family: var(--font-display); font-size: 1.25rem; color: var(--color-accent); margin-bottom: 0.75rem; padding-bottom: 0.25rem; border-bottom: 1px solid #E7E5E4; }
+    .section-content { color: var(--color-text-secondary); }
+    .section-content p { margin-bottom: 0.5rem; }
+    
+    /* Lists */
+    .methodology-list { list-style: none; }
+    .methodology-list li { padding: 0.4rem 0; padding-left: 1.5rem; position: relative; }
+    .methodology-list li::before { content: '→'; position: absolute; left: 0; color: var(--color-accent); font-weight: bold; }
+    
+    /* Two Column */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    
+    /* Footer */
+    .footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #E7E5E4; text-align: center; font-size: 0.85rem; color: var(--color-text-secondary); }
+    .footer a { color: var(--color-accent); text-decoration: none; }
+    
+    /* Back Link */
+    .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--color-text-secondary); text-decoration: none; font-size: 0.9rem; margin-bottom: 1rem; }
+    .back-link:hover { color: var(--color-accent); }
+    
+    /* Skills Tags */
+    .skills-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .skill-tag { background: #ecfeff; color: var(--color-accent); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.75rem; font-weight: 500; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <a href="palmview-lab.html" class="back-link no-print">← Back to Full Case Study</a>
+    
+    <header class="header">
+      <div class="header-label">Technology Documentation Case Study</div>
+      <h1 class="header-title">Palmview K-8 Computer Lab</h1>
+      <p class="header-subtitle">Computer Lab Manager · 2021-2022</p>
+    </header>
+    
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">500+</div>
+        <div class="stat-label">Devices Managed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Device Platforms</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">↓</div>
+        <div class="stat-label">Repeat Requests</div>
+      </div>
+    </div>
+    
+    <div class="section">
+      <h2 class="section-title">The Challenge</h2>
+      <div class="section-content">
+        <p>When I arrived at Palmview K-8, there was no centralized documentation system. Technical staff had to figure things out from scratch each time. Teachers struggled with interactive displays. Devices were managed without consistent processes.</p>
+        <ul class="methodology-list">
+          <li>Hundreds of devices across Windows laptops, Chromebooks, iPads, and tablets</li>
+          <li>No searchable documentation for common technical issues</li>
+          <li>Newly onboarded technical staff needed training resources</li>
+          <li>Teachers needed support on interactive display technology</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="section">
+      <h2 class="section-title">My Approach</h2>
+      <div class="section-content">
+        <p>I saw an opportunity to build systems that would outlast my time there. Applied the same methodology I use across all projects: Immerse → Identify → Ideate → Collaborate → Build.</p>
+      </div>
+    </div>
+    
+    <div class="two-col">
+      <div class="section">
+        <h2 class="section-title">Deliverables</h2>
+        <div class="section-content">
+          <ul class="methodology-list">
+            <li><strong>Knowledge base</strong> using Stack Overflow methodologies</li>
+            <li><strong>Quick-reference guides</strong> for device resets & troubleshooting</li>
+            <li><strong>FAQs</strong> for frequently asked technical questions</li>
+            <li><strong>Troubleshooting articles</strong> enabling self-service</li>
+            <li><strong>Inventory systems</strong> tracking devices across platforms</li>
+            <li><strong>Onboarding documentation</strong> for new technical staff</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="section">
+        <h2 class="section-title">Results</h2>
+        <div class="section-content">
+          <ul class="methodology-list">
+            <li><strong>Reduced repeat support requests</strong> through self-service</li>
+            <li><strong>Improved onboarding</strong> with ready-made resources</li>
+            <li><strong>Teacher enablement</strong> on interactive displays</li>
+            <li><strong>Systematic inventory management</strong> across platforms</li>
+            <li><strong>Documentation that outlasted my role</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="section">
+      <h2 class="section-title">The Pattern</h2>
+      <div class="section-content">
+        <p>Just like with XactechED and Arizona Esthetics Institute, I identified a gap, built systems to address it, and created resources that enabled others to succeed. The scale and context change—the approach doesn't.</p>
+        <div class="skills-list">
+          <span class="skill-tag">Knowledge Base Design</span>
+          <span class="skill-tag">Technical Documentation</span>
+          <span class="skill-tag">Quick Reference Guides</span>
+          <span class="skill-tag">User Enablement</span>
+          <span class="skill-tag">Inventory Management</span>
+          <span class="skill-tag">Multi-Platform Support</span>
+        </div>
+      </div>
+    </div>
+    
+    <footer class="footer">
+      <p><strong>Christie Stephenson Saavedra</strong></p>
+      <p><a href="https://christiesaavedra.com">christiesaavedra.com</a> · <a href="mailto:christie@christiesaavedra.com">christie@christiesaavedra.com</a></p>
+      <p style="margin-top: 0.5rem; font-size: 0.75rem;">© 2025 Christie Stephenson Saavedra. All rights reserved.</p>
+    </footer>
+  </div>
+</body>
+</html>
