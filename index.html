@@ -1092,10 +1092,18 @@
     }
 
     /* ==================== TESTIMONIALS - COLORFUL ==================== */
-    .testimonials-grid {
+   .testimonials-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .testimonials-hidden.visible {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      justify-content: center;
     }
 
     .testimonial-card {
