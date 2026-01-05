@@ -426,19 +426,20 @@
 /* Case Study Dropdown */
 .casestudy-box {
   margin-top: 2rem;
-  border: 3px dashed #0d9488;
-  border-radius: 12px;
-  padding: 1.25rem;
-  background: rgba(13, 148, 136, 0.1);
-  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 2px dashed #dc2626;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  background: rgba(220, 38, 38, 0.08);
 }
 .casestudy-label {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.05em;
-  color: #0f766e;
-  margin-bottom: 0.75rem;
-  display: block;
+  color: #c2410c;
+  margin: 0;
 }
 .casestudy-dropdown {
   position: relative;
@@ -458,7 +459,7 @@
   font-family: var(--font-body);
   font-size: 0.85rem;
   font-weight: 600;
-  color: #0f766e;
+  color: #c2410c;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -582,15 +583,15 @@
 <body>
   <div class="page-wrapper">
     <nav class="nav" id="nav"><div class="nav-bg"><div class="nav-container"><a href="index.html#work" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>Back to Portfolio</a><a href="index.html" class="nav-logo">Christie Stephenson Saavedra</a></div></div></nav>
-    <section class="hero"><div class="hero-container"><div class="hero-meta"><span class="hero-role">Instructional Designer / Co-founder</span><span class="hero-org">Arizona Esthetics Institute</span></div><h1 class="hero-title">Arizona Esthetics Institute</h1><p class="hero-summary">Co-founding and launching a state-approved vocational training school for esthetics—from curriculum design to facility build-out.</p><div class="results-banner"><div class="result-card"><div class="result-number">State</div><div class="result-label">Approved Curriculum</div></div><div class="result-card"><div class="result-number">Accredited</div><div class="result-label">Trade School</div></div><div class="result-card"><div class="result-number">At-Risk</div><div class="result-label">Youth Pathways</div></div></div><div class="casestudy-box"><span class="casestudy-label">CASE STUDY</span><div class="casestudy-dropdown" id="casestudyDropdown"><button class="casestudy-btn" onclick="toggleCasestudyDropdown()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Case Study<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="casestudy-dropdown-menu"><a href="arizona-esthetics-case-study.html" target="_blank" class="casestudy-dropdown-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>View Case Study</a><a href="arizona-esthetics-case-study.html" download class="casestudy-dropdown-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download PDF</a></div></div></div></div></section>
+    <section class="hero"><div class="hero-container"><div class="hero-meta"><span class="hero-role">Instructional Designer / Co-founder</span><span class="hero-org">Arizona Esthetics Institute</span></div><h1 class="hero-title">Arizona Esthetics Institute</h1><p class="hero-summary">Co-founding and launching a state-approved vocational training school for esthetics—from curriculum design to facility build-out.</p><div class="results-banner"><div class="result-card"><div class="result-number">State</div><div class="result-label">Approved Curriculum</div></div><div class="result-card"><div class="result-number">Licensed</div><div class="result-label">Trade School</div></div><div class="result-card"><div class="result-number">At-Risk</div><div class="result-label">Youth Pathways</div></div></div><div class="casestudy-box"><span class="casestudy-label">CASE STUDY</span><div class="casestudy-dropdown" id="casestudyDropdown"><button class="casestudy-btn" onclick="toggleCasestudyDropdown()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Case Study<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="casestudy-dropdown-menu"><a href="arizona-esthetics-case-study.html" target="_blank" class="casestudy-dropdown-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>View Case Study</a><a href="arizona-esthetics-case-study.html" download class="casestudy-dropdown-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download PDF</a></div></div></div></div></section>
     <section class="content"><div class="content-container">
       <div class="content-section"><h2 class="content-title">The Challenge</h2><div class="glass-card"><p class="content-text">Arizona lacked accessible vocational training options for esthetics. At-risk youth in particular had few pathways to licensed, employable careers in the beauty industry.</p><p class="content-text">I saw an opportunity to create something from nothing.</p><ul class="content-list"><li>No existing program to model—had to build from scratch</li><li>Required navigating Arizona State Board regulatory requirements</li><li>Needed to develop state-approved curriculum meeting licensing exam standards</li><li>Had to build facility, recruit students, and establish partnerships simultaneously</li></ul></div></div>
       <div class="content-section"><h2 class="content-title">What I Built</h2>
-        <div class="deliverable-card"><img src="images/arizona-esthetics-buildout.jpg" alt="Christie Stephenson standing in front of Arizona Esthetics Institute sign during facility build-out"><div class="deliverable-info"><div class="deliverable-type">Physical Evidence</div><h3>Facility Build-Out in Progress</h3><p>That's me, standing in front of the Arizona Esthetics Institute sign during construction. Sawhorses, HVAC materials, and all. This wasn't a consulting gig—<strong>I co-founded this school and built it from the ground up.</strong></p></div></div>
+        <div class="deliverable-card"><img src="images/arizona-esthetics-buildout.jpg" alt="Christie Stephenson standing in front of Arizona Esthetics Institute sign during facility build-out"><div class="deliverable-info"><h3>Facility Build-Out in Progress</h3><p>Arizona Esthetics Institute under construction. An idea conceptualized in my head—<strong>and built from the ground up.</strong></p></div></div>
       </div>
       <div class="content-section"><h2 class="content-title">Deliverables Created</h2><div class="skill-grid"><div class="skill-card"><h4>📚 State-Approved Curriculum</h4><p>Complete esthetics program with lesson plans, competency frameworks, and assessments aligned to Arizona licensing requirements</p></div><div class="skill-card"><h4>📋 Instructional Materials</h4><p>Student handbooks, course materials, and practical training guides</p></div><div class="skill-card"><h4>✅ Assessment Frameworks</h4><p>Competency-based evaluations mapped to state licensing exam objectives</p></div><div class="skill-card"><h4>🤝 Partnership Agreements</h4><p>School district MOUs creating vocational pathways for at-risk youth</p></div><div class="skill-card"><h4>🏢 Facility Operations</h4><p>Complete facility build-out, equipment procurement, and compliance documentation</p></div><div class="skill-card"><h4>📣 Recruitment Materials</h4><p>Enrollment marketing, community outreach, and student recruitment systems</p></div></div></div>
       <div class="content-section"><h2 class="content-title">The Pattern Continues</h2><div class="pattern-box"><p>Arizona Esthetics Institute (2003-2004) was the first time I built a complete educational program from scratch. A decade later, I would do it again with <a href="xacteched-campaign.html" style="color:#dc2626">xactechED at Xactware</a>.</p><p style="margin-top:1rem"><strong>Same pattern:</strong></p><p>→ Identify a skills gap</p><p>→ Create a program to address it</p><p>→ Navigate regulatory/funding requirements</p><p>→ Build awareness and drive enrollment</p><p>→ Deliver measurable results</p></div></div>
-      <div class="content-section"><h2 class="content-title">Results</h2><div class="glass-card"><ul class="content-list"><li><strong>State-approved curriculum</strong> meeting Arizona Board of Cosmetology requirements</li><li><strong>Accredited trade school</strong> launched and operational</li><li><strong>School district partnerships</strong> creating pathways for at-risk youth</li><li><strong>Students enrolled</strong> and progressing toward licensing exams</li><li><strong>Complete program infrastructure</strong>—curriculum, facility, operations, recruitment</li></ul><div class="tags"><span class="tag">Curriculum Development</span><span class="tag">Regulatory Navigation</span><span class="tag">Instructional Design</span><span class="tag">Partnership Building</span><span class="tag">Program Launch</span></div></div></div>
+      <div class="content-section"><h2 class="content-title">Results</h2><div class="glass-card"><ul class="content-list"><li><strong>State-approved curriculum</strong> meeting Arizona Board of Cosmetology requirements</li><li><strong> Licensed Trade school</strong> launched and operational</li><li><strong>School district partnerships</strong> creating pathways for at-risk youth</li><li><strong>Students enrolled</strong> and progressing toward licensing exams</li><li><strong>Complete program infrastructure</strong>—curriculum, facility, operations, recruitment</li></ul><div class="tags"><span class="tag">Curriculum Development</span><span class="tag">Regulatory Navigation</span><span class="tag">Instructional Design</span><span class="tag">Partnership Building</span><span class="tag">Program Launch</span></div></div></div>
       <div class="content-section"><h2 class="content-title">Interactive Demo</h2><div class="demo-card" onclick="openDemo()"><div class="demo-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="demo-text"><h3>Launch Interactive Demo</h3><p>Explore the Arizona Esthetics Institute curriculum and training materials</p></div></div></div>
     <div class="content-section behind-scenes">
         <h2 class="content-title">Behind the Scenes</h2>
