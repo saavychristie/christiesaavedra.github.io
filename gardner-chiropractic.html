@@ -570,6 +570,17 @@
   min-width: 600px;
 }
 
+@media (max-width: 650px) {
+  .progress-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
+  }
+  .progress-bar {
+    min-width: 500px;
+  }
+}
+
 .progress-step {
   flex: 1;
   text-align: center;
@@ -1101,14 +1112,32 @@
     font-size: 0.65rem;
   }
   .progress-container {
-  margin-bottom: 1.5rem;
-  padding-top: 1rem;
-  overflow: visible;
-}
+    margin-bottom: 1.5rem;
+    padding-top: 1rem;
+    overflow-x: auto;
+  }
   .card-title {
     font-size: 1rem;
   }
+  .card-panel {
+    padding: 1rem;
+  }
+  .card-image-container {
+    min-height: 200px;
+  }
+  .card-nav {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+  }
+  .timeline-header {
+    padding: 0 1rem;
+  }
+  .timeline-title {
+    font-size: 1.25rem;
+  }
 }
+
 .behind-scenes-card img {
   width: 100%;
   height: 490px;
