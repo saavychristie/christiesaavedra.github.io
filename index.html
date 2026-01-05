@@ -764,25 +764,6 @@
       margin-top: 0.5rem;
     }
 
-    /* Card Groups */
-    .card-group {
-      margin-bottom: 2.5rem;
-    }
-
-    .card-group-title {
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--color-text-secondary);
-      margin-bottom: 1rem;
-      padding-left: 0.75rem;
-      border-left: 3px solid;
-    }
-
-    .card-group-title.philosophy { border-color: #1E40AF; }
-    .card-group-title.behaviors { border-color: #0D9488; }
-
     .identity-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -839,129 +820,6 @@
       font-size: 1.5rem;
     }
 
-    /* Philosophy cards - icon backgrounds AND matching top bars */
-    .philosophy .identity-card:nth-child(1) .identity-icon { background: linear-gradient(135deg, #DBEAFE 0%, #BFDBFE 100%); }
-    .philosophy .identity-card:nth-child(1)::before { background: linear-gradient(90deg, #1E40AF 0%, #3B82F6 100%); }
-    
-    .philosophy .identity-card:nth-child(2) .identity-icon { background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%); }
-    .philosophy .identity-card:nth-child(2)::before { background: linear-gradient(90deg, #F59E0B 0%, #FBBF24 100%); }
-    
-    .philosophy .identity-card:nth-child(3) .identity-icon { background: linear-gradient(135deg, #E0E7FF 0%, #C7D2FE 100%); }
-    .philosophy .identity-card:nth-child(3)::before { background: linear-gradient(90deg, #6366F1 0%, #818CF8 100%); }
-    
-    .philosophy .identity-card:nth-child(4) .identity-icon { background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%); }
-    .philosophy .identity-card:nth-child(4)::before { background: linear-gradient(90deg, #059669 0%, #10B981 100%); }
-    
-    .philosophy .identity-card:nth-child(5) .identity-icon { background: linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 100%); }
-    .philosophy .identity-card:nth-child(5)::before { background: linear-gradient(90deg, #DB2777 0%, #EC4899 100%); }
-    
-    .philosophy .identity-card:nth-child(6) .identity-icon { background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%); }
-    .philosophy .identity-card:nth-child(6)::before { background: linear-gradient(90deg, #DC2626 0%, #EF4444 100%); }
-
-    /* Servant Leadership - warm teal */
-    .philosophy .identity-card:nth-child(7) .identity-icon { background: linear-gradient(135deg, #CCFBF1 0%, #99F6E4 100%); }
-    .philosophy .identity-card:nth-child(7)::before { background: linear-gradient(90deg, #0F766E 0%, #14B8A6 100%); }
-
-    /* Foundation Card - Full Width Capstone */
-    .identity-card-foundation {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 2rem 2.5rem;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(250, 248, 245, 0.95) 100%);
-      border: 1px solid rgba(15, 118, 110, 0.15);
-    }
-
-    .identity-card-foundation::before {
-      background: linear-gradient(90deg, #0F766E 0%, #14B8A6 50%, #0F766E 100%) !important;
-      height: 4px;
-    }
-
-    .identity-card-foundation .identity-icon {
-      background: linear-gradient(135deg, #CCFBF1 0%, #99F6E4 100%);
-      width: 56px;
-      height: 56px;
-      font-size: 1.75rem;
-      margin: 0 auto 0.75rem;
-    }
-
-    .foundation-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .foundation-text {
-      max-width: 800px;
-    }
-
-    .identity-card-foundation .identity-card-title {
-      font-size: 1.25rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .foundation-text .identity-card-desc {
-      font-size: 0.9rem;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    .foundation-quote {
-      font-size: 0.85rem;
-      font-style: italic;
-      color: var(--color-text-secondary);
-      line-height: 1.5;
-      margin-bottom: 0.25rem;
-    }
-
-    .foundation-attribution {
-      font-size: 0.75rem;
-      color: var(--color-text-secondary);
-      opacity: 0.8;
-    }
-
-    /* Behavior cards - icon backgrounds AND matching top bars */
-    .behaviors .identity-card:nth-child(1) .identity-icon { background: linear-gradient(135deg, #CCFBF1 0%, #99F6E4 100%); }
-    .behaviors .identity-card:nth-child(1)::before { background: linear-gradient(90deg, #0D9488 0%, #14B8A6 100%); }
-    
-    .behaviors .identity-card:nth-child(2) .identity-icon { background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%); }
-    .behaviors .identity-card:nth-child(2)::before { background: linear-gradient(90deg, #059669 0%, #10B981 100%); }
-    
-    .behaviors .identity-card:nth-child(3) .identity-icon { background: linear-gradient(135deg, #CFFAFE 0%, #A5F3FC 100%); }
-    .behaviors .identity-card:nth-child(3)::before { background: linear-gradient(90deg, #0891B2 0%, #06B6D4 100%); }
-    
-    .behaviors .identity-card:nth-child(4) .identity-icon { background: linear-gradient(135deg, #FEF9C3 0%, #FEF08A 100%); }
-    .behaviors .identity-card:nth-child(4)::before { background: linear-gradient(90deg, #CA8A04 0%, #EAB308 100%); }
-    
-    .behaviors .identity-card:nth-child(5) .identity-icon { background: linear-gradient(135deg, #E0E7FF 0%, #C7D2FE 100%); }
-    .behaviors .identity-card:nth-child(5)::before { background: linear-gradient(90deg, #4F46E5 0%, #6366F1 100%); }
-    
-    .behaviors .identity-card:nth-child(6) .identity-icon { background: linear-gradient(135deg, #F3E8FF 0%, #E9D5FF 100%); }
-    .behaviors .identity-card:nth-child(6)::before { background: linear-gradient(90deg, #7C3AED 0%, #8B5CF6 100%); }
-
-    /* Visionary - deep blue/purple */
-    .behaviors .identity-card:nth-child(7) .identity-icon { background: linear-gradient(135deg, #DDD6FE 0%, #C4B5FD 100%); }
-    .behaviors .identity-card:nth-child(7)::before { background: linear-gradient(90deg, #5B21B6 0%, #7C3AED 100%); }
-
-    /* Adaptable - ocean blue */
-    .behaviors .identity-card:nth-child(8) .identity-icon { background: linear-gradient(135deg, #BFDBFE 0%, #93C5FD 100%); }
-    .behaviors .identity-card:nth-child(8)::before { background: linear-gradient(90deg, #1D4ED8 0%, #3B82F6 100%); }
-
-    /* Resilient - warm amber */
-    .behaviors .identity-card:nth-child(9) .identity-icon { background: linear-gradient(135deg, #FED7AA 0%, #FDBA74 100%); }
-    .behaviors .identity-card:nth-child(9)::before { background: linear-gradient(90deg, #C2410C 0%, #EA580C 100%); }
-
-    /* Communicative - sky blue */
-    .behaviors .identity-card:nth-child(10) .identity-icon { background: linear-gradient(135deg, #BAE6FD 0%, #7DD3FC 100%); }
-    .behaviors .identity-card:nth-child(10)::before { background: linear-gradient(90deg, #0284C7 0%, #0EA5E9 100%); }
-
-    /* Detail-Oriented - slate/gray */
-    .behaviors .identity-card:nth-child(11) .identity-icon { background: linear-gradient(135deg, #E2E8F0 0%, #CBD5E1 100%); }
-    .behaviors .identity-card:nth-child(11)::before { background: linear-gradient(90deg, #475569 0%, #64748B 100%); }
-
-    /* Lifelong Learner - warm rose/pink */
-    .behaviors .identity-card:nth-child(12) .identity-icon { background: linear-gradient(135deg, #FECDD3 0%, #FDA4AF 100%); }
-    .behaviors .identity-card:nth-child(12)::before { background: linear-gradient(90deg, #BE123C 0%, #E11D48 100%); }
-
     .identity-card-title {
       font-family: var(--font-display);
       font-size: 1rem;
@@ -974,123 +832,28 @@
       color: var(--color-text-secondary);
       line-height: 1.5;
     }
-
-    /* Clickable identity cards */
-    .identity-card.clickable {
-      cursor: pointer;
-    }
-
-    .identity-card.clickable::after {
-      content: 'Click to learn more';
-      position: absolute;
-      bottom: 0.5rem;
-      left: 0;
-      right: 0;
-      font-size: 0.65rem;
-      color: var(--color-accent);
-      opacity: 0;
-      transition: opacity 0.2s ease;
-    }
-
-    .identity-card.clickable:hover::after {
-      opacity: 1;
-    }
-
-    /* Identity Modal Styles */
-    .identity-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.85);
-      z-index: 10000;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-    }
-
-    .identity-modal.active {
+/* Theme card tags */
+    .theme-tags {
       display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1rem;
+      justify-content: center;
     }
 
-    .identity-modal-content {
-      background: white;
-      border-radius: 20px;
-      padding: 2.5rem 2rem;
-      width: 100%;
-      max-width: 500px;
-      max-height: 80vh;
-      overflow-y: auto;
-      position: relative;
-      box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
-    }
-
-    .identity-modal-content::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(135deg, #1E40AF 0%, #0D9488 100%);
-      border-radius: 20px 20px 0 0;
-    }
-
-    .identity-modal-icon {
-      font-size: 3rem;
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    .identity-modal-title {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      color: var(--color-text);
-      text-align: center;
-      margin-bottom: 1rem;
-    }
-
-    .identity-modal-body {
-      color: var(--color-text-secondary);
-      line-height: 1.7;
-      margin-bottom: 1.5rem;
-    }
-
-    .identity-modal-body p {
-      margin-bottom: 1rem;
-    }
-
-    .identity-modal-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--color-accent);
-      text-decoration: none;
+    .theme-tag {
+      font-size: 0.7rem;
       font-weight: 500;
-      transition: gap 0.2s ease;
+      padding: 0.3rem 0.6rem;
+      background: var(--color-accent-light);
+      color: var(--color-accent);
+      border-radius: 4px;
     }
 
-    .identity-modal-link:hover {
-      gap: 0.75rem;
+    .theme-card {
+      padding-bottom: 1.25rem;
     }
-
-      .identity-modal-link svg {
-      width: 16px;
-      height: 16px;
-    }
-
-    /* Fix: Dark close button for light modal background */
-    .identity-modal-content .modal-close {
-      background: rgba(0, 0, 0, 0.08);
-      color: var(--color-text-secondary);
-    }
-
-    .identity-modal-content .modal-close:hover {
-      background: rgba(0, 0, 0, 0.15);
-    }
-
+  
 
     /* ==================== SECTIONS ==================== */
     .section {
@@ -3209,119 +2972,36 @@
         <p class="identity-subtitle">Values are verbs, not nouns. It's not what we say—it's what we do consistently. Actions reveal character.</p>
       </div>
 
-      <!-- Philosophy Cards -->
-      <div class="card-group philosophy">
-        <h3 class="card-group-title philosophy">Philosophy & Mindset</h3>
-        <div class="identity-grid">
-          <div class="identity-card clickable" onclick="openIdentityModal('repeatable-process')">
-            <div class="identity-icon">🔄</div>
-            <h3 class="identity-card-title">Repeatable Process</h3>
-            <p class="identity-card-desc">Immerse → Identify → Ideate → Collaborate → Build. Same methodology, any domain.</p>
-          </div>
-          <div class="identity-card clickable" onclick="openIdentityModal('empathy-driven')">
-            <div class="identity-icon">💡</div>
-            <h3 class="identity-card-title">Empathy-Driven</h3>
-            <p class="identity-card-desc">People first—performance follows.</p>
-          </div>
-          <div class="identity-card clickable" onclick="openIdentityModal('infinite-mindset')">
-            <div class="identity-icon">♾️</div>
-            <h3 class="identity-card-title">Infinite Mindset</h3>
-            <p class="identity-card-desc">Document and distribute—never hoard. I build for the long game.</p>
-          </div>
-          <div class="identity-card clickable" onclick="openIdentityModal('circle-of-safety')">
-            <div class="identity-icon">🛡️</div>
-            <h3 class="identity-card-title">Circle of Safety</h3>
-            <p class="identity-card-desc">I build environments where people feel safe to take initiative. "What's next?"—not "Who failed?"</p>
-          </div>
-          <div class="identity-card clickable" onclick="openIdentityModal('accountability-culture')">
-            <div class="identity-icon">🤝</div>
-            <h3 class="identity-card-title">Accountability Culture</h3>
-            <p class="identity-card-desc">Accountable to each other, not just upward. "What did we learn?" builds trust.</p>
-          </div>
-          <div class="identity-card clickable" onclick="openIdentityModal('freedom-to-create')">
-            <div class="identity-icon">🚀</div>
-            <h3 class="identity-card-title">Freedom to Create</h3>
-            <p class="identity-card-desc">Automate monotony so teams can dream and build.</p>
-          </div>
-          
-          <!-- Servant Leadership - Foundation Card -->
-          <div class="identity-card identity-card-foundation clickable" onclick="openIdentityModal('servant-leadership')">
-            <div class="foundation-content">
-              <div class="identity-icon">🤲</div>
-              <h3 class="identity-card-title">Servant Leadership</h3>
-              <div class="foundation-text">
-                <p class="identity-card-desc">I lead by serving—empowering others to grow, not seeking power for myself. The best leaders remove obstacles, build people up, and measure success by the growth of those they serve.</p>
-                <p class="foundation-quote">"The first responsibility of a leader is to define reality. The last is to say thank you. In between, the leader is a servant."</p>
-                <p class="foundation-attribution">— Max De Pree</p>
-              </div>
-            </div>
+      <!-- Three Theme Cards -->
+      <div class="identity-grid">
+        <div class="identity-card theme-card">
+          <div class="identity-icon">🧠</div>
+          <h3 class="identity-card-title">How I Think</h3>
+          <p class="identity-card-desc">I see patterns others miss. Every problem is a system waiting to be understood—then optimized.</p>
+          <div class="theme-tags">
+            <span class="theme-tag">Pattern Recognition</span>
+            <span class="theme-tag">Systems Thinking</span>
+            <span class="theme-tag">Curiosity First</span>
           </div>
         </div>
-      </div>
-
-      <!-- Behavior Cards -->
-      <div class="card-group behaviors" style="margin-top: 2rem;">
-        <h3 class="card-group-title behaviors">Consistent Actions</h3>
-        <div class="identity-grid">
-          <div class="identity-card clickable" onclick="openIdentityModal('pattern-recognition')">
-            <div class="identity-icon">🔍</div>
-            <h3 class="identity-card-title">Pattern Recognition</h3>
-            <p class="identity-card-desc">I see gaps others miss and build solutions before being asked.</p>
+        <div class="identity-card theme-card">
+          <div class="identity-icon">🤝</div>
+          <h3 class="identity-card-title">How I Lead</h3>
+          <p class="identity-card-desc">People first, performance follows. I build environments where teams feel safe to take initiative.</p>
+          <div class="theme-tags">
+            <span class="theme-tag">Servant Leadership</span>
+            <span class="theme-tag">Circle of Safety</span>
+            <span class="theme-tag">Courageous Honesty</span>
           </div>
-          <div class="identity-card clickable" onclick="openIdentityModal('abundance-mindset')">
-            <div class="identity-icon">📤</div>
-            <h3 class="identity-card-title">Abundance Mindset</h3>
-            <p class="identity-card-desc">I share everything I learn so others make better decisions.</p>
-          </div>
-          <div class="identity-card clickable" onclick="openIdentityModal('curiosity-first')">
-            <div class="identity-icon">💬</div>
-            <h3 class="identity-card-title">Curiosity First</h3>
-            <p class="identity-card-desc">I ask "help me understand" before I act.</p>
-          </div>
-          <div class="identity-card clickable" onclick="openIdentityModal('courageous-honesty')">
-            <div class="identity-icon">🎯</div>
-            <h3 class="identity-card-title">Courageous Honesty</h3>
-            <p class="identity-card-desc">I call out what's broken—even when it's uncomfortable.</p>
-          </div>
-          <div class="identity-card clickable" onclick="openIdentityModal('systems-thinking')">
-            <div class="identity-icon">⚙️</div>
-            <h3 class="identity-card-title">Systems Thinking</h3>
-            <p class="identity-card-desc">I build systems so problems don't happen again.</p>
-          </div>
-          <div class="identity-card clickable" onclick="openIdentityModal('integrity')">
-            <div class="identity-icon">⚖️</div>
-            <h3 class="identity-card-title">Integrity</h3>
-            <p class="identity-card-desc">I show up the same whether anyone is watching or not.</p>
-          </div>
-          <div class="identity-card clickable" onclick="openIdentityModal('visionary')">
-            <div class="identity-icon">🔭</div>
-            <h3 class="identity-card-title">Visionary</h3>
-            <p class="identity-card-desc">I see the big picture and plan for where we're going.</p>
-          </div>
-          <div class="identity-card clickable" onclick="openIdentityModal('adaptable')">
-            <div class="identity-icon">🌊</div>
-            <h3 class="identity-card-title">Adaptable</h3>
-            <p class="identity-card-desc">I pivot quickly when circumstances change.</p>
-          </div>
-          <div class="identity-card clickable" onclick="openIdentityModal('resilient')">
-            <div class="identity-icon">💪</div>
-            <h3 class="identity-card-title">Resilient</h3>
-            <p class="identity-card-desc">I bounce back from setbacks and keep moving forward.</p>
-          </div>
-          <div class="identity-card clickable" onclick="openIdentityModal('communicative')">
-            <div class="identity-icon">📢</div>
-            <h3 class="identity-card-title">Communicative</h3>
-            <p class="identity-card-desc">I keep everyone informed and aligned.</p>
-          </div>
-          <div class="identity-card clickable" onclick="openIdentityModal('detail-oriented')">
-            <div class="identity-icon">🔬</div>
-            <h3 class="identity-card-title">Detail-Oriented</h3>
-            <p class="identity-card-desc">I catch the small things that make a big difference.</p>
-          </div>
-          <div class="identity-card clickable" onclick="openIdentityModal('lifelong-learner')">
-            <div class="identity-icon">📚</div>
-            <h3 class="identity-card-title">Lifelong Learner</h3>
-            <p class="identity-card-desc">I'm always acquiring new skills—25+ years and still growing.</p>
+        </div>
+        <div class="identity-card theme-card">
+          <div class="identity-icon">🔨</div>
+          <h3 class="identity-card-title">How I Build</h3>
+          <p class="identity-card-desc">Same process, any domain. Automate the monotony so teams can dream and create.</p>
+          <div class="theme-tags">
+            <span class="theme-tag">Repeatable Process</span>
+            <span class="theme-tag">Abundance Mindset</span>
+            <span class="theme-tag">Freedom to Create</span>
           </div>
         </div>
       </div>
@@ -3923,20 +3603,6 @@
     </div>
   </div>
 
-  <!-- Identity Modals -->
-  <div class="identity-modal" id="identityModal" onclick="closeIdentityModal(event)">
-    <div class="identity-modal-content" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeIdentityModal()">&times;</button>
-      <div class="identity-modal-icon" id="modalIcon"></div>
-      <h3 class="identity-modal-title" id="modalTitle"></h3>
-      <div class="identity-modal-body" id="modalBody"></div>
-      <a href="#" class="identity-modal-link" id="modalLink" target="_blank">
-        Learn more about this concept
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>
-      </a>
-    </div>
-  </div>
-
   <!-- Photo Lightbox -->
   <div class="photo-lightbox" id="photoLightbox" onclick="closePhotoLightbox(event)">
     <button class="lightbox-close" onclick="closePhotoLightbox()">&times;</button>
@@ -3947,7 +3613,6 @@
     const nav = document.getElementById('nav');
     const backToTop = document.getElementById('backToTop');
     const contactModal = document.getElementById('contactModal');
-    const identityModal = document.getElementById('identityModal');
     const photoLightbox = document.getElementById('photoLightbox');
     
     window.addEventListener('scroll', () => {
@@ -4000,187 +3665,10 @@
       }
     }
 
-    // Identity Modal Data - PLACEHOLDER TEXT - Update these with your content
-    const identityData = {
-      'repeatable-process': {
-        icon: '🔄',
-        title: 'Repeatable Process',
-        body: `<p>My five-step methodology—Immerse, Identify, Ideate, Collaborate, Build—is the foundation of everything I do. It's not just a framework; it's how I approach any new challenge.</p>
-        <p><strong>Why it matters:</strong> This systematic approach means I can ramp up quickly in any domain, whether it's healthcare operations, workforce development, or educational technology.</p>
-        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
-        link: 'https://example.com/repeatable-process'
-      },
-      'empathy-driven': {
-        icon: '💡',
-        title: 'Empathy-Driven',
-        body: `<p>I believe that understanding people—their fears, motivations, and challenges—is the key to successful change management and instructional design.</p>
-        <p><strong>In practice:</strong> I start every project by listening. What are people actually struggling with? What do they need to succeed?</p>
-        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
-        link: 'https://example.com/empathy-driven'
-      },
-      'infinite-mindset': {
-        icon: '♾️',
-        title: 'Infinite Mindset',
-        body: `<p>Inspired by Simon Sinek's concept, I focus on building sustainable systems rather than short-term wins. I document everything and share knowledge freely.</p>
-        <p><strong>The philosophy:</strong> When I leave a role, the systems I built should continue to thrive. Knowledge hoarding is the enemy of organizational growth.</p>
-        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
-        link: 'https://simonsinek.com/books/the-infinite-game/'
-      },
-      'circle-of-safety': {
-        icon: '🛡️',
-        title: 'Circle of Safety',
-        body: `<p>Based on Simon Sinek's leadership principles, I create environments where people feel safe to take risks, make mistakes, and ask questions.</p>
-        <p><strong>The result:</strong> Teams that ask "What's next?" instead of "Who failed?" are teams that innovate and grow.</p>
-        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
-        link: 'https://simonsinek.com/books/leaders-eat-last/'
-      },
-      'accountability-culture': {
-        icon: '🤝',
-        title: 'Accountability Culture',
-        body: `<p>True accountability isn't about blame—it's about ownership. I foster cultures where teams hold each other accountable, not just report upward.</p>
-        <p><strong>Key question:</strong> "What did we learn?" builds trust far more effectively than "What went wrong?"</p>
-        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
-        link: 'https://example.com/accountability-culture'
-      },
-      'freedom-to-create': {
-        icon: '🚀',
-        title: 'Freedom to Create',
-        body: `<p>My mission is to automate the mundane so teams can focus on meaningful work. When people aren't drowning in repetitive tasks, they can dream and build.</p>
-        <p><strong>The goal:</strong> Build systems that handle the routine, freeing human creativity for innovation.</p>
-        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
-        link: 'https://example.com/freedom-to-create'
-      },
-      'servant-leadership': {
-        icon: '🤲',
-        title: 'Servant Leadership',
-        body: `<p>I lead by serving—prioritizing the growth, well-being, and potential of my team over personal power or status. Instead of a top-down hierarchy, I flip the pyramid.</p>
-        <p><strong>Core principles:</strong> Serve first. Focus on others. Empower and share power. Lead with humility and empathy. Measure success by how well people grow.</p>
-        <p><strong>The difference:</strong> Traditional leadership is leader-focused and hierarchical. Servant leadership is people-focused—emphasizing support, trust, and development.</p>
-        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
-        link: 'https://example.com/servant-leadership'
-      },
-      'pattern-recognition': {
-        icon: '🔍',
-        title: 'Pattern Recognition',
-        body: `<p>I have a knack for seeing gaps and inefficiencies that others miss. More importantly, I build solutions before being asked.</p>
-        <p><strong>Examples:</strong> From healthcare billing automation to workforce development programs, I identify opportunities and act on them.</p>
-        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
-        link: 'https://example.com/pattern-recognition'
-      },
-      'abundance-mindset': {
-        icon: '📤',
-        title: 'Abundance Mindset',
-        body: `<p>I share everything I learn because I believe knowledge grows when it's distributed. My success doesn't come from hoarding information.</p>
-        <p><strong>In action:</strong> Documentation, training, knowledge bases—I build resources that help others succeed.</p>
-        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
-        link: 'https://example.com/abundance-mindset'
-      },
-      'curiosity-first': {
-        icon: '💬',
-        title: 'Curiosity First',
-        body: `<p>"Help me understand" is my default response. Before making assumptions or taking action, I seek to truly understand the situation.</p>
-        <p><strong>The power:</strong> Curiosity defuses conflict, uncovers hidden problems, and builds genuine connections.</p>
-        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
-        link: 'https://example.com/curiosity-first'
-      },
-      'courageous-honesty': {
-        icon: '🎯',
-        title: 'Courageous Honesty',
-        body: `<p>I speak up when something is broken, even when it's uncomfortable. Real progress requires honest conversations about what isn't working.</p>
-        <p><strong>The balance:</strong> Honesty delivered with empathy and respect is transformative, not destructive.</p>
-        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
-        link: 'https://example.com/courageous-honesty'
-      },
-      'systems-thinking': {
-        icon: '⚙️',
-        title: 'Systems Thinking',
-        body: `<p>I don't just solve problems—I build systems so those problems don't recur. The goal is sustainable improvement, not endless firefighting.</p>
-        <p><strong>Philosophy:</strong> Every solution should include documentation, training, and processes that outlast any individual.</p>
-        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
-        link: 'https://example.com/systems-thinking'
-      },
-      'integrity': {
-        icon: '⚖️',
-        title: 'Integrity',
-        body: `<p>I show up the same whether anyone is watching or not. My character isn't a performance—it's who I am.</p>
-        <p><strong>The foundation:</strong> Trust is built through consistent behavior over time, in every interaction, with every person.</p>
-        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
-        link: 'https://example.com/integrity'
-      },
-      'visionary': {
-        icon: '🔭',
-        title: 'Visionary',
-        body: `<p>I see the big picture and plan for where we're going. I connect today's work to tomorrow's outcomes.</p>
-        <p><strong>The perspective:</strong> Strategy isn't just planning—it's seeing possibilities others haven't imagined yet.</p>
-        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
-        link: 'https://example.com/visionary'
-      },
-      'adaptable': {
-        icon: '🌊',
-        title: 'Adaptable',
-        body: `<p>I pivot quickly when circumstances change. Flexibility isn't weakness—it's strategic responsiveness.</p>
-        <p><strong>The mindset:</strong> Plans are guides, not prisons. The ability to adjust course is what separates good from great.</p>
-        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
-        link: 'https://example.com/adaptable'
-      },
-      'resilient': {
-        icon: '💪',
-        title: 'Resilient',
-        body: `<p>I bounce back from setbacks and keep moving forward. Obstacles are temporary; giving up is permanent.</p>
-        <p><strong>The strength:</strong> Resilience isn't about avoiding failure—it's about recovering faster and learning more each time.</p>
-        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
-        link: 'https://example.com/resilient'
-      },
-      'communicative': {
-        icon: '📢',
-        title: 'Communicative',
-        body: `<p>I keep everyone informed and aligned. No one should be surprised by something they needed to know.</p>
-        <p><strong>The commitment:</strong> Clear communication prevents 90% of workplace problems before they start.</p>
-        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
-        link: 'https://example.com/communicative'
-      },
-      'detail-oriented': {
-        icon: '🔬',
-        title: 'Detail-Oriented',
-        body: `<p>I catch the small things that make a big difference. Excellence lives in the details.</p>
-        <p><strong>The discipline:</strong> The difference between good and exceptional is often invisible to most—but never to me.</p>
-        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
-        link: 'https://example.com/detail-oriented'
-      },
-      'lifelong-learner': {
-        icon: '📚',
-        title: 'Lifelong Learner',
-        body: `<p>I'm always acquiring new skills and knowledge. After 25+ years in the field, I'm still growing, still curious, still pushing myself to learn more.</p>
-        <p><strong>The commitment:</strong> From pursuing my degree at UCF to mastering new technologies, I believe the day you stop learning is the day you stop leading.</p>
-        <p>[PLACEHOLDER: Add your personal examples and stories here]</p>`,
-        link: 'https://example.com/lifelong-learner'
-      }
-    };
-
-    function openIdentityModal(cardId) {
-      const data = identityData[cardId];
-      if (data) {
-        document.getElementById('modalIcon').textContent = data.icon;
-        document.getElementById('modalTitle').textContent = data.title;
-        document.getElementById('modalBody').innerHTML = data.body;
-        document.getElementById('modalLink').href = data.link;
-        identityModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-    }
-
-    function closeIdentityModal(event) {
-      if (!event || event.target === identityModal) {
-        identityModal.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    }
-
-    // Close modals with Escape key
+// Close modals with Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeContactModal();
-        closeIdentityModal();
         closePhotoLightbox();
       }
     });
