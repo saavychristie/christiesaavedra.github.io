@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TKJH0YKZT5"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-TKJH0YKZT5');
   </script>
@@ -16,824 +17,1799 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <style>
-    :root { --color-bg-warm: #FDFCFA; --color-text: #1C1917; --color-text-secondary: #57534E; --font-display: 'DM Serif Display', Georgia, serif; --font-body: 'IBM Plex Sans', -apple-system, sans-serif; --max-width: 900px; --project-gradient: linear-gradient(135deg, #1E40AF 0%, #0D9488 100%); }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { font-family: var(--font-body); color: var(--color-text); line-height: 1.7; background: var(--color-bg-warm); }
-   .page-wrapper { position: relative; background: linear-gradient(180deg, #FDFCFA 0%, #FAF8F5 50%, #FDFCFA 100%); min-height: 100vh; }
-.page-wrapper::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='canvas'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.04' numOctaves='5' result='noise'/%3E%3CfeDiffuseLighting in='noise' lighting-color='%23FDFCFA' surfaceScale='1'%3E%3CfeDistantLight azimuth='45' elevation='60'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23canvas)' opacity='0.3'/%3E%3C/svg%3E"); opacity: 0.5; pointer-events: none; z-index: 0; }
-.page-wrapper::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 15% 20%, rgba(30, 64, 175, 0.04) 0%, transparent 50%), radial-gradient(ellipse at 85% 60%, rgba(13, 148, 136, 0.04) 0%, transparent 50%), radial-gradient(ellipse at 50% 90%, rgba(30, 64, 175, 0.03) 0%, transparent 40%); pointer-events: none; z-index: 0; }
-    .nav, .hero, .content, .footer { position: relative; z-index: 1; }
-    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; }
-    .nav::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--project-gradient); z-index: 1; }
-    .nav-bg { background: rgba(253, 252, 250, 0.92); backdrop-filter: blur(12px); padding: 1rem 2rem; }
-    .nav.scrolled .nav-bg { box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06); }
-    .nav-container { max-width: var(--max-width); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-    .nav-back { display: flex; align-items: center; gap: 0.5rem; color: var(--color-text-secondary); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
-    .nav-back:hover { color: #1E40AF; }
-    .nav-back svg { width: 18px; height: 18px; }
-    .nav-logo { font-family: var(--font-display); font-size: 1.1rem; color: var(--color-text); text-decoration: none; }
-    .hero { padding: 8rem 2rem 4rem; text-align: center; }
-    .hero-container { max-width: var(--max-width); margin: 0 auto; }
-    .hero-meta { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-    .hero-role { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: white; background: var(--project-gradient); padding: 0.5rem 1rem; border-radius: 2rem; }
-    .hero-org { font-size: 0.85rem; color: var(--color-text-secondary); }
-    .hero-title { font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 400; line-height: 1.15; margin-bottom: 1.5rem; }
-    .hero-summary { font-size: 1.15rem; color: var(--color-text-secondary); max-width: 700px; margin: 0 auto 2rem; }
-    .results-banner { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
-    .result-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-radius: 12px; padding: 1.25rem 1.5rem; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 4px 20px rgba(0,0,0,0.03); text-align: center; min-width: 140px; position: relative; overflow: hidden; }
-    .result-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--project-gradient); }
-    .result-number { font-family: var(--font-display); font-size: 1.75rem; background: var(--project-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .result-label { font-size: 0.75rem; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
-    .content { padding: 3rem 2rem 5rem; }
-    .content-container { max-width: var(--max-width); margin: 0 auto; }
-    .content-section { margin-bottom: 3rem; }
-    .content-title { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1.25rem; }
-    .glass-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-radius: 16px; padding: 2rem; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 4px 20px rgba(0,0,0,0.03); position: relative; overflow: hidden; }
-    .glass-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--project-gradient); }
-    .content-text { font-size: 1rem; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 1rem; }
-    .content-text:last-child { margin-bottom: 0; }
-    .content-list { list-style: none; margin: 1rem 0; }
-    .content-list li { padding: 0.5rem 0 0.5rem 1.5rem; position: relative; color: var(--color-text-secondary); }
-    .content-list li::before { content: ''; position: absolute; left: 0; top: 0.9rem; width: 8px; height: 8px; border-radius: 50%; background: var(--project-gradient); }
-    .deliverable-card { background: rgba(255,255,255,0.8); border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 4px 20px rgba(0,0,0,0.05); margin-bottom: 2rem; }
-    .deliverable-card img { width: 100%; height: auto; display: block; border-bottom: 1px solid rgba(0,0,0,0.05); }
-    .deliverable-info { padding: 1.5rem; }
-    .deliverable-type { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: var(--project-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; }
-    .deliverable-info h3 { font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.75rem; }
-    .deliverable-info p { color: var(--color-text-secondary); font-size: 0.95rem; line-height: 1.7; }
-    .deliverable-info ul { margin-top: 0.75rem; padding-left: 1.25rem; color: var(--color-text-secondary); font-size: 0.9rem; }
-    .process-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 1.5rem 0; }
-    .process-card { background: rgba(255,255,255,0.8); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(255,255,255,0.8); }
-    .process-card h4 { font-size: 1rem; margin-bottom: 0.5rem; background: var(--project-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .process-card p { font-size: 0.9rem; color: var(--color-text-secondary); }
-    .testimonial-card { background: rgba(248,250,252,0.9); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.8); }
-    .testimonial-card h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.25rem; }
-    .testimonial-card blockquote { border-left: 3px solid #1E40AF; padding-left: 1rem; margin: 1rem 0; font-style: italic; color: var(--color-text-secondary); font-size: 0.95rem; }
-    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
-   .tag { font-size: 0.75rem; font-weight: 500; padding: 0.4rem 0.8rem; border-radius: 2rem; background: rgba(255,255,255,0.8); color: var(--color-text-secondary); border: 1px solid rgba(0,0,0,0.06); }
-.glass-card-gradient { background: linear-gradient(135deg, rgba(30, 64, 175, 0.06) 0%, rgba(13, 148, 136, 0.06) 100%); backdrop-filter: blur(10px); border-radius: 16px; padding: 2rem; border: 1px solid rgba(30, 64, 175, 0.12); box-shadow: 0 4px 20px rgba(30, 64, 175, 0.06); position: relative; overflow: hidden; }
-.glass-card-gradient::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--project-gradient); }
-.process-card-gradient { background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(13, 148, 136, 0.05) 100%); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(30, 64, 175, 0.1); position: relative; overflow: hidden; }
-.process-card-gradient::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--project-gradient); }
-.process-card-gradient h4 { font-size: 1rem; margin-bottom: 0.5rem; background: var(--project-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.process-card-gradient p { font-size: 0.9rem; color: var(--color-text-secondary); }
-    .demo-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-radius: 16px; padding: 2.5rem; border: 1px solid rgba(255,255,255,0.8); display: flex; align-items: center; gap: 1.5rem; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden; }
-    .demo-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--project-gradient); }
-    .demo-card:hover { background: rgba(255,255,255,0.9); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
-    .demo-icon { width: 80px; height: 80px; border-radius: 50%; background: var(--project-gradient); display: flex; align-items: center; justify-content: center; color: white; flex-shrink: 0; }
-    .demo-icon svg { margin-left: 4px; }
-    .demo-text h3 { font-family: var(--font-display); font-size: 1.35rem; margin-bottom: 0.5rem; }
-    .demo-text p { color: var(--color-text-secondary); font-size: 0.95rem; }
-    .demo-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 10000; align-items: center; justify-content: center; padding: 2rem; }
-    .demo-modal.active { display: flex; }
-    .demo-modal-content { background: white; border-radius: 16px; width: 100%; max-width: 900px; max-height: 90vh; overflow: auto; position: relative; }
-    .demo-close { position: absolute; top: 1rem; right: 1rem; width: 40px; height: 40px; border-radius: 50%; border: none; background: rgba(0,0,0,0.1); font-size: 1.5rem; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-    .demo-close:hover { background: rgba(0,0,0,0.2); }
-    .demo-placeholder { padding: 4rem 2rem; text-align: center; color: var(--color-text-secondary); }
-    .demo-placeholder svg { margin-bottom: 1.5rem; opacity: 0.5; }
-    .demo-placeholder h3 { font-family: var(--font-display); font-size: 1.5rem; color: var(--color-text); margin-bottom: 0.5rem; }
-    .cta-section { text-align: center; padding: 2rem 0; }
-    .btn-cta { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--project-gradient); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; transition: all 0.2s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
-    .footer { background: linear-gradient(180deg, transparent 0%, rgba(28,25,23,0.1) 30%, rgba(28,25,23,0.6) 60%, #1C1917 85%, #1C1917 100%); color: white; padding: 8rem 2rem 2rem; text-align: center; margin-top: -2rem; position: relative; }
-    .footer::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 200px; background: radial-gradient(ellipse at 20% 100%, rgba(30,64,175,0.15) 0%, transparent 50%), radial-gradient(ellipse at 80% 100%, rgba(59,130,246,0.15) 0%, transparent 50%); pointer-events: none; }
-    .footer::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--project-gradient); }
-    .footer-content { position: relative; z-index: 1; max-width: var(--max-width); margin: 0 auto; }
-    .footer-nav { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
-    .footer-nav a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.9rem; }
-    .footer-nav a:hover { color: white; }
-    .footer-copyright { color: rgba(255,255,255,0.5); font-size: 0.85rem; }
-    .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 48px; height: 48px; border-radius: 50%; background: var(--project-gradient); color: white; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: all 0.3s ease; z-index: 999; opacity: 0; transform: translateY(20px); }
-    .back-to-top.visible { opacity: 1; transform: translateY(0); }
-    .back-to-top:hover { transform: translateY(-3px); }
-    @media (max-width: 768px) { .hero { padding: 7rem 1.5rem 3rem; } .hero-title { font-size: 1.75rem; } .content { padding: 2rem 1.5rem 4rem; } .glass-card { padding: 1.5rem; } .process-grid { grid-template-columns: 1fr; } .demo-card { flex-direction: column; text-align: center; } }
-    @media (max-width: 500px) { .hero-meta { flex-direction: column; gap: 0.5rem; } .results-banner { display: grid; grid-template-columns: repeat(2, 1fr); } .footer-nav { flex-direction: column; gap: 1rem; } }
-  /* ========== FLOATING STICKY NOTE WIDGET ========== */
-.sticky-widget {
-  position: fixed;
-  bottom: 2rem;
-  left: 2rem;
-  z-index: 9999;
-  font-family: 'IBM Plex Sans', sans-serif;
-}
+    :root {
+      --color-bg-warm: #FDFCFA;
+      --color-text: #1C1917;
+      --color-text-secondary: #57534E;
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'IBM Plex Sans', -apple-system, sans-serif;
+      --max-width: 900px;
+      --project-gradient: linear-gradient(135deg, #1E40AF 0%, #0D9488 100%);
+    }
 
-/* Minimized State - Just the icon */
-.sticky-minimized {
-  width: 56px;
-  height: 56px;
-  background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 4px 20px rgba(217, 119, 6, 0.4);
-  transition: all 0.3s ease;
-  position: relative;
-}
-.sticky-minimized:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 25px rgba(217, 119, 6, 0.5);
-}
-.sticky-minimized svg {
-  width: 26px;
-  height: 26px;
-  color: white;
-}
-.sticky-minimized .note-count {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  width: 22px;
-  height: 22px;
-  background: #1E40AF;
-  border-radius: 50%;
-  border: 2px solid white;
-  color: white;
-  font-size: 0.7rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.sticky-minimized .tooltip {
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-left: 0.75rem;
-  background: #1C1917;
-  color: white;
-  padding: 0.5rem 0.75rem;
-  border-radius: 8px;
-  font-size: 0.8rem;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s;
-}
-.sticky-minimized:hover .tooltip {
-  opacity: 1;
-}
-.sticky-minimized .tooltip::after {
-  content: '';
-  position: absolute;
-  right: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  border: 6px solid transparent;
-  border-right-color: #1C1917;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* Expanded State - Full sticky note */
-.sticky-expanded {
-  width: 320px;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
-  overflow: hidden;
-  transform-origin: bottom right;
-  animation: expandIn 0.3s ease;
-}
-@keyframes expandIn {
-  from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-.sticky-header {
-  background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
-  color: white;
-  padding: 0.75rem 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.sticky-header-left {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.sticky-header-left svg {
-  width: 18px;
-  height: 18px;
-}
-.sticky-header-title {
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-.sticky-header-actions {
-  display: flex;
-  gap: 0.25rem;
-}
-.sticky-header-btn {
-  width: 28px;
-  height: 28px;
-  border: none;
-  background: rgba(255,255,255,0.2);
-  border-radius: 6px;
-  color: white;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s;
-}
-.sticky-header-btn:hover {
-  background: rgba(255,255,255,0.3);
-}
-.sticky-header-btn svg {
-  width: 16px;
-  height: 16px;
-}
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text);
+      line-height: 1.7;
+      background: var(--color-bg-warm);
+    }
 
-.sticky-project {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid #E7E5E4;
-  background: #fefce8;
-}
-.sticky-project-label {
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #a16207;
-  margin-bottom: 0.25rem;
-}
-.sticky-project-name {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1rem;
-  color: #1C1917;
-}
+    .page-wrapper {
+      position: relative;
+      background: linear-gradient(180deg, #FDFCFA 0%, #FAF8F5 50%, #FDFCFA 100%);
+      min-height: 100vh;
+    }
 
-.sticky-body {
-  padding: 1rem;
-}
-.sticky-textarea {
-  width: 100%;
-  min-height: 120px;
-  padding: 0.75rem;
-  border: 1px solid #E7E5E4;
-  border-radius: 8px;
-  font-family: inherit;
-  font-size: 0.85rem;
-  resize: vertical;
-  transition: border-color 0.2s;
-}
-.sticky-textarea:focus {
-  outline: none;
-  border-color: #d97706;
-}
-.sticky-textarea::placeholder {
-  color: #9ca3af;
-}
+    .page-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='canvas'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.04' numOctaves='5' result='noise'/%3E%3CfeDiffuseLighting in='noise' lighting-color='%23FDFCFA' surfaceScale='1'%3E%3CfeDistantLight azimuth='45' elevation='60'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23canvas)' opacity='0.3'/%3E%3C/svg%3E");
+      opacity: 0.5;
+      pointer-events: none;
+      z-index: 0;
+    }
 
-.sticky-footer {
-  padding: 0.75rem 1rem;
-  border-top: 1px solid #E7E5E4;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #fafafa;
-}
-.sticky-status {
-  font-size: 0.75rem;
-  color: #059669;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.sticky-status.visible { opacity: 1; }
-.sticky-status svg { width: 12px; height: 12px; }
+    .page-wrapper::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 15% 20%, rgba(30, 64, 175, 0.04) 0%, transparent 50%), radial-gradient(ellipse at 85% 60%, rgba(13, 148, 136, 0.04) 0%, transparent 50%), radial-gradient(ellipse at 50% 90%, rgba(30, 64, 175, 0.03) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
 
-.sticky-actions {
-  display: flex;
-  gap: 0.5rem;
-}
-.sticky-btn {
-  padding: 0.4rem 0.75rem;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  cursor: pointer;
-  border: none;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  transition: all 0.2s;
-}
-.sticky-btn svg { width: 12px; height: 12px; }
-.sticky-btn.secondary {
-  background: #f3f4f6;
-  color: #374151;
-}
-.sticky-btn.secondary:hover { background: #e5e7eb; }
-.sticky-btn.primary {
-  background: linear-gradient(135deg, #1E40AF 0%, #0D9488 100%);
-  color: white;
-}
-.sticky-btn.primary:hover { 
-  transform: translateY(-1px); 
-  box-shadow: 0 2px 8px rgba(30,64,175,0.3); 
-}
+    .nav,
+    .hero,
+    .content,
+    .footer {
+      position: relative;
+      z-index: 1;
+    }
 
-/* All notes view */
-.sticky-all-notes {
-  padding: 1rem;
-  max-height: 300px;
-  overflow-y: auto;
-}
-.sticky-note-item {
-  padding: 0.75rem;
-  background: #f9fafb;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.sticky-note-item:hover {
-  background: #f3f4f6;
-}
-.sticky-note-item:last-child {
-  margin-bottom: 0;
-}
-.sticky-note-item-title {
-  font-weight: 600;
-  font-size: 0.85rem;
-  margin-bottom: 0.25rem;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-.sticky-note-item-title svg {
-  width: 12px;
-  height: 12px;
-  color: #d97706;
-}
-.sticky-note-item-preview {
-  font-size: 0.75rem;
-  color: #57534E;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.sticky-empty {
-  text-align: center;
-  color: #9ca3af;
-  font-size: 0.85rem;
-  padding: 2rem 1rem;
-}
-.sticky-empty svg {
-  width: 32px;
-  height: 32px;
-  margin-bottom: 0.5rem;
-  opacity: 0.5;
-}
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+    }
 
-/* Tab navigation */
-.sticky-tabs {
-  display: flex;
-  border-bottom: 1px solid #E7E5E4;
-}
-.sticky-tab {
-  flex: 1;
-  padding: 0.6rem;
-  text-align: center;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: #57534E;
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s;
-  position: relative;
-}
-.sticky-tab:hover {
-  color: #1C1917;
-  background: #f9fafb;
-}
-.sticky-tab.active {
-  color: #d97706;
-}
-.sticky-tab.active::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
-}
+    .nav::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--project-gradient);
+      z-index: 1;
+    }
 
-/* Hidden state toggle */
-.sticky-widget.minimized .sticky-expanded { display: none; }
-.sticky-widget.minimized .sticky-minimized { display: flex; }
-.sticky-widget.expanded .sticky-expanded { display: block; }
-.sticky-widget.expanded .sticky-minimized { display: none; }
-/* Case Study Dropdown */
-.casestudy-box {
-  margin-top: 2rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  border: 2px dashed #f97316;
-  border-radius: 8px;
-  padding: 0.5rem 1rem;
-  background: rgba(249, 115, 22, 0.08);
-}
-.casestudy-label {
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: #c2410c;
-  margin: 0;
-}.casestudy-dropdown {
-  position: relative;
-  display: inline-block;
-}
-.casestudy-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.7rem 1.1rem;
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  border-radius: 10px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #c2410c;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-.casestudy-btn:hover {
-  background: rgba(255, 255, 255, 0.85);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-}
-.casestudy-btn svg { width: 16px; height: 16px; }
-.casestudy-btn svg.chevron { transition: transform 0.2s; }
-.casestudy-dropdown.active .casestudy-btn svg.chevron { transform: rotate(180deg); }
-.casestudy-dropdown-menu {
-  display: none;
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%);
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-  min-width: 180px;
-  overflow: hidden;
-  z-index: 100;
-}
-.casestudy-dropdown.active .casestudy-dropdown-menu { display: block; }
-.casestudy-dropdown-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1rem;
-  color: #1C1917;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: background 0.15s;
-}
-.casestudy-dropdown-item:hover { background: #f5f5f5; }
-.casestudy-dropdown-item svg { width: 16px; height: 16px; color: #c2410c; }
-/* Behind the Scenes Section */
-.behind-scenes {
-  margin-top: 2rem;
-}
-.behind-scenes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-}
-.behind-scenes-card {
-  background: white;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-  border: 1px solid rgba(0,0,0,0.04);
-}
-.behind-scenes-card img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-.behind-scenes-card.single {
-  max-width: 500px;
-  margin: 0 auto;
-}
-.behind-scenes-info {
-  padding: 1.25rem;
-}
-.behind-scenes-info h4 {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
-  color: var(--color-text);
-}
-.behind-scenes-info p {
-  font-size: 0.9rem;
-  color: var(--color-text-secondary);
-  line-height: 1.6;
-}
-.behind-scenes-caption {
-  font-style: italic;
-  font-size: 0.85rem;
-  color: #1E40AF;
-  margin-top: 0.75rem;
-  padding-top: 0.75rem;
-  border-top: 1px solid #f0f0f0;
-}
-/* Photo Modal */
-.photo-modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.9);
-  z-index: 2000;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-}
-.photo-modal.active { display: flex; }
-.photo-modal img {
-  max-width: 90%;
-  max-height: 90%;
-  object-fit: contain;
-  border-radius: 8px;
-}
-.photo-modal-close {
-  position: absolute;
-  top: 1rem;
-  right: 1.5rem;
-  color: white;
-  font-size: 2.5rem;
-  cursor: pointer;
-  line-height: 1;
-}
-.behind-scenes-card img {
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-.behind-scenes-card img:hover {
-  opacity: 0.9;
-}
-</style>
+    .nav-bg {
+      background: rgba(253, 252, 250, 0.92);
+      backdrop-filter: blur(12px);
+      padding: 1rem 2rem;
+    }
+
+    .nav.scrolled .nav-bg {
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .nav-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-back {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--color-text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .nav-back:hover {
+      color: #1E40AF;
+    }
+
+    .nav-back svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--color-text);
+      text-decoration: none;
+    }
+
+    .hero {
+      padding: 8rem 2rem 4rem;
+      text-align: center;
+    }
+
+    .hero-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-role {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: white;
+      background: var(--project-gradient);
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+    }
+
+    .hero-org {
+      font-size: 0.85rem;
+      color: var(--color-text-secondary);
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-summary {
+      font-size: 1.15rem;
+      color: var(--color-text-secondary);
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+
+    .results-banner {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .result-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      text-align: center;
+      min-width: 140px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .result-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--project-gradient);
+    }
+
+    .result-number {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      background: var(--project-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .result-label {
+      font-size: 0.75rem;
+      color: var(--color-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .content {
+      padding: 3rem 2rem 5rem;
+    }
+
+    .content-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .content-section {
+      margin-bottom: 3rem;
+    }
+
+    .content-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 2rem;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--project-gradient);
+    }
+
+    .content-text {
+      font-size: 1rem;
+      color: var(--color-text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .content-text:last-child {
+      margin-bottom: 0;
+    }
+
+    .content-list {
+      list-style: none;
+      margin: 1rem 0;
+    }
+
+    .content-list li {
+      padding: 0.5rem 0 0.5rem 1.5rem;
+      position: relative;
+      color: var(--color-text-secondary);
+    }
+
+    .content-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.9rem;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--project-gradient);
+    }
+
+    .deliverable-card {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      margin-bottom: 2rem;
+    }
+
+    .deliverable-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .deliverable-info {
+      padding: 1.5rem;
+    }
+
+    .deliverable-type {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--project-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+
+    .deliverable-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .deliverable-info p {
+      color: var(--color-text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    .deliverable-info ul {
+      margin-top: 0.75rem;
+      padding-left: 1.25rem;
+      color: var(--color-text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .process-card {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .process-card h4 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      background: var(--project-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .process-card p {
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+    }
+
+    .testimonial-card {
+      background: rgba(248, 250, 252, 0.9);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .testimonial-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .testimonial-card blockquote {
+      border-left: 3px solid #1E40AF;
+      padding-left: 1rem;
+      margin: 1rem 0;
+      font-style: italic;
+      color: var(--color-text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.4rem 0.8rem;
+      border-radius: 2rem;
+      background: rgba(255, 255, 255, 0.8);
+      color: var(--color-text-secondary);
+      border: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+    .glass-card-gradient {
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.06) 0%, rgba(13, 148, 136, 0.06) 100%);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 2rem;
+      border: 1px solid rgba(30, 64, 175, 0.12);
+      box-shadow: 0 4px 20px rgba(30, 64, 175, 0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card-gradient::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--project-gradient);
+    }
+
+    .process-card-gradient {
+      background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(13, 148, 136, 0.05) 100%);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid rgba(30, 64, 175, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .process-card-gradient::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--project-gradient);
+    }
+
+    .process-card-gradient h4 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      background: var(--project-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .process-card-gradient p {
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+    }
+
+    .demo-card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 2.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .demo-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--project-gradient);
+    }
+
+    .demo-card:hover {
+      background: rgba(255, 255, 255, 0.9);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .demo-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--project-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .demo-icon svg {
+      margin-left: 4px;
+    }
+
+    .demo-text h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .demo-text p {
+      color: var(--color-text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .demo-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .demo-modal.active {
+      display: flex;
+    }
+
+    .demo-modal-content {
+      background: white;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 900px;
+      max-height: 90vh;
+      overflow: auto;
+      position: relative;
+    }
+
+    .demo-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(0, 0, 0, 0.1);
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .demo-close:hover {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .demo-placeholder {
+      padding: 4rem 2rem;
+      text-align: center;
+      color: var(--color-text-secondary);
+    }
+
+    .demo-placeholder svg {
+      margin-bottom: 1.5rem;
+      opacity: 0.5;
+    }
+
+    .demo-placeholder h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--color-text);
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-section {
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--project-gradient);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .footer {
+      background: linear-gradient(180deg, transparent 0%, rgba(28, 25, 23, 0.1) 30%, rgba(28, 25, 23, 0.6) 60%, #1C1917 85%, #1C1917 100%);
+      color: white;
+      padding: 8rem 2rem 2rem;
+      text-align: center;
+      margin-top: -2rem;
+      position: relative;
+    }
+
+    .footer::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 200px;
+      background: radial-gradient(ellipse at 20% 100%, rgba(30, 64, 175, 0.15) 0%, transparent 50%), radial-gradient(ellipse at 80% 100%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .footer::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--project-gradient);
+    }
+
+    .footer-content {
+      position: relative;
+      z-index: 1;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .footer-nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-nav a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .footer-nav a:hover {
+      color: white;
+    }
+
+    .footer-copyright {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.85rem;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--project-gradient);
+      color: white;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      z-index: 999;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-3px);
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: 7rem 1.5rem 3rem;
+      }
+
+      .hero-title {
+        font-size: 1.75rem;
+      }
+
+      .content {
+        padding: 2rem 1.5rem 4rem;
+      }
+
+      .glass-card {
+        padding: 1.5rem;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .demo-card {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .hero-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .results-banner {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+
+    /* ========== FLOATING STICKY NOTE WIDGET ========== */
+    .sticky-widget {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      z-index: 9999;
+      font-family: 'IBM Plex Sans', sans-serif;
+    }
+
+    /* Minimized State - Just the icon */
+    .sticky-minimized {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(217, 119, 6, 0.4);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .sticky-minimized:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 25px rgba(217, 119, 6, 0.5);
+    }
+
+    .sticky-minimized svg {
+      width: 26px;
+      height: 26px;
+      color: white;
+    }
+
+    .sticky-minimized .note-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      width: 22px;
+      height: 22px;
+      background: #1E40AF;
+      border-radius: 50%;
+      border: 2px solid white;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sticky-minimized .tooltip {
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      margin-left: 0.75rem;
+      background: #1C1917;
+      color: white;
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+
+    .sticky-minimized:hover .tooltip {
+      opacity: 1;
+    }
+
+    .sticky-minimized .tooltip::after {
+      content: '';
+      position: absolute;
+      right: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 6px solid transparent;
+      border-right-color: #1C1917;
+    }
+
+    /* Expanded State - Full sticky note */
+    .sticky-expanded {
+      width: 320px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      transform-origin: bottom right;
+      animation: expandIn 0.3s ease;
+    }
+
+    @keyframes expandIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .sticky-header {
+      background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+      color: white;
+      padding: 0.75rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sticky-header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .sticky-header-left svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .sticky-header-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .sticky-header-actions {
+      display: flex;
+      gap: 0.25rem;
+    }
+
+    .sticky-header-btn {
+      width: 28px;
+      height: 28px;
+      border: none;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .sticky-header-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .sticky-header-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .sticky-project {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #E7E5E4;
+      background: #fefce8;
+    }
+
+    .sticky-project-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #a16207;
+      margin-bottom: 0.25rem;
+    }
+
+    .sticky-project-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      color: #1C1917;
+    }
+
+    .sticky-body {
+      padding: 1rem;
+    }
+
+    .sticky-textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 0.75rem;
+      border: 1px solid #E7E5E4;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      resize: vertical;
+      transition: border-color 0.2s;
+    }
+
+    .sticky-textarea:focus {
+      outline: none;
+      border-color: #d97706;
+    }
+
+    .sticky-textarea::placeholder {
+      color: #9ca3af;
+    }
+
+    .sticky-footer {
+      padding: 0.75rem 1rem;
+      border-top: 1px solid #E7E5E4;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fafafa;
+    }
+
+    .sticky-status {
+      font-size: 0.75rem;
+      color: #059669;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .sticky-status.visible {
+      opacity: 1;
+    }
+
+    .sticky-status svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .sticky-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .sticky-btn {
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: all 0.2s;
+    }
+
+    .sticky-btn svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .sticky-btn.secondary {
+      background: #f3f4f6;
+      color: #374151;
+    }
+
+    .sticky-btn.secondary:hover {
+      background: #e5e7eb;
+    }
+
+    .sticky-btn.primary {
+      background: linear-gradient(135deg, #1E40AF 0%, #0D9488 100%);
+      color: white;
+    }
+
+    .sticky-btn.primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(30, 64, 175, 0.3);
+    }
+
+    /* All notes view */
+    .sticky-all-notes {
+      padding: 1rem;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .sticky-note-item {
+      padding: 0.75rem;
+      background: #f9fafb;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .sticky-note-item:hover {
+      background: #f3f4f6;
+    }
+
+    .sticky-note-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .sticky-note-item-title {
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .sticky-note-item-title svg {
+      width: 12px;
+      height: 12px;
+      color: #d97706;
+    }
+
+    .sticky-note-item-preview {
+      font-size: 0.75rem;
+      color: #57534E;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sticky-empty {
+      text-align: center;
+      color: #9ca3af;
+      font-size: 0.85rem;
+      padding: 2rem 1rem;
+    }
+
+    .sticky-empty svg {
+      width: 32px;
+      height: 32px;
+      margin-bottom: 0.5rem;
+      opacity: 0.5;
+    }
+
+    /* Tab navigation */
+    .sticky-tabs {
+      display: flex;
+      border-bottom: 1px solid #E7E5E4;
+    }
+
+    .sticky-tab {
+      flex: 1;
+      padding: 0.6rem;
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #57534E;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+
+    .sticky-tab:hover {
+      color: #1C1917;
+      background: #f9fafb;
+    }
+
+    .sticky-tab.active {
+      color: #d97706;
+    }
+
+    .sticky-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+    }
+
+    /* Hidden state toggle */
+    .sticky-widget.minimized .sticky-expanded {
+      display: none;
+    }
+
+    .sticky-widget.minimized .sticky-minimized {
+      display: flex;
+    }
+
+    .sticky-widget.expanded .sticky-expanded {
+      display: block;
+    }
+
+    .sticky-widget.expanded .sticky-minimized {
+      display: none;
+    }
+
+    /* Case Study Dropdown */
+    .casestudy-box {
+      margin-top: 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      border: 2px dashed #f97316;
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      background: rgba(249, 115, 22, 0.08);
+    }
+
+    .casestudy-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #c2410c;
+      margin: 0;
+    }
+
+    .casestudy-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .casestudy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.1rem;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #c2410c;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .casestudy-btn:hover {
+      background: rgba(255, 255, 255, 0.85);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .casestudy-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .casestudy-btn svg.chevron {
+      transition: transform 0.2s;
+    }
+
+    .casestudy-dropdown.active .casestudy-btn svg.chevron {
+      transform: rotate(180deg);
+    }
+
+    .casestudy-dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      min-width: 180px;
+      overflow: hidden;
+      z-index: 100;
+    }
+
+    .casestudy-dropdown.active .casestudy-dropdown-menu {
+      display: block;
+    }
+
+    .casestudy-dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      color: #1C1917;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background 0.15s;
+    }
+
+    .casestudy-dropdown-item:hover {
+      background: #f5f5f5;
+    }
+
+    .casestudy-dropdown-item svg {
+      width: 16px;
+      height: 16px;
+      color: #c2410c;
+    }
+
+    /* Behind the Scenes Section */
+    .behind-scenes {
+      margin-top: 2rem;
+    }
+
+    .behind-scenes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .behind-scenes-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .behind-scenes-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .behind-scenes-card.single {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .behind-scenes-info {
+      padding: 1.25rem;
+    }
+
+    .behind-scenes-info h4 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--color-text);
+    }
+
+    .behind-scenes-info p {
+      font-size: 0.9rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    .behind-scenes-caption {
+      font-style: italic;
+      font-size: 0.85rem;
+      color: #1E40AF;
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid #f0f0f0;
+    }
+
+    /* Photo Modal */
+    .photo-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 2000;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .photo-modal.active {
+      display: flex;
+    }
+
+    .photo-modal img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .photo-modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1.5rem;
+      color: white;
+      font-size: 2.5rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .behind-scenes-card img {
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .behind-scenes-card img:hover {
+      opacity: 0.9;
+    }
+  </style>
 </head>
+
 <body>
   <div class="page-wrapper">
-    <nav class="nav" id="nav"><div class="nav-bg"><div class="nav-container"><a href="index.html#work" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>Back to Portfolio</a><a href="index.html" class="nav-logo">Christie Stephenson Saavedra</a></div></div></nav>
-    <section class="hero"><div class="hero-container"><div class="hero-meta"><span class="hero-role">IT Consultant / Co-founder</span><span class="hero-org">Resolute Services</span></div><h1 class="hero-title">Healthcare Process Automation</h1><p class="hero-summary">Co-founding a healthcare IT company and leading change management for a Medicaid-based mental health agency—achieving 90% process automation.</p><div class="results-banner"><div class="result-card"><div class="result-number">40 hrs</div><div class="result-label">→ 15 min (Billing)</div></div><div class="result-card"><div class="result-number">10 hrs</div><div class="result-label">→ 15 min (Intake)</div></div><div class="result-card"><div class="result-number">4 yrs</div><div class="result-label">Full Lifecycle & Multiple Rewrites</div></div></div><div class="casestudy-box"><span class="casestudy-label">CASE STUDY</span><div class="casestudy-dropdown" id="casestudyDropdown"><button class="casestudy-btn" onclick="toggleCasestudyDropdown()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>View<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="casestudy-dropdown-menu"><a href="resolute-case-study.html" target="_blank" class="casestudy-dropdown-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>View Case Study</a><a href="resolute-case-study.html" download class="casestudy-dropdown-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download PDF</a></div></div></div></div></section>
-    <section class="content"><div class="content-container">
-      <div class="content-section"><h2 class="content-title">The Challenge</h2><div class="glass-card-gradient"><p class="content-text">A Medicaid-based mental health agency was drowning in manual processes. Billing, payroll, compliance tracking—all done by hand. Errors were common. Staff were frustrated. There was no internal IT expertise to fix it.</p><p class="content-text">We didn't just consult. We co-founded Resolute Services and built the solution from scratch.</p><ul class="content-list"><li>Manual billing and payroll processes consuming staff time</li><li>Compliance tracking done on paper with high error rates</li><li>No existing software solution for their specific Medicaid requirements</li><li>Staff resistant to change after years of established workflows</li></ul></div></div>
-      <div class="content-section"><h2 class="content-title">What We Built</h2>
-       <div class="deliverable-card"><img src="images/resolute-software.jpg" alt="Management Compliance Software interface" onclick="openPhotoModal(this.src, this.alt)" style="cursor:pointer;"><div class="deliverable-info"><div class="deliverable-type">Custom Software</div><h3>Management Compliance Software</h3><p>Built specifically for Medicaid mental health agency operations, it replaced manual processes across:</p><ul><li><strong>Participant management:</strong> Client intake, records, contact information</li><li><strong>Therapist tracking:</strong> Credentials, assignments, scheduling</li><li><strong>Manager administration:</strong> User roles, access controls, reporting</li><li><strong>Compliance reporting:</strong> Automated Medicaid documentation</li><li><strong>Billing automation:</strong> Claims generation and tracking</li></ul></div></div>
+    <nav class="nav" id="nav">
+      <div class="nav-bg">
+        <div class="nav-container"><a href="index.html#work" class="nav-back"><svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>Back to Portfolio</a><a href="index.html" class="nav-logo">Christie Stephenson Saavedra</a></div>
       </div>
-      <div class="content-section"><h2 class="content-title">Change Management Approach</h2><p class="content-text">Building software was only half the battle. Getting staff to adopt it required a comprehensive change initiative:</p><div class="process-grid"><div class="process-card-gradient"><h4>1. Awareness</h4><p>Helped staff understand why change was needed—showing the cost of errors, wasted time, and compliance risks</p></div><div class="process-card-gradient"><h4>2. Buy-In</h4><p>Involved key stakeholders early, addressed concerns, and demonstrated how the system would make their jobs easier</p></div><div class="process-card-gradient"><h4>3. Training</h4><p>Developed user training materials, quick-reference guides, and hands-on sessions for all staff levels</p></div><div class="process-card-gradient"><h4>4. Reinforcement</h4><p>Provided ongoing support, gathered feedback, and made improvements based on real-world usage</p></div></div> class="process-card"><h4>2. Buy-In</h4><p>Involved key stakeholders early, addressed concerns, and demonstrated how the system would make their jobs easier</p></div><div class="process-card"><h4>3. Training</h4><p>Developed user training materials, quick-reference guides, and hands-on sessions for all staff levels</p></div><div class="process-card"><h4>4. Reinforcement</h4><p>Provided ongoing support, gathered feedback, and made improvements based on real-world usage</p></div></div></div>
-      <div class="content-section"><h2 class="content-title">What Others Say</h2>
-        <div class="testimonial-card"><div class="deliverable-type">Reference Letter</div><h3>Daniel Stephenson, CTO</h3><p style="font-size:0.85rem;color:var(--color-text-secondary);margin-bottom:1rem">Lead engineer I collaborated with over four years at Resolute Services</p><blockquote>"She <strong>spearheaded a large software product</strong> which gave health organizations that worked with challenged children the ability to manage their entire process; from on-boarding through treatment and discharge."</blockquote><blockquote>"When we started, billing for the time a therapist worked with a client would take anywhere from <strong>forty to eighty hours a week</strong>. Because it was a manual process, there would often be mistakes made; both with compliance and human error. Christie and I sat down each week and worked through a process that allowed me to take the process down to approximately <strong>fifteen minutes</strong>."</blockquote><blockquote>"At the beginning of each iteration, Christie would sit down with me and, essentially, <strong>storyboard the process</strong> for me. We would develop <strong>user stories</strong> that would then be decomposed into individual screenshots and issues."</blockquote><blockquote>"Christie and I worked together on the intake module of the software. The intake process was a manual process taking up to about <strong>10 hours</strong>. Once the process was automated online, it took about <strong>15 minutes</strong>."</blockquote><blockquote>"Christie spent the better part of <strong>four years</strong> going through the same process with our IT team and became very good at what she did. I would recommend her because of her experience and her ability to learn quickly, <strong>she is extremely sharp</strong>."</blockquote></div>
-      </div>
-      <div class="content-section"><h2 class="content-title">Results</h2><div class="glass-card-gradient"><ul class="content-list"><li><strong>Billing:</strong> Reduced from 40-80 hours/week → 15 minutes</li><li><strong>Client intake:</strong> Reduced from 10 hours → 15 minutes per client</li><li><strong>90%+ automation</strong> of critical billing and payroll processes</li><li><strong>Reduced errors</strong> through automated validation</li><li><strong>Enhanced compliance tracking</strong> for Medicaid requirements</li><li><strong>Sustainable system</strong> that continued operating after our engagement</li></ul><div class="tags"><span class="tag">Change Management</span><span class="tag">Process Automation</span><span class="tag">Software Design</span><span class="tag">Training Development</span><span class="tag">Healthcare IT</span><span class="tag">Stakeholder Engagement</span></div></div></div>
-      <div class="content-section"><h2 class="content-title">Interactive Demo</h2><div class="demo-card" onclick="openDemo()"><div class="demo-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="demo-text"><h3>Launch Interactive Demo</h3><p>Explore the RESOLUTE healthcare automation platform</p></div></div></div>
-      <div class="content-section behind-scenes">
-        <h2 class="content-title">Behind the Scenes</h2>
-        <p class="content-body">Building enterprise healthcare systems while raising six kids meant work and family were always intertwined. My kids grew up watching their mom solve complex problems—and sometimes they helped.</p>
-        <div class="behind-scenes-grid">
-          <div class="behind-scenes-card single">
-            <img src="images/ResoluteBilling.jpg" alt="Building the billing system" onclick="openPhotoModal(this.src, this.alt)">
-            <div class="behind-scenes-info">
-              <h4>90% Automation in Progress</h4>
-              <p>That's me building the automated billing system, 2010. I was pregnant with my 6th child (my 5th daughter). Notice the kid's "I love you" art on the wall—my children were always part of the journey.</p>
-              <div class="behind-scenes-caption">"My oldest daughter is now a software engineer. The technical curiosity was contagious."</div>
-            </div>
+    </nav>
+    <section class="hero">
+      <div class="hero-container">
+        <div class="hero-meta"><span class="hero-role">IT Consultant / Co-founder</span><span class="hero-org">Resolute
+            Services</span></div>
+        <h1 class="hero-title">Healthcare Process Automation</h1>
+        <p class="hero-summary">Co-founding a healthcare IT company and leading change management for a Medicaid-based
+          mental health agency—achieving 90% process automation.</p>
+        <div class="results-banner">
+          <div class="result-card">
+            <div class="result-number">40 hrs</div>
+            <div class="result-label">→ 15 min (Billing)</div>
+          </div>
+          <div class="result-card">
+            <div class="result-number">10 hrs</div>
+            <div class="result-label">→ 15 min (Intake)</div>
+          </div>
+          <div class="result-card">
+            <div class="result-number">4 yrs</div>
+            <div class="result-label">Full Lifecycle & Multiple Rewrites</div>
+          </div>
+        </div>
+        <div class="casestudy-box"><span class="casestudy-label">CASE STUDY</span>
+          <div class="casestudy-dropdown" id="casestudyDropdown"><button class="casestudy-btn"
+              onclick="toggleCasestudyDropdown()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+              </svg>View<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9" />
+              </svg></button>
+            <div class="casestudy-dropdown-menu"><a href="resolute-case-study.html" target="_blank"
+                class="casestudy-dropdown-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>View Case Study</a><a href="resolute-case-study.html" download
+                class="casestudy-dropdown-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>Download PDF</a></div>
           </div>
         </div>
       </div>
-<div class="cta-section"><a href="index.html#work" class="btn-cta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>View More Case Studies</a></div>
-    </div></section>
-    <div class="demo-modal" id="demoModal" onclick="closeDemo(event)"><div class="demo-modal-content" onclick="event.stopPropagation()"><button class="demo-close" onclick="closeDemo()">&times;</button><div class="demo-placeholder"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><h3>Demo Coming Soon</h3><p>The interactive demo for this project is currently being developed.</p></div></div></div>
-    <footer class="footer"><div class="footer-content"><nav class="footer-nav"><a href="index.html#work">Work</a><a href="in-the-news.html">Press</a><a href="index.html#testimonials">Testimonials</a><a href="index.html#skills">Skills</a><a href="index.html#contact">Contact</a></nav><p class="footer-copyright">© 2025 Christie Stephenson Saavedra. All rights reserved.</p></div></footer>
+    </section>
+    <section class="content">
+      <div class="content-container">
+        <div class="content-section">
+          <h2 class="content-title">The Challenge</h2>
+          <div class="glass-card-gradient">
+            <p class="content-text">A Medicaid-based mental health agency was drowning in manual processes. Billing,
+              payroll, compliance tracking—all done by hand. Errors were common. Staff were frustrated. There was no
+              internal IT expertise to fix it.</p>
+            <p class="content-text">We didn't just consult. We co-founded Resolute Services and built the solution from
+              scratch.</p>
+            <ul class="content-list">
+              <li>Manual billing and payroll processes consuming staff time</li>
+              <li>Compliance tracking done on paper with high error rates</li>
+              <li>No existing software solution for their specific Medicaid requirements</li>
+              <li>Staff resistant to change after years of established workflows</li>
+            </ul>
+          </div>
+        </div>
+        <div class="content-section">
+          <h2 class="content-title">What We Built</h2>
+          <div class="deliverable-card"><img src="images/resolute-software.jpg"
+              alt="Management Compliance Software interface" onclick="openPhotoModal(this.src, this.alt)"
+              style="cursor:pointer;">
+            <div class="deliverable-info">
+              <div class="deliverable-type">Custom Software</div>
+              <h3>Management Compliance Software</h3>
+              <p>Built specifically for Medicaid mental health agency operations, it replaced manual processes across:
+              </p>
+              <ul>
+                <li><strong>Participant management:</strong> Client intake, records, contact information</li>
+                <li><strong>Therapist tracking:</strong> Credentials, assignments, scheduling</li>
+                <li><strong>Manager administration:</strong> User roles, access controls, reporting</li>
+                <li><strong>Compliance reporting:</strong> Automated Medicaid documentation</li>
+                <li><strong>Billing automation:</strong> Claims generation and tracking</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="content-section">
+          <h2 class="content-title">Change Management Approach</h2>
+          <p class="content-text">Building software was only half the battle. Getting staff to adopt it required a
+            comprehensive change initiative:</p>
+          <div class="process-grid">
+            <div class="process-card-gradient">
+              <h4>1. Awareness</h4>
+              <p>Helped staff understand why change was needed—showing the cost of errors, wasted time, and compliance
+                risks</p>
+            </div>
+            <div class="process-card-gradient">
+              <h4>2. Buy-In</h4>
+              <p>Involved key stakeholders early, addressed concerns, and demonstrated how the system would make their
+                jobs easier</p>
+            </div>
+            <div class="process-card-gradient">
+              <h4>3. Training</h4>
+              <p>Developed user training materials, quick-reference guides, and hands-on sessions for all staff levels
+              </p>
+            </div>
+            <div class="process-card-gradient">
+              <h4>4. Reinforcement</h4>
+              <p>Provided ongoing support, gathered feedback, and made improvements based on real-world usage</p>
+            </div>
+          </div>
+          <h4>2. Buy-In</h4>
+          <p>Involved key stakeholders early, addressed concerns, and demonstrated how the system would make their jobs
+            easier</p>
+        </div>
+        <div class="process-card">
+          <h4>3. Training</h4>
+          <p>Developed user training materials, quick-reference guides, and hands-on sessions for all staff levels</p>
+        </div>
+        <div class="process-card">
+          <h4>4. Reinforcement</h4>
+          <p>Provided ongoing support, gathered feedback, and made improvements based on real-world usage</p>
+        </div>
+      </div>
   </div>
-  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
-  <script>const nav=document.getElementById('nav'),backToTop=document.getElementById('backToTop'),demoModal=document.getElementById('demoModal');window.addEventListener('scroll',()=>{window.scrollY>50?nav.classList.add('scrolled'):nav.classList.remove('scrolled');window.scrollY>300?backToTop.classList.add('visible'):backToTop.classList.remove('visible')});function openDemo(){demoModal.classList.add('active');document.body.style.overflow='hidden'}function closeDemo(e){if(!e||e.target===demoModal){demoModal.classList.remove('active');document.body.style.overflow=''}}document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDemo()})</script>
-<!-- ========== FLOATING STICKY NOTE WIDGET ========== -->
-<div class="sticky-widget minimized" id="stickyWidget">
-  
-  <!-- Minimized State -->
-  <div class="sticky-minimized" onclick="expandWidget()">
-    <svg viewBox="0 0 24 24" fill="currentColor">
-      <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
-    </svg>
-    <div class="note-count" id="noteCount">0</div>
-    <div class="tooltip">My Notes</div>
+  <div class="content-section">
+    <h2 class="content-title">What Others Say</h2>
+    <div class="testimonial-card">
+      <div class="deliverable-type">Reference Letter</div>
+      <h3>Daniel Stephenson, CTO</h3>
+      <p style="font-size:0.85rem;color:var(--color-text-secondary);margin-bottom:1rem">Lead engineer I collaborated
+        with over four years at Resolute Services</p>
+      <blockquote>"She <strong>spearheaded a large software product</strong> which gave health organizations that worked
+        with challenged children the ability to manage their entire process; from on-boarding through treatment and
+        discharge."</blockquote>
+      <blockquote>"When we started, billing for the time a therapist worked with a client would take anywhere from
+        <strong>forty to eighty hours a week</strong>. Because it was a manual process, there would often be mistakes
+        made; both with compliance and human error. Christie and I sat down each week and worked through a process that
+        allowed me to take the process down to approximately <strong>fifteen minutes</strong>."</blockquote>
+      <blockquote>"At the beginning of each iteration, Christie would sit down with me and, essentially,
+        <strong>storyboard the process</strong> for me. We would develop <strong>user stories</strong> that would then
+        be decomposed into individual screenshots and issues."</blockquote>
+      <blockquote>"Christie and I worked together on the intake module of the software. The intake process was a manual
+        process taking up to about <strong>10 hours</strong>. Once the process was automated online, it took about
+        <strong>15 minutes</strong>."</blockquote>
+      <blockquote>"Christie spent the better part of <strong>four years</strong> going through the same process with our
+        IT team and became very good at what she did. I would recommend her because of her experience and her ability to
+        learn quickly, <strong>she is extremely sharp</strong>."</blockquote>
+    </div>
   </div>
-  
-  <!-- Expanded State -->
-  <div class="sticky-expanded">
-    <div class="sticky-header">
-      <div class="sticky-header-left">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
+  <div class="content-section">
+    <h2 class="content-title">Results</h2>
+    <div class="glass-card-gradient">
+      <ul class="content-list">
+        <li><strong>Billing:</strong> Reduced from 40-80 hours/week → 15 minutes</li>
+        <li><strong>Client intake:</strong> Reduced from 10 hours → 15 minutes per client</li>
+        <li><strong>90%+ automation</strong> of critical billing and payroll processes</li>
+        <li><strong>Reduced errors</strong> through automated validation</li>
+        <li><strong>Enhanced compliance tracking</strong> for Medicaid requirements</li>
+        <li><strong>Sustainable system</strong> that continued operating after our engagement</li>
+      </ul>
+      <div class="tags"><span class="tag">Change Management</span><span class="tag">Process Automation</span><span
+          class="tag">Software Design</span><span class="tag">Training Development</span><span class="tag">Healthcare
+          IT</span><span class="tag">Stakeholder Engagement</span></div>
+    </div>
+  </div>
+  <div class="content-section">
+    <h2 class="content-title">Interactive Demo</h2>
+    <div class="demo-card" onclick="openDemo()">
+      <div class="demo-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5">
+          <polygon points="5 3 19 12 5 21 5 3" />
+        </svg></div>
+      <div class="demo-text">
+        <h3>Launch Interactive Demo</h3>
+        <p>Explore the RESOLUTE healthcare automation platform</p>
+      </div>
+    </div>
+  </div>
+  <div class="content-section behind-scenes">
+    <h2 class="content-title">Behind the Scenes</h2>
+    <p class="content-body">Building enterprise healthcare systems while raising six kids meant work and family were
+      always intertwined. My kids grew up watching their mom solve complex problems—and sometimes they helped.</p>
+    <div class="behind-scenes-grid">
+      <div class="behind-scenes-card single">
+        <img src="images/ResoluteBilling.jpg" alt="Building the billing system"
+          onclick="openPhotoModal(this.src, this.alt)">
+        <div class="behind-scenes-info">
+          <h4>90% Automation in Progress</h4>
+          <p>That's me building the automated billing system, 2010. I was pregnant with my 6th child (my 5th daughter).
+            Notice the kid's "I love you" art on the wall—my children were always part of the journey.</p>
+          <div class="behind-scenes-caption">"My oldest daughter is now a software engineer. The technical curiosity was
+            contagious."</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cta-section"><a href="index.html#work" class="btn-cta"><svg width="18" height="18" viewBox="0 0 24 24"
+        fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15 18 9 12 15 6" />
+      </svg>View More Case Studies</a></div>
+  </div>
+  </section>
+  <div class="demo-modal" id="demoModal" onclick="closeDemo(event)">
+    <div class="demo-modal-content" onclick="event.stopPropagation()"><button class="demo-close"
+        onclick="closeDemo()">&times;</button>
+      <div class="demo-placeholder"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.5">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+          <line x1="8" y1="21" x2="16" y2="21" />
+          <line x1="12" y1="17" x2="12" y2="21" />
         </svg>
-        <span class="sticky-header-title">My Notes</span>
-      </div>
-      <div class="sticky-header-actions">
-        <button class="sticky-header-btn" onclick="minimizeWidget()" title="Minimize">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="5" y1="12" x2="19" y2="12"/>
-          </svg>
-        </button>
+        <h3>Demo Coming Soon</h3>
+        <p>The interactive demo for this project is currently being developed.</p>
       </div>
     </div>
-    
-    <!-- Tabs -->
-    <div class="sticky-tabs">
-      <button class="sticky-tab active" id="tabThisPage" onclick="showTab('thisPage')">This Page</button>
-      <button class="sticky-tab" id="tabAllNotes" onclick="showTab('allNotes')">All Notes (<span id="allNotesCount">0</span>)</button>
-    </div>
-    
-    <!-- This Page Tab -->
-    <div id="thisPageContent">
-      <div class="sticky-project">
-        <div class="sticky-project-label">Currently Viewing</div>
-        <div class="sticky-project-name" id="currentProjectName">Resolute Services</div>
-      </div>
-      
-      <div class="sticky-body">
-        <textarea class="sticky-textarea" id="noteTextarea" 
-                  placeholder="Questions, observations, things to discuss with Christie..."
-                  oninput="saveNote()"></textarea>
-      </div>
-      
-      <div class="sticky-footer">
-        <span class="sticky-status" id="saveStatus">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-            <polyline points="20 6 9 17 4 12"/>
-          </svg>
-          Saved
-        </span>
-        <div class="sticky-actions">
-          <button class="sticky-btn secondary" onclick="showTab('allNotes')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-            </svg>
-            All Notes
-          </button>
-          <button class="sticky-btn primary" onclick="sendNotes()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="22" y1="2" x2="11" y2="13"/>
-              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-            </svg>
-            Send
-          </button>
-        </div>
-      </div>
-    </div>
-    
-    <!-- All Notes Tab -->
-    <div id="allNotesContent" style="display: none;">
-      <div class="sticky-all-notes" id="allNotesList">
-        <div class="sticky-empty">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
-          </svg>
-          <div>No notes yet</div>
-          <div style="font-size: 0.75rem; margin-top: 0.25rem;">Start taking notes on any project!</div>
-        </div>
-      </div>
-      
-      <div class="sticky-footer">
-        <span></span>
-        <div class="sticky-actions">
-          <button class="sticky-btn secondary" onclick="exportNotes()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-            Export
-          </button>
-          <button class="sticky-btn primary" onclick="sendNotes()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="22" y1="2" x2="11" y2="13"/>
-              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-            </svg>
-            Send All
-          </button>
-        </div>
-      </div>
-    </div>
-    
   </div>
-</div>
-<script>
-<script>
+  <footer class="footer">
+    <div class="footer-content">
+      <nav class="footer-nav"><a href="index.html#work">Work</a><a href="in-the-news.html">Press</a><a
+          href="index.html#testimonials">Testimonials</a><a href="index.html#skills">Skills</a><a
+          href="index.html#contact">Contact</a></nav>
+      <p class="footer-copyright">© 2025 Christie Stephenson Saavedra. All rights reserved.</p>
+    </div>
+  </footer>
+  </div>
+  <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><svg width="20"
+      height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <polyline points="18 15 12 9 6 15" />
+    </svg></button>
+  <script>const nav = document.getElementById('nav'), backToTop = document.getElementById('backToTop'), demoModal = document.getElementById('demoModal'); window.addEventListener('scroll', () => { window.scrollY > 50 ? nav.classList.add('scrolled') : nav.classList.remove('scrolled'); window.scrollY > 300 ? backToTop.classList.add('visible') : backToTop.classList.remove('visible') }); function openDemo() { demoModal.classList.add('active'); document.body.style.overflow = 'hidden' } function closeDemo(e) { if (!e || e.target === demoModal) { demoModal.classList.remove('active'); document.body.style.overflow = '' } } document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDemo() })</script>
+  <!-- ========== FLOATING STICKY NOTE WIDGET ========== -->
+  <div class="sticky-widget minimized" id="stickyWidget">
+
+    <!-- Minimized State -->
+    <div class="sticky-minimized" onclick="expandWidget()">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+      </svg>
+      <div class="note-count" id="noteCount">0</div>
+      <div class="tooltip">My Notes</div>
+    </div>
+
+    <!-- Expanded State -->
+    <div class="sticky-expanded">
+      <div class="sticky-header">
+        <div class="sticky-header-left">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+          </svg>
+          <span class="sticky-header-title">My Notes</span>
+        </div>
+        <div class="sticky-header-actions">
+          <button class="sticky-header-btn" onclick="minimizeWidget()" title="Minimize">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="sticky-tabs">
+        <button class="sticky-tab active" id="tabThisPage" onclick="showTab('thisPage')">This Page</button>
+        <button class="sticky-tab" id="tabAllNotes" onclick="showTab('allNotes')">All Notes (<span
+            id="allNotesCount">0</span>)</button>
+      </div>
+
+      <!-- This Page Tab -->
+      <div id="thisPageContent">
+        <div class="sticky-project">
+          <div class="sticky-project-label">Currently Viewing</div>
+          <div class="sticky-project-name" id="currentProjectName">Resolute Services</div>
+        </div>
+
+        <div class="sticky-body">
+          <textarea class="sticky-textarea" id="noteTextarea"
+            placeholder="Questions, observations, things to discuss with Christie..." oninput="saveNote()"></textarea>
+        </div>
+
+        <div class="sticky-footer">
+          <span class="sticky-status" id="saveStatus">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            Saved
+          </span>
+          <div class="sticky-actions">
+            <button class="sticky-btn secondary" onclick="showTab('allNotes')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+              </svg>
+              All Notes
+            </button>
+            <button class="sticky-btn primary" onclick="sendNotes()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13" />
+                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+              </svg>
+              Send
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- All Notes Tab -->
+      <div id="allNotesContent" style="display: none;">
+        <div class="sticky-all-notes" id="allNotesList">
+          <div class="sticky-empty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+            </svg>
+            <div>No notes yet</div>
+            <div style="font-size: 0.75rem; margin-top: 0.25rem;">Start taking notes on any project!</div>
+          </div>
+        </div>
+
+        <div class="sticky-footer">
+          <span></span>
+          <div class="sticky-actions">
+            <button class="sticky-btn secondary" onclick="exportNotes()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Export
+            </button>
+            <button class="sticky-btn primary" onclick="sendNotes()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13" />
+                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+              </svg>
+              Send All
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <script>
+      < script >
 // ========== FLOATING STICKY NOTE WIDGET FUNCTIONALITY ==========
 const CURRENT_PAGE_KEY = 'resolute';
-const CURRENT_PAGE_NAME = 'Resolute Services';
+    const CURRENT_PAGE_NAME = 'Resolute Services';
 
-const PROJECT_NAMES = {
-  'portfolio-home': 'Christie Saavedra Portfolio',
-  'dashboard': 'Healthcare Operations Dashboard',
-  'xacteched': 'xactechED Campaign',
-  'resolute': 'Resolute Services',
-  'arizona': 'Arizona Esthetics Institute',
-  'palmview': 'Palmview Lab',
-  'gardner': 'Gardner Chiropractic'
-};
+    const PROJECT_NAMES = {
+      'portfolio-home': 'Christie Saavedra Portfolio',
+      'dashboard': 'Healthcare Operations Dashboard',
+      'xacteched': 'xactechED Campaign',
+      'resolute': 'Resolute Services',
+      'arizona': 'Arizona Esthetics Institute',
+      'palmview': 'Palmview Lab',
+      'gardner': 'Gardner Chiropractic'
+    };
 
-function expandWidget() {
-  document.getElementById('stickyWidget').classList.remove('minimized');
-  document.getElementById('stickyWidget').classList.add('expanded');
-}
+    function expandWidget() {
+      document.getElementById('stickyWidget').classList.remove('minimized');
+      document.getElementById('stickyWidget').classList.add('expanded');
+    }
 
-function minimizeWidget() {
-  document.getElementById('stickyWidget').classList.remove('expanded');
-  document.getElementById('stickyWidget').classList.add('minimized');
-}
+    function minimizeWidget() {
+      document.getElementById('stickyWidget').classList.remove('expanded');
+      document.getElementById('stickyWidget').classList.add('minimized');
+    }
 
-function showTab(tab) {
-  const thisPageTab = document.getElementById('tabThisPage');
-  const allNotesTab = document.getElementById('tabAllNotes');
-  const thisPageContent = document.getElementById('thisPageContent');
-  const allNotesContent = document.getElementById('allNotesContent');
-  
-  if (tab === 'thisPage') {
-    thisPageTab.classList.add('active');
-    allNotesTab.classList.remove('active');
-    thisPageContent.style.display = 'block';
-    allNotesContent.style.display = 'none';
-  } else {
-    thisPageTab.classList.remove('active');
-    allNotesTab.classList.add('active');
-    thisPageContent.style.display = 'none';
-    allNotesContent.style.display = 'block';
-    renderAllNotes();
-  }
-}
+    function showTab(tab) {
+      const thisPageTab = document.getElementById('tabThisPage');
+      const allNotesTab = document.getElementById('tabAllNotes');
+      const thisPageContent = document.getElementById('thisPageContent');
+      const allNotesContent = document.getElementById('allNotesContent');
 
-function getAllData() {
-  const data = localStorage.getItem('portfolioTracking');
-  return data ? JSON.parse(data) : {};
-}
+      if (tab === 'thisPage') {
+        thisPageTab.classList.add('active');
+        allNotesTab.classList.remove('active');
+        thisPageContent.style.display = 'block';
+        allNotesContent.style.display = 'none';
+      } else {
+        thisPageTab.classList.remove('active');
+        allNotesTab.classList.add('active');
+        thisPageContent.style.display = 'none';
+        allNotesContent.style.display = 'block';
+        renderAllNotes();
+      }
+    }
 
-function getProjectData(projectId) {
-  const data = getAllData();
-  return data[projectId] || { viewed: false, bookmarked: false, note: '' };
-}
+    function getAllData() {
+      const data = localStorage.getItem('portfolioTracking');
+      return data ? JSON.parse(data) : {};
+    }
 
-function saveNote() {
-  const textarea = document.getElementById('noteTextarea');
-  const data = getAllData();
-  
-  if (!data[CURRENT_PAGE_KEY]) {
-    data[CURRENT_PAGE_KEY] = { viewed: true, bookmarked: false, note: '' };
-  }
-  
-  data[CURRENT_PAGE_KEY].note = textarea.value;
-  localStorage.setItem('portfolioTracking', JSON.stringify(data));
-  updateNoteCounts();
-  
-  const status = document.getElementById('saveStatus');
-  status.classList.add('visible');
-  setTimeout(() => status.classList.remove('visible'), 2000);
-}
+    function getProjectData(projectId) {
+      const data = getAllData();
+      return data[projectId] || { viewed: false, bookmarked: false, note: '' };
+    }
 
-function updateNoteCounts() {
-  const data = getAllData();
-  const projectsWithNotes = Object.keys(data).filter(key => data[key].note && data[key].note.trim());
-  const count = projectsWithNotes.length;
-  
-  document.getElementById('noteCount').textContent = count;
-  document.getElementById('allNotesCount').textContent = count;
-  
-  const tooltip = document.querySelector('.sticky-minimized .tooltip');
-  if (tooltip) {
-    tooltip.textContent = count > 0 ? `My Notes (${count} project${count > 1 ? 's' : ''})` : 'My Notes';
-  }
-}
+    function saveNote() {
+      const textarea = document.getElementById('noteTextarea');
+      const data = getAllData();
 
-function renderAllNotes() {
-  const data = getAllData();
-  const container = document.getElementById('allNotesList');
-  const keys = Object.keys(data).filter(key => data[key].note && data[key].note.trim());
-  
-  if (keys.length === 0) {
-    container.innerHTML = `
+      if (!data[CURRENT_PAGE_KEY]) {
+        data[CURRENT_PAGE_KEY] = { viewed: true, bookmarked: false, note: '' };
+      }
+
+      data[CURRENT_PAGE_KEY].note = textarea.value;
+      localStorage.setItem('portfolioTracking', JSON.stringify(data));
+      updateNoteCounts();
+
+      const status = document.getElementById('saveStatus');
+      status.classList.add('visible');
+      setTimeout(() => status.classList.remove('visible'), 2000);
+    }
+
+    function updateNoteCounts() {
+      const data = getAllData();
+      const projectsWithNotes = Object.keys(data).filter(key => data[key].note && data[key].note.trim());
+      const count = projectsWithNotes.length;
+
+      document.getElementById('noteCount').textContent = count;
+      document.getElementById('allNotesCount').textContent = count;
+
+      const tooltip = document.querySelector('.sticky-minimized .tooltip');
+      if (tooltip) {
+        tooltip.textContent = count > 0 ? `My Notes (${count} project${count > 1 ? 's' : ''})` : 'My Notes';
+      }
+    }
+
+    function renderAllNotes() {
+      const data = getAllData();
+      const container = document.getElementById('allNotesList');
+      const keys = Object.keys(data).filter(key => data[key].note && data[key].note.trim());
+
+      if (keys.length === 0) {
+        container.innerHTML = `
       <div class="sticky-empty">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
@@ -842,14 +1818,14 @@ function renderAllNotes() {
         <div style="font-size: 0.75rem; margin-top: 0.25rem;">Start taking notes on any project!</div>
       </div>
     `;
-    return;
-  }
-  
-  container.innerHTML = keys.map(key => {
-    const project = data[key];
-    const name = PROJECT_NAMES[key] || key;
-    const preview = project.note.length > 50 ? project.note.substring(0, 50) + '...' : project.note;
-    return `
+        return;
+      }
+
+      container.innerHTML = keys.map(key => {
+        const project = data[key];
+        const name = PROJECT_NAMES[key] || key;
+        const preview = project.note.length > 50 ? project.note.substring(0, 50) + '...' : project.note;
+        return `
       <div class="sticky-note-item" onclick="goToProject('${key}')">
         <div class="sticky-note-item-title">
           <svg viewBox="0 0 24 24" fill="currentColor">
@@ -860,134 +1836,135 @@ function renderAllNotes() {
         <div class="sticky-note-item-preview">${preview}</div>
       </div>
     `;
-  }).join('');
-}
+      }).join('');
+    }
 
-function goToProject(key) {
-  const pageMap = {
-    'portfolio-home': 'index.html',
-    'dashboard': 'healthcare-dashboard.html',
-    'xacteched': 'xacteched-campaign.html',
-    'resolute': 'resolute-services.html',
-    'arizona': 'arizona-esthetics.html',
-    'palmview': 'palmview-lab.html',
-    'gardner': 'gardner-chiropractic.html'
-  };
-  if (pageMap[key]) {
-    window.location.href = pageMap[key];
-  }
-}
+    function goToProject(key) {
+      const pageMap = {
+        'portfolio-home': 'index.html',
+        'dashboard': 'healthcare-dashboard.html',
+        'xacteched': 'xacteched-campaign.html',
+        'resolute': 'resolute-services.html',
+        'arizona': 'arizona-esthetics.html',
+        'palmview': 'palmview-lab.html',
+        'gardner': 'gardner-chiropractic.html'
+      };
+      if (pageMap[key]) {
+        window.location.href = pageMap[key];
+      }
+    }
 
-function exportNotes() {
-  const data = getAllData();
-  const keys = Object.keys(data).filter(key => data[key].note && data[key].note.trim());
-  
-  if (keys.length === 0) {
-    alert('No notes to export yet!');
-    return;
-  }
-  
-  let text = 'PORTFOLIO NOTES - Christie Saavedra\n';
-  text += '================================\n\n';
-  keys.forEach(key => {
-    const name = PROJECT_NAMES[key] || key;
-    text += `📌 ${name}\n`;
-    text += `${data[key].note}\n\n`;
-  });
-  
-  const blob = new Blob([text], { type: 'text/plain' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'portfolio-notes.txt';
-  a.click();
-  URL.revokeObjectURL(url);
-}
+    function exportNotes() {
+      const data = getAllData();
+      const keys = Object.keys(data).filter(key => data[key].note && data[key].note.trim());
 
-function sendNotes() {
-  const data = getAllData();
-  const keys = Object.keys(data).filter(key => data[key].note && data[key].note.trim());
-  
-  if (keys.length === 0) {
-    alert('No notes to send yet!');
-    return;
-  }
-  
-  let message = 'Portfolio Notes:\n\n';
-  keys.forEach(key => {
-    const name = PROJECT_NAMES[key] || key;
-    message += `${name}:\n${data[key].note}\n\n`;
-  });
-  
-  const form = document.createElement('form');
-  form.method = 'POST';
-  form.action = 'https://formspree.io/f/xaqnyaaw';
-  form.target = '_blank';
-  
-  const input = document.createElement('input');
-  input.type = 'hidden';
-  input.name = 'message';
-  input.value = message;
-  form.appendChild(input);
-  
-  const subject = document.createElement('input');
-  subject.type = 'hidden';
-  subject.name = '_subject';
-  subject.value = 'Portfolio Notes from Visitor';
-  form.appendChild(subject);
-  
-  document.body.appendChild(form);
-  form.submit();
-  document.body.removeChild(form);
-}
+      if (keys.length === 0) {
+        alert('No notes to export yet!');
+        return;
+      }
 
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', function() {
-  const notes = getAllNotes();
-  if (notes[CURRENT_PAGE_KEY]) {
-    document.getElementById('noteTextarea').value = notes[CURRENT_PAGE_KEY].text;
-  }
-  updateNoteCounts();
-});
-</script>
-<script>
-// Auto-mark this page as viewed
-(function() {
-  const PROJECT_ID = 'resolute';
-  const data = JSON.parse(localStorage.getItem('portfolioTracking') || '{}');
-  data[PROJECT_ID] = data[PROJECT_ID] || { viewed: false, bookmarked: false, note: '' };
-  data[PROJECT_ID].viewed = true;
-  localStorage.setItem('portfolioTracking', JSON.stringify(data));
-})();
-</script>
-<script>
-function toggleCasestudyDropdown() {
-  document.getElementById('casestudyDropdown').classList.toggle('active');
-}
-document.addEventListener('click', function(e) {
-  if (!e.target.closest('.casestudy-dropdown')) {
-    document.getElementById('casestudyDropdown').classList.remove('active');
-  }
-});
-</script>
-<div class="photo-modal" id="photoModal" onclick="closePhotoModal()">
-  <span class="photo-modal-close">&times;</span>
-  <img id="photoModalImg" src="" alt="Full size photo">
-</div>
-<script>
-function openPhotoModal(src, alt) {
-  document.getElementById('photoModalImg').src = src;
-  document.getElementById('photoModalImg').alt = alt;
-  document.getElementById('photoModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-function closePhotoModal() {
-  document.getElementById('photoModal').classList.remove('active');
-  document.body.style.overflow = '';
-}
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closePhotoModal();
-});
-</script>
+      let text = 'PORTFOLIO NOTES - Christie Saavedra\n';
+      text += '================================\n\n';
+      keys.forEach(key => {
+        const name = PROJECT_NAMES[key] || key;
+        text += `📌 ${name}\n`;
+        text += `${data[key].note}\n\n`;
+      });
+
+      const blob = new Blob([text], { type: 'text/plain' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'portfolio-notes.txt';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function sendNotes() {
+      const data = getAllData();
+      const keys = Object.keys(data).filter(key => data[key].note && data[key].note.trim());
+
+      if (keys.length === 0) {
+        alert('No notes to send yet!');
+        return;
+      }
+
+      let message = 'Portfolio Notes:\n\n';
+      keys.forEach(key => {
+        const name = PROJECT_NAMES[key] || key;
+        message += `${name}:\n${data[key].note}\n\n`;
+      });
+
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = 'https://formspree.io/f/xaqnyaaw';
+      form.target = '_blank';
+
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = 'message';
+      input.value = message;
+      form.appendChild(input);
+
+      const subject = document.createElement('input');
+      subject.type = 'hidden';
+      subject.name = '_subject';
+      subject.value = 'Portfolio Notes from Visitor';
+      form.appendChild(subject);
+
+      document.body.appendChild(form);
+      form.submit();
+      document.body.removeChild(form);
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function () {
+      const notes = getAllNotes();
+      if (notes[CURRENT_PAGE_KEY]) {
+        document.getElementById('noteTextarea').value = notes[CURRENT_PAGE_KEY].text;
+      }
+      updateNoteCounts();
+    });
+  </script>
+  <script>
+    // Auto-mark this page as viewed
+    (function () {
+      const PROJECT_ID = 'resolute';
+      const data = JSON.parse(localStorage.getItem('portfolioTracking') || '{}');
+      data[PROJECT_ID] = data[PROJECT_ID] || { viewed: false, bookmarked: false, note: '' };
+      data[PROJECT_ID].viewed = true;
+      localStorage.setItem('portfolioTracking', JSON.stringify(data));
+    })();
+  </script>
+  <script>
+    function toggleCasestudyDropdown() {
+      document.getElementById('casestudyDropdown').classList.toggle('active');
+    }
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.casestudy-dropdown')) {
+        document.getElementById('casestudyDropdown').classList.remove('active');
+      }
+    });
+  </script>
+  <div class="photo-modal" id="photoModal" onclick="closePhotoModal()">
+    <span class="photo-modal-close">&times;</span>
+    <img id="photoModalImg" src="" alt="Full size photo">
+  </div>
+  <script>
+    function openPhotoModal(src, alt) {
+      document.getElementById('photoModalImg').src = src;
+      document.getElementById('photoModalImg').alt = alt;
+      document.getElementById('photoModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closePhotoModal() {
+      document.getElementById('photoModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closePhotoModal();
+    });
+  </script>
 </body>
+
 </html>
