@@ -1103,12 +1103,14 @@
   .map-panel {
     width: 100%;
     max-width: 320px;
-    height: 400px;
+    height: 380px;
+    min-height: 380px;
+    max-height: 380px;
     margin: 0 auto;
   }
   .map-area {
-    aspect-ratio: 300 / 420;
-    max-height: 350px;
+    flex: 1;
+    max-height: 340px;
   }
   .card-panel {
     height: auto;
@@ -1144,9 +1146,17 @@
     padding: 1rem;
   }
   .card-image-container {
-    height: 220px;
-    min-height: 220px;
-    max-height: 220px;
+    height: 240px;
+    min-height: 240px;
+    max-height: 240px;
+  }
+  .map-panel {
+    height: 320px;
+    min-height: 320px;
+    max-height: 320px;
+  }
+  .map-area {
+    max-height: 280px;
   }
   .card-nav {
     width: 32px;
