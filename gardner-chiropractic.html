@@ -478,6 +478,10 @@
 /* Behind the Scenes Section */
 .behind-scenes {
   margin-top: 2rem;
+  padding: 2rem;
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
 }
 .behind-scenes-grid {
   display: grid;
@@ -1129,8 +1133,10 @@
     font-size: 0.65rem;
   }
   .progress-container {
-    padding: 0 0.5rem;
-  }
+  margin-bottom: 1.5rem;
+  padding-top: 1rem;
+  overflow: visible;
+}
   .card-title {
     font-size: 1rem;
   }
@@ -1518,7 +1524,7 @@
     <div class="card-panel">
       <div class="card-image-container" onclick="openTimelineModal()">
         <button class="card-nav prev" onclick="event.stopPropagation(); prevStep()">←</button>
-        <img id="cardImage" src="images/Mesa, AZ Spanish Ad.jpg" alt="Mesa image">
+        <img id="cardImage" src="images/Mesa__AZ_Spanish_Ad.jpg" alt="Mesa image">
         <button class="card-nav next" onclick="event.stopPropagation(); nextStep()">→</button>
       </div>
       <div class="card-content">
@@ -1552,27 +1558,28 @@
 <!-- ========== END INTERACTIVE TIMELINE ========== -->
 
 <div class="content-section behind-scenes">
-          <h2 class="content-title">Behind the Scenes</h2>
-          <p class="content-body">My entrepreneurial foundation started here—building a business while raising a young family. Four kids just under five at a grand opening? That was just Tuesday.</p>
-          <div class="behind-scenes-grid">
-            <div class="behind-scenes-card single">
-              <img src="images/GrandOpeningFebruary1999.jpg" alt="Grand Opening February 1999" onclick="openPhotoModal(this.src, this.alt)">
-              <div class="behind-scenes-info">
-                <h4>Where It All Started</h4>
-                <p>Grand opening ribbon cutting, February 1999. That's my husband holding our 4th child, born just weeks earlier. Entrepreneurship doesn't wait for convenient timing.</p>
-                <div class="behind-scenes-caption">"Four kids under five and opening a business. That's the foundation everything else was built on."</div>
-              </div>
-            </div>
-          </div>
+  <div class="content-container">
+    <h2 class="content-title">Behind the Scenes</h2>
+    <p class="content-body">My entrepreneurial foundation started here—building a business while raising a young family. Four kids just under five at a grand opening? That was just Tuesday.</p>
+    <div class="behind-scenes-grid">
+      <div class="behind-scenes-card single">
+        <img src="images/GrandOpeningFebruary1999.jpg" alt="Grand Opening February 1999" onclick="openPhotoModal(this.src, this.alt)">
+        <div class="behind-scenes-info">
+          <h4>Where It All Started</h4>
+          <p>Grand opening ribbon cutting, February 1999. That's my husband holding our 4th child, born just weeks earlier. Entrepreneurship doesn't wait for convenient timing.</p>
+          <div class="behind-scenes-caption">"Four kids under five and opening a business. That's the foundation everything else was built on."</div>
         </div>
-        <div class="cta-section">
-          <a href="index.html#work" class="btn-cta">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-            View More Case Studies
-          </a>
-        </div>
-
       </div>
+    </div>
+  </div>
+</div>
+<div class="cta-section">
+  <a href="index.html#work" class="btn-cta">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    View More Case Studies
+  </a>
+</div>
+
     </section>
 
     <footer class="footer">
@@ -1970,7 +1977,7 @@ const timelineData = [
     location: "Mesa, AZ",
     title: "First Practice — Fresh Out of School",
     description: "Our first ad after Lance graduated from Parker College in Dallas. We rented space in Mesa for 9 months, reaching out to the Latino community in the East Valley.",
-   image: "images/Mesa, AZ Spanish Ad.jpg",
+   image: "images/Mesa__AZ_Spanish_Ad.jpg",
     pin: "pin-mesa"
   },
   {
