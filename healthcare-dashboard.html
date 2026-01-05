@@ -58,8 +58,8 @@ box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
     .content-list { list-style: none; margin: 1rem 0; }
     .content-list li { padding: 0.5rem 0; padding-left: 1.5rem; position: relative; color: var(--color-text-secondary); }
     .content-list li::before { content: '→'; position: absolute; left: 0; color: #1E40AF; font-weight: bold; }
-   .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; justify-content: center; max-width: 600px; margin-left: auto; margin-right: auto; }
-.tag { font-size: 0.7rem; font-weight: 600; padding: 0.4rem 0.8rem; border-radius: 2rem; background: var(--project-gradient); color: white; } 2rem; font-size: 0.8rem; font-weight: 500; }
+   .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; justify-content: center; max-width: 520px; margin-left: auto; margin-right: auto; }
+.tag { font-size: 0.7rem; font-weight: 600; padding: 0.4rem 0.8rem; border-radius: 2rem; background: var(--project-gradient); color: white; }
     .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
 .feature-card { background: linear-gradient(135deg, white 0%, white 50%, rgba(217, 119, 6, 0.1) 100%); border: 1px solid rgba(217, 119, 6, 0.1); border-radius: 12px; padding: 1.5rem; position: relative; overflow: hidden; }
 .feature-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--project-gradient); }
@@ -83,7 +83,7 @@ box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
 .step-number { width: 28px; height: 28px; background: var(--project-gradient); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 600; flex-shrink: 0; }
 .step-content h4 { font-size: 0.95rem; margin-bottom: 0.25rem; }
 .step-content p { font-size: 0.85rem; color: var(--color-text-secondary); }
-    .demo-card { display: flex; align-items: center; gap: 1.5rem; background: linear-gradient(135deg, white 0%, white 50%, rgba(217, 119, 6, 0.15) 100%); border: 1px solid rgba(217, 119, 6, 0.1); border-radius: 16px; padding: 2rem; cursor: pointer; transition: all 0.3s ease; text-decoration: none; position: relative; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
+  .demo-card { display: flex; align-items: center; gap: 1.5rem; background: linear-gradient(135deg, white 0%, white 50%, rgba(217, 119, 6, 0.15) 100%); border: 1px solid rgba(217, 119, 6, 0.1); border-radius: 16px; padding: 2rem; cursor: pointer; transition: all 0.3s ease; text-decoration: none; position: relative; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
 .demo-card::before { content: ''; position: absolute; top: 0; left: 0; width: 6px; height: 100%; background: var(--project-gradient); }
 .demo-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(217,119,6,0.2); }
 .demo-icon { width: 64px; height: 64px; background: var(--project-gradient); border-radius: 12px; display: flex; align-items: center; justify-content: center; }
@@ -451,8 +451,7 @@ box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
   color: #b45309;
   margin-bottom: 0;
   display: block;
-}
-.casestudy-dropdown {
+}.casestudy-dropdown {
   position: relative;
   display: inline-block;
 }
@@ -515,8 +514,9 @@ box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
     <nav class="nav" id="nav"><div class="nav-bg"><div class="nav-container"><a href="index.html#work" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>Back to Portfolio</a><a href="index.html" class="nav-logo">Christie Stephenson Saavedra</a></div></div></nav>
     
     <section class="hero">
-      <div class="hero-container">
-        <div class="hero-meta">
+  <div class="hero-container">
+    <div class="hero-card">
+    <div class="hero-meta">
           <span class="hero-role">UX Designer / Developer</span>
           <span class="hero-org">Healthcare Consulting · 2025</span>
         </div>
@@ -538,14 +538,15 @@ box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
           <div class="result-card">
             <div class="result-number">15+</div>
             <div class="result-label">Features Beyond Scope</div>
-          </div>
-        </div>
-        <div class="casestudy-box">
+     </div>
+      </div>
+    </div>
+    <div class="casestudy-box">
           <span class="casestudy-label">CASE STUDY</span>
           <div class="casestudy-dropdown" id="casestudyDropdown">
             <button class="casestudy-btn" onclick="toggleCasestudyDropdown()">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-              Case Study
+              View
               <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
             <div class="casestudy-dropdown-menu">
