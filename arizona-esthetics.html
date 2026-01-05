@@ -423,12 +423,85 @@
 .sticky-widget.minimized .sticky-minimized { display: flex; }
 .sticky-widget.expanded .sticky-expanded { display: block; }
 .sticky-widget.expanded .sticky-minimized { display: none; }
+/* Case Study Dropdown */
+.casestudy-box {
+  margin-top: 2rem;
+  border: 3px dashed #0d9488;
+  border-radius: 12px;
+  padding: 1.25rem;
+  background: rgba(13, 148, 136, 0.1);
+  text-align: center;
+}
+.casestudy-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #0f766e;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+.casestudy-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.casestudy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.1rem;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #0f766e;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.casestudy-btn:hover {
+  background: rgba(255, 255, 255, 0.85);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+.casestudy-btn svg { width: 16px; height: 16px; }
+.casestudy-btn svg.chevron { transition: transform 0.2s; }
+.casestudy-dropdown.active .casestudy-btn svg.chevron { transform: rotate(180deg); }
+.casestudy-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  min-width: 180px;
+  overflow: hidden;
+  z-index: 100;
+}
+.casestudy-dropdown.active .casestudy-dropdown-menu { display: block; }
+.casestudy-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: #1C1917;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.15s;
+}
+.casestudy-dropdown-item:hover { background: #f5f5f5; }
+.casestudy-dropdown-item svg { width: 16px; height: 16px; color: #0f766e; }
 </style>
 </head>
 <body>
   <div class="page-wrapper">
     <nav class="nav" id="nav"><div class="nav-bg"><div class="nav-container"><a href="index.html#work" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>Back to Portfolio</a><a href="index.html" class="nav-logo">Christie Stephenson Saavedra</a></div></div></nav>
-    <section class="hero"><div class="hero-container"><div class="hero-meta"><span class="hero-role">Instructional Designer / Co-founder</span><span class="hero-org">Arizona Esthetics Institute</span></div><h1 class="hero-title">Arizona Esthetics Institute</h1><p class="hero-summary">Co-founding and launching a state-approved vocational training school for esthetics—from curriculum design to facility build-out.</p><div class="results-banner"><div class="result-card"><div class="result-number">State</div><div class="result-label">Approved Curriculum</div></div><div class="result-card"><div class="result-number">Accredited</div><div class="result-label">Trade School</div></div><div class="result-card"><div class="result-number">At-Risk</div><div class="result-label">Youth Pathways</div></div></div></div></section>
+    <section class="hero"><div class="hero-container"><div class="hero-meta"><span class="hero-role">Instructional Designer / Co-founder</span><span class="hero-org">Arizona Esthetics Institute</span></div><h1 class="hero-title">Arizona Esthetics Institute</h1><p class="hero-summary">Co-founding and launching a state-approved vocational training school for esthetics—from curriculum design to facility build-out.</p><div class="results-banner"><div class="result-card"><div class="result-number">State</div><div class="result-label">Approved Curriculum</div></div><div class="result-card"><div class="result-number">Accredited</div><div class="result-label">Trade School</div></div><div class="result-card"><div class="result-number">At-Risk</div><div class="result-label">Youth Pathways</div></div></div><div class="casestudy-box"><span class="casestudy-label">CASE STUDY</span><div class="casestudy-dropdown" id="casestudyDropdown"><button class="casestudy-btn" onclick="toggleCasestudyDropdown()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Case Study<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="casestudy-dropdown-menu"><a href="arizona-esthetics-case-study.html" target="_blank" class="casestudy-dropdown-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>View Case Study</a><a href="arizona-esthetics-case-study.html" download class="casestudy-dropdown-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download PDF</a></div></div></div></div></section>
     <section class="content"><div class="content-container">
       <div class="content-section"><h2 class="content-title">The Challenge</h2><div class="glass-card"><p class="content-text">Arizona lacked accessible vocational training options for esthetics. At-risk youth in particular had few pathways to licensed, employable careers in the beauty industry.</p><p class="content-text">I saw an opportunity to create something from nothing.</p><ul class="content-list"><li>No existing program to model—had to build from scratch</li><li>Required navigating Arizona State Board regulatory requirements</li><li>Needed to develop state-approved curriculum meeting licensing exam standards</li><li>Had to build facility, recruit students, and establish partnerships simultaneously</li></ul></div></div>
       <div class="content-section"><h2 class="content-title">What I Built</h2>
@@ -774,6 +847,16 @@ document.addEventListener('DOMContentLoaded', function() {
   data[PROJECT_ID].viewed = true;
   localStorage.setItem('portfolioTracking', JSON.stringify(data));
 })();
+</script>
+<script>
+function toggleCasestudyDropdown() {
+  document.getElementById('casestudyDropdown').classList.toggle('active');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.casestudy-dropdown')) {
+    document.getElementById('casestudyDropdown').classList.remove('active');
+  }
+});
 </script>
 </body>
 </html>

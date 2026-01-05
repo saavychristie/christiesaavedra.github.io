@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root { --color-bg-warm: #FDFCFA; --color-text: #1C1917; --color-text-secondary: #57534E; --font-display: 'DM Serif Display', Georgia, serif; --font-body: 'IBM Plex Sans', -apple-system, sans-serif; --max-width: 900px; --project-gradient: linear-gradient(135deg, #1E40AF 0%, #0D9488 100%); }
+    :root { --color-bg-warm: #FDFCFA; --color-text: #1C1917; --color-text-secondary: #57534E; --font-display: 'DM Serif Display', Georgia, serif; --font-body: 'IBM Plex Sans', -apple-system, sans-serif; --max-width: 900px; --project-gradient: linear-gradient(135deg, #d97706 0%, #fbbf24 100%); }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { font-family: var(--font-body); color: var(--color-text); line-height: 1.7; background: var(--color-bg-warm); }
@@ -421,6 +421,79 @@
 .sticky-widget.minimized .sticky-minimized { display: flex; }
 .sticky-widget.expanded .sticky-expanded { display: block; }
 .sticky-widget.expanded .sticky-minimized { display: none; }
+/* Case Study Dropdown */
+.casestudy-box {
+  margin-top: 2rem;
+  border: 3px dashed #1E40AF;
+  border-radius: 12px;
+  padding: 1.25rem;
+  background: rgba(30, 64, 175, 0.08);
+  text-align: center;
+}
+.casestudy-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #1e3a8a;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+.casestudy-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.casestudy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.1rem;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1e3a8a;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.casestudy-btn:hover {
+  background: rgba(255, 255, 255, 0.85);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+.casestudy-btn svg { width: 16px; height: 16px; }
+.casestudy-btn svg.chevron { transition: transform 0.2s; }
+.casestudy-dropdown.active .casestudy-btn svg.chevron { transform: rotate(180deg); }
+.casestudy-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  min-width: 180px;
+  overflow: hidden;
+  z-index: 100;
+}
+.casestudy-dropdown.active .casestudy-dropdown-menu { display: block; }
+.casestudy-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: #1C1917;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.15s;
+}
+.casestudy-dropdown-item:hover { background: #f5f5f5; }
+.casestudy-dropdown-item svg { width: 16px; height: 16px; color: #1e3a8a; }
 </style>
 </head>
 <body>
@@ -451,6 +524,26 @@
           <div class="result-card">
             <div class="result-number">15+</div>
             <div class="result-label">Features Beyond Scope</div>
+          </div>
+        </div>
+        <div class="casestudy-box">
+          <span class="casestudy-label">CASE STUDY</span>
+          <div class="casestudy-dropdown" id="casestudyDropdown">
+            <button class="casestudy-btn" onclick="toggleCasestudyDropdown()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Case Study
+              <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="casestudy-dropdown-menu">
+              <a href="healthcare-dashboard-case-study.html" target="_blank" class="casestudy-dropdown-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                View Case Study
+              </a>
+              <a href="healthcare-dashboard-case-study.html" download class="casestudy-dropdown-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download PDF
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -980,6 +1073,16 @@ document.addEventListener('DOMContentLoaded', function() {
   data[PROJECT_ID].viewed = true;
   localStorage.setItem('portfolioTracking', JSON.stringify(data));
 })();
+</script>
+<script>
+function toggleCasestudyDropdown() {
+  document.getElementById('casestudyDropdown').classList.toggle('active');
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.casestudy-dropdown')) {
+    document.getElementById('casestudyDropdown').classList.remove('active');
+  }
+});
 </script>
 </body>
 </html>
