@@ -88,7 +88,7 @@
     .deliverable-card img { width: 100%; height: auto; }
     .deliverable-info { padding: 1.5rem 2rem; }
     .deliverable-type { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #059669; font-weight: 600; }
-    .logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
+    .logo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 1.5rem; max-width: 700px; margin-left: auto; margin-right: auto; }
     .logo-item { background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.04); display: flex; flex-direction: column; align-items: center; gap: 1rem; }
     .logo-img-container { height: 80px; display: flex; align-items: center; justify-content: center; }
     .logo-img-container img { max-height: 100%; max-width: 100%; object-fit: contain; }
@@ -154,7 +154,7 @@
   .hero-title { font-size: 1.75rem; }  /* ADD - smaller title on mobile */
   .content { padding: 1.5rem; } 
   .glass-card { padding: 1.5rem; }  /* ADD - tighter card padding */
-  .logo-grid { grid-template-columns: 1fr; } 
+  .logo-grid { grid-template-columns: 1fr; max-width: 100%; } 
   .demo-card { flex-direction: column; text-align: center; }  /* ADD - stack demo card */
   .deliverables-row { flex-direction: column; }
   .deliverable-card-half { flex: none; width: 100%; }
@@ -580,8 +580,9 @@
 }
 .behind-scenes-card img {
   width: 100%;
-  height: 220px;
+  height: 280px;
   object-fit: cover;
+  object-position: top;
 }
 .behind-scenes-info {
   padding: 1.25rem;
@@ -633,6 +634,43 @@
   color: var(--color-text-secondary);
   margin: 0;
 }
+/* Photo Modal */
+.photo-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  z-index: 2000;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+.photo-modal.active { display: flex; }
+.photo-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.photo-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  color: white;
+  font-size: 2.5rem;
+  cursor: pointer;
+  line-height: 1;
+}
+.behind-scenes-card img {
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.behind-scenes-card img:hover {
+  opacity: 0.9;
+}
 </style>
 </head>
 <body>
@@ -681,34 +719,30 @@
       </div>
       <div class="content-section"><h2 class="content-title">Data-Driven Messaging</h2><p class="content-text">I developed stakeholder-facing content using local labor market data to build urgency:</p><div class="stats-box"><p><strong>2,000</strong> job openings next year for coders</p><p><strong>40</strong> tech businesses who will hire those coders</p><p><strong>7 of 10</strong> job openings in Utah are coding related</p><p><strong>NEEDED:</strong> People who can write code now</p></div></div>
       <div class="content-section"><h2 class="content-title">Expanding the Ecosystem: à la code</h2><p class="content-text">xactechED wasn't my only workforce development initiative. I also created <strong>à la code</strong>, a community meetup for internal education and external recruitment.</p><div class="logo-grid"><div class="logo-card"><img src="images/xacteched-logo.png" alt="xactechED Logo"><div class="deliverable-type">External Program</div><h4>xactechED</h4><p>State-funded workforce pipeline through MTECH partnership</p></div><div class="logo-card"><img src="images/alacode-logo.png" alt="à la code Logo"><div class="deliverable-type">Community Meetup</div><h4>à la code</h4><p>Internal education & external recruitment outreach</p></div></div>
-        <div class="deliverable-card"><img src="images/office-door.png" alt="Office door showing xactechED branding" style="max-width:600px;margin:0 auto;display:block"><div class="deliverable-info" style="text-align:center"><div class="deliverable-type">Physical Evidence</div><h3>My Office at Xactware</h3><p>Both program logos on my door, with my nameplate: <strong>"Christie Stephenson, Training Manager, XACTECH ED"</strong></p><p style="font-size:0.85rem;color:var(--color-text-secondary);margin-top:0.5rem">These weren't side projects—I owned them.</p></div></div>
+        <div class="deliverable-card" style="max-width:700px;margin:1.5rem auto 0;"><img src="images/office-door.png" alt="Office door showing xactechED branding"><div class="deliverable-info" style="text-align:center"><div class="deliverable-type">Physical Evidence</div><h3>My Office at Xactware</h3><p>Both program logos on my door, with my nameplate: <strong>"Christie Stephenson, Training Manager, XACTECH ED"</strong></p><p style="font-size:0.85rem;color:var(--color-text-secondary);margin-top:0.5rem">These weren't side projects—I owned them.</p></div></div>
       </div>
       <div class="content-section"><h2 class="content-title">Timeline</h2><div class="timeline"><div class="timeline-item"><div class="timeline-date">Late 2014</div><div class="timeline-content">Identified workforce training gap; began researching funding opportunities</div></div><div class="timeline-item"><div class="timeline-date">Early 2015</div><div class="timeline-content">Developed xactechED brand, curriculum, and partnership strategy</div></div><div class="timeline-item"><div class="timeline-date">June 2015</div><div class="timeline-content">Presented to governor's committee; secured $200,000 UCAP grant</div></div><div class="timeline-item"><div class="timeline-date">June 2015</div><div class="timeline-content">Program launched through MTECH partnership</div></div></div><div class="quote-box"><p>It is official and I can finally announce! The program I have been building for the past 7 months has arrived!</p><span class="quote-source">— My announcement post, June 9, 2015</span></div></div>
-      <div class="content-section"><h2 class="content-title">Press Coverage</h2>
-        <div class="press-card"><div class="deliverable-type">KSL News, June 2014</div><h3>"Stay-at-home mom developers break glass ceiling"</h3><blockquote>"One such mom is Christie Stephenson, a Utah native with six children who is a strong advocate for women in technology..."</blockquote><blockquote>"'It's one of the coolest professions anyone could ever get into, and I want all of my girls to be programmers,' she said."</blockquote><a href="https://www.ksl.com/article/30451444" target="_blank">Read full article →</a></div>
-        <div class="press-card"><div class="deliverable-type">MTECH Official Announcement, September 2015</div><h3>"MTECH and XACTWARE Partner for Web Programming"</h3><blockquote>"'The field of developers is in such high demand that we hope they actually finish the course before they get hired on.'"<span style="display:block;font-style:normal;font-size:0.85rem;margin-top:0.5rem">— Lisa Birch, Director of Programs, MTECH</span></blockquote><a href="https://mtec.edu/news/matc-and-xactware-partner/" target="_blank">Read full article →</a></div>
-        <div class="press-card"><div class="deliverable-type">Utah System of Higher Education, April 2015</div><h3>"UCAP announces $3.45M in 2015 grant funding"</h3><p style="font-size:0.9rem;color:var(--color-text-secondary);margin-top:0.75rem"><em>The xactechED program successfully competed for and received $200,000 from this funding cycle.</em></p><a href="https://ushe.edu/utah-cluster-acceleration-partnership-announces-3-45m-in-2015-grant-funding-available/" target="_blank">Read full article →</a></div>
-      </div>
+     
       <div class="content-section"><h2 class="content-title">What Others Say</h2>
         <div class="testimonial-card"><div class="deliverable-type">Letter of Recommendation</div><h3>Tim Harrison, Technical Project Manager, MNTN</h3><p style="font-size:0.85rem;color:var(--color-text-secondary);margin-bottom:1rem">Former colleague at Xactware/Verisk, 2014-2015</p><blockquote>"In just one year, Christie advanced from Quality Assurance Analyst to Training Manager, where she <strong>designed and launched the MTECH Web Development program</strong>—a proprietary curriculum that <strong>secured a $200,000 UCAP grant</strong> through her compelling presentation to the governor's committee."</blockquote><blockquote>"In addition to fulfilling her standard job requirements as an analyst, she <strong>tirelessly and enthusiastically developed this program from scratch</strong>."</blockquote></div>
         <div class="testimonial-card"><div class="deliverable-type">Xactware Colleagues, 2015</div><h3>Additional References</h3><blockquote>"There aren't many people I have encountered who have had <strong>as much impact in as short of a time</strong> as Christine had here."<span style="display:block;font-style:normal;font-size:0.85rem;margin-top:0.5rem">— Kevin Carpenter, QA Manager</span></blockquote><blockquote>"She is as good as anyone at <strong>mapping out a vision or strategy</strong> and the first to be at the front lines doing whatever work is needed."<span style="display:block;font-style:normal;font-size:0.85rem;margin-top:0.5rem">— David Nelson, Marketing Manager</span></blockquote></div>
       </div>
-      <div class="content-section"><h2 class="content-title">Results</h2><div class="glass-card"><ul class="content-list"><li><strong>$200,000 UCAP grant secured</strong> through competitive state funding process</li><li><strong>MTECH Web Development program launched</strong> creating sustainable talent pipeline</li><li><strong>Educational partnership established</strong> between Xactware and MTECH</li><li><strong>Complete program infrastructure built</strong> including brand, curriculum, marketing, and enrollment systems</li><li><strong>Program legacy:</strong> The infrastructure I built has enabled the program to secure over $521K in total state funding to date</li></ul>/ul><div class="tags"><span class="tag">Stakeholder Engagement</span><span class="tag">Executive Presentations</span><span class="tag">Visual Communication</span><span class="tag">Curriculum Development</span><span class="tag">Partnership Building</span></div></div></div>
+      <div class="content-section"><h2 class="content-title">Results</h2><div class="glass-card"><ul class="content-list"><li><strong>$200,000 UCAP grant secured</strong> through competitive state funding process</li><li><strong>MTECH Web Development program launched</strong> creating sustainable talent pipeline</li><li><strong>Educational partnership established</strong> between Xactware and MTECH</li><li><strong>Complete program infrastructure built</strong> including brand, curriculum, marketing, and enrollment systems</li><li><strong>Program legacy:</strong> The infrastructure I built has enabled the program to secure over $521K in total state funding to date</li></ul><div class="tags"><span class="tag">Stakeholder Engagement</span><span class="tag">Executive Presentations</span><span class="tag">Visual Communication</span><span class="tag">Curriculum Development</span><span class="tag">Partnership Building</span></div></div></div>
       <div class="content-section"><h2 class="content-title">Interactive Demo</h2><div class="demo-card" onclick="openDemo()"><div class="demo-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="demo-text"><h3>Launch Interactive Demo</h3><p>Explore the xactechED training platform and curriculum materials</p></div></div></div>
 <div class="content-section behind-scenes">
         <h2 class="content-title">Behind the Scenes</h2>
         <p class="content-body">Building a workforce development program wasn't just my job—it was a family affair. My kids were always part of the journey, learning alongside me about entrepreneurship, technology, and hard work.</p>
         <div class="behind-scenes-grid">
           <div class="behind-scenes-card">
-            <img src="images/CynthiaMATC.JPG" alt="Cynthia's MATC Graduation">
+            <img src="images/CynthiaMATC.JPG" alt="Cynthia's MATC Graduation" onclick="openPhotoModal(this.src, this.alt)">
             <div class="behind-scenes-info">
               <h4>Full Circle Moment</h4>
-              <p>The same month I secured the $200K grant for XactechED, my daughter Cynthia graduated from MATC with her nursing assistant certificate.</p>
+              <p>The same month I secured the $200K grant for XactechED, my daughter Cynthia graduated from MATC with her certified nursing assistant certificate.</p>
               <div class="behind-scenes-caption">"The program I built was helping students just like her find their path."</div>
             </div>
           </div>
           <div class="behind-scenes-card">
-            <img src="images/xacteched.JPG" alt="XactechED Branding">
+            <img src="images/xacteched.JPG" alt="XactechED Branding" onclick="openPhotoModal(this.src, this.alt)">
             <div class="behind-scenes-info">
               <h4>Brand I Built from Scratch</h4>
               <p>From logo to curriculum to promotional materials—xactechED was conceived, designed, and launched entirely by me over 7 months.</p>
@@ -1030,6 +1064,25 @@ document.addEventListener('click', function(e) {
   if (!e.target.closest('.casestudy-dropdown')) {
     document.getElementById('casestudyDropdown').classList.remove('active');
   }
+});
+</script>
+<div class="photo-modal" id="photoModal" onclick="closePhotoModal()">
+  <span class="photo-modal-close">&times;</span>
+  <img id="photoModalImg" src="" alt="Full size photo">
+</div>
+<script>
+function openPhotoModal(src, alt) {
+  document.getElementById('photoModalImg').src = src;
+  document.getElementById('photoModalImg').alt = alt;
+  document.getElementById('photoModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closePhotoModal() {
+  document.getElementById('photoModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closePhotoModal();
 });
 </script>
 </body>

@@ -544,6 +544,7 @@
   padding-top: 0.75rem;
   border-top: 1px solid #f0f0f0;
 }
+
 </style>
 </head>
 <body>
@@ -565,7 +566,7 @@
         <p class="content-body">Managing a K-8 computer lab meant being the go-to person for 500+ devices, dozens of teachers, and hundreds of curious students every day.</p>
         <div class="behind-scenes-grid">
           <div class="behind-scenes-card single">
-            <img src="images/palmview.JPG" alt="At Palmview School">
+           <img src="images/palmview.JPG" alt="At Palmview School" onclick="openPhotoModal(this.src, this.alt)">
             <div class="behind-scenes-info">
               <h4>The Person Behind the Documentation</h4>
               <p>Every troubleshooting guide, every inventory system, every training session—built by someone who was in the trenches daily with teachers and students.</p>
@@ -918,6 +919,25 @@ document.addEventListener('click', function(e) {
   if (!e.target.closest('.casestudy-dropdown')) {
     document.getElementById('casestudyDropdown').classList.remove('active');
   }
+});
+</script>
+<div class="photo-modal" id="photoModal" onclick="closePhotoModal()">
+  <span class="photo-modal-close">&times;</span>
+  <img id="photoModalImg" src="" alt="Full size photo">
+</div>
+<script>
+function openPhotoModal(src, alt) {
+  document.getElementById('photoModalImg').src = src;
+  document.getElementById('photoModalImg').alt = alt;
+  document.getElementById('photoModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closePhotoModal() {
+  document.getElementById('photoModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closePhotoModal();
 });
 </script>
 </body>

@@ -546,6 +546,43 @@
   padding-top: 0.75rem;
   border-top: 1px solid #f0f0f0;
 }
+/* Photo Modal */
+.photo-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  z-index: 2000;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+.photo-modal.active { display: flex; }
+.photo-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.photo-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  color: white;
+  font-size: 2.5rem;
+  cursor: pointer;
+  line-height: 1;
+}
+.behind-scenes-card img {
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.behind-scenes-card img:hover {
+  opacity: 0.9;
+}
 </style>
 </head>
 <body>
@@ -568,7 +605,7 @@
         <p class="content-body">Building enterprise healthcare systems while raising six kids meant work and family were always intertwined. My kids grew up watching their mom solve complex problems—and sometimes they helped.</p>
         <div class="behind-scenes-grid">
           <div class="behind-scenes-card single">
-            <img src="images/ResoluteBilling.jpg" alt="Building the billing system">
+            <img src="images/ResoluteBilling.jpg" alt="Building the billing system" onclick="openPhotoModal(this.src, this.alt)">
             <div class="behind-scenes-info">
               <h4>90% Automation in Progress</h4>
               <p>That's me building the automated billing system, 2010. I was pregnant with my 6th child (my 5th daughter). Notice the kid's "I love you" art on the wall—my children were always part of the journey.</p>
@@ -983,6 +1020,25 @@ document.addEventListener('click', function(e) {
   if (!e.target.closest('.casestudy-dropdown')) {
     document.getElementById('casestudyDropdown').classList.remove('active');
   }
+});
+</script>
+<div class="photo-modal" id="photoModal" onclick="closePhotoModal()">
+  <span class="photo-modal-close">&times;</span>
+  <img id="photoModalImg" src="" alt="Full size photo">
+</div>
+<script>
+function openPhotoModal(src, alt) {
+  document.getElementById('photoModalImg').src = src;
+  document.getElementById('photoModalImg').alt = alt;
+  document.getElementById('photoModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closePhotoModal() {
+  document.getElementById('photoModal').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closePhotoModal();
 });
 </script>
 </body>
