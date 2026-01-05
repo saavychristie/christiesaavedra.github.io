@@ -41,8 +41,24 @@
       line-height: 1.7; 
       background: var(--color-bg-warm); 
     }
-    
-    /* Navigation */
+    /* Page Wrapper with Texture */
+.page-wrapper {
+  position: relative;
+  background: linear-gradient(180deg, #FDFCFA 0%, #FAF8F5 50%, #FDFCFA 100%);
+  min-height: 100vh;
+}
+.page-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='canvas'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.04' numOctaves='5' result='noise'/%3E%3CfeDiffuseLighting in='noise' lighting-color='%23FDFCFA' surfaceScale='1'%3E%3CfeDistantLight azimuth='45' elevation='60'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23canvas)' opacity='0.3'/%3E%3C/svg%3E");
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+.page-wrapper > * { position: relative; z-index: 1; }
+   
+ /* Navigation */
     .nav {
       position: fixed;
       top: 0;
@@ -97,15 +113,34 @@
       text-decoration: none;
     }
     
-    /* Hero Section */
+  /* Hero Section */
     .hero {
       padding: 8rem 2rem 3rem;
-      text-align: center;
     }
     
     .hero-container {
       max-width: var(--max-width);
       margin: 0 auto;
+    }
+    
+    .hero-card {
+      background: linear-gradient(135deg, white 0%, white 50%, rgba(13, 148, 136, 0.12) 100%);
+      border: 1px solid rgba(30, 64, 175, 0.1);
+      border-radius: 16px;
+      padding: 3rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--text-gradient);
     }
     
     .hero-label {
@@ -266,51 +301,91 @@
       font-size: 1.5rem;
     }
     
-    /* News List */
+/* News List - Floating Cards */
     .news-list {
       list-style: none;
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-      border: 1px solid var(--color-border);
-      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
       margin-bottom: 3rem;
     }
     
     .news-item {
       display: flex;
-      gap: 1.5rem;
-      padding: 1.5rem;
-      border-bottom: 1px solid var(--color-border);
-      transition: background 0.2s;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      padding-left: 100px;
+      background: linear-gradient(135deg, white 0%, white 50%, rgba(13, 148, 136, 0.15) 100%);
+      border: 1px solid rgba(30, 64, 175, 0.12);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
     }
     
-    .news-item:last-child {
-      border-bottom: none;
+    .news-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--text-gradient);
     }
     
     .news-item:hover {
-      background: var(--color-bg-cream);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(30, 64, 175, 0.12);
+    }
+
+ /* Icon + Date Column */
+    .news-date-col {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 0;
     }
     
-    .news-date {
-      flex-shrink: 0;
-      width: 70px;
+    .news-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--text-gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 2;
+    }
+    .news-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: white;
+      fill: none;
+    }
+    .news-icon.grant { background: linear-gradient(135deg, #059669 0%, #10b981 100%); }
+    .news-icon.report { background: linear-gradient(135deg, #1E40AF 0%, #3b82f6 100%); }
+    .news-icon.approval { background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%); }
+    .news-icon.partnership { background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%); }
+    .news-icon.press { background: linear-gradient(135deg, #dc2626 0%, #f97316 100%); }
+    
+    .news-date-text {
       text-align: center;
-      padding-top: 0.25rem;
     }
-    
     .news-date-month {
-      font-size: 0.75rem;
+      font-size: 0.65rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.05em;
       color: var(--color-accent);
-    }
-    
-    .news-date-year {
-      font-size: 0.8rem;
-      color: var(--color-text-secondary);
     }
     
     .news-content {
@@ -342,9 +417,9 @@
     
     .news-tag {
       display: inline-block;
-      padding: 0.2rem 0.6rem;
-      background: var(--color-accent-light);
-      color: var(--color-accent);
+      padding: 0.3rem 0.6rem;
+      background: var(--text-gradient);
+      color: white;
       font-size: 0.7rem;
       font-weight: 600;
       border-radius: 4px;
@@ -370,29 +445,123 @@
       width: 14px;
       height: 14px;
     }
+    /* Timeline */
+    .timeline {
+      position: relative;
+    }
     
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 39px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, #1E40AF 0%, #0D9488 100%);
+      opacity: 0.3;
+    }
+    
+    /* Year Divider */
+    .year-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2rem 0 1rem;
+    }
+    .year-divider:first-child {
+      margin-top: 0;
+    }
+    .year-badge {
+      width: 80px;
+      height: 36px;
+      background: var(--text-gradient);
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+    .year-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(30, 64, 175, 0.3) 0%, transparent 100%);
+    }
+    
+    /* Icon Legend */
+    .icon-legend {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      padding: 1rem 1.25rem;
+      background: white;
+      border-radius: 10px;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--color-text-secondary);
+    }
+    .legend-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .legend-icon svg {
+      width: 14px;
+      height: 14px;
+      stroke: white;
+      fill: none;
+    }
     /* Pattern Box */
     .pattern-box {
-      background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(13, 148, 136, 0.05) 100%);
-      border-left: 4px solid var(--color-accent);
-      border-radius: 0 12px 12px 0;
-      padding: 1.5rem 2rem;
-      margin-bottom: 3rem;
+      background: var(--text-gradient);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      color: white;
     }
-    
     .pattern-box p {
-      color: var(--color-text-secondary);
-      font-size: 0.95rem;
+      color: rgba(255,255,255,0.9);
     }
-    
     .pattern-box strong {
-      color: var(--color-text);
+      color: white;
     }
     
     /* CTA Section */
-    .cta-section {
-      text-align: center;
+   .cta-section {
       padding: 2rem 0;
+    }
+    
+    .cta-card {
+      background: linear-gradient(135deg, white 0%, white 50%, rgba(13, 148, 136, 0.12) 100%);
+      border: 1px solid rgba(30, 64, 175, 0.1);
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    }
+
+    .cta-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--text-gradient);
     }
     
     .btn-cta {
@@ -448,12 +617,19 @@
       font-size: 0.85rem;
       color: var(--color-text-secondary);
     }
+@media (max-width: 600px) {
+      .news-item { padding-left: 80px; }
+      .news-date-col { width: 60px; }
+      .news-icon { width: 32px; height: 32px; }
+      .timeline::before { left: 29px; }
+      .icon-legend { gap: 1rem; }
+    }
   </style>
 </head>
 <body>
+<div class="page-wrapper">
   
-  <!-- Navigation -->
-  <nav class="nav">
+  <!-- Navigation -->  <nav class="nav">
     <div class="nav-bg">
       <div class="nav-container">
         <a href="index.html#work" class="nav-back">
@@ -470,9 +646,11 @@
   <!-- Hero -->
   <section class="hero">
     <div class="hero-container">
-      <div class="hero-label">Third-Party Validation</div>
-      <h1 class="hero-title">Press & <span class="highlight">Recognition</span></h1>
-      <p class="hero-subtitle">Documented impact through government grants, state approvals, and official recognition—not just claims, but verified results.</p>
+      <div class="hero-card">
+        <div class="hero-label">Recognition</div>
+        <h1 class="hero-title">Press & <span class="highlight">Recognition</span></h1>
+        <p class="hero-subtitle">Government grants, state approvals, and official recognition from 25+ years of building programs that deliver.</p>
+      </div>
     </div>
   </section>
   
@@ -495,11 +673,11 @@
         </a>
       </div>
       
-      <div class="featured-card green">
-        <div class="featured-label">Program Impact</div>
-        <div class="featured-stat">200+</div>
-        <div class="featured-title">Students Trained</div>
-        <p class="featured-desc">XactechED program graduates with 85% job placement rate through Mountainland Technical College partnership.</p>
+     <div class="featured-card green">
+        <div class="featured-label">First Cohort</div>
+        <div class="featured-stat">18</div>
+        <div class="featured-title">72% Hired by Xactware</div>
+        <p class="featured-desc">13 of 18 first cohort students hired directly by Xactware through the XactechED program partnership.</p>
         <a href="xacteched-campaign.html" class="featured-link">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
@@ -512,200 +690,294 @@
     </div>
     
     <!-- All Coverage Section -->
-    <div class="section-header" id="all-coverage">
+   <div class="section-header" id="all-coverage">
       <div class="section-label">Official Documentation</div>
       <h2 class="section-title">All Coverage & Recognition</h2>
     </div>
     
-    <ul class="news-list">
-      <!-- Item 1: $321K Grant -->
-      <li class="news-item">
-        <div class="news-date">
-          <div class="news-date-month">Nov</div>
-          <div class="news-date-year">2017</div>
+    <!-- Icon Legend -->
+    <div class="icon-legend">
+      <div class="legend-item">
+        <div class="legend-icon" style="background: linear-gradient(135deg, #059669 0%, #10b981 100%);">
+          <svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         </div>
-        <div class="news-content">
-          <div class="news-source">Utah System of Higher Education</div>
-          <h3 class="news-title">$321,000 Custom Fit Grant Approved</h3>
-          <p class="news-excerpt">Board of Regents approves Custom Fit funding for XactechED workforce development program in partnership with Mountainland Technical College. Grant supports coding education curriculum and student training initiatives.</p>
-          <span class="news-tag">XactechED</span>
-          <a href="https://ushe.edu/wp-content/uploads/pdf/utech_docs/agendas/20180315/3-15-2018_agenda%20%28full%29.pdf" target="_blank" class="news-link">
-            View Official Document
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/>
-              <line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
-          </a>
+        <span>Grant</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-icon" style="background: linear-gradient(135deg, #1E40AF 0%, #3b82f6 100%);">
+          <svg viewBox="0 0 24 24" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
         </div>
-      </li>
+        <span>Report</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-icon" style="background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);">
+          <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <span>Approval</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-icon" style="background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);">
+          <svg viewBox="0 0 24 24" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <span>Partnership</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-icon" style="background: linear-gradient(135deg, #dc2626 0%, #f97316 100%);">
+          <svg viewBox="0 0 24 24" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/></svg>
+        </div>
+        <span>Press</span>
+      </div>
+    </div>
+    
+    <div class="timeline">
       
-      <!-- Item 2: 2016 Annual Report -->
-      <li class="news-item">
-        <div class="news-date">
-          <div class="news-date-month"></div>
-          <div class="news-date-year">2016</div>
-        </div>
-        <div class="news-content">
-          <div class="news-source">Utah College of Applied Technology Annual Report</div>
-          <h3 class="news-title">Xactware Partnership Highlighted in State Report</h3>
-          <p class="news-excerpt">"Two years ago, MATC and Xactware formed a partnership to develop the MATC Web Programming & Development Program." Report documents 13 of 18 first cohort students hired by Xactware and 240-hour externship model.</p>
-          <span class="news-tag">XactechED</span>
-          <a href="https://ushe.edu/wp-content/uploads/pdf/utech_docs/annual-reports/2016_ucat-annual-report.pdf#page=25" target="_blank" class="news-link">
-            View Official Document (p. 25-26)
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/>
-              <line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
-          </a>
-        </div>
-      </li>
+      <!-- 2017 -->
+      <div class="year-divider">
+        <div class="year-badge">2017</div>
+        <div class="year-line"></div>
+      </div>
       
-      <!-- Item 3: June 2016 MATC-UVU Grant -->
-      <li class="news-item">
-        <div class="news-date">
-          <div class="news-date-month">Jun</div>
-          <div class="news-date-year">2016</div>
-        </div>
-        <div class="news-content">
-          <div class="news-source">Utah System of Higher Education Board of Trustees</div>
-          <h3 class="news-title">$221,694 MATC-UVU Competency Matching Grant</h3>
-          <p class="news-excerpt">DevPath Project collaboration between Mountainland Applied Technology College and Utah Valley University. Established web development career pathway and articulation agreement for competencies.</p>
-          <span class="news-tag">XactechED</span>
-          <a href="https://ushe.edu/wp-content/uploads/pdf/utech_docs/agendas/20160608/06-08-2016_agenda.pdf" target="_blank" class="news-link">
-            View Board Agenda
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/>
-              <line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
-          </a>
-        </div>
-      </li>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="news-date-col">
+            <div class="news-icon grant">
+              <svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="news-date-text">
+              <div class="news-date-month">Nov</div>
+            </div>
+          </div>
+          <div class="news-content">
+            <div class="news-source">Utah System of Higher Education</div>
+            <h3 class="news-title">$321,000 Custom Fit Grant Approved</h3>
+            <p class="news-excerpt">Board of Regents approves Custom Fit funding for XactechED workforce development program in partnership with Mountainland Technical College. Grant supports coding education curriculum and student training initiatives.</p>
+            <span class="news-tag">XactechED</span>
+            <a href="https://ushe.edu/wp-content/uploads/pdf/utech_docs/agendas/20180315/3-15-2018_agenda%20%28full%29.pdf" target="_blank" class="news-link">
+              View Official Document
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          </div>
+        </li>
+      </ul>
       
-      <!-- Item 4: Sept 2015 Board Approval -->
-      <li class="news-item">
-        <div class="news-date">
-          <div class="news-date-month">Sep</div>
-          <div class="news-date-year">2015</div>
-        </div>
-        <div class="news-content">
-          <div class="news-source">Utah System of Higher Education Board of Trustees</div>
-          <h3 class="news-title">Web Programming & Development Program Approved</h3>
-          <p class="news-excerpt">Board of Trustees approves MATC program expansion funding for Web Programming and Development skill-based program under performance-based funding model.</p>
-          <span class="news-tag">XactechED</span>
-          <a href="https://ushe.edu/wp-content/uploads/pdf/utech_docs/agendas/20150917_BOT/09-17-2015_agenda.pdf" target="_blank" class="news-link">
-            View Board Agenda
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/>
-              <line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
-          </a>
-        </div>
-      </li>
+      <!-- 2016 -->
+      <div class="year-divider">
+        <div class="year-badge">2016</div>
+        <div class="year-line"></div>
+      </div>
       
-      <!-- Item 5: Sept 2015 MTECH Announcement -->
-      <li class="news-item">
-        <div class="news-date">
-          <div class="news-date-month">Sep</div>
-          <div class="news-date-year">2015</div>
-        </div>
-        <div class="news-content">
-          <div class="news-source">MTECH Official Announcement</div>
-          <h3 class="news-title">MTECH and Xactware Partner for Web Programming</h3>
-          <p class="news-excerpt">"The field of developers is in such high demand that we hope they actually finish the course before they get hired on." — Lisa Birch, Director of Programs, MTECH</p>
-          <span class="news-tag">XactechED</span>
-          <a href="https://mtec.edu/news/matc-and-xactware-partner/" target="_blank" class="news-link">
-            Read Full Article
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/>
-              <line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
-          </a>
-        </div>
-      </li>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="news-date-col">
+            <div class="news-icon report">
+              <svg viewBox="0 0 24 24" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div class="news-date-text">
+              <div class="news-date-month"></div>
+            </div>
+          </div>
+          <div class="news-content">
+            <div class="news-source">Utah College of Applied Technology Annual Report</div>
+            <h3 class="news-title">Xactware Partnership Highlighted in State Report</h3>
+            <p class="news-excerpt">"Two years ago, MATC and Xactware formed a partnership to develop the MATC Web Programming & Development Program." Report documents 13 of 18 first cohort students hired by Xactware and 240-hour externship model.</p>
+            <span class="news-tag">XactechED</span>
+            <a href="https://ushe.edu/wp-content/uploads/pdf/utech_docs/annual-reports/2016_ucat-annual-report.pdf#page=25" target="_blank" class="news-link">
+              View Official Document (p. 25-26)
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          </div>
+        </li>
+        
+        <li class="news-item">
+          <div class="news-date-col">
+            <div class="news-icon grant">
+              <svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="news-date-text">
+              <div class="news-date-month">Jun</div>
+            </div>
+          </div>
+          <div class="news-content">
+            <div class="news-source">Utah System of Higher Education Board of Trustees</div>
+            <h3 class="news-title">$221,694 MATC-UVU Competency Matching Grant</h3>
+            <p class="news-excerpt">DevPath Project collaboration between Mountainland Applied Technology College and Utah Valley University. Established web development career pathway and articulation agreement for competencies.</p>
+            <span class="news-tag">XactechED</span>
+            <a href="https://ushe.edu/wp-content/uploads/pdf/utech_docs/agendas/20160608/06-08-2016_agenda.pdf" target="_blank" class="news-link">
+              View Board Agenda
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          </div>
+        </li>
+      </ul>
       
-      <!-- Item 6: April 2015 UCAP $3.45M -->
-      <li class="news-item">
-        <div class="news-date">
-          <div class="news-date-month">Apr</div>
-          <div class="news-date-year">2015</div>
-        </div>
-        <div class="news-content">
-          <div class="news-source">Utah System of Higher Education</div>
-          <h3 class="news-title">UCAP Announces $3.45M in 2015 Grant Funding</h3>
-          <p class="news-excerpt">Grant kickoff event at Capitol Rotunda announcing funding for public colleges and universities. The xactechED program successfully competed for and received $200,000 from this funding cycle.</p>
-          <span class="news-tag">XactechED</span>
-          <a href="https://ushe.edu/utah-cluster-acceleration-partnership-announces-3-45m-in-2015-grant-funding-available/" target="_blank" class="news-link">
-            Read Full Article
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/>
-              <line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
-          </a>
-        </div>
-      </li>
+      <!-- 2015 -->
+      <div class="year-divider">
+        <div class="year-badge">2015</div>
+        <div class="year-line"></div>
+      </div>
       
-      <!-- Item 7: $200K Grant -->
-      <li class="news-item">
-        <div class="news-date">
-          <div class="news-date-month">June</div>
-          <div class="news-date-year">2015</div>
-        </div>
-        <div class="news-content">
-          <div class="news-source">Governor's Committee on Employment of People with Disabilities</div>
-          <h3 class="news-title">$200,000 Workforce Development Grant Secured</h3>
-          <p class="news-excerpt">State funding approved following presentation to Governor's Committee for coding education initiative. Funding enabled launch of XactechED program and partnership development with technical colleges.</p>
-          <span class="news-tag">XactechED</span>
-          <a href="https://ushe.edu/nearly-1m-in-ucap-funds-awarded-to-ushe-institutions/" target="_blank" class="news-link">
-            View Official Document
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/>
-              <line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
-          </a>
-        </div>
-      </li>
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="news-date-col">
+            <div class="news-icon approval">
+              <svg viewBox="0 0 24 24" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="news-date-text">
+              <div class="news-date-month">Sep</div>
+            </div>
+          </div>
+          <div class="news-content">
+            <div class="news-source">Utah System of Higher Education Board of Trustees</div>
+            <h3 class="news-title">Web Programming & Development Program Approved</h3>
+            <p class="news-excerpt">Board of Trustees approves MATC program expansion funding for Web Programming and Development skill-based program under performance-based funding model.</p>
+            <span class="news-tag">XactechED</span>
+            <a href="https://ushe.edu/wp-content/uploads/pdf/utech_docs/agendas/20150917_BOT/09-17-2015_agenda.pdf" target="_blank" class="news-link">
+              View Board Agenda
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          </div>
+        </li>
+        
+        <li class="news-item">
+          <div class="news-date-col">
+            <div class="news-icon partnership">
+              <svg viewBox="0 0 24 24" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="news-date-text">
+              <div class="news-date-month">Sep</div>
+            </div>
+          </div>
+          <div class="news-content">
+            <div class="news-source">MTECH Official Announcement</div>
+            <h3 class="news-title">MTECH and Xactware Partner for Web Programming</h3>
+            <p class="news-excerpt">"The field of developers is in such high demand that we hope they actually finish the course before they get hired on." — Lisa Birch, Director of Programs, MTECH</p>
+            <span class="news-tag">XactechED</span>
+            <a href="https://mtec.edu/news/matc-and-xactware-partner/" target="_blank" class="news-link">
+              Read Full Article
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          </div>
+        </li>
+        
+        <li class="news-item">
+          <div class="news-date-col">
+            <div class="news-icon grant">
+              <svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="news-date-text">
+              <div class="news-date-month">Jun</div>
+            </div>
+          </div>
+          <div class="news-content">
+            <div class="news-source">Governor's Committee on Employment of People with Disabilities</div>
+            <h3 class="news-title">$200,000 Workforce Development Grant Secured</h3>
+            <p class="news-excerpt">State funding approved following presentation to Governor's Committee for coding education initiative. Funding enabled launch of XactechED program and partnership development with technical colleges.</p>
+            <span class="news-tag">XactechED</span>
+            <a href="https://ushe.edu/nearly-1m-in-ucap-funds-awarded-to-ushe-institutions/" target="_blank" class="news-link">
+              View Official Document
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          </div>
+        </li>
+        
+        <li class="news-item">
+          <div class="news-date-col">
+            <div class="news-icon grant">
+              <svg viewBox="0 0 24 24" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <div class="news-date-text">
+              <div class="news-date-month">Apr</div>
+            </div>
+          </div>
+          <div class="news-content">
+            <div class="news-source">Utah System of Higher Education</div>
+            <h3 class="news-title">UCAP Announces $3.45M in 2015 Grant Funding</h3>
+            <p class="news-excerpt">Grant kickoff event at Capitol Rotunda announcing funding for public colleges and universities. The xactechED program successfully competed for and received $200,000 from this funding cycle.</p>
+            <span class="news-tag">XactechED</span>
+            <a href="https://ushe.edu/utah-cluster-acceleration-partnership-announces-3-45m-in-2015-grant-funding-available/" target="_blank" class="news-link">
+              Read Full Article
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          </div>
+        </li>
+      </ul>
       
-      <!-- Item 8: KSL News June 2014 - Features Christie -->
-      <li class="news-item">
-        <div class="news-date">
-          <div class="news-date-month">Jun</div>
-          <div class="news-date-year">2014</div>
-        </div>
-        <div class="news-content">
-          <div class="news-source">KSL News</div>
-          <h3 class="news-title">"Stay-at-home mom developers break glass ceiling"</h3>
-          <p class="news-excerpt">"One such mom is Christie Stephenson, a Utah native with six children who is a strong advocate for women in technology... 'It's one of the coolest professions anyone could ever get into, and I want all of my girls to be programmers,' she said."</p>
-          <span class="news-tag">XactechED</span>
-          <a href="https://www.ksl.com/article/30451444" target="_blank" class="news-link">
-            Read Full Article
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-              <polyline points="15 3 21 3 21 9"/>
-              <line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
-          </a>
-        </div>
-      </li>
-    </ul>
+      <!-- 2014 -->
+      <div class="year-divider">
+        <div class="year-badge">2014</div>
+        <div class="year-line"></div>
+      </div>
+      
+      <ul class="news-list">
+        <li class="news-item">
+          <div class="news-date-col">
+            <div class="news-icon press">
+              <svg viewBox="0 0 24 24" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/></svg>
+            </div>
+            <div class="news-date-text">
+              <div class="news-date-month">Jun</div>
+            </div>
+          </div>
+          <div class="news-content">
+            <div class="news-source">KSL News</div>
+            <h3 class="news-title">"Stay-at-home mom developers break glass ceiling"</h3>
+            <p class="news-excerpt">"One such mom is Christie Stephenson, a Utah native with six children who is a strong advocate for women in technology... 'It's one of the coolest professions anyone could ever get into, and I want all of my girls to be programmers,' she said."</p>
+            <span class="news-tag">XactechED</span>
+            <a href="https://www.ksl.com/article/30451444" target="_blank" class="news-link">
+              Read Full Article
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          </div>
+        </li>
+      </ul>
+      
+    </div>
     <!-- Pattern Box -->
     <div class="pattern-box">
       <p><strong>The Pattern:</strong> Innovative Solutioning. </p>
     </div>
     <!-- CTA -->
-    <div class="cta-section">
-      <a href="index.html#work" class="btn-cta">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="15 18 9 12 15 6"/>
-        </svg>
-        View All Case Studies
-      </a>
+  <div class="cta-section">
+      <div class="cta-card">
+        <a href="index.html#work" class="btn-cta">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"/>
+          </svg>
+          View All Case Studies
+        </a>
+      </div>
     </div>
     
   </section>
@@ -721,7 +993,8 @@
       </nav>
       <p class="footer-copyright">© 2025 Christie Stephenson Saavedra. All rights reserved.</p>
     </div>
-  </footer>
+ </footer>
+</div>
   
 </body>
 </html>
