@@ -22,7 +22,9 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body { font-family: var(--font-body); color: var(--color-text); line-height: 1.7; background: var(--color-bg-warm); }
-    .page-wrapper { position: relative; background: linear-gradient(180deg, #FDFCFA 0%, #FAF8F5 50%, #FDFCFA 100%); min-height: 100vh; }
+   .page-wrapper { position: relative; background: linear-gradient(180deg, #FDFCFA 0%, #FAF8F5 50%, #FDFCFA 100%); min-height: 100vh; }
+.page-wrapper::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='canvas'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.04' numOctaves='5' result='noise'/%3E%3CfeDiffuseLighting in='noise' lighting-color='%23FDFCFA' surfaceScale='1'%3E%3CfeDistantLight azimuth='45' elevation='60'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23canvas)' opacity='0.3'/%3E%3C/svg%3E"); opacity: 0.5; pointer-events: none; z-index: 0; }
+.page-wrapper::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 15% 20%, rgba(30, 64, 175, 0.04) 0%, transparent 50%), radial-gradient(ellipse at 85% 60%, rgba(13, 148, 136, 0.04) 0%, transparent 50%), radial-gradient(ellipse at 50% 90%, rgba(30, 64, 175, 0.03) 0%, transparent 40%); pointer-events: none; z-index: 0; }
     .nav, .hero, .content, .footer { position: relative; z-index: 1; }
     .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; }
     .nav::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--project-gradient); z-index: 1; }
@@ -71,7 +73,13 @@
     .testimonial-card h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.25rem; }
     .testimonial-card blockquote { border-left: 3px solid #1E40AF; padding-left: 1rem; margin: 1rem 0; font-style: italic; color: var(--color-text-secondary); font-size: 0.95rem; }
     .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
-    .tag { font-size: 0.75rem; font-weight: 500; padding: 0.4rem 0.8rem; border-radius: 2rem; background: rgba(255,255,255,0.8); color: var(--color-text-secondary); border: 1px solid rgba(0,0,0,0.06); }
+   .tag { font-size: 0.75rem; font-weight: 500; padding: 0.4rem 0.8rem; border-radius: 2rem; background: rgba(255,255,255,0.8); color: var(--color-text-secondary); border: 1px solid rgba(0,0,0,0.06); }
+.glass-card-gradient { background: linear-gradient(135deg, rgba(30, 64, 175, 0.06) 0%, rgba(13, 148, 136, 0.06) 100%); backdrop-filter: blur(10px); border-radius: 16px; padding: 2rem; border: 1px solid rgba(30, 64, 175, 0.12); box-shadow: 0 4px 20px rgba(30, 64, 175, 0.06); position: relative; overflow: hidden; }
+.glass-card-gradient::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--project-gradient); }
+.process-card-gradient { background: linear-gradient(135deg, rgba(30, 64, 175, 0.05) 0%, rgba(13, 148, 136, 0.05) 100%); border-radius: 12px; padding: 1.5rem; border: 1px solid rgba(30, 64, 175, 0.1); position: relative; overflow: hidden; }
+.process-card-gradient::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--project-gradient); }
+.process-card-gradient h4 { font-size: 1rem; margin-bottom: 0.5rem; background: var(--project-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.process-card-gradient p { font-size: 0.9rem; color: var(--color-text-secondary); }
     .demo-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-radius: 16px; padding: 2.5rem; border: 1px solid rgba(255,255,255,0.8); display: flex; align-items: center; gap: 1.5rem; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden; }
     .demo-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--project-gradient); }
     .demo-card:hover { background: rgba(255,255,255,0.9); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
@@ -428,21 +436,21 @@
 /* Case Study Dropdown */
 .casestudy-box {
   margin-top: 2rem;
-  border: 3px dashed #f97316;
-  border-radius: 12px;
-  padding: 1.25rem;
-  background: rgba(249, 115, 22, 0.1);
-  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 2px dashed #f97316;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  background: rgba(249, 115, 22, 0.08);
 }
 .casestudy-label {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   color: #c2410c;
-  margin-bottom: 0.75rem;
-  display: block;
-}
-.casestudy-dropdown {
+  margin: 0;
+}.casestudy-dropdown {
   position: relative;
   display: inline-block;
 }
@@ -588,17 +596,17 @@
 <body>
   <div class="page-wrapper">
     <nav class="nav" id="nav"><div class="nav-bg"><div class="nav-container"><a href="index.html#work" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>Back to Portfolio</a><a href="index.html" class="nav-logo">Christie Stephenson Saavedra</a></div></div></nav>
-    <section class="hero"><div class="hero-container"><div class="hero-meta"><span class="hero-role">IT Consultant / Co-founder</span><span class="hero-org">Resolute Services</span></div><h1 class="hero-title">Healthcare Process Automation</h1><p class="hero-summary">Co-founding a healthcare IT company and leading change management for a Medicaid-based mental health agency—achieving 90% process automation.</p><div class="results-banner"><div class="result-card"><div class="result-number">40 hrs</div><div class="result-label">→ 15 min (Billing)</div></div><div class="result-card"><div class="result-number">10 hrs</div><div class="result-label">→ 15 min (Intake)</div></div><div class="result-card"><div class="result-number">4 yrs</div><div class="result-label">Full Lifecycle</div></div></div><div class="casestudy-box"><span class="casestudy-label">CASE STUDY</span><div class="casestudy-dropdown" id="casestudyDropdown"><button class="casestudy-btn" onclick="toggleCasestudyDropdown()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Case Study<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="casestudy-dropdown-menu"><a href="resolute-case-study.html" target="_blank" class="casestudy-dropdown-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>View Case Study</a><a href="resolute-case-study.html" download class="casestudy-dropdown-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download PDF</a></div></div></div></div></section>
+    <section class="hero"><div class="hero-container"><div class="hero-meta"><span class="hero-role">IT Consultant / Co-founder</span><span class="hero-org">Resolute Services</span></div><h1 class="hero-title">Healthcare Process Automation</h1><p class="hero-summary">Co-founding a healthcare IT company and leading change management for a Medicaid-based mental health agency—achieving 90% process automation.</p><div class="results-banner"><div class="result-card"><div class="result-number">40 hrs</div><div class="result-label">→ 15 min (Billing)</div></div><div class="result-card"><div class="result-number">10 hrs</div><div class="result-label">→ 15 min (Intake)</div></div><div class="result-card"><div class="result-number">4 yrs</div><div class="result-label">Full Lifecycle & Multiple Rewrites</div></div></div><div class="casestudy-box"><span class="casestudy-label">CASE STUDY</span><div class="casestudy-dropdown" id="casestudyDropdown"><button class="casestudy-btn" onclick="toggleCasestudyDropdown()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>View<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="casestudy-dropdown-menu"><a href="resolute-case-study.html" target="_blank" class="casestudy-dropdown-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>View Case Study</a><a href="resolute-case-study.html" download class="casestudy-dropdown-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download PDF</a></div></div></div></div></section>
     <section class="content"><div class="content-container">
-      <div class="content-section"><h2 class="content-title">The Challenge</h2><div class="glass-card"><p class="content-text">A Medicaid-based mental health agency was drowning in manual processes. Billing, payroll, compliance tracking—all done by hand. Errors were common. Staff were frustrated. There was no internal IT expertise to fix it.</p><p class="content-text">We didn't just consult. We co-founded Resolute Services and built the solution from scratch.</p><ul class="content-list"><li>Manual billing and payroll processes consuming staff time</li><li>Compliance tracking done on paper with high error rates</li><li>No existing software solution for their specific Medicaid requirements</li><li>Staff resistant to change after years of established workflows</li></ul></div></div>
+      <div class="content-section"><h2 class="content-title">The Challenge</h2><div class="glass-card-gradient"><p class="content-text">A Medicaid-based mental health agency was drowning in manual processes. Billing, payroll, compliance tracking—all done by hand. Errors were common. Staff were frustrated. There was no internal IT expertise to fix it.</p><p class="content-text">We didn't just consult. We co-founded Resolute Services and built the solution from scratch.</p><ul class="content-list"><li>Manual billing and payroll processes consuming staff time</li><li>Compliance tracking done on paper with high error rates</li><li>No existing software solution for their specific Medicaid requirements</li><li>Staff resistant to change after years of established workflows</li></ul></div></div>
       <div class="content-section"><h2 class="content-title">What We Built</h2>
-        <div class="deliverable-card"><img src="images/resolute-software.jpg" alt="Management Compliance Software interface"><div class="deliverable-info"><div class="deliverable-type">Custom Software</div><h3>Management Compliance Software</h3><p>This is a screenshot of the actual software system I helped design. Built specifically for Medicaid mental health agency operations, it replaced manual processes across:</p><ul><li><strong>Participant management:</strong> Client intake, records, contact information</li><li><strong>Therapist tracking:</strong> Credentials, assignments, scheduling</li><li><strong>Manager administration:</strong> User roles, access controls, reporting</li><li><strong>Compliance reporting:</strong> Automated Medicaid documentation</li><li><strong>Billing automation:</strong> Claims generation and tracking</li></ul><p style="margin-top:1rem">Note the "© 2009 Resolute Services" footer—this was our company, our software.</p></div></div>
+       <div class="deliverable-card"><img src="images/resolute-software.jpg" alt="Management Compliance Software interface" onclick="openPhotoModal(this.src, this.alt)" style="cursor:pointer;"><div class="deliverable-info"><div class="deliverable-type">Custom Software</div><h3>Management Compliance Software</h3><p>Built specifically for Medicaid mental health agency operations, it replaced manual processes across:</p><ul><li><strong>Participant management:</strong> Client intake, records, contact information</li><li><strong>Therapist tracking:</strong> Credentials, assignments, scheduling</li><li><strong>Manager administration:</strong> User roles, access controls, reporting</li><li><strong>Compliance reporting:</strong> Automated Medicaid documentation</li><li><strong>Billing automation:</strong> Claims generation and tracking</li></ul></div></div>
       </div>
-      <div class="content-section"><h2 class="content-title">Change Management Approach</h2><p class="content-text">Building software was only half the battle. Getting staff to adopt it required a comprehensive change initiative:</p><div class="process-grid"><div class="process-card"><h4>1. Awareness</h4><p>Helped staff understand why change was needed—showing the cost of errors, wasted time, and compliance risks</p></div><div class="process-card"><h4>2. Buy-In</h4><p>Involved key stakeholders early, addressed concerns, and demonstrated how the system would make their jobs easier</p></div><div class="process-card"><h4>3. Training</h4><p>Developed user training materials, quick-reference guides, and hands-on sessions for all staff levels</p></div><div class="process-card"><h4>4. Reinforcement</h4><p>Provided ongoing support, gathered feedback, and made improvements based on real-world usage</p></div></div></div>
+      <div class="content-section"><h2 class="content-title">Change Management Approach</h2><p class="content-text">Building software was only half the battle. Getting staff to adopt it required a comprehensive change initiative:</p><div class="process-grid"><div class="process-card-gradient"><h4>1. Awareness</h4><p>Helped staff understand why change was needed—showing the cost of errors, wasted time, and compliance risks</p></div><div class="process-card-gradient"><h4>2. Buy-In</h4><p>Involved key stakeholders early, addressed concerns, and demonstrated how the system would make their jobs easier</p></div><div class="process-card-gradient"><h4>3. Training</h4><p>Developed user training materials, quick-reference guides, and hands-on sessions for all staff levels</p></div><div class="process-card-gradient"><h4>4. Reinforcement</h4><p>Provided ongoing support, gathered feedback, and made improvements based on real-world usage</p></div></div> class="process-card"><h4>2. Buy-In</h4><p>Involved key stakeholders early, addressed concerns, and demonstrated how the system would make their jobs easier</p></div><div class="process-card"><h4>3. Training</h4><p>Developed user training materials, quick-reference guides, and hands-on sessions for all staff levels</p></div><div class="process-card"><h4>4. Reinforcement</h4><p>Provided ongoing support, gathered feedback, and made improvements based on real-world usage</p></div></div></div>
       <div class="content-section"><h2 class="content-title">What Others Say</h2>
         <div class="testimonial-card"><div class="deliverable-type">Reference Letter</div><h3>Daniel Stephenson, CTO</h3><p style="font-size:0.85rem;color:var(--color-text-secondary);margin-bottom:1rem">Lead engineer I collaborated with over four years at Resolute Services</p><blockquote>"She <strong>spearheaded a large software product</strong> which gave health organizations that worked with challenged children the ability to manage their entire process; from on-boarding through treatment and discharge."</blockquote><blockquote>"When we started, billing for the time a therapist worked with a client would take anywhere from <strong>forty to eighty hours a week</strong>. Because it was a manual process, there would often be mistakes made; both with compliance and human error. Christie and I sat down each week and worked through a process that allowed me to take the process down to approximately <strong>fifteen minutes</strong>."</blockquote><blockquote>"At the beginning of each iteration, Christie would sit down with me and, essentially, <strong>storyboard the process</strong> for me. We would develop <strong>user stories</strong> that would then be decomposed into individual screenshots and issues."</blockquote><blockquote>"Christie and I worked together on the intake module of the software. The intake process was a manual process taking up to about <strong>10 hours</strong>. Once the process was automated online, it took about <strong>15 minutes</strong>."</blockquote><blockquote>"Christie spent the better part of <strong>four years</strong> going through the same process with our IT team and became very good at what she did. I would recommend her because of her experience and her ability to learn quickly, <strong>she is extremely sharp</strong>."</blockquote></div>
       </div>
-      <div class="content-section"><h2 class="content-title">Results</h2><div class="glass-card"><ul class="content-list"><li><strong>Billing:</strong> Reduced from 40-80 hours/week → 15 minutes</li><li><strong>Client intake:</strong> Reduced from 10 hours → 15 minutes per client</li><li><strong>90%+ automation</strong> of critical billing and payroll processes</li><li><strong>Reduced errors</strong> through automated validation</li><li><strong>Enhanced compliance tracking</strong> for Medicaid requirements</li><li><strong>Sustainable system</strong> that continued operating after our engagement</li></ul><div class="tags"><span class="tag">Change Management</span><span class="tag">Process Automation</span><span class="tag">Software Design</span><span class="tag">Training Development</span><span class="tag">Healthcare IT</span><span class="tag">Stakeholder Engagement</span></div></div></div>
+      <div class="content-section"><h2 class="content-title">Results</h2><div class="glass-card-gradient"><ul class="content-list"><li><strong>Billing:</strong> Reduced from 40-80 hours/week → 15 minutes</li><li><strong>Client intake:</strong> Reduced from 10 hours → 15 minutes per client</li><li><strong>90%+ automation</strong> of critical billing and payroll processes</li><li><strong>Reduced errors</strong> through automated validation</li><li><strong>Enhanced compliance tracking</strong> for Medicaid requirements</li><li><strong>Sustainable system</strong> that continued operating after our engagement</li></ul><div class="tags"><span class="tag">Change Management</span><span class="tag">Process Automation</span><span class="tag">Software Design</span><span class="tag">Training Development</span><span class="tag">Healthcare IT</span><span class="tag">Stakeholder Engagement</span></div></div></div>
       <div class="content-section"><h2 class="content-title">Interactive Demo</h2><div class="demo-card" onclick="openDemo()"><div class="demo-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="demo-text"><h3>Launch Interactive Demo</h3><p>Explore the RESOLUTE healthcare automation platform</p></div></div></div>
       <div class="content-section behind-scenes">
         <h2 class="content-title">Behind the Scenes</h2>
@@ -909,66 +917,6 @@ function sendNotes() {
   keys.forEach(key => {
     const name = PROJECT_NAMES[key] || key;
     message += `${name}:\n${data[key].note}\n\n`;
-  });
-  
-  const form = document.createElement('form');
-  form.method = 'POST';
-  form.action = 'https://formspree.io/f/xaqnyaaw';
-  form.target = '_blank';
-  
-  const input = document.createElement('input');
-  input.type = 'hidden';
-  input.name = 'message';
-  input.value = message;
-  form.appendChild(input);
-  
-  const subject = document.createElement('input');
-  subject.type = 'hidden';
-  subject.name = '_subject';
-  subject.value = 'Portfolio Notes from Visitor';
-  form.appendChild(subject);
-  
-  document.body.appendChild(form);
-  form.submit();
-  document.body.removeChild(form);
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-  const projectData = getProjectData(CURRENT_PAGE_KEY);
-  if (projectData.note) {
-    document.getElementById('noteTextarea').value = projectData.note;
-  }
-  updateNoteCounts();
-});
-</script>  let text = 'PORTFOLIO NOTES - Christie Saavedra\n';
-  text += '================================\n\n';
-  keys.forEach(key => {
-    const note = notes[key];
-    text += `📌 ${note.name}\n`;
-    text += `${note.text}\n\n`;
-  });
-  
-  const blob = new Blob([text], { type: 'text/plain' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'portfolio-notes.txt';
-  a.click();
-  URL.revokeObjectURL(url);
-}
-
-function sendNotes() {
-  const notes = getAllNotes();
-  const keys = Object.keys(notes);
-  if (keys.length === 0) {
-    alert('No notes to send yet!');
-    return;
-  }
-  
-  let message = 'Portfolio Notes:\n\n';
-  keys.forEach(key => {
-    const note = notes[key];
-    message += `${note.name}:\n${note.text}\n\n`;
   });
   
   const form = document.createElement('form');
