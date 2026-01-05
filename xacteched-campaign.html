@@ -29,7 +29,7 @@
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    body { font-family: var(--font-body); color: var(--color-text); line-height: 1.7; background: var(--color-bg-warm); }
+    body { font-family: var(--font-body); color: #1C1917; line-height: 1.7; background: var(--color-bg-warm); }
     .page-wrapper { position: relative; background: linear-gradient(180deg, #FDFCFA 0%, #FAF8F5 50%, #FDFCFA 100%); min-height: 100vh; }
     .nav, .hero, .content, .footer { position: relative; z-index: 1; }
     .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; }
@@ -139,7 +139,8 @@
     .footer-nav a:hover { color: var(--color-text); }
     .footer-copyright { font-size: 0.85rem; color: var(--color-text-secondary); }
     .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; background: white; color: var(--color-text); border: 1px solid #e7e5e4; border-radius: 50%; cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.3s; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 100; }
-    .back-to-top.visible { opacity: 1; visibility: visible; }
+   .back-to-top { opacity: 1 !important; visibility: visible !important; }
+.back-to-top.visible { opacity: 1; visibility: visible; }
     .back-to-top:hover { background: var(--color-text); color: white; border-color: var(--color-text); }
     
     /* Responsive styles */
