@@ -1391,9 +1391,65 @@
       font-size: 0.9rem;
     }
 
-    .testimonial-role {
+   .testimonial-role {
       font-size: 0.8rem;
       color: var(--color-text-secondary);
+    }
+
+    /* Additional testimonial colors (10-24) */
+    .testimonial-card:nth-child(10)::before { background: linear-gradient(180deg, #4f46e5 0%, #6366f1 100%); }
+    .testimonial-card:nth-child(11)::before { background: linear-gradient(180deg, #0284c7 0%, #0ea5e9 100%); }
+    .testimonial-card:nth-child(12)::before { background: linear-gradient(180deg, #16a34a 0%, #22c55e 100%); }
+    .testimonial-card:nth-child(13)::before { background: linear-gradient(180deg, #9333ea 0%, #a855f7 100%); }
+    .testimonial-card:nth-child(14)::before { background: linear-gradient(180deg, #ea580c 0%, #f97316 100%); }
+    .testimonial-card:nth-child(15)::before { background: linear-gradient(180deg, #0891b2 0%, #06b6d4 100%); }
+    .testimonial-card:nth-child(16)::before { background: linear-gradient(180deg, #1E40AF 0%, #3b82f6 100%); }
+    .testimonial-card:nth-child(17)::before { background: linear-gradient(180deg, #059669 0%, #10b981 100%); }
+    .testimonial-card:nth-child(18)::before { background: linear-gradient(180deg, #7c3aed 0%, #a78bfa 100%); }
+    .testimonial-card:nth-child(19)::before { background: linear-gradient(180deg, #ca8a04 0%, #eab308 100%); }
+    .testimonial-card:nth-child(20)::before { background: linear-gradient(180deg, #dc2626 0%, #ef4444 100%); }
+    .testimonial-card:nth-child(21)::before { background: linear-gradient(180deg, #0d9488 0%, #14b8a6 100%); }
+    .testimonial-card:nth-child(22)::before { background: linear-gradient(180deg, #d97706 0%, #f59e0b 100%); }
+    .testimonial-card:nth-child(23)::before { background: linear-gradient(180deg, #db2777 0%, #ec4899 100%); }
+    .testimonial-card:nth-child(24)::before { background: linear-gradient(180deg, #4f46e5 0%, #6366f1 100%); }
+
+    /* Testimonials progressive disclosure */
+    .testimonials-hidden {
+      display: none;
+      margin-top: 1.5rem;
+    }
+
+    .testimonials-hidden.visible {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .testimonials-expand-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: 2rem auto 0;
+      padding: 0.875rem 1.75rem;
+      border: 2px solid var(--color-accent);
+      background: transparent;
+      color: var(--color-accent);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .testimonials-expand-btn:hover {
+      background: var(--color-accent);
+      color: white;
+    }
+
+    .testimonials-expand-btn.hidden {
+      display: none;
     }
 
     /* ==================== SKILLS - COLORFUL ==================== */
@@ -3213,14 +3269,22 @@
         </div>
         </div>
         <!-- Documented Results -->
-        <div class="stats-cards">
+	<div class="stats-cards">
           <div class="stat-item" data-highlights="xacteched">
             <div class="stat-card">
-              <div class="stat-number">$200K</div>
-              <div class="stat-sub">Grant</div>
+              <div class="stat-number">$521K</div>
+              <div class="stat-sub">Grants</div>
             </div>
-            <div class="stat-label">Grant Secured</div>
-            <div class="stat-desc">State funding</div>
+            <div class="stat-label">Grants Secured</div>
+            <div class="stat-desc">Workforce development</div>
+          </div>
+          <div class="stat-item" data-highlights="xacteched">
+            <div class="stat-card">
+              <div class="stat-number">72%</div>
+              <div class="stat-sub">Hired</div>
+            </div>
+            <div class="stat-label">First Cohort Hired</div>
+            <div class="stat-desc">XactechED graduates</div>
           </div>
           <div class="stat-item" data-highlights="resolute">
             <div class="stat-card">
@@ -3230,21 +3294,13 @@
             <div class="stat-label">Automation</div>
             <div class="stat-desc">Healthcare billing</div>
           </div>
-          <div class="stat-item" data-highlights="resolute">
+          <div class="stat-item" data-highlights="palmview">
             <div class="stat-card">
-              <div class="stat-number">50%</div>
-              <div class="stat-sub">Saved</div>
+              <div class="stat-number">500+</div>
+              <div class="stat-sub">Devices</div>
             </div>
-            <div class="stat-label">Time Saved</div>
-            <div class="stat-desc">Custom solutions</div>
-          </div>
-          <div class="stat-item" data-highlights="gardner,arizona,resolute">
-            <div class="stat-card">
-              <div class="stat-number">3</div>
-              <div class="stat-sub">Ventures</div>
-            </div>
-            <div class="stat-label">Co-Founded</div>
-            <div class="stat-desc">IT & education</div>
+            <div class="stat-label">Devices Managed</div>
+            <div class="stat-desc">K-8 technology</div>
           </div>
         </div>
 
@@ -3367,7 +3423,7 @@
     </section>
 
     <!-- Testimonials -->
-    <section class="section" id="testimonials">
+   <section class="section" id="testimonials">
       <div class="section-container">
         <div class="section-header">
           <div class="section-label">References</div>
@@ -3375,55 +3431,139 @@
         </div>
         <p class="section-intro">Over 20 years of professional references—from Senior Engineers and VPs to Directors and Professors—all telling the same story.</p>
 
+        <!-- Tier 1: First 8 testimonials (visible by default) -->
         <div class="testimonials-grid">
           <div class="testimonial-card">
             <p class="testimonial-quote">"Her empathy and human connection are effortless as she quickly builds rapport and trust through sincere and honest communication. When she feels safe and supported, you will get all of her—all of her talents, productivity, loyalty, compassion, tenacity, and drive."</p>
             <div class="testimonial-author">Mike Saavedra</div>
             <div class="testimonial-role">Senior Java Engineer · 2023</div>
           </div>
-          
           <div class="testimonial-card">
             <p class="testimonial-quote">"In just one year, Christie advanced from Quality Assurance Analyst to Training Manager, where she designed and launched the MTECH Web Development program—a proprietary curriculum that secured a $200,000 UCAP grant."</p>
             <div class="testimonial-author">Timothy Harrison</div>
             <div class="testimonial-role">Technical Project Manager, MNTN · 2025</div>
           </div>
-          
           <div class="testimonial-card">
             <p class="testimonial-quote">"Christie is one of the most adaptable, resourceful, and collaborative colleagues I have ever worked with. What sets her apart is her combination of strong technical acumen with equally strong interpersonal skills."</p>
             <div class="testimonial-author">Paris Baird</div>
             <div class="testimonial-role">Chief Client Relations Officer, SkyVantage · 2025</div>
           </div>
-          
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"I still marvel at Christie's talents for learning, vision for organization and never-endingly finding the most creative, well supported solutions quickly, when others are often left reeling in doubt. She is a woman of conviction, vision, dedication and strength."</p>
+            <div class="testimonial-author">Kuulei Hanamaikai</div>
+            <div class="testimonial-role">Director of Search, thomasarts · 2020</div>
+          </div>
           <div class="testimonial-card">
             <p class="testimonial-quote">"Christie was quick to assess a process of customer engagement and create a map for our Marketing group. She was excellent about working to add value with minimal direction."</p>
             <div class="testimonial-author">Jeremy Meredith</div>
             <div class="testimonial-role">Senior VP of Information Technology, Xyngular · 2020</div>
           </div>
-          
           <div class="testimonial-card">
             <p class="testimonial-quote">"Christie works hard and strives to succeed with all projects she is handed. In the time we worked together we challenged each other to make the best decisions for our teams and our products."</p>
             <div class="testimonial-author">Dave Armstrong</div>
             <div class="testimonial-role">Product Manager, Alianza · 2020</div>
           </div>
-          
           <div class="testimonial-card">
             <p class="testimonial-quote">"Christie is the type of person that if you give her an impossible task, she will have it done quickly and efficiently, then ask for another."</p>
             <div class="testimonial-author">Brett Barker</div>
             <div class="testimonial-role">Training Manager, Verisk · 2015</div>
           </div>
-          
           <div class="testimonial-card">
             <p class="testimonial-quote">"There aren't many people I have encountered who have had as much impact in as short of a time as Christie had here. She is a very driven, passionate person."</p>
             <div class="testimonial-author">Kevin Carpenter</div>
             <div class="testimonial-role">QA Manager, Xactware · 2015</div>
           </div>
-          
+        </div>
+
+        <button class="testimonials-expand-btn" id="expandBtn1" onclick="expandTestimonials(1)">
+          See more recommendations →
+        </button>
+
+        <!-- Tier 2: Next 8 testimonials -->
+        <div class="testimonials-hidden" id="testimonialsTier2">
           <div class="testimonial-card">
-            <p class="testimonial-quote">"Christine displayed outstanding aptitude, insight, and managerial talent. She is well-organized, has first-rate administrative skills, and strives to do everything she undertakes with excellence."</p>
+            <p class="testimonial-quote">"Her background in managing companies and in software development formed a synergy that made her extremely effective. As a leader, she inspires and uplifts those around her to greatness."</p>
+            <div class="testimonial-author">Tim Harrison</div>
+            <div class="testimonial-role">Project Manager, Verisk · 2015</div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"She has an unsurprised drive to deliver well-thought-out results, and any organization would benefit from what she brings to the table."</p>
+            <div class="testimonial-author">Kevin Overstreet</div>
+            <div class="testimonial-role">Product Manager, Beatport · 2020</div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"I respected the way she met challenges head on. If there were problems that other team members had disregarded or ignored she would bring them back to the table for another review."</p>
+            <div class="testimonial-author">Matthew Kern</div>
+            <div class="testimonial-role">Technical Product Manager, Weave HQ · 2020</div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"Christie is tenacious and driven to make improvements. She also has a nice background in tech that developers and IT teams will notice and trust."</p>
+            <div class="testimonial-author">Steve Gordon</div>
+            <div class="testimonial-role">Sr Director App Engineering, Xyngular · 2020</div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"She has a talent for evaluating situations and determining the best course of action. She is willing to do what is right for the company regardless of the ramifications."</p>
+            <div class="testimonial-author">Derek Caswell</div>
+            <div class="testimonial-role">Software Developer, Younique · 2017</div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"She had a big impact on the growth of my business. She would arrive to work with fresh ideas on how to improve the campaigns. The majority of the time her ideas worked."</p>
+            <div class="testimonial-author">Jerry West</div>
+            <div class="testimonial-role">Keynote Speaker, Affiliate Marketer · 2017</div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"Christine is an extremely bright and ambitious person with a flair for creative solutions to complex problems."</p>
+            <div class="testimonial-author">Leonard Jenkins</div>
+            <div class="testimonial-role">Employment Counselor, Utah DWS · 2015</div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"She is as good as anyone at mapping out a vision or strategy and the first to be at the front lines doing whatever work is needed."</p>
+            <div class="testimonial-author">David Nelson</div>
+            <div class="testimonial-role">Marketing Manager, Xactware · 2015</div>
+          </div>
+        </div>
+
+        <button class="testimonials-expand-btn hidden" id="expandBtn2" onclick="expandTestimonials(2)">
+          See more recommendations →
+        </button>
+
+        <!-- Tier 3: Next 8 testimonials -->
+        <div class="testimonials-hidden" id="testimonialsTier3">
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"Christine has wonderful vision and is truly concerned about how she affects people around her."</p>
+            <div class="testimonial-author">Lisa Birch</div>
+            <div class="testimonial-role">Director, MATC · 2015</div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"Christine ensures that she is as well-equipped for success as possible, but also that those around her are similarly able to fulfill their maximum potential."</p>
+            <div class="testimonial-author">Christopher Stevenson</div>
+            <div class="testimonial-role">Lead Developer, Xactware · 2015</div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"Christine has attitude, charm, and drive coupled with her experience in the field. She is definitely a formidable force."</p>
+            <div class="testimonial-author">Mark-Anthony Torrocha</div>
+            <div class="testimonial-role">Director of Operations, CultureForce · 2014</div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"Christine displayed outstanding aptitude, insight, and managerial talent. She is well-organized, has first-rate administrative skills, and strives to do everything with excellence."</p>
             <div class="testimonial-author">Dr. Don G. Schley, PMP</div>
             <div class="testimonial-role">Director PM Programs, Colorado Technical University · 2008</div>
           </div>
-          
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"The combination of a strong self-starter and an excellent team player combined in one individual is, from my perspective, a rarity."</p>
+            <div class="testimonial-author">Bob Walsh</div>
+            <div class="testimonial-role">Dept. Chair, UVU · 2008</div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"She is very personable and honest... knowledgeable about business and what makes them succeed."</p>
+            <div class="testimonial-author">J.D. Davidson</div>
+            <div class="testimonial-role">Professor, UVU · 2008</div>
+          </div>
+          <div class="testimonial-card">
+            <p class="testimonial-quote">"Not only did Christie improve my service department, but she went a step further and realized that the company as a whole was in need of a program that would train and provide technicians."</p>
+            <div class="testimonial-author">Russell Hunt</div>
+            <div class="testimonial-role">Service Manager, Camping World · 2008</div>
+          </div>
           <div class="testimonial-card">
             <p class="testimonial-quote">"Christie took charge in her role as Office Manager and helped tremendously in organizing and running her department. She is smart, organized, efficient, extremely competent, and highly energetic."</p>
             <div class="testimonial-author">Steve Winters</div>
@@ -3441,7 +3581,7 @@
           <h2 class="section-title">Skills & Tools</h2>
         </div>
 
-        <div class="skills-grid">
+     <div class="skills-grid">
           <div class="skill-category">
             <h3 class="skill-category-title">Change Management</h3>
             <ul class="skill-list">
@@ -3451,6 +3591,39 @@
               <li>Adoption Metrics</li>
               <li>Training Delivery</li>
               <li>User Feedback Loops</li>
+              <li>Journey Mapping</li>
+              <li>Customer Journey Mapping</li>
+              <li>Business Requirements Docs</li>
+              <li>RFP/RFG Writing</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category-title">Tools & Platforms</h3>
+            <ul class="skill-list">
+              <li>Confluence / JIRA</li>
+              <li>Microsoft 365</li>
+              <li>Wix</li>
+              <li>Google Analytics</li>
+              <li>GitHub Pages</li>
+              <li>Formspree</li>
+              <li>Backlog Grooming</li>
+              <li>Vendor Management</li>
+              <li>Budget Management</li>
+              <li>Cross-Functional Supervision</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h3 class="skill-category-title">Technical Skills</h3>
+            <ul class="skill-list">
+              <li>HTML / CSS / JavaScript</li>
+              <li>Data Visualization</li>
+              <li>LMS Administration</li>
+              <li>Data Modeling</li>
+              <li>Business Systems Integration</li>
+              <li>Requirements Analysis</li>
+              <li>QA Testing</li>
+              <li>Custom Software Design</li>
+              <li>Medical Billing / Medicaid</li>
             </ul>
           </div>
           <div class="skill-category">
@@ -3462,16 +3635,6 @@
               <li>Articulate 360</li>
               <li>Figma (UX/UI)</li>
               <li>React Development</li>
-            </ul>
-          </div>
-          <div class="skill-category">
-            <h3 class="skill-category-title">Technical Skills</h3>
-            <ul class="skill-list">
-              <li>Confluence / JIRA</li>
-              <li>HTML / CSS / JavaScript</li>
-              <li>Data Visualization</li>
-              <li>LMS Administration</li>
-              <li>Microsoft 365</li>
             </ul>
           </div>
         </div>
@@ -3681,7 +3844,19 @@
     function closePhotoLightbox(event) {
       if (!event || event.target === photoLightbox || event.target.classList.contains('lightbox-close')) {
         photoLightbox.classList.remove('active');
-        document.body.style.overflow = '';
+ document.body.style.overflow = '';
+      }
+    }
+
+// Testimonials Progressive Disclosure
+    function expandTestimonials(tier) {
+      if (tier === 1) {
+        document.getElementById('testimonialsTier2').classList.add('visible');
+        document.getElementById('expandBtn1').classList.add('hidden');
+        document.getElementById('expandBtn2').classList.remove('hidden');
+      } else if (tier === 2) {
+        document.getElementById('testimonialsTier3').classList.add('visible');
+        document.getElementById('expandBtn2').classList.add('hidden');
       }
     }
 
