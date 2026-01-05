@@ -118,16 +118,48 @@
     .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; background: var(--project-gradient); color: white; border: none; border-radius: 50%; cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.3s; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 100; }
     .back-to-top.visible { opacity: 1; visibility: visible; }
     .back-to-top:hover { background: var(--color-text); color: white; border-color: var(--color-text); }
+    /* Stats box */
+    .stats-box { background: rgba(5,150,105,0.08); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
+    .stats-box p { font-size: 1rem; margin-bottom: 0.5rem; color: var(--color-text); }
+    .stats-box strong { background: var(--project-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     
+    /* Timeline */
+    .timeline { margin: 1.5rem 0; }
+    .timeline-item { display: flex; gap: 1.5rem; padding: 1.25rem 0; border-left: 2px solid rgba(5,150,105,0.3); padding-left: 1.5rem; margin-left: 0.5rem; position: relative; }
+    .timeline-item::before { content: ''; width: 12px; height: 12px; background: var(--project-gradient); border-radius: 50%; position: absolute; left: -7px; top: 1.5rem; }
+    .timeline-item:last-child { border-left-color: transparent; }
+    .timeline-date { font-weight: 600; background: var(--project-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; min-width: 100px; font-size: 0.9rem; }
+    .timeline-content { flex: 1; color: var(--color-text-secondary); }
+    
+    /* Quote box */
+    .quote-box { background: rgba(5,150,105,0.08); border-radius: 12px; padding: 1.5rem 1.5rem 1.5rem 2.5rem; margin: 2rem 0; position: relative; font-style: italic; color: var(--color-text-secondary); }
+    .quote-box::before { content: '"'; font-family: var(--font-display); font-size: 4rem; background: var(--project-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; opacity: 0.5; position: absolute; top: 0; left: 0.5rem; line-height: 1; }
+    
+    /* Press cards */
+    .press-card { background: rgba(240,249,255,0.8); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.8); }
+    .press-card h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.75rem; }
+    .press-card blockquote { border-left: 3px solid #059669; padding-left: 1rem; margin: 1rem 0; font-style: italic; color: var(--color-text-secondary); }
+    .press-card a { color: #059669; font-size: 0.9rem; text-decoration: none; }
+    .press-card a:hover { text-decoration: underline; }
+    
+    /* Testimonial cards */
+    .testimonial-card { background: rgba(248,250,252,0.9); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.8); }
+    .testimonial-card h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.25rem; }
+    .testimonial-card blockquote { border-left: 3px solid #059669; padding-left: 1rem; margin: 1rem 0; font-style: italic; color: var(--color-text-secondary); font-size: 0.95rem; }
     /* Responsive styles */
-    @media (max-width: 768px) { 
-      .hero { padding: 6rem 1.5rem 3rem; } 
-      .content { padding: 1.5rem; } 
-      .logo-grid { grid-template-columns: 1fr; } 
-      .deliverables-row { flex-direction: column; }
-      .deliverable-card-half { flex: none; width: 100%; }
-      .deliverable-card-foundation .deliverable-info ul { flex-direction: column; gap: 0.5rem; align-items: center; }
-    }
+@media (max-width: 768px) { 
+  .timeline-item { flex-direction: column; gap: 0.5rem; }
+  .timeline-date { min-width: auto; }
+  .hero { padding: 6rem 1.5rem 3rem; } 
+  .hero-title { font-size: 1.75rem; }  /* ADD - smaller title on mobile */
+  .content { padding: 1.5rem; } 
+  .glass-card { padding: 1.5rem; }  /* ADD - tighter card padding */
+  .logo-grid { grid-template-columns: 1fr; } 
+  .demo-card { flex-direction: column; text-align: center; }  /* ADD - stack demo card */
+  .deliverables-row { flex-direction: column; }
+  .deliverable-card-half { flex: none; width: 100%; }
+  .deliverable-card-foundation .deliverable-info ul { flex-direction: column; gap: 0.5rem; align-items: center; }
+}
     @media (max-width: 500px) { 
       .hero-meta { flex-direction: column; gap: 0.5rem; } 
       .results-banner { display: grid; grid-template-columns: repeat(2, 1fr); } 
