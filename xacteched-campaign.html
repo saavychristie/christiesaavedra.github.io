@@ -560,7 +560,52 @@
   width: 16px;
   height: 16px;
   color: #b45309;
-}  
+} 
+/* Behind the Scenes Section */
+.behind-scenes {
+  margin-top: 2rem;
+}
+.behind-scenes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.behind-scenes-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+.behind-scenes-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+.behind-scenes-info {
+  padding: 1.25rem;
+}
+.behind-scenes-info h4 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+.behind-scenes-info p {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+.behind-scenes-caption {
+  font-style: italic;
+  font-size: 0.85rem;
+  color: #059669;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #f0f0f0;
+} 
+
 </style>
 </head>
 <body>
@@ -623,7 +668,29 @@
       </div>
       <div class="content-section"><h2 class="content-title">Results</h2><div class="glass-card"><ul class="content-list"><li><strong>$200,000 UCAP grant secured</strong> through competitive state funding process</li><li><strong>MTECH Web Development program launched</strong> creating sustainable talent pipeline</li><li><strong>Educational partnership established</strong> between Xactware and MTECH</li><li><strong>Complete program infrastructure built</strong> including brand, curriculum, marketing, and enrollment systems</li><li><strong>Program legacy:</strong> The infrastructure I built has enabled the program to secure over $521K in total state funding to date</li></ul>/ul><div class="tags"><span class="tag">Stakeholder Engagement</span><span class="tag">Executive Presentations</span><span class="tag">Visual Communication</span><span class="tag">Curriculum Development</span><span class="tag">Partnership Building</span></div></div></div>
       <div class="content-section"><h2 class="content-title">Interactive Demo</h2><div class="demo-card" onclick="openDemo()"><div class="demo-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="demo-text"><h3>Launch Interactive Demo</h3><p>Explore the xactechED training platform and curriculum materials</p></div></div></div>
-      <div class="cta-section"><a href="in-the-news.html" class="btn-cta" style="margin-right: 1rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>View Press Coverage</a><a href="index.html#work" class="btn-cta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>View More Case Studies</a></div>
+<div class="content-section behind-scenes">
+        <h2 class="content-title">Behind the Scenes</h2>
+        <p class="content-body">Building a workforce development program wasn't just my job—it was a family affair. My kids were always part of the journey, learning alongside me about entrepreneurship, technology, and hard work.</p>
+        <div class="behind-scenes-grid">
+          <div class="behind-scenes-card">
+            <img src="images/CynthiaMATC.JPG" alt="Cynthia's MATC Graduation">
+            <div class="behind-scenes-info">
+              <h4>Full Circle Moment</h4>
+              <p>The same month I secured the $200K grant for XactechED, my daughter Cynthia graduated from MATC with her nursing assistant certificate.</p>
+              <div class="behind-scenes-caption">"The program I built was helping students just like her find their path."</div>
+            </div>
+          </div>
+          <div class="behind-scenes-card">
+            <img src="images/xacteched.JPG" alt="XactechED Branding">
+            <div class="behind-scenes-info">
+              <h4>Brand I Built from Scratch</h4>
+              <p>From logo to curriculum to promotional materials—xactechED was conceived, designed, and launched entirely by me over 7 months.</p>
+              <div class="behind-scenes-caption">"When I say I built the program, I mean every piece of it."</div>
+            </div>
+          </div>
+        </div>
+      </div>      
+<div class="cta-section"><a href="in-the-news.html" class="btn-cta" style="margin-right: 1rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>View Press Coverage</a><a href="index.html#work" class="btn-cta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>View More Case Studies</a></div>
     </div></section>
     <div class="demo-modal" id="demoModal" onclick="closeDemo(event)"><div class="demo-modal-content" onclick="event.stopPropagation()"><button class="demo-close" onclick="closeDemo()">&times;</button><div class="demo-placeholder"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><h3>Demo Coming Soon</h3><p>The interactive demo for this project is currently being developed.</p></div></div></div>
     <footer class="footer"><div class="footer-content"><nav class="footer-nav"><a href="index.html#work">Work</a><a href="in-the-news.html">Press</a><a href="index.html#testimonials">Testimonials</a><a href="index.html#skills">Skills</a><a href="index.html#contact">Contact</a></nav><p class="footer-copyright">© 2025 Christie Stephenson Saavedra. All rights reserved.</p></div></footer>

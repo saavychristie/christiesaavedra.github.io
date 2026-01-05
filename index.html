@@ -1134,7 +1134,7 @@
     /* ==================== CASE STUDIES ==================== */
     .case-studies-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr));
       gap: 1.5rem;
     }
 
@@ -2420,7 +2420,48 @@
   z-index: 9999;
   font-family: 'IBM Plex Sans', sans-serif;
 }
-
+/* Mobile: Compact bar + scroll trigger */
+@media (max-width: 768px) {
+  .sticky-widget {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+    pointer-events: none;
+  }
+  .sticky-widget.mobile-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .sticky-widget {
+    bottom: 1rem;
+    left: 1rem;
+  }
+  .sticky-minimized {
+    width: auto;
+    height: 36px;
+    border-radius: 18px;
+    padding: 0 0.75rem;
+    gap: 0.5rem;
+  }
+  .sticky-minimized svg {
+    width: 18px;
+    height: 18px;
+  }
+  .sticky-minimized .note-count {
+    position: static;
+    width: auto;
+    height: auto;
+    background: #1E40AF;
+    border: none;
+    padding: 0.15rem 0.4rem;
+    border-radius: 10px;
+    font-size: 0.65rem;
+  }
+  .sticky-minimized .tooltip {
+    display: none;
+  }
+}
 /* Minimized State - Just the icon */
 .sticky-minimized {
   width: 56px;
@@ -3913,7 +3954,46 @@
         closeResumeDropdown();
       }
     });
-  </script>
+// Mobile sticky widget scroll trigger
+(function() {
+  const isMobile = window.innerWidth <= 768;
+  if (!isMobile) return;
+  
+  const stickyWidget = document.getElementById('stickyWidget');
+  const workSection = document.getElementById('work');
+  if (!stickyWidget || !workSection) return;
+  
+  let widgetShown = false;
+  
+  function showMobileWidget() {
+    if (widgetShown) return;
+    widgetShown = true;
+    stickyWidget.classList.add('mobile-visible');
+  }
+  
+  // Trigger on scroll to #work
+  function checkScroll() {
+    if (widgetShown) return;
+    const workTop = workSection.getBoundingClientRect().top;
+    const triggerPoint = window.innerHeight * 0.8;
+    if (workTop <= triggerPoint) {
+      showMobileWidget();
+    }
+  }
+  
+  window.addEventListener('scroll', checkScroll, { passive: true });
+  
+  // Trigger on click "Work" nav link
+  document.querySelectorAll('a[href="#work"]').forEach(function(link) {
+    link.addEventListener('click', function() {
+      setTimeout(showMobileWidget, 300);
+    });
+  });
+  
+  // Check on load in case already scrolled
+  checkScroll();
+})();  
+</script>
 <!-- ========== FLOATING STICKY NOTE WIDGET ========== -->
 <div class="sticky-widget minimized" id="stickyWidget">
   

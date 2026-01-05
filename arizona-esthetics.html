@@ -496,6 +496,50 @@
 }
 .casestudy-dropdown-item:hover { background: #f5f5f5; }
 .casestudy-dropdown-item svg { width: 16px; height: 16px; color: #0f766e; }
+/* Behind the Scenes Section */
+.behind-scenes {
+  margin-top: 2rem;
+}
+.behind-scenes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.behind-scenes-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+.behind-scenes-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+.behind-scenes-info {
+  padding: 1.25rem;
+}
+.behind-scenes-info h4 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+.behind-scenes-info p {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+.behind-scenes-caption {
+  font-style: italic;
+  font-size: 0.85rem;
+  color: #dc2626;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #f0f0f0;
+}
 </style>
 </head>
 <body>
@@ -511,7 +555,29 @@
       <div class="content-section"><h2 class="content-title">The Pattern Continues</h2><div class="pattern-box"><p>Arizona Esthetics Institute (2003-2004) was the first time I built a complete educational program from scratch. A decade later, I would do it again with <a href="xacteched-campaign.html" style="color:#dc2626">xactechED at Xactware</a>.</p><p style="margin-top:1rem"><strong>Same pattern:</strong></p><p>→ Identify a skills gap</p><p>→ Create a program to address it</p><p>→ Navigate regulatory/funding requirements</p><p>→ Build awareness and drive enrollment</p><p>→ Deliver measurable results</p></div></div>
       <div class="content-section"><h2 class="content-title">Results</h2><div class="glass-card"><ul class="content-list"><li><strong>State-approved curriculum</strong> meeting Arizona Board of Cosmetology requirements</li><li><strong>Accredited trade school</strong> launched and operational</li><li><strong>School district partnerships</strong> creating pathways for at-risk youth</li><li><strong>Students enrolled</strong> and progressing toward licensing exams</li><li><strong>Complete program infrastructure</strong>—curriculum, facility, operations, recruitment</li></ul><div class="tags"><span class="tag">Curriculum Development</span><span class="tag">Regulatory Navigation</span><span class="tag">Instructional Design</span><span class="tag">Partnership Building</span><span class="tag">Program Launch</span></div></div></div>
       <div class="content-section"><h2 class="content-title">Interactive Demo</h2><div class="demo-card" onclick="openDemo()"><div class="demo-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="demo-text"><h3>Launch Interactive Demo</h3><p>Explore the Arizona Esthetics Institute curriculum and training materials</p></div></div></div>
-      <div class="cta-section"><a href="index.html#work" class="btn-cta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>View More Case Studies</a></div></section>
+    <div class="content-section behind-scenes">
+        <h2 class="content-title">Behind the Scenes</h2>
+        <p class="content-body">Co-founding a trade school meant co-building it—literally. With young kids at home and a vision to create opportunity for others, we rolled up our sleeves and built Arizona Esthetics Institute from the ground up.</p>
+        <div class="behind-scenes-grid">
+          <div class="behind-scenes-card">
+            <img src="images/AEITexture.jpg" alt="Building the facility">
+            <div class="behind-scenes-info">
+              <h4>Building It—Literally</h4>
+              <p>That's me doing the facility texture work. Co-founder meant co-builder. We did the buildout ourselves to make our budget work.</p>
+              <div class="behind-scenes-caption">"Technology adoption isn't a slide deck problem—it's a build problem. Same goes for schools."</div>
+            </div>
+          </div>
+          <div class="behind-scenes-card">
+            <img src="images/ChristieOfficeAEI.jpg" alt="Office at AEI">
+            <div class="behind-scenes-info">
+              <h4>Running Operations</h4>
+              <p>My office at Arizona Esthetics Institute. That whiteboard tracked student progress, enrollment targets, and daily operations for a state-licensed vocational program.</p>
+              <div class="behind-scenes-caption">"Every student represented a pathway out of at-risk circumstances."</div>
+            </div>
+          </div>
+        </div>
+      </div>  
+<div class="cta-section"><a href="index.html#work" class="btn-cta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>View More Case Studies</a></div></section>
     <div class="demo-modal" id="demoModal" onclick="closeDemo(event)"><div class="demo-modal-content" onclick="event.stopPropagation()"><button class="demo-close" onclick="closeDemo()">&times;</button><div class="demo-placeholder"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><h3>Demo Coming Soon</h3><p>The interactive demo for this project is currently being developed.</p></div></div></div>
     <footer class="footer"><div class="footer-content"><nav class="footer-nav"><a href="index.html#work">Work</a><a href="in-the-news.html">Press</a><a href="index.html#testimonials">Testimonials</a><a href="index.html#skills">Skills</a><a href="index.html#contact">Contact</a></nav><p class="footer-copyright">© 2025 Christie Stephenson Saavedra. All rights reserved.</p></div></footer>
   </div>

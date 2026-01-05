@@ -496,6 +496,54 @@
 }
 .casestudy-dropdown-item:hover { background: #f5f5f5; }
 .casestudy-dropdown-item svg { width: 16px; height: 16px; color: #c2410c; }
+/* Behind the Scenes Section */
+.behind-scenes {
+  margin-top: 2rem;
+}
+.behind-scenes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.behind-scenes-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+.behind-scenes-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+.behind-scenes-card.single {
+  max-width: 500px;
+  margin: 0 auto;
+}
+.behind-scenes-info {
+  padding: 1.25rem;
+}
+.behind-scenes-info h4 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+.behind-scenes-info p {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+.behind-scenes-caption {
+  font-style: italic;
+  font-size: 0.85rem;
+  color: #0891b2;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #f0f0f0;
+}
 </style>
 </head>
 <body>
@@ -512,7 +560,21 @@
       <div class="content-section"><h2 class="content-title">Results</h2><div class="glass-card"><ul class="content-list"><li><strong>Reduced repeat support requests</strong> through self-service documentation</li><li><strong>Improved onboarding</strong> for new technical staff with ready-made resources</li><li><strong>Teacher enablement</strong> on interactive display technology</li><li><strong>Systematic inventory management</strong> across Windows, Chromebook, and iOS platforms</li><li><strong>Documentation that outlasted my role</strong>—built to be maintainable</li></ul><div class="tags"><span class="tag">Knowledge Base Design</span><span class="tag">Technical Documentation</span><span class="tag">Quick Reference Guides</span><span class="tag">User Enablement</span><span class="tag">Inventory Management</span><span class="tag">Multi-Platform Support</span></div></div></div>
       <div class="pattern-box"><p><strong>The Pattern:</strong> Just like with <a href="xacteched-campaign.html">xactechED</a> and <a href="arizona-esthetics.html">Arizona Esthetics Institute</a>, I identified a gap, built systems to address it, and created resources that enabled others to succeed. The scale and context change—the approach doesn't.</p></div>
       <div class="content-section"><h2 class="content-title">Interactive Demo</h2><div class="demo-card" onclick="openDemo()"><div class="demo-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="demo-text"><h3>Launch Interactive Demo</h3><p>Explore the Palmview K-8 knowledge base and documentation system</p></div></div></div>
-      <div class="cta-section"><a href="index.html#work" class="btn-cta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>View More Case Studies</a></div>
+     <div class="content-section behind-scenes">
+        <h2 class="content-title">Behind the Scenes</h2>
+        <p class="content-body">Managing a K-8 computer lab meant being the go-to person for 500+ devices, dozens of teachers, and hundreds of curious students every day.</p>
+        <div class="behind-scenes-grid">
+          <div class="behind-scenes-card single">
+            <img src="images/palmview.JPG" alt="At Palmview School">
+            <div class="behind-scenes-info">
+              <h4>The Person Behind the Documentation</h4>
+              <p>Every troubleshooting guide, every inventory system, every training session—built by someone who was in the trenches daily with teachers and students.</p>
+              <div class="behind-scenes-caption">"Good documentation comes from really understanding the people who need it."</div>
+            </div>
+          </div>
+        </div>
+      </div>
+ <div class="cta-section"><a href="index.html#work" class="btn-cta"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>View More Case Studies</a></div>
     </div></section>
     <div class="demo-modal" id="demoModal" onclick="closeDemo(event)"><div class="demo-modal-content" onclick="event.stopPropagation()"><button class="demo-close" onclick="closeDemo()">&times;</button><div class="demo-placeholder"><svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><h3>Demo Coming Soon</h3><p>The interactive demo for this project is currently being developed.</p></div></div></div>
     <footer class="footer"><div class="footer-content"><nav class="footer-nav"><a href="index.html#work">Work</a><a href="in-the-news.html">Press</a><a href="index.html#testimonials">Testimonials</a><a href="index.html#skills">Skills</a><a href="index.html#contact">Contact</a></nav><p class="footer-copyright">© 2025 Christie Stephenson Saavedra. All rights reserved.</p></div></footer>
