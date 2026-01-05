@@ -1258,6 +1258,7 @@
     .skill-category:nth-child(1) { --skill-gradient: linear-gradient(90deg, #1E40AF 0%, #3b82f6 100%); }
     .skill-category:nth-child(2) { --skill-gradient: linear-gradient(90deg, #059669 0%, #10b981 100%); }
     .skill-category:nth-child(3) { --skill-gradient: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%); }
+    .skill-category:nth-child(4) { --skill-gradient: linear-gradient(90deg, #d97706 0%, #f59e0b 100%); }
 
     .skill-category:hover {
       background: rgba(255, 255, 255, 0.9);
@@ -1335,11 +1336,9 @@
 
     .education-card:nth-child(1) { --edu-gradient: linear-gradient(90deg, #000000 0%, #FFC904 100%); } /* UCF Black to Gold */
     .education-card:nth-child(2) { --edu-gradient: linear-gradient(90deg, #FFC904 0%, #000000 100%); } /* UCF Gold to Black */
-    .education-card:nth-child(3) { --edu-gradient: linear-gradient(90deg, #003057 0%, #B3A369 100%); } /* Georgia Tech Navy to Gold */
-    .education-card:nth-child(4) { --edu-gradient: linear-gradient(90deg, #E31837 0%, #231F20 100%); } /* V School Red to Black */
-    .education-card:nth-child(5) { --edu-gradient: linear-gradient(90deg, #003057 0%, #4B0082 100%); } /* WGU Navy to Purple */
-    .education-card:nth-child(6) { --edu-gradient: linear-gradient(90deg, #275D38 0%, #4A7C59 100%); } /* UVU Green */
-    .education-card:nth-child(7) { --edu-gradient: linear-gradient(90deg, #1E40AF 0%, #0D9488 100%); } /* Brand gradient */
+    .education-card:nth-child(3) { --edu-gradient: linear-gradient(90deg, #003057 0%, #4B0082 100%); } /* WGU Navy to Purple */
+    .education-card:nth-child(4) { --edu-gradient: linear-gradient(90deg, #275D38 0%, #4A7C59 100%); } /* UVU Green */
+    .education-card:nth-child(5) { --edu-gradient: linear-gradient(90deg, #1E40AF 0%, #0D9488 100%); } /* Brand gradient - Additional Training */
 
     .education-card:hover {
       background: rgba(255, 255, 255, 0.9);
@@ -2927,22 +2926,22 @@
           <div class="method-step-title">Immerse</div>
           <div class="method-step-desc">Learn the domain deeply</div>
         </div>
-        <span class="method-arrow">â†’</span>
+        <span class="method-arrow">→</span>
         <div class="method-step">
           <div class="method-step-title">Identify</div>
           <div class="method-step-desc">Find gaps & opportunities</div>
         </div>
-        <span class="method-arrow">â†’</span>
+        <span class="method-arrow">→</span>
         <div class="method-step">
           <div class="method-step-title">Ideate</div>
           <div class="method-step-desc">Creative solutioning</div>
         </div>
-        <span class="method-arrow">â†’</span>
+        <span class="method-arrow">→</span>
         <div class="method-step">
           <div class="method-step-title">Collaborate</div>
           <div class="method-step-desc">Align & refine together</div>
         </div>
-        <span class="method-arrow">â†’</span>
+        <span class="method-arrow">→</span>
         <div class="method-step">
           <div class="method-step-title">Build</div>
           <div class="method-step-desc">Prototype, test, deliver</div>
@@ -3237,7 +3236,7 @@
         </div>
 
         <button class="testimonials-expand-btn" id="expandBtn1" onclick="expandTestimonials(1)">
-          See more recommendations â†’
+          See more recommendations →
         </button>
 
         <!-- Tier 2: Next 8 testimonials -->
@@ -3285,7 +3284,7 @@
         </div>
 
         <button class="testimonials-expand-btn hidden" id="expandBtn2" onclick="expandTestimonials(2)">
-          See more recommendations â†’
+          See more recommendations →
         </button>
 
         <!-- Tier 3: Next 8 testimonials -->
@@ -3418,9 +3417,9 @@
             <div class="education-coursework">
               <div class="coursework-title">Spring 2026 Courses</div>
               <div class="coursework-list">
-                <span class="course-tag in-progress">EME 6613 - Instructional Systems Design <span class="grade">IP</span></span>
-                <span class="course-tag in-progress">EME 6507 - Multimedia for Ed & Training <span class="grade">IP</span></span>
-                <span class="course-tag in-progress">EDF 6481 - Graduate Research in Education <span class="grade">IP</span></span>
+                <span class="course-tag in-progress">EME 6613 - Instructional Systems Design</span>
+                <span class="course-tag in-progress">EME 6507 - Multimedia for Ed & Training</span>
+                <span class="course-tag in-progress">EDF 6481 - Graduate Research in Education</span>
               </div>
             </div>
           </div>
@@ -3431,40 +3430,25 @@
             <div class="education-coursework">
               <div class="coursework-title">Relevant Coursework</div>
               <div class="coursework-list">
-                <span class="course-tag">Writing for Technical Professionals <span class="grade">A</span></span>
-                <span class="course-tag">Writing in Digital Environments <span class="grade">A</span></span>
-                <span class="course-tag">Contemporary Issues in Leadership <span class="grade">A</span></span>
-                <span class="course-tag">Medical Terminology <span class="grade">A</span></span>
-                <span class="course-tag">Principles of Statistics <span class="grade">B</span></span>
+                <span class="course-tag">Writing for Technical Professionals</span>
+                <span class="course-tag">Writing in Digital Environments</span>
+                <span class="course-tag">Contemporary Issues in Leadership</span>
+                <span class="course-tag">Medical Terminology</span>
+                <span class="course-tag">Principles of Statistics</span>
               </div>
             </div>
-          </div>
-          <div class="education-card">
-            <div class="education-school">Georgia Institute of Technology</div>
-            <div class="education-degree">UX Design Intensive Certificate</div>
-            <div class="education-date">Completed</div>
-          </div>
-          <div class="education-card">
-            <div class="education-school">V School</div>
-            <div class="education-degree">Computer Programming Intensive</div>
-            <div class="education-date">Completed</div>
           </div>
           <div class="education-card">
             <div class="education-school">Western Governors University</div>
             <div class="education-degree">IT Business Management (Transfer Credits)</div>
             <div class="education-date">2013–2018</div>
             <div class="education-coursework">
-              <div class="coursework-title">Completed Courses</div>
+              <div class="coursework-title">Key Courses</div>
               <div class="coursework-list">
-                <span class="course-tag wgu">Project Management <span class="grade">S</span></span>
-                <span class="course-tag wgu">IT Management Concepts <span class="grade">S</span></span>
-                <span class="course-tag wgu">Organizational Behavior & Leadership <span class="grade">S</span></span>
-                <span class="course-tag wgu">Information Systems Management <span class="grade">S</span></span>
-                <span class="course-tag wgu">Introduction to HR <span class="grade">S</span></span>
-                <span class="course-tag wgu">Legal Issues for Business <span class="grade">S</span></span>
-                <span class="course-tag wgu">IT Fundamentals <span class="grade">S</span></span>
-                <span class="course-tag wgu">Spreadsheets <span class="grade">S</span></span>
-                <span class="course-tag wgu">Intro to Probability & Statistics <span class="grade">S</span></span>
+                <span class="course-tag wgu">Project Management</span>
+                <span class="course-tag wgu">IT Management Concepts</span>
+                <span class="course-tag wgu">Organizational Behavior & Leadership</span>
+                <span class="course-tag wgu">Information Systems Management</span>
               </div>
             </div>
           </div>
@@ -3473,29 +3457,26 @@
             <div class="education-degree">Business Management / Entrepreneurship (Transfer Credits)</div>
             <div class="education-date">2002–2008</div>
             <div class="education-coursework">
-              <div class="coursework-title">Completed Courses</div>
+              <div class="coursework-title">Key Courses</div>
               <div class="coursework-list">
-                <span class="course-tag uvu">Entrepreneurship <span class="grade">B</span></span>
-                <span class="course-tag uvu">Principles of Marketing <span class="grade">B+</span></span>
-                <span class="course-tag uvu">Principles of Leadership <span class="grade">A-</span></span>
-                <span class="course-tag uvu">General Psychology <span class="grade">A</span></span>
-                <span class="course-tag uvu">American Civilization <span class="grade">A-</span></span>
-                <span class="course-tag uvu">Intro to Public Speaking <span class="grade">B-</span></span>
-                <span class="course-tag uvu">Intro to Sociology <span class="grade">B-</span></span>
-                <span class="course-tag uvu">General Biology <span class="grade">B</span></span>
+                <span class="course-tag uvu">Entrepreneurship</span>
+                <span class="course-tag uvu">Principles of Marketing</span>
+                <span class="course-tag uvu">Principles of Leadership</span>
+                <span class="course-tag uvu">Public Speaking</span>
               </div>
             </div>
           </div>
           <div class="education-card">
             <div class="education-school">Additional Training</div>
-            <div class="education-degree">Colorado Technical University, UVU Digital Marketing Bootcamp</div>
+            <div class="education-degree">Professional Certificates & Intensive Programs</div>
             <div class="education-date">Various</div>
             <div class="education-coursework">
-              <div class="coursework-title">Key Courses</div>
+              <div class="coursework-title">Programs Completed</div>
               <div class="coursework-list">
-                <span class="course-tag">Introduction to IT <span class="grade">A</span></span>
-                <span class="course-tag">Web Site Portfolio Development <span class="grade">B+</span></span>
-                <span class="course-tag">Spreadsheet Applications <span class="grade">A</span></span>
+                <span class="course-tag">Georgia Tech UX Design Intensive (9-month certificate program: User Research, Wireframing, Prototyping, Usability Testing, Group Projects)</span>
+                <span class="course-tag">V School Full-Stack Development (Python, HTML/CSS, JavaScript, Node.js Backend)</span>
+                <span class="course-tag">UVU Digital Marketing Bootcamp</span>
+                <span class="course-tag">Colorado Technical University IT Courses</span>
               </div>
             </div>
           </div>
@@ -3682,7 +3663,7 @@
       }
     });
 
-    // Stat card â†’ Case study highlighting
+    // Stat card → Case study highlighting
     const statItems = document.querySelectorAll('.stat-item[data-highlights]');
     const caseStudyCards = document.querySelectorAll('.case-study-card[data-project]');
     
