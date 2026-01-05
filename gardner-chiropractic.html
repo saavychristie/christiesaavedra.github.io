@@ -512,6 +512,627 @@
 .behind-scenes-card img:hover {
   opacity: 0.9;
 }
+
+/* ========== INTERACTIVE TIMELINE ========== */
+.timeline-section {
+  padding: 4rem 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(124, 58, 237, 0.03) 50%, transparent 100%);
+}
+
+.timeline-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  padding: 0 2rem;
+}
+
+.timeline-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--project-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.timeline-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 1.75rem);
+  margin-bottom: 0.75rem;
+}
+
+.timeline-intro {
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+}
+
+.progress-container {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  padding: 0 1rem;
+  overflow-x: auto;
+}
+
+.progress-bar {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  min-width: 600px;
+}
+
+.progress-step {
+  flex: 1;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.progress-step::before {
+  content: '';
+  position: absolute;
+  top: 16px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #e5e7eb;
+  transition: background 0.3s;
+}
+
+.progress-step:first-child::before { left: 50%; }
+.progress-step:last-child::before { right: 50%; }
+
+.progress-step.active::before,
+.progress-step.completed::before {
+  background: var(--project-gradient);
+}
+
+.progress-dot {
+  width: 34px;
+  height: 34px;
+  background: #e5e7eb;
+  border-radius: 50%;
+  margin: 0 auto 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #9ca3af;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s;
+}
+
+.progress-step.active .progress-dot {
+  background: var(--project-gradient);
+  color: white;
+  transform: scale(1.15);
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+}
+
+.progress-step.completed .progress-dot {
+  background: var(--project-gradient);
+  color: white;
+}
+
+.progress-step:hover .progress-dot {
+  transform: scale(1.1);
+}
+
+.progress-label {
+  font-size: 0.6rem;
+  color: var(--color-text-secondary);
+  transition: all 0.3s;
+}
+
+.progress-step.active .progress-label {
+  color: #7c3aed;
+  font-weight: 600;
+}
+
+.split-container {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 0;
+  max-width: 1100px;
+  margin: 0 auto;
+  min-height: 460px;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+
+/* ========== VINTAGE ILLUSTRATED MAP PANEL ========== */
+.map-panel {
+  background: 
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 0% 0%, rgba(139,90,43,0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 100% 100%, rgba(139,90,43,0.12) 0%, transparent 50%),
+    linear-gradient(180deg, #f5e6c8 0%, #efe0bc 50%, #e8d4a8 100%);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  border-right: 3px solid #d4c4a0;
+}
+
+.map-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #5c4033;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-display);
+}
+
+.map-area {
+  flex: 1;
+  position: relative;
+  background: linear-gradient(180deg, #e8d4a8 0%, #dcc89c 30%, #d4bc8a 60%, #c9ad78 100%);
+  border-radius: 8px;
+  overflow: hidden;
+  min-height: 420px;
+  border: 4px double #8b7355;
+  box-shadow: 
+    0 0 0 2px #f5e6c8,
+    0 0 0 4px #a08060,
+    0 4px 12px rgba(0,0,0,0.15),
+    inset 0 0 20px rgba(139,90,43,0.1);
+}
+
+.map-area::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, transparent 50%, #d4c4a0 50%, #c9b896 100%);
+  box-shadow: -2px -2px 5px rgba(0,0,0,0.1);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.map-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.state-shape {
+  fill: rgba(212,196,160,0.8);
+  stroke: #8b7355;
+  stroke-width: 2;
+}
+
+.state-label {
+  font-family: 'DM Serif Display', Georgia, serif;
+  fill: #5c4033;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+@keyframes marchingDots {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -24; }
+}
+
+.route-segment {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: opacity 0.5s ease;
+}
+
+.route-past {
+  stroke: #7c3aed;
+  stroke-width: 4;
+  opacity: 1;
+}
+
+.route-current {
+  stroke: #7c3aed;
+  stroke-width: 4;
+  stroke-dasharray: 6 8;
+  opacity: 0.85;
+  animation: marchingDots 3s linear infinite;
+}
+
+.route-hidden {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+.map-pin-svg {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.map-pin-svg:hover {
+  transform: scale(1.1);
+}
+
+.map-pin-svg.active {
+  transform: scale(1.15);
+}
+
+.pin-circle {
+  transition: all 0.4s ease;
+}
+
+.pin-circle.past {
+  fill: #b45309;
+  opacity: 0.75;
+}
+
+.pin-circle.selected {
+  fill: #7c3aed;
+  filter: drop-shadow(0 3px 8px rgba(124,58,237,0.5));
+}
+
+.pin-circle.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pin-number {
+  fill: white;
+  font-size: 10px;
+  font-weight: bold;
+  font-family: 'IBM Plex Sans', sans-serif;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.pin-number.hidden {
+  opacity: 0;
+}
+
+.pin-label-text {
+  fill: #5c4033;
+  font-size: 9px;
+  font-weight: 600;
+  font-family: 'IBM Plex Sans', sans-serif;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.map-pin-svg.active .pin-label-text {
+  opacity: 1;
+}
+
+.map-legend {
+  position: absolute;
+  bottom: 38px;
+  right: 8px;
+  background: rgba(245,230,200,0.95);
+  border: 1px solid #8b7355;
+  border-radius: 4px;
+  padding: 0.4rem 0.5rem;
+  font-size: 0.5rem;
+  z-index: 6;
+}
+
+.legend-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #5c4033;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.5rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 0.1rem;
+  color: #5c4033;
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.legend-dot.past { background: #b45309; }
+.legend-dot.selected { background: #7c3aed; }
+
+.card-panel {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, white 0%, white 50%, rgba(124, 58, 237, 0.05) 100%);
+}
+
+.card-image-container {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f3f4f6;
+  cursor: pointer;
+  flex: 1;
+  min-height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-image-container::after {
+  content: '🔍 Click to expand';
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  background: rgba(0,0,0,0.75);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.card-image-container:hover::after {
+  opacity: 1;
+}
+
+.card-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 0.3s;
+}
+
+.card-image-container:hover img {
+  transform: scale(1.02);
+}
+
+.card-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: all 0.2s;
+  z-index: 10;
+  font-size: 1.1rem;
+}
+
+.card-nav:hover {
+  background: var(--project-gradient);
+  color: white;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.card-nav:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.card-nav:disabled:hover {
+  background: white;
+  color: inherit;
+  transform: translateY(-50%);
+}
+
+.card-nav.prev { left: 0.5rem; }
+.card-nav.next { right: 0.5rem; }
+
+.card-content {
+  padding-top: 1rem;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.card-year {
+  background: var(--project-gradient);
+  color: white;
+  padding: 0.25rem 0.7rem;
+  border-radius: 20px;
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+.card-location {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  color: #7c3aed;
+  font-weight: 500;
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  margin-bottom: 0.35rem;
+  line-height: 1.3;
+}
+
+.card-description {
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.timeline-role-box {
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.08) 0%, rgba(124, 58, 237, 0.04) 100%);
+  border-left: 4px solid #7c3aed;
+  border-radius: 0 12px 12px 0;
+  padding: 1.25rem;
+  margin: 2rem 1.5rem 0;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.timeline-role-box p {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.timeline-role-box strong {
+  color: var(--color-text);
+}
+
+.timeline-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s;
+}
+
+.timeline-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.timeline-modal-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  transform: scale(0.9);
+  transition: transform 0.3s;
+}
+
+.timeline-modal.active .timeline-modal-content {
+  transform: scale(1);
+}
+
+.timeline-modal-content img {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.timeline-modal-close {
+  position: absolute;
+  top: -50px;
+  right: 0;
+  width: 44px;
+  height: 44px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.timeline-modal-close:hover {
+  background: #7c3aed;
+  color: white;
+  transform: scale(1.1);
+}
+
+.timeline-modal-caption {
+  color: white;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+}
+
+.timeline-modal-caption strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  margin-bottom: 0.25rem;
+}
+
+.timeline-modal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  transition: all 0.2s;
+}
+
+.timeline-modal-nav:hover {
+  background: var(--project-gradient);
+  color: white;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.timeline-modal-nav.prev { left: -70px; }
+.timeline-modal-nav.next { right: -70px; }
+
+@media (max-width: 900px) {
+  .split-container {
+    grid-template-columns: 1fr;
+    margin: 0 1rem;
+  }
+  .map-panel {
+    min-height: 250px;
+  }
+  .timeline-modal-nav.prev { left: 10px; }
+  .timeline-modal-nav.next { right: 10px; }
+}
+
+@media (max-width: 600px) {
+  .progress-label {
+    display: none;
+  }
+  .progress-dot {
+    width: 28px;
+    height: 28px;
+    font-size: 0.65rem;
+  }
+  .progress-container {
+    padding: 0 0.5rem;
+  }
+  .card-title {
+    font-size: 1rem;
+  }
+}
 .behind-scenes-card img {
   width: 100%;
   height: 490px;
@@ -618,6 +1239,7 @@
   align-items: center;
   justify-content: center;
 }
+
 </style>
 </head>
 <body>
@@ -670,7 +1292,7 @@
   <h2 class="content-title">The Challenge</h2>
   <div class="glass-card">
     <p class="content-text">New practice. No patients. No reputation. No referral network.</p>
-    <p class="content-text">We opened our doors in Phoenix where established chiropractors had decades of relationships locked down. The question wasn't just "how do we get patients?"—it was "how do we become the practice people think of first?"</p>
+    <p class="content-text">We opened our doors in both Mesa|Florence, Arizona and Salina|Manti, Utah where established chiropractors had settled in and claimed many of the open-minded patients. The question wasn't just "how do we get patients?"—it was "how do we become the practice people think of first?"</p>
     <p class="content-text">I knew we couldn't outspend the competition. We had to out-hustle and out-connect them.</p>
   </div>
 </div>
@@ -735,7 +1357,7 @@
       <li><strong>Community Day</strong> generated press coverage and dozens of new patient inquiries</li>
       <li><strong>Word of mouth</strong> became our primary growth engine—$0 ad spend</li>
     </ul>
-    <p class="content-text" style="margin-top: 1.5rem; font-weight: 600;">That small town practice launched <a href="https://gardnerchiropractic.net/" target="_blank" style="color: #7c3aed;">Gardner Chiropractic</a> and taught me many valuable lessons about people, entrepreneurship and is still operating 27+ years later.</p>
+    <p class="content-text" style="margin-top: 1.5rem; font-weight: 600;">That small town practice helped really launch <a href="https://gardnerchiropractic.net/" target="_blank" style="color: #7c3aed;">Gardner Chiropractic</a> and taught me many valuable lessons about people, entrepreneurship and is still operating 27+ years later.</p>
   </div>
 </div>
 
@@ -752,6 +1374,181 @@
             <span class="tag">Brand Building</span>
           </div>
         </div>
+<!-- ========== INTERACTIVE TIMELINE ========== -->
+<div class="timeline-section" id="growth-timeline">
+  <div class="timeline-header">
+    <span class="timeline-label">Business Growth Timeline</span>
+    <h2 class="timeline-title">From Arizona to Utah & Back: 5 Years of Growth</h2>
+    <p class="timeline-intro">I managed marketing, community outreach, and office operations as we grew from one practice to three locations—then moved on to a bigger opportunity.</p>
+  </div>
+  
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar">
+     <div class="progress-step active" onclick="goToStep(0)">
+        <div class="progress-dot">1</div>
+        <div class="progress-label">Aug '97</div>
+      </div>
+      <div class="progress-step" onclick="goToStep(1)">
+        <div class="progress-dot">2</div>
+        <div class="progress-label">Oct '98</div>
+      </div>
+      <div class="progress-step" onclick="goToStep(2)">
+        <div class="progress-dot">3</div>
+        <div class="progress-label">Nov '98</div>
+      </div>
+      <div class="progress-step" onclick="goToStep(3)">
+        <div class="progress-dot">4</div>
+        <div class="progress-label">Feb '99</div>
+      </div>
+      <div class="progress-step" onclick="goToStep(4)">
+        <div class="progress-dot">5</div>
+        <div class="progress-label">Nov '99</div>
+      </div>
+      <div class="progress-step" onclick="goToStep(5)">
+        <div class="progress-dot">6</div>
+        <div class="progress-label">Jan '00</div>
+      </div>
+      <div class="progress-step" onclick="goToStep(6)">
+        <div class="progress-dot">7</div>
+        <div class="progress-label">Dec '00</div>
+      </div>
+      <div class="progress-step" onclick="goToStep(7)">
+        <div class="progress-dot">8</div>
+        <div class="progress-label">Feb '01</div>
+      </div>
+      <div class="progress-step" onclick="goToStep(8)">
+        <div class="progress-dot">9</div>
+        <div class="progress-label">Jan '03</div>
+      </div>
+            </div>
+    </div>
+  </div>
+  
+  <div class="split-container">
+<div class="map-panel">
+      <div class="map-title">📍 The Journey</div>
+      <div class="map-area">
+        <svg class="map-svg" viewBox="0 0 300 420">
+          
+          <!-- UTAH - Top, large -->
+          <rect class="state-shape" x="45" y="20" width="190" height="160" rx="5"/>
+          <text class="state-label" x="140" y="50" text-anchor="middle" font-size="16">UTAH</text>
+          
+          <!-- Utah Icons -->
+          <text x="60" y="95" style="font-size:28px">⛪</text>
+          <text x="180" y="85" style="font-size:26px">🏔️</text>
+          <text x="120" y="130" style="font-size:26px">⛷️</text>
+          <text x="85" y="160" style="font-size:24px">🏂</text>
+          <text x="160" y="155" style="font-size:20px">🎿</text>
+          <text x="200" y="125" style="font-size:22px">🦌</text>
+          <text x="105" y="80" style="font-size:18px">🐾</text>
+          <text x="195" y="160" style="font-size:22px">🌲</text>
+          <text x="60" y="145" style="font-size:20px">❄️</text>
+          
+          <!-- ARIZONA - Bottom, large -->
+          <rect class="state-shape" x="20" y="200" width="210" height="185" rx="5"/>
+          <text class="state-label" x="125" y="370" text-anchor="middle" font-size="16">ARIZONA</text>
+          
+          <!-- Arizona Icons -->
+          <text x="35" y="265" style="font-size:34px">🌵</text>
+          <text x="175" y="290" style="font-size:32px">🌵</text>
+          <text x="100" y="335" style="font-size:28px">🤠</text>
+          <text x="45" y="350" style="font-size:24px">🦂</text>
+          <text x="150" y="355" style="font-size:22px">🦎</text>
+          <text x="185" y="340" style="font-size:20px">🐍</text>
+          <text x="85" y="280" style="font-size:22px">🏜️</text>
+          
+          <!-- Sun in corner -->
+          <text x="248" y="60" style="font-size:38px">☀️</text>
+          
+          <!-- ROUTE SEGMENTS - Hidden by default, revealed as you progress -->
+          <path id="route-1-2" class="route-segment route-hidden" d="M105,285 L120,265"/>
+          <path id="route-2-5" class="route-segment route-hidden" d="M120,265 L130,200 L135,150"/>
+          <path id="route-5-7" class="route-segment route-hidden" d="M135,150 L145,105"/>
+          <path id="route-7-9" class="route-segment route-hidden" d="M145,105 L135,150 L120,200 L95,270"/>
+          
+          <!-- MAP PINS -->
+          <!-- Mesa (Step 1) -->
+          <g class="map-pin-svg active" id="pin-mesa" onclick="goToStep(0)" data-step="0">
+            <circle class="pin-circle selected" cx="105" cy="285" r="16"/>
+            <text class="pin-number" x="105" y="290" text-anchor="middle">1</text>
+            <text class="pin-label-text" x="105" y="310" text-anchor="middle">Mesa</text>
+          </g>
+          
+          <!-- Florence (Steps 2,3,4) -->
+          <g class="map-pin-svg" id="pin-florence" onclick="goToStep(1)" data-step="1">
+            <circle class="pin-circle hidden" cx="120" cy="265" r="14"/>
+            <text class="pin-number hidden" x="120" y="270" text-anchor="middle"></text>
+            <text class="pin-label-text" x="120" y="288" text-anchor="middle">Florence</text>
+          </g>
+          
+          <!-- Salina (Steps 5,6) -->
+          <g class="map-pin-svg" id="pin-salina" onclick="goToStep(4)" data-step="4">
+            <circle class="pin-circle hidden" cx="135" cy="140" r="14"/>
+            <text class="pin-number hidden" x="135" y="145" text-anchor="middle"></text>
+            <text class="pin-label-text" x="135" y="163" text-anchor="middle">Salina</text>
+          </g>
+          
+          <!-- Manti (Steps 7,8) -->
+          <g class="map-pin-svg" id="pin-manti" onclick="goToStep(6)" data-step="6">
+            <circle class="pin-circle hidden" cx="150" cy="100" r="14"/>
+            <text class="pin-number hidden" x="150" y="105" text-anchor="middle"></text>
+            <text class="pin-label-text" x="150" y="123" text-anchor="middle">Manti</text>
+          </g>
+          
+          <!-- Phoenix (Step 9) -->
+          <g class="map-pin-svg" id="pin-phoenix" onclick="goToStep(8)" data-step="8">
+            <circle class="pin-circle hidden" cx="90" cy="275" r="14"/>
+            <text class="pin-number hidden" x="90" y="280" text-anchor="middle"></text>
+            <text class="pin-label-text" x="90" y="298" text-anchor="middle">Phoenix</text>
+          </g>
+          
+        </svg>
+        
+        <!-- Legend -->
+        <div class="map-legend">
+          <div class="legend-title">Legend</div>
+          <div class="legend-item"><div class="legend-dot selected"></div><span>Selected</span></div>
+          <div class="legend-item"><div class="legend-dot past"></div><span>Past</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card-panel">
+      <div class="card-image-container" onclick="openTimelineModal()">
+        <button class="card-nav prev" onclick="event.stopPropagation(); prevStep()">←</button>
+        <img id="cardImage" src="images/Mesa__AZ_Spanish_Ad.jpg" alt="Mesa image">
+        <button class="card-nav next" onclick="event.stopPropagation(); nextStep()">→</button>
+      </div>
+      <div class="card-content">
+        <div class="card-meta">
+          <span class="card-year" id="cardYear">October 1998</span>
+          <span class="card-location" id="cardLocation">📍 Florence, AZ</span>
+        </div>
+        <h3 class="card-title" id="cardTitle">Community Roots Before Opening Day</h3>
+        <p class="card-description" id="cardDesc">Pregnant with our 4th daughter, I participated in the Florence community Halloween event with our three little pigs. Building relationships before the practice even opened.</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="timeline-role-box">
+    <p><strong>My Role:</strong> As co-founder, I handled all marketing materials, coordinated community events and outreach, managed patient communications, and ran day-to-day office operations while we grew from one Arizona location to three locations across two states—then transitioned to a larger opportunity managing training across 15+ practices.</p>
+  </div>
+</div>
+
+<div class="timeline-modal" id="timelineModal" onclick="closeTimelineModal(event)">
+  <button class="timeline-modal-nav prev" onclick="event.stopPropagation(); prevStep()">←</button>
+  <div class="timeline-modal-content" onclick="event.stopPropagation()">
+    <button class="timeline-modal-close" onclick="closeTimelineModal()">×</button>
+    <img id="modalImage" src="" alt="Full image">
+    <div class="timeline-modal-caption">
+      <strong id="modalTitle"></strong>
+      <span id="modalMeta"></span>
+    </div>
+  </div>
+  <button class="timeline-modal-nav next" onclick="event.stopPropagation(); nextStep()">→</button>
+</div>
+<!-- ========== END INTERACTIVE TIMELINE ========== -->
+
 <div class="content-section behind-scenes">
           <h2 class="content-title">Behind the Scenes</h2>
           <p class="content-body">My entrepreneurial foundation started here—building a business while raising a young family. Four kids just under five at a grand opening? That was just Tuesday.</p>
@@ -1162,6 +1959,238 @@ function closePhotoModal() {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closePhotoModal();
 });
+</script>
+<!-- ========== TIMELINE JAVASCRIPT ========== -->
+<script>
+const timelineData = [
+  {
+    year: "August 1997",
+    location: "Mesa, AZ",
+    title: "First Practice — Fresh Out of School",
+    description: "Our first ad after Lance graduated from Parker College in Dallas. We rented space in Mesa for 9 months, reaching out to the Latino community in the East Valley.",
+    image: "images/Mesa__AZ_Spanish_Ad.jpg",
+    pin: "pin-mesa"
+  },
+  {
+    year: "October 1998",
+    location: "Florence, AZ",
+    title: "Community Roots Before Opening Day",
+    description: "Pregnant with our 4th daughter, I participated in the Florence community Halloween event with our three little pigs. Building relationships in Lance's hometown before the practice opened.",
+    image: "images/FlorenceCommunityHalloweenOctober1998.png",
+    pin: "pin-florence"
+  },
+  {
+    year: "November 1998",
+    location: "Florence, AZ",
+    title: "Hometown Practice Opens",
+    description: "Gardner Chiropractic opens in Lance's hometown of Florence. We quickly learned everyone wanted free care from the 'hometown boy' — finding paying patients was a real struggle.",
+    image: "images/GardnerChiropracticFlorenceArizonaNovember1998.jpg",
+    pin: "pin-florence"
+  },
+  {
+    year: "February 1999",
+    location: "Florence, AZ",
+    title: "Grand Opening Celebration",
+    description: "Official grand opening after our 4th daughter was born. We finally relocated to Florence from an hour away. That's Lance holding our newborn at the ribbon cutting — four kids under five.",
+    image: "images/GrandOpeningFebruary1999.jpg",
+    pin: "pin-florence"
+  },
+  {
+    year: "November 1999",
+    location: "Salina, UT",
+    title: "A Fresh Start in Utah",
+    description: "After struggling in Florence, a retired chiropractor pitched us on Salina — a small mining and trucking community in central Utah. We packed up and headed north for a fresh start.",
+    image: "images/November1999SalinaUtah.jpg",
+    pin: "pin-salina"
+  },
+  {
+    year: "January 2000",
+    location: "Salina, UT",
+    title: "Utah Grand Opening",
+    description: "Press coverage of our Salina opening. With our 5th child on the way, we struggled that first year to cover business and personal expenses in this small town.",
+    image: "images/GardnerChiropracticJanuary2000GrandOpening.jpg",
+    pin: "pin-salina"
+  },
+  {
+    year: "December 2000",
+    location: "Manti, UT",
+    title: "Second Utah Location",
+    description: "We saw opportunity in low rent in neighboring Manti. Living in Gunnison (between both towns), Lance split the week between locations. Family photo shows all five kids by now.",
+    image: "images/December2000-Manti-Utah.jpg",
+    pin: "pin-manti"
+  },
+  {
+    year: "February 2001",
+    location: "Manti & Salina, UT",
+    title: "Multi-Location Operations",
+    description: "Professional ad I designed showing both clinic locations. The culmination of building two practices in rural Utah while raising five children.",
+    image: "images/GardnerChiropracticSalinaMantiUtahFebruary2001.jpg",
+    pin: "pin-manti"
+  },
+  {
+    year: "January 2003",
+    location: "Phoenix, AZ",
+    title: "New Chapter — Full Circle to Arizona",
+    description: "Dr. Row recruited Lance for his Spanish fluency to serve Phoenix's Hispanic community. I continued handling marketing while transitioning to launch Arizona Esthetics Institute full-time.",
+    image: "images/GrandOpeningFebruary1999.jpg",
+    pin: "pin-phoenix"
+  }
+];
+
+let currentStep = 0;
+
+// Location to steps mapping
+const locationSteps = {
+  'mesa': [0],
+  'florence': [1, 2, 3],
+  'salina': [4, 5],
+  'manti': [6, 7],
+  'phoenix': [8]
+};
+
+// Route visibility - routes only show if you've reached them
+const routeVisibility = {
+  0: [],
+  1: ['route-1-2'],
+  2: ['route-1-2'],
+  3: ['route-1-2'],
+  4: ['route-1-2', 'route-2-5'],
+  5: ['route-1-2', 'route-2-5'],
+  6: ['route-1-2', 'route-2-5', 'route-5-7'],
+  7: ['route-1-2', 'route-2-5', 'route-5-7'],
+  8: ['route-1-2', 'route-2-5', 'route-5-7', 'route-7-9']
+};
+
+function updateTimeline() {
+  const data = timelineData[currentStep];
+  
+  // Update progress bar
+  document.querySelectorAll('.progress-step').forEach((step, i) => {
+    step.classList.remove('active', 'completed');
+    if (i < currentStep) step.classList.add('completed');
+    if (i === currentStep) step.classList.add('active');
+  });
+  
+  // Update card content
+  document.getElementById('cardImage').src = data.image;
+  document.getElementById('cardYear').textContent = data.year;
+  document.getElementById('cardLocation').textContent = '📍 ' + data.location;
+  document.getElementById('cardTitle').textContent = data.title;
+  document.getElementById('cardDesc').textContent = data.description;
+  
+  // Update modal content
+  document.getElementById('modalImage').src = data.image;
+  document.getElementById('modalTitle').textContent = data.title;
+  document.getElementById('modalMeta').textContent = data.year + ' • ' + data.location;
+  
+  // Update map pins
+  updateMapPins(currentStep);
+  
+  // Update route visibility
+  updateRouteVisibility(currentStep);
+  
+  // Update nav buttons
+  const prevBtns = document.querySelectorAll('.card-nav.prev, .timeline-modal-nav.prev');
+  const nextBtns = document.querySelectorAll('.card-nav.next, .timeline-modal-nav.next');
+  prevBtns.forEach(btn => btn.disabled = currentStep === 0);
+  nextBtns.forEach(btn => btn.disabled = currentStep === timelineData.length - 1);
+}
+
+function updateMapPins(step) {
+  const pins = ['mesa', 'florence', 'salina', 'manti', 'phoenix'];
+  
+  pins.forEach(pinName => {
+    const pin = document.getElementById('pin-' + pinName);
+    if (!pin) return;
+    
+    const circle = pin.querySelector('.pin-circle');
+    const number = pin.querySelector('.pin-number');
+    const stepsForLocation = locationSteps[pinName] || [];
+    const minStepForLocation = Math.min(...stepsForLocation);
+    
+    // Reset classes
+    circle.classList.remove('selected', 'past', 'hidden');
+    if (number) number.classList.remove('hidden');
+    pin.classList.remove('active');
+    
+    if (stepsForLocation.includes(step)) {
+      // Currently selected location
+      circle.classList.add('selected');
+      pin.classList.add('active');
+    } else if (minStepForLocation < step) {
+      // Past location
+      circle.classList.add('past');
+    } else {
+      // Future location - hide it
+      circle.classList.add('hidden');
+      if (number) number.classList.add('hidden');
+    }
+  });
+}
+
+function updateRouteVisibility(step) {
+  const allRoutes = ['route-1-2', 'route-2-5', 'route-5-7', 'route-7-9'];
+  const visibleRoutes = routeVisibility[step] || [];
+  
+  allRoutes.forEach(routeId => {
+    const route = document.getElementById(routeId);
+    if (!route) return;
+    
+    route.classList.remove('route-past', 'route-current', 'route-hidden');
+    
+    if (visibleRoutes.includes(routeId)) {
+      const isLastSegment = visibleRoutes.indexOf(routeId) === visibleRoutes.length - 1;
+      if (isLastSegment && visibleRoutes.length > 0) {
+        route.classList.add('route-current'); // Animated
+      } else {
+        route.classList.add('route-past'); // Solid
+      }
+    } else {
+      route.classList.add('route-hidden');
+    }
+  });
+}
+
+function goToStep(step) {
+  if (step >= 0 && step < timelineData.length) {
+    currentStep = step;
+    updateTimeline();
+  }
+}
+
+function prevStep() {
+  if (currentStep > 0) {
+    currentStep--;
+    updateTimeline();
+  }
+}
+
+function nextStep() {
+  if (currentStep < timelineData.length - 1) {
+    currentStep++;
+    updateTimeline();
+  }
+}
+
+function openTimelineModal() {
+  document.getElementById('timelineModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeTimelineModal(e) {
+  if (!e || e.target === document.getElementById('timelineModal')) {
+    document.getElementById('timelineModal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeTimelineModal();
+  if (e.key === 'ArrowLeft') prevStep();
+  if (e.key === 'ArrowRight') nextStep();
+});
+
+document.addEventListener('DOMContentLoaded', updateTimeline);
 </script>
 </body>
 </html>
