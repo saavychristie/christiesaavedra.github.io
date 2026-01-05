@@ -746,27 +746,14 @@
   letter-spacing: 2px;
 }
 
-/* Simple dotted route line */
-.route-line {
-  fill: none;
-  stroke: #8b7355;
-  stroke-width: 3;
-  stroke-dasharray: 8 6;
-  stroke-linecap: round;
-  opacity: 0.7;
-}
-
 .map-pin-svg {
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: all 0.4s ease;
+  transform-origin: center bottom;
 }
 
 .map-pin-svg:hover {
   transform: scale(1.1);
-}
-
-.map-pin-svg.active {
-  transform: scale(1.15);
 }
 
 .pin-flag {
@@ -823,13 +810,10 @@
 .legend-flag {
   width: 0;
   height: 0;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-left: 10px solid;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 8px solid;
 }
-
-.legend-flag.past { border-left-color: #b45309; }
-.legend-flag.selected { border-left-color: #7c3aed; }
 
 .card-panel {
   padding: 1.5rem;
@@ -1121,6 +1105,10 @@
     min-height: 280px;
     max-height: 280px;
   }
+  .map-legend {
+    padding: 0.35rem 0.45rem;
+    font-size: 0.48rem;
+  }
   .timeline-modal-nav.prev { left: 10px; }
   .timeline-modal-nav.next { right: 10px; }
 }
@@ -1168,6 +1156,20 @@
   }
   .timeline-title {
     font-size: 1.25rem;
+  }
+  .map-legend {
+    padding: 0.3rem 0.4rem;
+    font-size: 0.45rem;
+    bottom: 30px;
+    right: 5px;
+  }
+  .legend-title {
+    font-size: 0.45rem;
+  }
+  .legend-flag {
+    border-top: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    border-left: 6px solid;
   }
 }
 
@@ -1499,57 +1501,57 @@
           <!-- Sun in corner -->
           <text x="248" y="60" style="font-size:38px">☀️</text>
           
-          <!-- Simple dotted route line: Mesa → Florence → Salina → Manti → Phoenix -->
-          <polyline class="route-line" points="105,295 120,275 135,150 150,110 90,285"/>
-          
-          <!-- MAP PINS - Flag style -->
-          <!-- 1. Mesa -->
-          <g class="map-pin-svg" id="pin-mesa" onclick="goToStep(0)">
-            <line class="pin-pole" x1="105" y1="295" x2="105" y2="270" stroke="#5c4033" stroke-width="2"/>
-            <polygon class="pin-flag" points="105,270 125,277 105,284" fill="#7c3aed"/>
-            <circle class="pin-base" cx="105" cy="295" r="4" fill="#5c4033"/>
+          <!-- MAP PINS - Each location has unique color, hidden by default -->
+          <!-- 1. Mesa (Purple) - Steps 0+ -->
+          <g class="map-pin-svg" id="pin-mesa" onclick="goToStep(0)" style="opacity: 0; transition: opacity 0.4s ease;">
+            <line class="pin-pole" x1="105" y1="295" x2="105" y2="265" stroke="#5c4033" stroke-width="2"/>
+            <polygon class="pin-flag" points="105,265 130,274 105,283" fill="#7c3aed"/>
+            <circle class="pin-base" cx="105" cy="295" r="5" fill="#5c4033"/>
             <text class="pin-label-text" x="105" y="308" text-anchor="middle">Mesa</text>
           </g>
           
-          <!-- 2. Florence -->
-          <g class="map-pin-svg" id="pin-florence" onclick="goToStep(1)">
-            <line class="pin-pole" x1="120" y1="275" x2="120" y2="250" stroke="#5c4033" stroke-width="2"/>
-            <polygon class="pin-flag" points="120,250 140,257 120,264" fill="#7c3aed"/>
-            <circle class="pin-base" cx="120" cy="275" r="4" fill="#5c4033"/>
-            <text class="pin-label-text" x="120" y="288" text-anchor="middle">Florence</text>
+          <!-- 2. Florence (Teal) - Steps 1+ -->
+          <g class="map-pin-svg" id="pin-florence" onclick="goToStep(1)" style="opacity: 0; transition: opacity 0.4s ease;">
+            <line class="pin-pole" x1="140" y1="270" x2="140" y2="240" stroke="#5c4033" stroke-width="2"/>
+            <polygon class="pin-flag" points="140,240 165,249 140,258" fill="#0d9488"/>
+            <circle class="pin-base" cx="140" cy="270" r="5" fill="#5c4033"/>
+            <text class="pin-label-text" x="140" y="283" text-anchor="middle">Florence</text>
           </g>
           
-          <!-- 3. Salina -->
-          <g class="map-pin-svg" id="pin-salina" onclick="goToStep(4)">
-            <line class="pin-pole" x1="135" y1="150" x2="135" y2="125" stroke="#5c4033" stroke-width="2"/>
-            <polygon class="pin-flag" points="135,125 155,132 135,139" fill="#7c3aed"/>
-            <circle class="pin-base" cx="135" cy="150" r="4" fill="#5c4033"/>
+          <!-- 3. Salina (Red) - Steps 4+ -->
+          <g class="map-pin-svg" id="pin-salina" onclick="goToStep(4)" style="opacity: 0; transition: opacity 0.4s ease;">
+            <line class="pin-pole" x1="135" y1="150" x2="135" y2="120" stroke="#5c4033" stroke-width="2"/>
+            <polygon class="pin-flag" points="135,120 160,129 135,138" fill="#dc2626"/>
+            <circle class="pin-base" cx="135" cy="150" r="5" fill="#5c4033"/>
             <text class="pin-label-text" x="135" y="163" text-anchor="middle">Salina</text>
           </g>
           
-          <!-- 4. Manti -->
-          <g class="map-pin-svg" id="pin-manti" onclick="goToStep(6)">
-            <line class="pin-pole" x1="150" y1="110" x2="150" y2="85" stroke="#5c4033" stroke-width="2"/>
-            <polygon class="pin-flag" points="150,85 170,92 150,99" fill="#7c3aed"/>
-            <circle class="pin-base" cx="150" cy="110" r="4" fill="#5c4033"/>
-            <text class="pin-label-text" x="150" y="123" text-anchor="middle">Manti</text>
+          <!-- 4. Manti (Blue) - Steps 6+ -->
+          <g class="map-pin-svg" id="pin-manti" onclick="goToStep(6)" style="opacity: 0; transition: opacity 0.4s ease;">
+            <line class="pin-pole" x1="165" y1="100" x2="165" y2="70" stroke="#5c4033" stroke-width="2"/>
+            <polygon class="pin-flag" points="165,70 190,79 165,88" fill="#2563eb"/>
+            <circle class="pin-base" cx="165" cy="100" r="5" fill="#5c4033"/>
+            <text class="pin-label-text" x="165" y="113" text-anchor="middle">Manti</text>
           </g>
           
-          <!-- 5. Phoenix -->
-          <g class="map-pin-svg" id="pin-phoenix" onclick="goToStep(8)">
-            <line class="pin-pole" x1="90" y1="285" x2="90" y2="260" stroke="#5c4033" stroke-width="2"/>
-            <polygon class="pin-flag" points="90,260 110,267 90,274" fill="#7c3aed"/>
-            <circle class="pin-base" cx="90" cy="285" r="4" fill="#5c4033"/>
-            <text class="pin-label-text" x="90" y="298" text-anchor="middle">Phoenix</text>
+          <!-- 5. Phoenix (Orange) - Step 8 -->
+          <g class="map-pin-svg" id="pin-phoenix" onclick="goToStep(8)" style="opacity: 0; transition: opacity 0.4s ease;">
+            <line class="pin-pole" x1="70" y1="280" x2="70" y2="250" stroke="#5c4033" stroke-width="2"/>
+            <polygon class="pin-flag" points="70,250 95,259 70,268" fill="#d97706"/>
+            <circle class="pin-base" cx="70" cy="280" r="5" fill="#5c4033"/>
+            <text class="pin-label-text" x="70" y="293" text-anchor="middle">Phoenix</text>
           </g>
           
         </svg>
         
-        <!-- Legend -->
+        <!-- Legend - Shows all location colors -->
         <div class="map-legend">
-          <div class="legend-title">Legend</div>
-          <div class="legend-item"><div class="legend-flag selected"></div><span>Selected</span></div>
-          <div class="legend-item"><div class="legend-flag past"></div><span>Past</span></div>
+          <div class="legend-title">Locations</div>
+          <div class="legend-item"><div class="legend-flag" style="border-left-color: #7c3aed;"></div><span>Mesa</span></div>
+          <div class="legend-item"><div class="legend-flag" style="border-left-color: #0d9488;"></div><span>Florence</span></div>
+          <div class="legend-item"><div class="legend-flag" style="border-left-color: #dc2626;"></div><span>Salina</span></div>
+          <div class="legend-item"><div class="legend-flag" style="border-left-color: #2563eb;"></div><span>Manti</span></div>
+          <div class="legend-item"><div class="legend-flag" style="border-left-color: #d97706;"></div><span>Phoenix</span></div>
         </div>
       </div>
     </div>
@@ -2080,17 +2082,31 @@ const timelineData = [
 
 let currentStep = 0;
 
-// Map timeline steps to pin locations (1-5)
+// Which flags should be visible at each step
+// As you progress, more flags appear. Going back hides them.
+const flagVisibility = {
+  0: ['pin-mesa'],                                                    // Step 1: Just Mesa
+  1: ['pin-mesa', 'pin-florence'],                                    // Step 2: + Florence
+  2: ['pin-mesa', 'pin-florence'],                                    // Step 3
+  3: ['pin-mesa', 'pin-florence'],                                    // Step 4
+  4: ['pin-mesa', 'pin-florence', 'pin-salina'],                      // Step 5: + Salina
+  5: ['pin-mesa', 'pin-florence', 'pin-salina'],                      // Step 6
+  6: ['pin-mesa', 'pin-florence', 'pin-salina', 'pin-manti'],         // Step 7: + Manti
+  7: ['pin-mesa', 'pin-florence', 'pin-salina', 'pin-manti'],         // Step 8
+  8: ['pin-mesa', 'pin-florence', 'pin-salina', 'pin-manti', 'pin-phoenix'] // Step 9: All flags!
+};
+
+// Map step to current active pin
 const stepToPin = {
-  0: 'pin-mesa',      // Step 1 - Mesa
-  1: 'pin-florence',  // Steps 2,3,4 - Florence
+  0: 'pin-mesa',
+  1: 'pin-florence',
   2: 'pin-florence',
   3: 'pin-florence',
-  4: 'pin-salina',    // Steps 5,6 - Salina
+  4: 'pin-salina',
   5: 'pin-salina',
-  6: 'pin-manti',     // Steps 7,8 - Manti
+  6: 'pin-manti',
   7: 'pin-manti',
-  8: 'pin-phoenix'    // Step 9 - Phoenix
+  8: 'pin-phoenix'
 };
 
 function updateTimeline() {
@@ -2115,8 +2131,8 @@ function updateTimeline() {
   document.getElementById('modalTitle').textContent = data.title;
   document.getElementById('modalMeta').textContent = data.year + ' • ' + data.location;
   
-  // Highlight current pin on map
-  highlightCurrentPin();
+  // Update map flags
+  updateMapFlags();
   
   // Update nav buttons
   const prevBtns = document.querySelectorAll('.card-nav.prev, .timeline-modal-nav.prev');
@@ -2125,20 +2141,31 @@ function updateTimeline() {
   nextBtns.forEach(btn => btn.disabled = currentStep === timelineData.length - 1);
 }
 
-function highlightCurrentPin() {
-  const currentPinId = stepToPin[currentStep];
+function updateMapFlags() {
   const allPins = ['pin-mesa', 'pin-florence', 'pin-salina', 'pin-manti', 'pin-phoenix'];
+  const visiblePins = flagVisibility[currentStep] || [];
+  const currentPinId = stepToPin[currentStep];
   
   allPins.forEach(pinId => {
     const pin = document.getElementById(pinId);
     if (!pin) return;
-    const flag = pin.querySelector('.pin-flag');
     
-    if (pinId === currentPinId) {
-      flag.setAttribute('fill', '#7c3aed'); // Purple - selected
-      pin.style.transform = 'scale(1.15)';
+    // Show or hide based on progress
+    if (visiblePins.includes(pinId)) {
+      pin.style.opacity = '1';
+      pin.style.pointerEvents = 'auto';
+      
+      // Scale up current location
+      if (pinId === currentPinId) {
+        pin.style.transform = 'scale(1.2)';
+        pin.style.filter = 'drop-shadow(0 4px 8px rgba(0,0,0,0.3))';
+      } else {
+        pin.style.transform = 'scale(1)';
+        pin.style.filter = 'none';
+      }
     } else {
-      flag.setAttribute('fill', '#b45309'); // Amber - other
+      pin.style.opacity = '0';
+      pin.style.pointerEvents = 'none';
       pin.style.transform = 'scale(1)';
     }
   });
