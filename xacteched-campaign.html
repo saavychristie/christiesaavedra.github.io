@@ -48,90 +48,57 @@
     .hero-title { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3rem); font-weight: 400; line-height: 1.2; margin-bottom: 1.5rem; }
     .hero-summary { font-size: 1.15rem; color: var(--color-text-secondary); max-width: 650px; margin-bottom: 2.5rem; }
     .results-banner { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-    .result-card { background: white; border-radius: 12px; padding: 1.25rem 1.75rem; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.04); }
-    .result-number { font-family: var(--font-display); font-size: 1.75rem; color: #059669; }
-    .result-label { font-size: 0.8rem; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.03em; margin-top: 0.25rem; }
-    .content { padding: 2rem 2rem 4rem; }
-    .content-container { max-width: var(--max-width); margin: 0 auto; }
-    .content-section { margin-bottom: 4rem; }
-    .content-title { font-family: var(--font-display); font-size: 1.75rem; font-weight: 400; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid #e7e5e4; }
-    .content-text { color: var(--color-text-secondary); margin-bottom: 1rem; }
-    .content-list { list-style: none; margin-top: 1.5rem; }
-    .content-list li { position: relative; padding-left: 1.5rem; margin-bottom: 0.75rem; color: var(--color-text-secondary); }
-    .content-list li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 6px; height: 6px; background: #059669; border-radius: 50%; }
-    .glass-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-radius: 16px; padding: 2rem; border: 1px solid rgba(0,0,0,0.04); box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
-    
-    /* Side-by-side deliverables layout */
+    .result-card { background: white; border-radius: 12px; padding: 1.25rem 1.5rem; min-width: 140px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.04); }
+    .result-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--project-gradient); border-radius: 12px 12px 0 0; }
+    .result-number { font-family: var(--font-display); font-size: 1.75rem; color: #059669; line-height: 1.2; }
+    .result-label { font-size: 0.85rem; color: var(--color-text-secondary); margin-top: 0.25rem; }
+    .content { max-width: var(--max-width); margin: 0 auto; padding: 2rem; }
+    .content-section { margin-bottom: 3rem; }
+    .content-title { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1rem; color: var(--color-text); }
+    .content-body { color: var(--color-text-secondary); }
+    .content-body p { margin-bottom: 1rem; }
+    .glass-card { background: white; border-radius: 16px; padding: 1.75rem; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.04); position: relative; }
+    .glass-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--project-gradient); border-radius: 16px 16px 0 0; }
+    .content-list { list-style: none; padding: 0; }
+    .content-list li { padding: 0.5rem 0; padding-left: 1.5rem; position: relative; color: var(--color-text-secondary); }
+    .content-list li::before { content: '→'; position: absolute; left: 0; color: #059669; font-weight: bold; }
+    .content-list li strong { color: var(--color-text); }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid #f0f0f0; }
+    .tag { padding: 0.35rem 0.75rem; background: linear-gradient(135deg, rgba(5, 150, 105, 0.08) 0%, rgba(16, 185, 129, 0.08) 100%); color: #059669; font-size: 0.8rem; border-radius: 6px; font-weight: 500; }
     .deliverables-row { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; }
-    .deliverable-card-half { flex: 1; background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.04); }
-    .deliverable-card-half img { width: 100%; height: auto; display: block; }
-    .deliverable-card-half .deliverable-info { padding: 1.25rem; }
-    .deliverable-card-half .deliverable-info h3 { font-family: var(--font-display); font-size: 1.1rem; margin: 0.5rem 0; }
-    .deliverable-card-half .deliverable-info p { font-size: 0.85rem; color: var(--color-text-secondary); line-height: 1.5; }
-    
-    /* Foundation billboard */
-    .deliverable-card-foundation { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.04); }
-    .deliverable-card-foundation img { width: 100%; height: auto; display: block; }
-    .deliverable-card-foundation .deliverable-info { padding: 1.5rem 2rem; text-align: center; }
-    .deliverable-card-foundation .deliverable-info h3 { font-family: var(--font-display); font-size: 1.25rem; margin: 0.5rem 0; }
-    .deliverable-card-foundation .deliverable-info p { font-size: 0.9rem; color: var(--color-text-secondary); max-width: 600px; margin: 0 auto; }
-    .deliverable-card-foundation .deliverable-info ul { list-style: none; display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; flex-wrap: wrap; }
-    .deliverable-card-foundation .deliverable-info ul li { font-size: 0.85rem; color: var(--color-text-secondary); position: relative; padding-left: 1rem; }
-    .deliverable-card-foundation .deliverable-info ul li::before { content: '✓'; position: absolute; left: 0; color: #059669; font-weight: 600; }
-    
-    /* Standard deliverable card (for other sections) */
-    .deliverable-card { background: white; border-radius: 16px; overflow: hidden; margin-bottom: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.06); display: flex; flex-direction: column; border: 1px solid rgba(0,0,0,0.04); }
-    .deliverable-card img { width: 100%; height: auto; }
-    .deliverable-info { padding: 1.5rem 2rem; }
-    .deliverable-type { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #059669; font-weight: 600; }
-    .deliverable-info h3 { font-family: var(--font-display); font-size: 1.25rem; margin: 0.5rem 0; }
-    .deliverable-info p { color: var(--color-text-secondary); font-size: 0.95rem; }
-    .deliverable-info ul { list-style: none; margin-top: 1rem; }
-    .deliverable-info ul li { position: relative; padding-left: 1.25rem; margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--color-text-secondary); }
-    .deliverable-info ul li::before { content: '→'; position: absolute; left: 0; color: #059669; }
-    .stats-box { background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: white; padding: 2rem; border-radius: 16px; margin-top: 1.5rem; }
-    .stats-box p { margin-bottom: 0.75rem; font-size: 1.1rem; }
-    .stats-box strong { font-size: 1.5rem; }
-    .logo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 2rem 0; }
-    .logo-card { background: white; border-radius: 16px; padding: 2rem; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.04); }
-    .logo-card img { max-width: 180px; height: auto; margin-bottom: 1rem; }
-    .logo-card h4 { font-family: var(--font-display); font-size: 1.1rem; margin: 0.5rem 0; }
-    .logo-card p { font-size: 0.85rem; color: var(--color-text-secondary); }
-    .timeline { position: relative; padding-left: 2rem; margin: 2rem 0; }
-    .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, #059669, #10b981); }
-    .timeline-item { position: relative; margin-bottom: 2rem; }
-    .timeline-item::before { content: ''; position: absolute; left: -2rem; top: 0.4rem; width: 10px; height: 10px; background: #059669; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.2); }
-    .timeline-date { font-size: 0.85rem; color: #059669; font-weight: 600; margin-bottom: 0.25rem; }
-    .timeline-content { color: var(--color-text-secondary); }
-    .quote-box { background: #f5f5f4; border-left: 4px solid #059669; padding: 1.5rem 2rem; margin-top: 2rem; border-radius: 0 12px 12px 0; }
-    .quote-box p { font-style: italic; font-size: 1.1rem; color: var(--color-text); margin-bottom: 0.75rem; }
-    .quote-source { font-size: 0.85rem; color: var(--color-text-secondary); }
-    .press-card { background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.04); }
-    .press-card h3 { font-family: var(--font-display); font-size: 1.25rem; margin: 0.5rem 0 1rem; }
-    .press-card blockquote { font-style: italic; color: var(--color-text-secondary); padding-left: 1rem; border-left: 3px solid #e7e5e4; margin-bottom: 1rem; }
-    .press-card a { color: #059669; text-decoration: none; font-weight: 500; }
-    .press-card a:hover { text-decoration: underline; }
-    .testimonial-card { background: white; border-radius: 16px; padding: 2rem; margin-bottom: 1.5rem; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.04); }
-    .testimonial-card h3 { font-family: var(--font-display); font-size: 1.15rem; margin: 0.5rem 0; }
-    .testimonial-card blockquote { font-style: italic; color: var(--color-text-secondary); padding-left: 1rem; border-left: 3px solid #059669; margin: 1rem 0; }
-    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
-    .tag { background: rgba(5, 150, 105, 0.1); color: #059669; padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 500; }
-    .demo-card { background: linear-gradient(135deg, #059669 0%, #10b981 100%); border-radius: 16px; padding: 3rem; text-align: center; color: white; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; }
-    .demo-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(5, 150, 105, 0.3); }
-    .demo-icon { margin-bottom: 1rem; }
-    .demo-icon svg { opacity: 0.9; }
-    .demo-text h3 { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 0.5rem; }
-    .demo-text p { opacity: 0.9; }
-    .cta-section { text-align: center; padding: 3rem 0; }
-    .btn-cta { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--color-text); color: white; padding: 1rem 2rem; border-radius: 30px; text-decoration: none; font-weight: 500; transition: all 0.3s; }
-    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
-    .demo-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; padding: 2rem; }
-    .demo-modal.active { display: flex; }
-    .demo-modal-content { background: white; border-radius: 16px; max-width: 900px; width: 100%; max-height: 90vh; overflow: auto; position: relative; }
-    .demo-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--color-text-secondary); z-index: 10; }
-    .demo-placeholder { padding: 4rem; text-align: center; color: var(--color-text-secondary); }
+    .deliverable-card { background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.04); overflow: hidden; flex: 1; }
+    .deliverable-card-half { flex: 0 0 calc(50% - 0.75rem); }
+    .deliverable-visual { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 1.5rem; display: flex; align-items: center; justify-content: center; min-height: 200px; }
+    .deliverable-visual img { max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+    .deliverable-visual-foundation { background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%); }
+    .deliverable-info { padding: 1.25rem; }
+    .deliverable-type { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: #059669; margin-bottom: 0.5rem; font-weight: 600; }
+    .deliverable-title { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--color-text); }
+    .deliverable-desc { font-size: 0.9rem; color: var(--color-text-secondary); }
+    .deliverable-card-foundation .deliverable-info ul { list-style: none; padding: 0; margin-top: 0.75rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .deliverable-card-foundation .deliverable-info li { font-size: 0.8rem; color: var(--color-text-secondary); display: flex; align-items: center; gap: 0.35rem; }
+    .deliverable-card-foundation .deliverable-info li svg { width: 14px; height: 14px; color: #059669; flex-shrink: 0; }
+    .logo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 1.5rem; }
+    .logo-item { background: white; border-radius: 12px; padding: 1.5rem; box-shadow: 0 2px 12px rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.04); display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+    .logo-img-container { height: 80px; display: flex; align-items: center; justify-content: center; }
+    .logo-img-container img { max-height: 100%; max-width: 100%; object-fit: contain; }
+    .logo-caption { font-size: 0.8rem; color: var(--color-text-secondary); text-align: center; }
+    .demo-card { background: linear-gradient(135deg, #059669 0%, #10b981 100%); border-radius: 16px; padding: 2rem; color: white; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; display: flex; align-items: center; gap: 1.5rem; }
+    .demo-card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(5, 150, 105, 0.3); }
+    .demo-icon { width: 80px; height: 80px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .demo-text h3 { font-family: var(--font-display); font-size: 1.25rem; margin-bottom: 0.5rem; }
+    .demo-text p { opacity: 0.9; font-size: 0.95rem; }
+    .demo-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s; }
+    .demo-modal.active { opacity: 1; visibility: visible; }
+    .demo-modal-content { background: white; border-radius: 16px; width: 90%; max-width: 900px; max-height: 85vh; overflow: hidden; position: relative; }
+    .demo-close { position: absolute; top: 1rem; right: 1rem; width: 40px; height: 40px; border: none; background: #f3f4f6; border-radius: 50%; cursor: pointer; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; z-index: 10; }
+    .demo-close:hover { background: #e5e7eb; }
+    .demo-placeholder { padding: 4rem 2rem; text-align: center; color: var(--color-text-secondary); }
     .demo-placeholder svg { margin-bottom: 1rem; opacity: 0.5; }
-    .demo-placeholder h3 { font-family: var(--font-display); color: var(--color-text); margin-bottom: 0.5rem; }
+    .demo-placeholder h3 { font-family: var(--font-display); font-size: 1.25rem; color: var(--color-text); margin-bottom: 0.5rem; }
+    .cta-section { text-align: center; padding: 2rem 0; }
+    .btn-cta { display: inline-flex; align-items: center; gap: 0.5rem; padding: 1rem 2rem; background: linear-gradient(135deg, #1E40AF 0%, #0D9488 100%); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; transition: all 0.3s; }
+    .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(30, 64, 175, 0.3); }
     .footer { padding: 3rem 2rem; border-top: 1px solid #e7e5e4; }
     .footer-content { max-width: var(--max-width); margin: 0 auto; text-align: center; }
     .footer-nav { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; }
@@ -139,8 +106,7 @@
     .footer-nav a:hover { color: var(--color-text); }
     .footer-copyright { font-size: 0.85rem; color: var(--color-text-secondary); }
     .back-to-top { position: fixed; bottom: 2rem; right: 2rem; width: 44px; height: 44px; background: white; color: var(--color-text); border: 1px solid #e7e5e4; border-radius: 50%; cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.3s; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); z-index: 100; }
-   .back-to-top { opacity: 1 !important; visibility: visible !important; }
-.back-to-top.visible { opacity: 1; visibility: visible; }
+    .back-to-top.visible { opacity: 1; visibility: visible; }
     .back-to-top:hover { background: var(--color-text); color: white; border-color: var(--color-text); }
     
     /* Responsive styles */
@@ -157,650 +123,315 @@
       .results-banner { display: grid; grid-template-columns: repeat(2, 1fr); } 
       .footer-nav { flex-direction: column; gap: 1rem; } 
     }
-  /* ========== FLOATING STICKY NOTE WIDGET ========== */
-.sticky-widget {
-  position: fixed;
-  bottom: 2rem;
-  left: 2rem;
-  z-index: 9999;
-  font-family: 'IBM Plex Sans', sans-serif;
-}
-
-/* Minimized State - Just the icon */
-.sticky-minimized {
-  width: 56px;
-  height: 56px;
-  background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 4px 20px rgba(217, 119, 6, 0.4);
-  transition: all 0.3s ease;
-  position: relative;
-}
-.sticky-minimized:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 25px rgba(217, 119, 6, 0.5);
-}
-.sticky-minimized svg {
-  width: 26px;
-  height: 26px;
-  color: white;
-}
-.sticky-minimized .note-count {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  width: 22px;
-  height: 22px;
-  background: #1E40AF;
-  border-radius: 50%;
-  border: 2px solid white;
-  color: white;
-  font-size: 0.7rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.sticky-minimized .tooltip {
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-left: 0.75rem;
-  background: #1C1917;
-  color: white;
-  padding: 0.5rem 0.75rem;
-  border-radius: 8px;
-  font-size: 0.8rem;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s;
-}
-.sticky-minimized:hover .tooltip {
-  opacity: 1;
-}
-.sticky-minimized .tooltip::after {
-  content: '';
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  border: 6px solid transparent;
-  border-left-color: #1C1917;
-}
-/* Expanded State - Full sticky note */
-.sticky-expanded {
-  width: 320px;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
-  overflow: hidden;
-  transform-origin: bottom right;
-  animation: expandIn 0.3s ease;
-}
-@keyframes expandIn {
-  from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-.sticky-header {
-  background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
-  color: white;
-  padding: 0.75rem 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.sticky-header-left {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.sticky-header-left svg {
-  width: 18px;
-  height: 18px;
-}
-.sticky-header-title {
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-.sticky-header-actions {
-  display: flex;
-  gap: 0.25rem;
-}
-.sticky-header-btn {
-  width: 28px;
-  height: 28px;
-  border: none;
-  background: rgba(255,255,255,0.2);
-  border-radius: 6px;
-  color: white;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s;
-}
-.sticky-header-btn:hover {
-  background: rgba(255,255,255,0.3);
-}
-.sticky-header-btn svg {
-  width: 16px;
-  height: 16px;
-}
-
-.sticky-project {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid #E7E5E4;
-  background: #fefce8;
-}
-.sticky-project-label {
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #a16207;
-  margin-bottom: 0.25rem;
-}
-.sticky-project-name {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1rem;
-  color: #1C1917;
-}
-
-.sticky-body {
-  padding: 1rem;
-}
-.sticky-textarea {
-  width: 100%;
-  min-height: 120px;
-  padding: 0.75rem;
-  border: 1px solid #E7E5E4;
-  border-radius: 8px;
-  font-family: inherit;
-  font-size: 0.85rem;
-  resize: vertical;
-  transition: border-color 0.2s;
-}
-.sticky-textarea:focus {
-  outline: none;
-  border-color: #d97706;
-}
-.sticky-textarea::placeholder {
-  color: #9ca3af;
-}
-
-.sticky-footer {
-  padding: 0.75rem 1rem;
-  border-top: 1px solid #E7E5E4;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #fafafa;
-}
-.sticky-status {
-  font-size: 0.75rem;
-  color: #059669;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.sticky-status.visible { opacity: 1; }
-.sticky-status svg { width: 12px; height: 12px; }
-
-.sticky-actions {
-  display: flex;
-  gap: 0.5rem;
-}
-.sticky-btn {
-  padding: 0.4rem 0.75rem;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  cursor: pointer;
-  border: none;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  transition: all 0.2s;
-}
-.sticky-btn svg { width: 12px; height: 12px; }
-.sticky-btn.secondary {
-  background: #f3f4f6;
-  color: #374151;
-}
-.sticky-btn.secondary:hover { background: #e5e7eb; }
-.sticky-btn.primary {
-  background: linear-gradient(135deg, #1E40AF 0%, #0D9488 100%);
-  color: white;
-}
-.sticky-btn.primary:hover { 
-  transform: translateY(-1px); 
-  box-shadow: 0 2px 8px rgba(30,64,175,0.3); 
-}
-
-/* All notes view */
-.sticky-all-notes {
-  padding: 1rem;
-  max-height: 300px;
-  overflow-y: auto;
-}
-.sticky-note-item {
-  padding: 0.75rem;
-  background: #f9fafb;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.sticky-note-item:hover {
-  background: #f3f4f6;
-}
-.sticky-note-item:last-child {
-  margin-bottom: 0;
-}
-.sticky-note-item-title {
-  font-weight: 600;
-  font-size: 0.85rem;
-  margin-bottom: 0.25rem;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-.sticky-note-item-title svg {
-  width: 12px;
-  height: 12px;
-  color: #d97706;
-}
-.sticky-note-item-preview {
-  font-size: 0.75rem;
-  color: #57534E;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.sticky-empty {
-  text-align: center;
-  color: #9ca3af;
-  font-size: 0.85rem;
-  padding: 2rem 1rem;
-}
-.sticky-empty svg {
-  width: 32px;
-  height: 32px;
-  margin-bottom: 0.5rem;
-  opacity: 0.5;
-}
-
-/* Tab navigation */
-.sticky-tabs {
-  display: flex;
-  border-bottom: 1px solid #E7E5E4;
-}
-.sticky-tab {
-  flex: 1;
-  padding: 0.6rem;
-  text-align: center;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: #57534E;
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s;
-  position: relative;
-}
-.sticky-tab:hover {
-  color: #1C1917;
-  background: #f9fafb;
-}
-.sticky-tab.active {
-  color: #d97706;
-}
-.sticky-tab.active::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
-}
-
-/* Hidden state toggle */
-.sticky-widget.minimized .sticky-expanded { display: none; }
-.sticky-widget.minimized .sticky-minimized { display: flex; }
-.sticky-widget.expanded .sticky-expanded { display: block; }
-.sticky-widget.expanded .sticky-minimized { display: none; }
-/* ========== FLOATING STICKY NOTE WIDGET ========== */
-.sticky-widget {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  z-index: 9999;
-  font-family: 'IBM Plex Sans', sans-serif;
-}
-
-/* Minimized State - Just the icon */
-.sticky-minimized {
-  width: 56px;
-  height: 56px;
-  background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 4px 20px rgba(217, 119, 6, 0.4);
-  transition: all 0.3s ease;
-  position: relative;
-}
-.sticky-minimized:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 25px rgba(217, 119, 6, 0.5);
-}
-.sticky-minimized svg {
-  width: 26px;
-  height: 26px;
-  color: white;
-}
-.sticky-minimized .note-count {
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  width: 22px;
-  height: 22px;
-  background: #1E40AF;
-  border-radius: 50%;
-  border: 2px solid white;
-  color: white;
-  font-size: 0.7rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.sticky-minimized .tooltip {
-  position: absolute;
-  right: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  margin-right: 0.75rem;
-  background: #1C1917;
-  color: white;
-  padding: 0.5rem 0.75rem;
-  border-radius: 8px;
-  font-size: 0.8rem;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s;
-}
-.sticky-minimized:hover .tooltip {
-  opacity: 1;
-}
-.sticky-minimized .tooltip::after {
-  content: '';
-  position: absolute;
-  left: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  border: 6px solid transparent;
-  border-left-color: #1C1917;
-}
-
-/* Expanded State - Full sticky note */
-.sticky-expanded {
-  width: 320px;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
-  overflow: hidden;
-  transform-origin: bottom right;
-  animation: expandIn 0.3s ease;
-}
-@keyframes expandIn {
-  from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-.sticky-header {
-  background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
-  color: white;
-  padding: 0.75rem 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.sticky-header-left {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.sticky-header-left svg {
-  width: 18px;
-  height: 18px;
-}
-.sticky-header-title {
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-.sticky-header-actions {
-  display: flex;
-  gap: 0.25rem;
-}
-.sticky-header-btn {
-  width: 28px;
-  height: 28px;
-  border: none;
-  background: rgba(255,255,255,0.2);
-  border-radius: 6px;
-  color: white;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.2s;
-}
-.sticky-header-btn:hover {
-  background: rgba(255,255,255,0.3);
-}
-.sticky-header-btn svg {
-  width: 16px;
-  height: 16px;
-}
-
-.sticky-project {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid #E7E5E4;
-  background: #fefce8;
-}
-.sticky-project-label {
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #a16207;
-  margin-bottom: 0.25rem;
-}
-.sticky-project-name {
-  font-family: 'DM Serif Display', serif;
-  font-size: 1rem;
-  color: #1C1917;
-}
-
-.sticky-body {
-  padding: 1rem;
-}
-.sticky-textarea {
-  width: 100%;
-  min-height: 120px;
-  padding: 0.75rem;
-  border: 1px solid #E7E5E4;
-  border-radius: 8px;
-  font-family: inherit;
-  font-size: 0.85rem;
-  resize: vertical;
-  transition: border-color 0.2s;
-}
-.sticky-textarea:focus {
-  outline: none;
-  border-color: #d97706;
-}
-.sticky-textarea::placeholder {
-  color: #9ca3af;
-}
-
-.sticky-footer {
-  padding: 0.75rem 1rem;
-  border-top: 1px solid #E7E5E4;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #fafafa;
-}
-.sticky-status {
-  font-size: 0.75rem;
-  color: #059669;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.sticky-status.visible { opacity: 1; }
-.sticky-status svg { width: 12px; height: 12px; }
-
-.sticky-actions {
-  display: flex;
-  gap: 0.5rem;
-}
-.sticky-btn {
-  padding: 0.4rem 0.75rem;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  cursor: pointer;
-  border: none;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  transition: all 0.2s;
-}
-.sticky-btn svg { width: 12px; height: 12px; }
-.sticky-btn.secondary {
-  background: #f3f4f6;
-  color: #374151;
-}
-.sticky-btn.secondary:hover { background: #e5e7eb; }
-.sticky-btn.primary {
-  background: linear-gradient(135deg, #1E40AF 0%, #0D9488 100%);
-  color: white;
-}
-.sticky-btn.primary:hover { 
-  transform: translateY(-1px); 
-  box-shadow: 0 2px 8px rgba(30,64,175,0.3); 
-}
-
-/* All notes view */
-.sticky-all-notes {
-  padding: 1rem;
-  max-height: 300px;
-  overflow-y: auto;
-}
-.sticky-note-item {
-  padding: 0.75rem;
-  background: #f9fafb;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.sticky-note-item:hover {
-  background: #f3f4f6;
-}
-.sticky-note-item:last-child {
-  margin-bottom: 0;
-}
-.sticky-note-item-title {
-  font-weight: 600;
-  font-size: 0.85rem;
-  margin-bottom: 0.25rem;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-.sticky-note-item-title svg {
-  width: 12px;
-  height: 12px;
-  color: #d97706;
-}
-.sticky-note-item-preview {
-  font-size: 0.75rem;
-  color: #57534E;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.sticky-empty {
-  text-align: center;
-  color: #9ca3af;
-  font-size: 0.85rem;
-  padding: 2rem 1rem;
-}
-.sticky-empty svg {
-  width: 32px;
-  height: 32px;
-  margin-bottom: 0.5rem;
-  opacity: 0.5;
-}
-
-/* Tab navigation */
-.sticky-tabs {
-  display: flex;
-  border-bottom: 1px solid #E7E5E4;
-}
-.sticky-tab {
-  flex: 1;
-  padding: 0.6rem;
-  text-align: center;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: #57534E;
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s;
-  position: relative;
-}
-.sticky-tab:hover {
-  color: #1C1917;
-  background: #f9fafb;
-}
-.sticky-tab.active {
-  color: #d97706;
-}
-.sticky-tab.active::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
-}
-
-/* Hidden state toggle */
-.sticky-widget.minimized .sticky-expanded { display: none; }
-.sticky-widget.minimized .sticky-minimized { display: flex; }
-.sticky-widget.expanded .sticky-expanded { display: block; }
-.sticky-widget.expanded .sticky-minimized { display: none; }
-</style>
+    
+    /* ========== FLOATING STICKY NOTE WIDGET ========== */
+    .sticky-widget {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      z-index: 9999;
+      font-family: 'IBM Plex Sans', sans-serif;
+    }
+    .sticky-minimized {
+      width: 56px;
+      height: 56px;
+      background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(217, 119, 6, 0.4);
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .sticky-minimized:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 25px rgba(217, 119, 6, 0.5);
+    }
+    .sticky-minimized svg {
+      width: 26px;
+      height: 26px;
+      color: white;
+    }
+    .sticky-minimized .note-count {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      width: 22px;
+      height: 22px;
+      background: #1E40AF;
+      border-radius: 50%;
+      border: 2px solid white;
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sticky-minimized .tooltip {
+      position: absolute;
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      margin-left: 0.75rem;
+      background: #1C1917;
+      color: white;
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .sticky-minimized:hover .tooltip {
+      opacity: 1;
+    }
+    .sticky-minimized .tooltip::after {
+      content: '';
+      position: absolute;
+      right: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 6px solid transparent;
+      border-right-color: #1C1917;
+    }
+    .sticky-expanded {
+      width: 320px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
+      overflow: hidden;
+      transform-origin: bottom left;
+      animation: expandIn 0.3s ease;
+    }
+    @keyframes expandIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .sticky-header {
+      background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+      color: white;
+      padding: 0.75rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .sticky-header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .sticky-header-left svg {
+      width: 18px;
+      height: 18px;
+    }
+    .sticky-header-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .sticky-header-actions {
+      display: flex;
+      gap: 0.25rem;
+    }
+    .sticky-header-btn {
+      width: 28px;
+      height: 28px;
+      border: none;
+      background: rgba(255,255,255,0.2);
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .sticky-header-btn:hover {
+      background: rgba(255,255,255,0.3);
+    }
+    .sticky-header-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+    .sticky-project {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #E7E5E4;
+      background: #fefce8;
+    }
+    .sticky-project-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #a16207;
+      margin-bottom: 0.25rem;
+    }
+    .sticky-project-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      color: #1C1917;
+    }
+    .sticky-body {
+      padding: 1rem;
+    }
+    .sticky-textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 0.75rem;
+      border: 1px solid #E7E5E4;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      resize: vertical;
+      transition: border-color 0.2s;
+    }
+    .sticky-textarea:focus {
+      outline: none;
+      border-color: #d97706;
+    }
+    .sticky-textarea::placeholder {
+      color: #9ca3af;
+    }
+    .sticky-footer {
+      padding: 0.75rem 1rem;
+      border-top: 1px solid #E7E5E4;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fafafa;
+    }
+    .sticky-status {
+      font-size: 0.75rem;
+      color: #059669;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .sticky-status.visible { opacity: 1; }
+    .sticky-status svg { width: 12px; height: 12px; }
+    .sticky-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .sticky-btn {
+      padding: 0.4rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: all 0.2s;
+    }
+    .sticky-btn svg { width: 12px; height: 12px; }
+    .sticky-btn.secondary {
+      background: #f3f4f6;
+      color: #374151;
+    }
+    .sticky-btn.secondary:hover { background: #e5e7eb; }
+    .sticky-btn.primary {
+      background: linear-gradient(135deg, #1E40AF 0%, #0D9488 100%);
+      color: white;
+    }
+    .sticky-btn.primary:hover { 
+      transform: translateY(-1px); 
+      box-shadow: 0 2px 8px rgba(30,64,175,0.3); 
+    }
+    .sticky-all-notes {
+      padding: 1rem;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .sticky-note-item {
+      padding: 0.75rem;
+      background: #f9fafb;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .sticky-note-item:hover {
+      background: #f3f4f6;
+    }
+    .sticky-note-item:last-child {
+      margin-bottom: 0;
+    }
+    .sticky-note-item-title {
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .sticky-note-item-title svg {
+      width: 12px;
+      height: 12px;
+      color: #d97706;
+    }
+    .sticky-note-item-preview {
+      font-size: 0.75rem;
+      color: #57534E;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .sticky-empty {
+      text-align: center;
+      color: #9ca3af;
+      font-size: 0.85rem;
+      padding: 2rem 1rem;
+    }
+    .sticky-empty svg {
+      width: 32px;
+      height: 32px;
+      margin-bottom: 0.5rem;
+      opacity: 0.5;
+    }
+    .sticky-tabs {
+      display: flex;
+      border-bottom: 1px solid #E7E5E4;
+    }
+    .sticky-tab {
+      flex: 1;
+      padding: 0.6rem;
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #57534E;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+    .sticky-tab:hover {
+      color: #1C1917;
+      background: #f9fafb;
+    }
+    .sticky-tab.active {
+      color: #d97706;
+    }
+    .sticky-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+    }
+    .sticky-widget.minimized .sticky-expanded { display: none; }
+    .sticky-widget.minimized .sticky-minimized { display: flex; }
+    .sticky-widget.expanded .sticky-expanded { display: block; }
+    .sticky-widget.expanded .sticky-minimized { display: none; }
+  </style>
 </head>
 <body>
   <div class="page-wrapper">
@@ -871,7 +502,6 @@
   <script>const nav=document.getElementById('nav'),backToTop=document.getElementById('backToTop'),demoModal=document.getElementById('demoModal');window.addEventListener('scroll',()=>{window.scrollY>50?nav.classList.add('scrolled'):nav.classList.remove('scrolled');window.scrollY>300?backToTop.classList.add('visible'):backToTop.classList.remove('visible')});function openDemo(){demoModal.classList.add('active');document.body.style.overflow='hidden'}function closeDemo(e){if(!e||e.target===demoModal){demoModal.classList.remove('active');document.body.style.overflow=''}}document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDemo()})</script>
 <!-- ========== FLOATING STICKY NOTE WIDGET ========== -->
 <div class="sticky-widget minimized" id="stickyWidget">
-  
   <!-- Minimized State -->
   <div class="sticky-minimized" onclick="expandWidget()">
     <svg viewBox="0 0 24 24" fill="currentColor">
@@ -880,7 +510,6 @@
     <div class="note-count" id="noteCount">0</div>
     <div class="tooltip">My Notes</div>
   </div>
-  
   <!-- Expanded State -->
   <div class="sticky-expanded">
     <div class="sticky-header">
@@ -898,89 +527,59 @@
         </button>
       </div>
     </div>
-    
-    <!-- Tabs -->
     <div class="sticky-tabs">
       <button class="sticky-tab active" id="tabThisPage" onclick="showTab('thisPage')">This Page</button>
       <button class="sticky-tab" id="tabAllNotes" onclick="showTab('allNotes')">All Notes (<span id="allNotesCount">0</span>)</button>
     </div>
-    
-    <!-- This Page Tab -->
     <div id="thisPageContent">
       <div class="sticky-project">
         <div class="sticky-project-label">Currently Viewing</div>
         <div class="sticky-project-name" id="currentProjectName">XactechED Campaign</div>
       </div>
-      
       <div class="sticky-body">
-        <textarea class="sticky-textarea" id="noteTextarea" 
-                  placeholder="Questions, observations, things to discuss with Christie..."
-                  oninput="saveNote()"></textarea>
+        <textarea class="sticky-textarea" id="noteTextarea" placeholder="Questions, observations, things to discuss with Christie..." oninput="saveNote()"></textarea>
       </div>
-      
       <div class="sticky-footer">
         <span class="sticky-status" id="saveStatus">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-            <polyline points="20 6 9 17 4 12"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
           Saved
         </span>
         <div class="sticky-actions">
           <button class="sticky-btn secondary" onclick="showTab('allNotes')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
             All Notes
           </button>
           <button class="sticky-btn primary" onclick="sendNotes()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="22" y1="2" x2="11" y2="13"/>
-              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
             Send
           </button>
         </div>
       </div>
     </div>
-    
-    <!-- All Notes Tab -->
     <div id="allNotesContent" style="display: none;">
       <div class="sticky-all-notes" id="allNotesList">
         <div class="sticky-empty">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
           <div>No notes yet</div>
           <div style="font-size: 0.75rem; margin-top: 0.25rem;">Start taking notes on any project!</div>
         </div>
       </div>
-      
       <div class="sticky-footer">
         <span></span>
         <div class="sticky-actions">
           <button class="sticky-btn secondary" onclick="exportNotes()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Export
           </button>
           <button class="sticky-btn primary" onclick="sendNotes()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="22" y1="2" x2="11" y2="13"/>
-              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-            </svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
             Send All
           </button>
         </div>
       </div>
     </div>
-    
   </div>
 </div>
-<script>
 <script>
 // ========== FLOATING STICKY NOTE WIDGET FUNCTIONALITY ==========
 const CURRENT_PAGE_KEY = 'xacteched';
@@ -1185,309 +784,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const projectData = getProjectData(CURRENT_PAGE_KEY);
   if (projectData.note) {
     document.getElementById('noteTextarea').value = projectData.note;
-  }
-  updateNoteCounts();
-});
-</script>
-<!-- ========== FLOATING STICKY NOTE WIDGET ========== -->
-<div class="sticky-widget minimized" id="stickyWidget">
-  
-  <!-- Minimized State -->
-  <div class="sticky-minimized" onclick="expandWidget()">
-    <svg viewBox="0 0 24 24" fill="currentColor">
-      <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
-    </svg>
-    <div class="note-count" id="noteCount">0</div>
-    <div class="tooltip">My Notes</div>
-  </div>
-  
-  <!-- Expanded State -->
-  <div class="sticky-expanded">
-    <div class="sticky-header">
-      <div class="sticky-header-left">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
-        </svg>
-        <span class="sticky-header-title">My Notes</span>
-      </div>
-      <div class="sticky-header-actions">
-        <button class="sticky-header-btn" onclick="minimizeWidget()" title="Minimize">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="5" y1="12" x2="19" y2="12"/>
-          </svg>
-        </button>
-      </div>
-    </div>
-    
-    <!-- Tabs -->
-    <div class="sticky-tabs">
-      <button class="sticky-tab active" id="tabThisPage" onclick="showTab('thisPage')">This Page</button>
-      <button class="sticky-tab" id="tabAllNotes" onclick="showTab('allNotes')">All Notes (<span id="allNotesCount">0</span>)</button>
-    </div>
-    
-    <!-- This Page Tab -->
-    <div id="thisPageContent">
-      <div class="sticky-project">
-        <div class="sticky-project-label">Currently Viewing</div>
-        <div class="sticky-project-name" id="currentProjectName">XactechED Campaign</div>
-      </div>
-      
-      <div class="sticky-body">
-        <textarea class="sticky-textarea" id="noteTextarea" 
-                  placeholder="Questions, observations, things to discuss with Christie..."
-                  oninput="saveNote()"></textarea>
-      </div>
-      
-      <div class="sticky-footer">
-        <span class="sticky-status" id="saveStatus">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-            <polyline points="20 6 9 17 4 12"/>
-          </svg>
-          Saved
-        </span>
-        <div class="sticky-actions">
-          <button class="sticky-btn secondary" onclick="showTab('allNotes')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-              <polyline points="14 2 14 8 20 8"/>
-            </svg>
-            All Notes
-          </button>
-          <button class="sticky-btn primary" onclick="sendNotes()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="22" y1="2" x2="11" y2="13"/>
-              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-            </svg>
-            Send
-          </button>
-        </div>
-      </div>
-    </div>
-    
-    <!-- All Notes Tab -->
-    <div id="allNotesContent" style="display: none;">
-      <div class="sticky-all-notes" id="allNotesList">
-        <div class="sticky-empty">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
-          </svg>
-          <div>No notes yet</div>
-          <div style="font-size: 0.75rem; margin-top: 0.25rem;">Start taking notes on any project!</div>
-        </div>
-      </div>
-      
-      <div class="sticky-footer">
-        <span></span>
-        <div class="sticky-actions">
-          <button class="sticky-btn secondary" onclick="exportNotes()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
-            </svg>
-            Export
-          </button>
-          <button class="sticky-btn primary" onclick="sendNotes()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <line x1="22" y1="2" x2="11" y2="13"/>
-              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-            </svg>
-            Send All
-          </button>
-        </div>
-      </div>
-    </div>
-    
-  </div>
-</div>
-<script>
-// ========== FLOATING STICKY NOTE WIDGET FUNCTIONALITY ==========
-const CURRENT_PAGE_KEY = 'xacteched';
-const CURRENT_PAGE_NAME = 'XactechED Campaign';
-
-function expandWidget() {
-  document.getElementById('stickyWidget').classList.remove('minimized');
-  document.getElementById('stickyWidget').classList.add('expanded');
-}
-
-function minimizeWidget() {
-  document.getElementById('stickyWidget').classList.remove('expanded');
-  document.getElementById('stickyWidget').classList.add('minimized');
-}
-
-function showTab(tab) {
-  const thisPageTab = document.getElementById('tabThisPage');
-  const allNotesTab = document.getElementById('tabAllNotes');
-  const thisPageContent = document.getElementById('thisPageContent');
-  const allNotesContent = document.getElementById('allNotesContent');
-  
-  if (tab === 'thisPage') {
-    thisPageTab.classList.add('active');
-    allNotesTab.classList.remove('active');
-    thisPageContent.style.display = 'block';
-    allNotesContent.style.display = 'none';
-  } else {
-    thisPageTab.classList.remove('active');
-    allNotesTab.classList.add('active');
-    thisPageContent.style.display = 'none';
-    allNotesContent.style.display = 'block';
-    renderAllNotes();
-  }
-}
-
-function getAllNotes() {
-  const notes = localStorage.getItem('portfolioNotes');
-  return notes ? JSON.parse(notes) : {};
-}
-
-function saveNote() {
-  const textarea = document.getElementById('noteTextarea');
-  const notes = getAllNotes();
-  
-  if (textarea.value.trim()) {
-    notes[CURRENT_PAGE_KEY] = {
-      name: CURRENT_PAGE_NAME,
-      text: textarea.value,
-      updated: new Date().toISOString()
-    };
-  } else {
-    delete notes[CURRENT_PAGE_KEY];
-  }
-  
-  localStorage.setItem('portfolioNotes', JSON.stringify(notes));
-  updateNoteCounts();
-  
-  const status = document.getElementById('saveStatus');
-  status.classList.add('visible');
-  setTimeout(() => status.classList.remove('visible'), 2000);
-}
-
-function updateNoteCounts() {
-  const notes = getAllNotes();
-  const count = Object.keys(notes).length;
-  document.getElementById('noteCount').textContent = count;
-  document.getElementById('allNotesCount').textContent = count;
-  
-  const tooltip = document.querySelector('.sticky-minimized .tooltip');
-  tooltip.textContent = count > 0 ? `My Notes (${count} project${count > 1 ? 's' : ''})` : 'My Notes';
-}
-
-function renderAllNotes() {
-  const notes = getAllNotes();
-  const container = document.getElementById('allNotesList');
-  const keys = Object.keys(notes);
-  
-  if (keys.length === 0) {
-    container.innerHTML = `
-      <div class="sticky-empty">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
-        </svg>
-        <div>No notes yet</div>
-        <div style="font-size: 0.75rem; margin-top: 0.25rem;">Start taking notes on any project!</div>
-      </div>
-    `;
-    return;
-  }
-  
-  container.innerHTML = keys.map(key => {
-    const note = notes[key];
-    const preview = note.text.length > 50 ? note.text.substring(0, 50) + '...' : note.text;
-    return `
-      <div class="sticky-note-item" onclick="goToProject('${key}')">
-        <div class="sticky-note-item-title">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>
-          </svg>
-          ${note.name}
-        </div>
-        <div class="sticky-note-item-preview">${preview}</div>
-      </div>
-    `;
-  }).join('');
-}
-
-function goToProject(key) {
-  const pageMap = {
-    'portfolio-home': 'index.html',
-    'healthcare-dashboard': 'healthcare-dashboard.html',
-    'xacteched': 'xacteched-campaign.html',
-    'resolute': 'resolute-services.html',
-    'arizona-esthetics': 'arizona-esthetics.html',
-    'palmview': 'palmview-lab.html',
-    'gardner': 'gardner-chiropractic.html'
-  };
-  if (pageMap[key]) {
-    window.location.href = pageMap[key];
-  }
-}
-
-function exportNotes() {
-  const notes = getAllNotes();
-  const keys = Object.keys(notes);
-  if (keys.length === 0) {
-    alert('No notes to export yet!');
-    return;
-  }
-  
-  let text = 'PORTFOLIO NOTES - Christie Saavedra\n';
-  text += '================================\n\n';
-  keys.forEach(key => {
-    const note = notes[key];
-    text += `📌 ${note.name}\n`;
-    text += `${note.text}\n\n`;
-  });
-  
-  const blob = new Blob([text], { type: 'text/plain' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'portfolio-notes.txt';
-  a.click();
-  URL.revokeObjectURL(url);
-}
-
-function sendNotes() {
-  const notes = getAllNotes();
-  const keys = Object.keys(notes);
-  if (keys.length === 0) {
-    alert('No notes to send yet!');
-    return;
-  }
-  
-  let message = 'Portfolio Notes:\n\n';
-  keys.forEach(key => {
-    const note = notes[key];
-    message += `${note.name}:\n${note.text}\n\n`;
-  });
-  
-  const form = document.createElement('form');
-  form.method = 'POST';
-  form.action = 'https://formspree.io/f/xaqnyaaw';
-  form.target = '_blank';
-  
-  const input = document.createElement('input');
-  input.type = 'hidden';
-  input.name = 'message';
-  input.value = message;
-  form.appendChild(input);
-  
-  const subject = document.createElement('input');
-  subject.type = 'hidden';
-  subject.name = '_subject';
-  subject.value = 'Portfolio Notes from Visitor';
-  form.appendChild(subject);
-  
-  document.body.appendChild(form);
-  form.submit();
-  document.body.removeChild(form);
-}
-
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', function() {
-  const notes = getAllNotes();
-  if (notes[CURRENT_PAGE_KEY]) {
-    document.getElementById('noteTextarea').value = notes[CURRENT_PAGE_KEY].text;
   }
   updateNoteCounts();
 });
