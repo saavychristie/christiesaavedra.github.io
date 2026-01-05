@@ -727,35 +727,14 @@
   letter-spacing: 2px;
 }
 
-@keyframes marchingDots {
-  0% { stroke-dashoffset: 0; }
-  100% { stroke-dashoffset: -24; }
-}
-
-.route-segment {
+/* Simple dotted route line */
+.route-line {
   fill: none;
+  stroke: #8b7355;
+  stroke-width: 3;
+  stroke-dasharray: 8 6;
   stroke-linecap: round;
-  stroke-linejoin: round;
-  transition: opacity 0.5s ease;
-}
-
-.route-past {
-  stroke: #7c3aed;
-  stroke-width: 4;
-  opacity: 1;
-}
-
-.route-current {
-  stroke: #7c3aed;
-  stroke-width: 4;
-  stroke-dasharray: 6 8;
-  opacity: 0.85;
-  animation: marchingDots 3s linear infinite;
-}
-
-.route-hidden {
-  opacity: 0 !important;
-  pointer-events: none;
+  opacity: 0.7;
 }
 
 .map-pin-svg {
@@ -771,36 +750,16 @@
   transform: scale(1.15);
 }
 
-.pin-circle {
-  transition: all 0.4s ease;
+.pin-flag {
+  transition: fill 0.3s ease;
 }
 
-.pin-circle.past {
-  fill: #b45309;
-  opacity: 0.75;
+.pin-pole {
+  transition: stroke 0.3s ease;
 }
 
-.pin-circle.selected {
-  fill: #7c3aed;
-  filter: drop-shadow(0 3px 8px rgba(124,58,237,0.5));
-}
-
-.pin-circle.hidden {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.pin-number {
-  fill: white;
-  font-size: 10px;
-  font-weight: bold;
-  font-family: 'IBM Plex Sans', sans-serif;
-  pointer-events: none;
-  transition: opacity 0.3s;
-}
-
-.pin-number.hidden {
-  opacity: 0;
+.pin-base {
+  transition: fill 0.3s ease;
 }
 
 .pin-label-text {
@@ -808,12 +767,8 @@
   font-size: 9px;
   font-weight: 600;
   font-family: 'IBM Plex Sans', sans-serif;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.map-pin-svg.active .pin-label-text {
   opacity: 1;
+  transition: opacity 0.3s;
 }
 
 .map-legend {
@@ -846,14 +801,16 @@
   color: #5c4033;
 }
 
-.legend-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
+.legend-flag {
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 10px solid;
 }
 
-.legend-dot.past { background: #b45309; }
-.legend-dot.selected { background: #7c3aed; }
+.legend-flag.past { border-left-color: #b45309; }
+.legend-flag.selected { border-left-color: #7c3aed; }
 
 .card-panel {
   padding: 1.5rem;
@@ -1469,45 +1426,47 @@
           <!-- Sun in corner -->
           <text x="248" y="60" style="font-size:38px">☀️</text>
           
-          <!-- ROUTE SEGMENTS - Hidden by default, revealed as you progress -->
-          <path id="route-1-2" class="route-segment route-hidden" d="M105,285 L120,265"/>
-          <path id="route-2-5" class="route-segment route-hidden" d="M120,265 L130,200 L135,150"/>
-          <path id="route-5-7" class="route-segment route-hidden" d="M135,150 L145,105"/>
-          <path id="route-7-9" class="route-segment route-hidden" d="M145,105 L135,150 L120,200 L95,270"/>
+          <!-- Simple dotted route line: Mesa → Florence → Salina → Manti → Phoenix -->
+          <polyline class="route-line" points="105,295 120,275 135,150 150,110 90,285"/>
           
-          <!-- MAP PINS -->
-          <!-- Mesa (Step 1) -->
-          <g class="map-pin-svg active" id="pin-mesa" onclick="goToStep(0)" data-step="0">
-            <circle class="pin-circle selected" cx="105" cy="285" r="16"/>
-            <text class="pin-number" x="105" y="290" text-anchor="middle">1</text>
-            <text class="pin-label-text" x="105" y="310" text-anchor="middle">Mesa</text>
+          <!-- MAP PINS - Flag style -->
+          <!-- 1. Mesa -->
+          <g class="map-pin-svg" id="pin-mesa" onclick="goToStep(0)">
+            <line class="pin-pole" x1="105" y1="295" x2="105" y2="270" stroke="#5c4033" stroke-width="2"/>
+            <polygon class="pin-flag" points="105,270 125,277 105,284" fill="#7c3aed"/>
+            <circle class="pin-base" cx="105" cy="295" r="4" fill="#5c4033"/>
+            <text class="pin-label-text" x="105" y="308" text-anchor="middle">Mesa</text>
           </g>
           
-          <!-- Florence (Steps 2,3,4) -->
-          <g class="map-pin-svg" id="pin-florence" onclick="goToStep(1)" data-step="1">
-            <circle class="pin-circle hidden" cx="120" cy="265" r="14"/>
-            <text class="pin-number hidden" x="120" y="270" text-anchor="middle"></text>
+          <!-- 2. Florence -->
+          <g class="map-pin-svg" id="pin-florence" onclick="goToStep(1)">
+            <line class="pin-pole" x1="120" y1="275" x2="120" y2="250" stroke="#5c4033" stroke-width="2"/>
+            <polygon class="pin-flag" points="120,250 140,257 120,264" fill="#7c3aed"/>
+            <circle class="pin-base" cx="120" cy="275" r="4" fill="#5c4033"/>
             <text class="pin-label-text" x="120" y="288" text-anchor="middle">Florence</text>
           </g>
           
-          <!-- Salina (Steps 5,6) -->
-          <g class="map-pin-svg" id="pin-salina" onclick="goToStep(4)" data-step="4">
-            <circle class="pin-circle hidden" cx="135" cy="140" r="14"/>
-            <text class="pin-number hidden" x="135" y="145" text-anchor="middle"></text>
+          <!-- 3. Salina -->
+          <g class="map-pin-svg" id="pin-salina" onclick="goToStep(4)">
+            <line class="pin-pole" x1="135" y1="150" x2="135" y2="125" stroke="#5c4033" stroke-width="2"/>
+            <polygon class="pin-flag" points="135,125 155,132 135,139" fill="#7c3aed"/>
+            <circle class="pin-base" cx="135" cy="150" r="4" fill="#5c4033"/>
             <text class="pin-label-text" x="135" y="163" text-anchor="middle">Salina</text>
           </g>
           
-          <!-- Manti (Steps 7,8) -->
-          <g class="map-pin-svg" id="pin-manti" onclick="goToStep(6)" data-step="6">
-            <circle class="pin-circle hidden" cx="150" cy="100" r="14"/>
-            <text class="pin-number hidden" x="150" y="105" text-anchor="middle"></text>
+          <!-- 4. Manti -->
+          <g class="map-pin-svg" id="pin-manti" onclick="goToStep(6)">
+            <line class="pin-pole" x1="150" y1="110" x2="150" y2="85" stroke="#5c4033" stroke-width="2"/>
+            <polygon class="pin-flag" points="150,85 170,92 150,99" fill="#7c3aed"/>
+            <circle class="pin-base" cx="150" cy="110" r="4" fill="#5c4033"/>
             <text class="pin-label-text" x="150" y="123" text-anchor="middle">Manti</text>
           </g>
           
-          <!-- Phoenix (Step 9) -->
-          <g class="map-pin-svg" id="pin-phoenix" onclick="goToStep(8)" data-step="8">
-            <circle class="pin-circle hidden" cx="90" cy="275" r="14"/>
-            <text class="pin-number hidden" x="90" y="280" text-anchor="middle"></text>
+          <!-- 5. Phoenix -->
+          <g class="map-pin-svg" id="pin-phoenix" onclick="goToStep(8)">
+            <line class="pin-pole" x1="90" y1="285" x2="90" y2="260" stroke="#5c4033" stroke-width="2"/>
+            <polygon class="pin-flag" points="90,260 110,267 90,274" fill="#7c3aed"/>
+            <circle class="pin-base" cx="90" cy="285" r="4" fill="#5c4033"/>
             <text class="pin-label-text" x="90" y="298" text-anchor="middle">Phoenix</text>
           </g>
           
@@ -1516,8 +1475,8 @@
         <!-- Legend -->
         <div class="map-legend">
           <div class="legend-title">Legend</div>
-          <div class="legend-item"><div class="legend-dot selected"></div><span>Selected</span></div>
-          <div class="legend-item"><div class="legend-dot past"></div><span>Past</span></div>
+          <div class="legend-item"><div class="legend-flag selected"></div><span>Selected</span></div>
+          <div class="legend-item"><div class="legend-flag past"></div><span>Past</span></div>
         </div>
       </div>
     </div>
@@ -2048,26 +2007,17 @@ const timelineData = [
 
 let currentStep = 0;
 
-// Location to steps mapping
-const locationSteps = {
-  'mesa': [0],
-  'florence': [1, 2, 3],
-  'salina': [4, 5],
-  'manti': [6, 7],
-  'phoenix': [8]
-};
-
-// Route visibility - routes only show if you've reached them
-const routeVisibility = {
-  0: [],
-  1: ['route-1-2'],
-  2: ['route-1-2'],
-  3: ['route-1-2'],
-  4: ['route-1-2', 'route-2-5'],
-  5: ['route-1-2', 'route-2-5'],
-  6: ['route-1-2', 'route-2-5', 'route-5-7'],
-  7: ['route-1-2', 'route-2-5', 'route-5-7'],
-  8: ['route-1-2', 'route-2-5', 'route-5-7', 'route-7-9']
+// Map timeline steps to pin locations (1-5)
+const stepToPin = {
+  0: 'pin-mesa',      // Step 1 - Mesa
+  1: 'pin-florence',  // Steps 2,3,4 - Florence
+  2: 'pin-florence',
+  3: 'pin-florence',
+  4: 'pin-salina',    // Steps 5,6 - Salina
+  5: 'pin-salina',
+  6: 'pin-manti',     // Steps 7,8 - Manti
+  7: 'pin-manti',
+  8: 'pin-phoenix'    // Step 9 - Phoenix
 };
 
 function updateTimeline() {
@@ -2092,11 +2042,8 @@ function updateTimeline() {
   document.getElementById('modalTitle').textContent = data.title;
   document.getElementById('modalMeta').textContent = data.year + ' • ' + data.location;
   
-  // Update map pins
-  updateMapPins(currentStep);
-  
-  // Update route visibility
-  updateRouteVisibility(currentStep);
+  // Highlight current pin on map
+  highlightCurrentPin();
   
   // Update nav buttons
   const prevBtns = document.querySelectorAll('.card-nav.prev, .timeline-modal-nav.prev');
@@ -2105,57 +2052,21 @@ function updateTimeline() {
   nextBtns.forEach(btn => btn.disabled = currentStep === timelineData.length - 1);
 }
 
-function updateMapPins(step) {
-  const pins = ['mesa', 'florence', 'salina', 'manti', 'phoenix'];
+function highlightCurrentPin() {
+  const currentPinId = stepToPin[currentStep];
+  const allPins = ['pin-mesa', 'pin-florence', 'pin-salina', 'pin-manti', 'pin-phoenix'];
   
-  pins.forEach(pinName => {
-    const pin = document.getElementById('pin-' + pinName);
+  allPins.forEach(pinId => {
+    const pin = document.getElementById(pinId);
     if (!pin) return;
+    const flag = pin.querySelector('.pin-flag');
     
-    const circle = pin.querySelector('.pin-circle');
-    const number = pin.querySelector('.pin-number');
-    const stepsForLocation = locationSteps[pinName] || [];
-    const minStepForLocation = Math.min(...stepsForLocation);
-    
-    // Reset classes
-    circle.classList.remove('selected', 'past', 'hidden');
-    if (number) number.classList.remove('hidden');
-    pin.classList.remove('active');
-    
-    if (stepsForLocation.includes(step)) {
-      // Currently selected location
-      circle.classList.add('selected');
-      pin.classList.add('active');
-    } else if (minStepForLocation < step) {
-      // Past location
-      circle.classList.add('past');
+    if (pinId === currentPinId) {
+      flag.setAttribute('fill', '#7c3aed'); // Purple - selected
+      pin.style.transform = 'scale(1.15)';
     } else {
-      // Future location - hide it
-      circle.classList.add('hidden');
-      if (number) number.classList.add('hidden');
-    }
-  });
-}
-
-function updateRouteVisibility(step) {
-  const allRoutes = ['route-1-2', 'route-2-5', 'route-5-7', 'route-7-9'];
-  const visibleRoutes = routeVisibility[step] || [];
-  
-  allRoutes.forEach(routeId => {
-    const route = document.getElementById(routeId);
-    if (!route) return;
-    
-    route.classList.remove('route-past', 'route-current', 'route-hidden');
-    
-    if (visibleRoutes.includes(routeId)) {
-      const isLastSegment = visibleRoutes.indexOf(routeId) === visibleRoutes.length - 1;
-      if (isLastSegment && visibleRoutes.length > 0) {
-        route.classList.add('route-current'); // Animated
-      } else {
-        route.classList.add('route-past'); // Solid
-      }
-    } else {
-      route.classList.add('route-hidden');
+      flag.setAttribute('fill', '#b45309'); // Amber - other
+      pin.style.transform = 'scale(1)';
     }
   });
 }
