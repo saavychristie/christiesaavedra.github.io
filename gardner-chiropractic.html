@@ -15,6 +15,7 @@
     html { scroll-behavior: smooth; }
     body { font-family: var(--font-body); color: var(--color-text); line-height: 1.7; background: var(--color-bg-warm); }
     .page-wrapper { position: relative; background: linear-gradient(180deg, #FDFCFA 0%, #FAF8F5 50%, #FDFCFA 100%); min-height: 100vh; }
+.page-wrapper::before { content: ''; position: absolute; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='canvas'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.04' numOctaves='5' result='noise'/%3E%3CfeDiffuseLighting in='noise' lighting-color='%23FDFCFA' surfaceScale='1'%3E%3CfeDistantLight azimuth='45' elevation='60'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23canvas)' opacity='0.3'/%3E%3C/svg%3E"); opacity: 0.5; pointer-events: none; z-index: 0; }
     .nav, .hero, .content, .footer { position: relative; z-index: 1; }
     .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; }
     .nav::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--project-gradient); z-index: 1; }
@@ -25,7 +26,10 @@
     .nav-back:hover { color: #059669; }
     .nav-back svg { width: 18px; height: 18px; }
     .nav-logo { font-family: var(--font-display); font-size: 1.1rem; color: var(--color-text); text-decoration: none; }
-    .hero { padding: 8rem 2rem 4rem; text-align: center; }
+    .hero { padding: 8rem 2rem 2rem; }
+.hero-container { max-width: var(--max-width); margin: 0 auto; }
+.hero-card { background: linear-gradient(135deg, white 0%, white 50%, rgba(124, 58, 237, 0.12) 100%); border: 1px solid rgba(124, 58, 237, 0.1); border-radius: 16px; padding: 3rem 2rem; text-align: center; position: relative; overflow: hidden; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); }
+.hero-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--project-gradient); }
     .hero-container { max-width: var(--max-width); margin: 0 auto; }
     .hero-meta { display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
     .hero-role { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: white; background: var(--project-gradient); padding: 0.5rem 1rem; border-radius: 2rem; }
@@ -33,26 +37,25 @@
     .hero-title { font-family: var(--font-display); font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 400; line-height: 1.15; margin-bottom: 1.5rem; }
     .hero-summary { font-size: 1.15rem; color: var(--color-text-secondary); max-width: 700px; margin: 0 auto 2rem; }
     .results-banner { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
-    .result-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-radius: 12px; padding: 1.25rem 1.5rem; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 4px 20px rgba(0,0,0,0.03); text-align: center; min-width: 140px; position: relative; overflow: hidden; }
-    .result-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--project-gradient); }
-    .result-number { font-family: var(--font-display); font-size: 1.75rem; background: var(--project-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .result-label { font-size: 0.75rem; color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
-    .content { padding: 3rem 2rem 5rem; }
+    .result-card { background: var(--project-gradient); border-radius: 12px; padding: 1.25rem 1.5rem; text-align: center; min-width: 140px; color: white; }
+.result-number { font-family: var(--font-display); font-size: 1.75rem; color: white; }
+.result-label { font-size: 0.75rem; color: rgba(255,255,255,0.9); text-transform: uppercase; letter-spacing: 0.05em; }
     .content-container { max-width: var(--max-width); margin: 0 auto; }
     .content-section { margin-bottom: 3rem; }
     .content-title { font-family: var(--font-display); font-size: 1.5rem; margin-bottom: 1.25rem; }
-    .glass-card { background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border-radius: 16px; padding: 2rem; border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 4px 20px rgba(0,0,0,0.03); position: relative; overflow: hidden; }
-    .glass-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--project-gradient); }
+    .glass-card { background: linear-gradient(135deg, white 0%, white 50%, rgba(124, 58, 237, 0.12) 100%); border: 1px solid rgba(124, 58, 237, 0.1); border-radius: 16px; padding: 2rem; box-shadow: 0 4px 20px rgba(0,0,0,0.04); position: relative; overflow: hidden; }
+.glass-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--project-gradient); }
     .content-text { font-size: 1rem; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 1rem; }
     .content-text:last-child { margin-bottom: 0; }
     .content-list { list-style: none; margin: 1rem 0; }
     .content-list li { padding: 0.5rem 0 0.5rem 1.5rem; position: relative; color: var(--color-text-secondary); }
     .content-list li::before { content: ''; position: absolute; left: 0; top: 0.9rem; width: 8px; height: 8px; border-radius: 50%; background: var(--project-gradient); }
-    .pattern-box { background: rgba(5,150,105,0.08); border-left: 4px solid #059669; border-radius: 0 12px 12px 0; padding: 1.5rem; margin: 2rem 0; }
-    .pattern-box p { margin-bottom: 0.5rem; color: var(--color-text-secondary); }
-    .pattern-box a { color: #059669; }
-    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
-    .tag { font-size: 0.75rem; font-weight: 500; padding: 0.4rem 0.8rem; border-radius: 2rem; background: rgba(255,255,255,0.8); color: var(--color-text-secondary); border: 1px solid rgba(0,0,0,0.06); }
+    .pattern-box { background: var(--project-gradient); border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
+.pattern-box p { margin-bottom: 0.5rem; color: rgba(255,255,255,0.9); }
+.pattern-box strong { color: white; }
+.pattern-box a { color: white; text-decoration: underline; }
+   .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; justify-content: center; max-width: 600px; margin-left: auto; margin-right: auto; }
+.tag { font-size: 0.7rem; font-weight: 600; padding: 0.4rem 0.8rem; border-radius: 2rem; background: var(--project-gradient); color: white; }
     .cta-section { text-align: center; padding: 2rem 0; }
     .btn-cta { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--project-gradient); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 0.95rem; transition: all 0.2s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
     .btn-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.15); }
@@ -395,21 +398,27 @@
 /* Case Study Dropdown */
 .casestudy-box {
   margin-top: 2rem;
-  border: 3px dashed #a855f7;
-  border-radius: 12px;
-  padding: 1.25rem;
-  background: rgba(168, 85, 247, 0.1);
+  margin-bottom: 0;
+  border: 2px dashed #f97316;
+  border-radius: 10px;
+  padding: 0.75rem 1.25rem;
+  background: rgba(249, 115, 22, 0.08);
   text-align: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
 }
 .casestudy-label {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 700;
   letter-spacing: 0.05em;
-  color: #7c3aed;
-  margin-bottom: 0.75rem;
+  color: #c2410c;
+  margin-bottom: 0;
   display: block;
-}
-.casestudy-dropdown {
+}.casestudy-dropdown {
   position: relative;
   display: inline-block;
 }
@@ -476,16 +485,38 @@
   margin-top: 1.5rem;
 }
 .behind-scenes-card {
-  background: white;
+  background: linear-gradient(135deg, white 0%, white 60%, rgba(124, 58, 237, 0.15) 100%);
+  border: 1px solid rgba(124, 58, 237, 0.1);
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-  border: 1px solid rgba(0,0,0,0.04);
+  position: relative;
+}
+.behind-scenes-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--project-gradient);
 }
 .behind-scenes-card img {
   width: 100%;
-  height: 220px;
+  height: 280px;
   object-fit: cover;
+  object-position: top center;
+  cursor: pointer;
+}
+.behind-scenes-card img:hover {
+  opacity: 0.9;
+}
+.behind-scenes-card img {
+  width: 100%;
+  height: 490px;
+  object-fit: cover;
+  object-position: center;
+  cursor: pointer;
 }
 .behind-scenes-card.single {
   max-width: 500px;
@@ -550,6 +581,42 @@
 .behind-scenes-card img:hover {
   opacity: 0.9;
 }
+.photo-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.9);
+  z-index: 10001;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  cursor: pointer;
+}
+.photo-modal.active {
+  display: flex;
+}
+.photo-modal img {
+  max-width: 90%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.photo-modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  color: white;
+  font-size: 2.5rem;
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 </style>
 </head>
 <body>
@@ -557,8 +624,9 @@
     <nav class="nav" id="nav"><div class="nav-bg"><div class="nav-container"><a href="index.html#work" class="nav-back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>Back to Portfolio</a><a href="index.html" class="nav-logo">Christie Stephenson Saavedra</a></div></div></nav>
 
     <section class="hero">
-      <div class="hero-container">
-        <div class="hero-meta">
+  <div class="hero-container">
+    <div class="hero-card">
+    <div class="hero-meta">
           <span class="hero-role">Co-founder / Marketing</span>
           <span class="hero-org">Gardner Chiropractic</span>
         </div>
@@ -569,12 +637,13 @@
           <div class="result-card"><div class="result-number">Pro</div><div class="result-label">Athlete Event</div></div>
           <div class="result-card"><div class="result-number">Sideline</div><div class="result-label">Partnership</div></div>
        </div>
-        <div class="casestudy-box">
+    </div>
+    <div class="casestudy-box">
           <span class="casestudy-label">CASE STUDY</span>
           <div class="casestudy-dropdown" id="casestudyDropdown">
             <button class="casestudy-btn" onclick="toggleCasestudyDropdown()">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-              Case Study
+              View
               <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
             </button>
             <div class="casestudy-dropdown-menu">
