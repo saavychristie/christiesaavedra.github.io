@@ -2293,11 +2293,21 @@
     left: 1rem;
     padding: 0.6rem 0.8rem;
     min-width: 140px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.4s ease;
+    pointer-events: none;
+  }
+  .progress-widget.mobile-visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
   }
   .progress-widget-stats {
     gap: 0.6rem;
   }
-}/* Card Badges */
+}
+/* Card Badges */
 .card-badges {
   position: absolute;
   top: 0.75rem;
@@ -3954,30 +3964,32 @@
         closeResumeDropdown();
       }
     });
-// Mobile sticky widget scroll trigger
+// Mobile widgets scroll trigger (progress + sticky notes)
 (function() {
   const isMobile = window.innerWidth <= 768;
   if (!isMobile) return;
   
   const stickyWidget = document.getElementById('stickyWidget');
+  const progressWidget = document.getElementById('progressWidget');
   const workSection = document.getElementById('work');
-  if (!stickyWidget || !workSection) return;
+  if (!workSection) return;
   
-  let widgetShown = false;
+  let widgetsShown = false;
   
-  function showMobileWidget() {
-    if (widgetShown) return;
-    widgetShown = true;
-    stickyWidget.classList.add('mobile-visible');
+  function showMobileWidgets() {
+    if (widgetsShown) return;
+    widgetsShown = true;
+    if (stickyWidget) stickyWidget.classList.add('mobile-visible');
+    if (progressWidget) progressWidget.classList.add('mobile-visible');
   }
   
   // Trigger on scroll to #work
   function checkScroll() {
-    if (widgetShown) return;
+    if (widgetsShown) return;
     const workTop = workSection.getBoundingClientRect().top;
     const triggerPoint = window.innerHeight * 0.8;
     if (workTop <= triggerPoint) {
-      showMobileWidget();
+      showMobileWidgets();
     }
   }
   
@@ -3986,14 +3998,13 @@
   // Trigger on click "Work" nav link
   document.querySelectorAll('a[href="#work"]').forEach(function(link) {
     link.addEventListener('click', function() {
-      setTimeout(showMobileWidget, 300);
+      setTimeout(showMobileWidgets, 300);
     });
   });
   
   // Check on load in case already scrolled
   checkScroll();
-})();  
-</script>
+})();</script>
 <!-- ========== FLOATING STICKY NOTE WIDGET ========== -->
 <div class="sticky-widget minimized" id="stickyWidget">
   
