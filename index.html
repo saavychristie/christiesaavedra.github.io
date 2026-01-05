@@ -1564,7 +1564,10 @@
     .education-card:nth-child(1) { --edu-gradient: linear-gradient(90deg, #000000 0%, #FFC904 100%); } /* UCF Black to Gold */
     .education-card:nth-child(2) { --edu-gradient: linear-gradient(90deg, #FFC904 0%, #000000 100%); } /* UCF Gold to Black */
     .education-card:nth-child(3) { --edu-gradient: linear-gradient(90deg, #003057 0%, #B3A369 100%); } /* Georgia Tech Navy to Gold */
-    .education-card:nth-child(4) { --edu-gradient: linear-gradient(90deg, #1E40AF 0%, #0D9488 100%); } /* Brand gradient */
+    .education-card:nth-child(4) { --edu-gradient: linear-gradient(90deg, #E31837 0%, #231F20 100%); } /* V School Red to Black */
+    .education-card:nth-child(5) { --edu-gradient: linear-gradient(90deg, #003057 0%, #4B0082 100%); } /* WGU Navy to Purple */
+    .education-card:nth-child(6) { --edu-gradient: linear-gradient(90deg, #275D38 0%, #4A7C59 100%); } /* UVU Green */
+    .education-card:nth-child(7) { --edu-gradient: linear-gradient(90deg, #1E40AF 0%, #0D9488 100%); } /* Brand gradient */
 
     .education-card:hover {
       background: rgba(255, 255, 255, 0.9);
@@ -1592,6 +1595,75 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+    }
+
+    /* Coursework styles */
+    .education-coursework {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .coursework-title {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .coursework-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .course-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.7rem;
+      background: var(--color-accent-light);
+      color: var(--color-accent);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    .course-tag .grade {
+      font-weight: 600;
+      background: var(--color-accent);
+      color: white;
+      padding: 0.1rem 0.25rem;
+      border-radius: 3px;
+      font-size: 0.6rem;
+    }
+
+    .course-tag.in-progress {
+      background: rgba(13, 148, 136, 0.1);
+      color: var(--color-highlight-accent);
+    }
+
+    .course-tag.in-progress .grade {
+      background: var(--color-highlight-accent);
+    }
+
+    .course-tag.wgu {
+      background: rgba(75, 0, 130, 0.1);
+      color: #4B0082;
+    }
+
+    .course-tag.wgu .grade {
+      background: #4B0082;
+    }
+
+    .course-tag.uvu {
+      background: rgba(39, 93, 56, 0.1);
+      color: #275D38;
+    }
+
+    .course-tag.uvu .grade {
+      background: #275D38;
     }
 
     /* ==================== CONTACT - WITH COLOR GLOW ==================== */
@@ -3649,16 +3721,34 @@
           <h2 class="section-title">Education</h2>
         </div>
 
-        <div class="education-grid">
+     <div class="education-grid">
           <div class="education-card">
             <div class="education-school">University of Central Florida</div>
             <div class="education-degree">Master of Arts, Instructional Design & Technology</div>
             <div class="education-date">Beginning January 2026</div>
+            <div class="education-coursework">
+              <div class="coursework-title">Spring 2026 Courses</div>
+              <div class="coursework-list">
+                <span class="course-tag in-progress">EME 6613 - Instructional Systems Design <span class="grade">IP</span></span>
+                <span class="course-tag in-progress">EME 6507 - Multimedia for Ed & Training <span class="grade">IP</span></span>
+                <span class="course-tag in-progress">EDF 6481 - Graduate Research in Education <span class="grade">IP</span></span>
+              </div>
+            </div>
           </div>
           <div class="education-card">
             <div class="education-school">University of Central Florida</div>
             <div class="education-degree">Bachelor of Arts, Interdisciplinary Studies</div>
             <div class="education-date">December 2025</div>
+            <div class="education-coursework">
+              <div class="coursework-title">Relevant Coursework</div>
+              <div class="coursework-list">
+                <span class="course-tag">Writing for Technical Professionals <span class="grade">A</span></span>
+                <span class="course-tag">Writing in Digital Environments <span class="grade">A</span></span>
+                <span class="course-tag">Contemporary Issues in Leadership <span class="grade">A</span></span>
+                <span class="course-tag">Medical Terminology <span class="grade">A</span></span>
+                <span class="course-tag">Principles of Statistics <span class="grade">B</span></span>
+              </div>
+            </div>
           </div>
           <div class="education-card">
             <div class="education-school">Georgia Institute of Technology</div>
@@ -3666,9 +3756,59 @@
             <div class="education-date">Completed</div>
           </div>
           <div class="education-card">
+            <div class="education-school">V School</div>
+            <div class="education-degree">Computer Programming Intensive</div>
+            <div class="education-date">Completed</div>
+          </div>
+          <div class="education-card">
+            <div class="education-school">Western Governors University</div>
+            <div class="education-degree">IT Business Management (Transfer Credits)</div>
+            <div class="education-date">2013–2018</div>
+            <div class="education-coursework">
+              <div class="coursework-title">Completed Courses</div>
+              <div class="coursework-list">
+                <span class="course-tag wgu">Project Management <span class="grade">S</span></span>
+                <span class="course-tag wgu">IT Management Concepts <span class="grade">S</span></span>
+                <span class="course-tag wgu">Organizational Behavior & Leadership <span class="grade">S</span></span>
+                <span class="course-tag wgu">Information Systems Management <span class="grade">S</span></span>
+                <span class="course-tag wgu">Introduction to HR <span class="grade">S</span></span>
+                <span class="course-tag wgu">Legal Issues for Business <span class="grade">S</span></span>
+                <span class="course-tag wgu">IT Fundamentals <span class="grade">S</span></span>
+                <span class="course-tag wgu">Spreadsheets <span class="grade">S</span></span>
+                <span class="course-tag wgu">Intro to Probability & Statistics <span class="grade">S</span></span>
+              </div>
+            </div>
+          </div>
+          <div class="education-card">
+            <div class="education-school">Utah Valley University</div>
+            <div class="education-degree">Business Management / Entrepreneurship (Transfer Credits)</div>
+            <div class="education-date">2002–2008</div>
+            <div class="education-coursework">
+              <div class="coursework-title">Completed Courses</div>
+              <div class="coursework-list">
+                <span class="course-tag uvu">Entrepreneurship <span class="grade">B</span></span>
+                <span class="course-tag uvu">Principles of Marketing <span class="grade">B+</span></span>
+                <span class="course-tag uvu">Principles of Leadership <span class="grade">A-</span></span>
+                <span class="course-tag uvu">General Psychology <span class="grade">A</span></span>
+                <span class="course-tag uvu">American Civilization <span class="grade">A-</span></span>
+                <span class="course-tag uvu">Intro to Public Speaking <span class="grade">B-</span></span>
+                <span class="course-tag uvu">Intro to Sociology <span class="grade">B-</span></span>
+                <span class="course-tag uvu">General Biology <span class="grade">B</span></span>
+              </div>
+            </div>
+          </div>
+          <div class="education-card">
             <div class="education-school">Additional Training</div>
-            <div class="education-degree">WGU (IT Business Management), VSchool (Programming), UVU (Digital Marketing)</div>
+            <div class="education-degree">Colorado Technical University, UVU Digital Marketing Bootcamp</div>
             <div class="education-date">Various</div>
+            <div class="education-coursework">
+              <div class="coursework-title">Key Courses</div>
+              <div class="coursework-list">
+                <span class="course-tag">Introduction to IT <span class="grade">A</span></span>
+                <span class="course-tag">Web Site Portfolio Development <span class="grade">B+</span></span>
+                <span class="course-tag">Spreadsheet Applications <span class="grade">A</span></span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
